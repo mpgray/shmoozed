@@ -30,8 +30,8 @@ Shmoozed is made up of a Front-end application written using Angular, a Back-end
 
 Project setup is dependant on which architectural piece, front-end or back-end, you are working on:
 
-* [Front-end project setup](/FrontEnd/README.md#setup)
-* [Back-end project setup](/BackEnd/README.md#setup)
+* [Front-end project setup](/FrontEnd/README.md#development-setup)
+* [Back-end project setup](/BackEnd/README.md#development-setup)
 
 ## Other Documentation
 
