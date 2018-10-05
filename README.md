@@ -17,8 +17,7 @@ Shmoozed was developed as a project at Weber State University as part of CS 3750
 
 Shmoozed is made up of a Front-end application written using Angular, a Back-end Java API powered by Spring & Spring Boot, backed by a MySQL Database, and all hosted on Amazon Web Services.
 
-**High Level Diagram Eventually Goes Here...**
-![](high-level-arch.png)
+![](/Docs/high-level-arch.png)
 
 ### Detailed diagrams & documentation:
 * [Front-end](/BackEnd/README.md#architecture)
