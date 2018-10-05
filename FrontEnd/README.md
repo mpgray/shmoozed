@@ -1,6 +1,17 @@
-# Shmoozed
+# Shmoozed Front-end
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+
+# Deploy Procedure
+
+Ideally, this would be automated through a DevOps / Delivery Tool such as Jenkins, etc. but due to
+time constraints these manual build and deploy instructions should be followed when a new version
+of the application is ready to be released into Production.
+
+1. Build things...
+2. Deploy things...
+3. Sanity change things...
 
 ## Development server
 
@@ -25,3 +36,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
