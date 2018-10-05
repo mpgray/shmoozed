@@ -7,6 +7,7 @@ import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AppRoutingModule} from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     AlertModule.forRoot(),
     MatIconModule,
+    AppRoutingModule,
     BrowserModule
   ],
   providers: [],
