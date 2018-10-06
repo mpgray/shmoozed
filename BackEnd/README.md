@@ -154,6 +154,9 @@ Unit tests are run as part of the `install` phase of the normal Maven Clean and 
 The simplest way to do this is to Right-click on a Test file and choose "Run Test...". This will run all tests in that single file. The same thing
 can be done by Right-clicking on the entire `test` directory and choose "Run Unittests in driectory". This will run all tests in that directory.
 
+
+# Architecture
+
 ## Project Structure
 
 ```
@@ -177,7 +180,12 @@ can be done by Right-clicking on the entire `test` directory and choose "Run Uni
 +--- pom.xml
 ```
 
-Diagram about "layers": Controllers --> Services --> Remotes / Models
+## Separation of Concerns
+
+A rigid structure is implemented by the backend to ensure separation of concerns at each point in the request
+process. The following diagram illustrates the process of a request for data coming from a user/client. By following
+these standards it helps to avoid spaghetti code.
+![](Backend-dataflow.png)
 
 ## Spring Initializr
 
