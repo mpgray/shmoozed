@@ -9,6 +9,28 @@ The Shmoozed Back-end API is developed in Java.
 * Spring
 * Spring Boot
 
+## Table of Contents
+
+<!-- Table of contents generated at https://ecotrust-canada.github.io/markdown-toc/ -->
+
+- [Shmoozed Back-end API](#shmoozed-back-end-api)
+  * [Technologies Used](#technologies-used)
+- [Development Setup](#development-setup)
+  * [Prerequisites](#prerequisites)
+  * [Maven Installation](#maven-installation)
+  * [Docker MySQL](#docker-mysql)
+    + [Useful Docker Commands](#useful-docker-commands)
+  * [IntelliJ IDE Configuration](#intellij-ide-configuration)
+    + [Import Styleguide](#import-styleguide)
+    + [Open/Import Project](#open-import-project)
+    + [Run Application](#run-application)
+    + [Run Unit Tests](#run-unit-tests)
+- [Architecture](#architecture)
+  * [Project Structure](#project-structure)
+  * [Separation of Concerns](#separation-of-concerns)
+  * [Spring Initializr](#spring-initializr)
+- [Deploy Procedure](#deploy-procedure)
+
 # Development Setup
 
 ## Prerequisites
