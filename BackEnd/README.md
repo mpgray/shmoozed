@@ -35,9 +35,6 @@ The high level description of installing Maven is:
 2. Extract to a directory
 3. Set up Maven directories into your system's Path
 
-A primer on Maven is provided at https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html. It goes _deep_ very quickly though.
-Thankfully, for the most part it will likely be "set it and forget it".
-
 ## IntelliJ IDE Configuration
 
 The following intructions are specific to IntelliJ Ultimate. Any IDE which can import a Maven pom.xml file and generate a project from it 
@@ -184,7 +181,8 @@ can be done by Right-clicking on the entire `test` directory and choose "Run Uni
 
 A rigid structure is implemented by the backend to ensure separation of concerns at each point in the request
 process. The following diagram illustrates the process of a request for data coming from a user/client. By following
-these standards it helps to avoid spaghetti code.
+these standards it helps to avoid "spaghetti code".
+
 ![](Backend-dataflow.png)
 
 ## Spring Initializr
