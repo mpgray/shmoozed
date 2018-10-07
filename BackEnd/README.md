@@ -25,6 +25,7 @@ The Shmoozed Back-end API is developed in Java.
     + [Open/Import Project](#open-import-project)
     + [Run Application](#run-application)
     + [Run Unit Tests](#run-unit-tests)
+    + [Manual Testing with Postman](#manual-testing-with-postman)
 - [Architecture](#architecture)
   * [Project Structure](#project-structure)
   * [Separation of Concerns](#separation-of-concerns)
@@ -213,6 +214,13 @@ Additional details about running Spring Boot applications found here: https://do
 Unit tests are run as part of the `install` phase of the normal Maven Clean and Install cycle. However, it is wise to run them fairly often.
 The simplest way to do this is to Right-click on a Test file and choose "Run Test...". This will run all tests in that single file. The same thing
 can be done by Right-clicking on the entire `test` directory and choose "Run Unittests in driectory". This will run all tests in that directory.
+
+### Manual Testing with Postman
+
+A Collection of [Postman](https://www.getpostman.com/) calls is located at `/BackEnd/postman/` which can be imported 
+into Postman to jumpstart your manual testing of the Back-end API.
+
+As new endpoints are added, these Postman collections should be updated with example calls.
 
 
 # Architecture
