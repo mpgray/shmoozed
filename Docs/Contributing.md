@@ -2,10 +2,12 @@
 
 1. Ensure working on latest codebase (`git pull --rebase origin master`)
 2. Create your feature branch (`git checkout -b feature_foo`)
-3. Commit your changes (`git commit -am 'Add some foo'`)
-4. Ensure working on latest codebase (`git pull --rebase origin master`)
-5. Push to the remote branch (`git push origin feature_foo`)
-6. Create a new Pull Request
+3. Make code changes...
+4. Run all Unit/Component/Acceptance tests to ensure no test failures
+5. Commit your changes (`git commit -am 'Add some foo'`)
+6. Ensure working on latest codebase (`git pull --rebase origin master`)
+7. Push to the remote branch (`git push origin feature_foo`)
+8. Create a new Pull Request
 
 ## Commit Message Standards
 

@@ -9,11 +9,38 @@ The Shmoozed Back-end API is developed in Java.
 * Spring
 * Spring Boot
 
+## Table of Contents
+
+<!-- Table of contents generated at https://ecotrust-canada.github.io/markdown-toc/ -->
+
+- [Shmoozed Back-end API](#shmoozed-back-end-api)
+  * [Technologies Used](#technologies-used)
+- [Development Setup](#development-setup)
+  * [Prerequisites](#prerequisites)
+  * [Maven Installation](#maven-installation)
+  * [Docker MySQL](#docker-mysql)
+    + [Useful Docker Commands](#useful-docker-commands)
+  * [IntelliJ IDE Configuration](#intellij-ide-configuration)
+    + [Import Styleguide](#import-styleguide)
+    + [Open/Import Project](#open-import-project)
+    + [Run Application](#run-application)
+    + [Run Unit Tests](#run-unit-tests)
+    + [Manual Testing with Postman](#manual-testing-with-postman)
+- [Architecture](#architecture)
+  * [Project Structure](#project-structure)
+  * [Separation of Concerns](#separation-of-concerns)
+  * [Spring Initializr](#spring-initializr)
+- [Deploy Procedure](#deploy-procedure)
+
 # Development Setup
 
 ## Prerequisites
 
 * Java 8 JDK Installed
+* Docker Installed & Configured
+  * (optional, but recommended for running local MySQL Database)
+
+No instructions are provided for installing and configuring any of the above listed prerequisites.
 
 ## Maven Installation
 
@@ -34,6 +61,43 @@ The high level description of installing Maven is:
    * Mac / Linux: Download the "Binary tar.gz archive" verion (`apache-maven-3.5.4-bin.tar.gz`)
 2. Extract to a directory
 3. Set up Maven directories into your system's Path
+
+## Docker MySQL
+
+For local development, a MySQL Database is necessary. The recommended way to run this is to run it via a Docker Container.
+These instructions use the [official MySQL](https://hub.docker.com/_/mysql/) image from Docker Hub.
+
+Running MySQL in a Docker Container has several benefits, but the one benefit which is the deciding factor for including
+this as the standard is not needing to install and configure MySQL. Simply pulling down a Docker Image that is ready to
+go is simpler. (Docker is rapidly becoming an industry standard so gaining experience with it has added benefit beyond
+this project itself.)
+
+(Note - A native installation is sufficient if you choose to take that route instead. Follow instructions to apply 
+schema & sql scripts from the [Database README.md](/Database/README.md))
+
+1. Pull down the latest Docker MySQL Server:
+```sh
+>> docker pull mysql:5.7
+```
+2. Create and start a MySQL container:
+```sh
+>> docker run --name mysql_shmoozed -e MYSQL_ROOT_PASSWORD=my-Secret-pw -p 3306:3306 -d mysql:5.7
+```
+3. Verify container is running and ready:
+```sh
+>> docker ps
+
+CONTAINER ID  IMAGE      COMMAND                 CREATED        STATUS       PORTS                    NAMES
+0cb56dbb7217  mysql:5.7  "docker-entrypoint.s…"  3 seconds ago  Up 2 seconds -p 5801:5801, 33060/tcp  mysql_shmoozed
+```
+4. MySQL is now running and ready to be connected to
+5. Follow instructions to apply schema & sql scripts from the [Database README.md](/Database/README.md) file.
+
+### Useful Docker Commands
+
+* Stop Docker Container: `docker stop mysql_shmoozed`
+* Start Docker Container: `docker start mysql_shmoozed`
+* Delete Docker Container (must be stopped first): `docker rm mysql_shmoozed`
 
 ## IntelliJ IDE Configuration
 
@@ -150,6 +214,13 @@ Additional details about running Spring Boot applications found here: https://do
 Unit tests are run as part of the `install` phase of the normal Maven Clean and Install cycle. However, it is wise to run them fairly often.
 The simplest way to do this is to Right-click on a Test file and choose "Run Test...". This will run all tests in that single file. The same thing
 can be done by Right-clicking on the entire `test` directory and choose "Run Unittests in driectory". This will run all tests in that directory.
+
+### Manual Testing with Postman
+
+A Collection of [Postman](https://www.getpostman.com/) calls is located at `/BackEnd/postman/` which can be imported 
+into Postman to jumpstart your manual testing of the Back-end API.
+
+As new endpoints are added, these Postman collections should be updated with example calls.
 
 
 # Architecture

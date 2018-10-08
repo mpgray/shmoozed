@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "af8812d3-1c57-4990-8165-b40c9856aa99",
+		"name": "Shmoozed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/example/item/5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/example/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"example",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/example/item/names?partial=Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/example/item/names?partial=Item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"example",
+						"item",
+						"names"
+					],
+					"query": [
+						{
+							"key": "partial",
+							"value": "Item"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/example/item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/example/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"example",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/example/item/5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/example/item/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"example",
+						"item",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
