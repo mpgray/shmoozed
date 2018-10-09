@@ -19,6 +19,10 @@ public class Item {
   private String name;
   private int quantity;
 
+  public Item() {
+    // Empty default constructor. This is needed in order for JPA to work properly
+  }
+
   public Item(int id, String name, int quantity) {
     this.id = id;
     this.name = name;
