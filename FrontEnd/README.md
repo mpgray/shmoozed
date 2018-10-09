@@ -17,6 +17,8 @@ of the application is ready to be released into Production.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+Note: After cloning you may may need to run 'npm install" from the /FrontEnd directory
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
