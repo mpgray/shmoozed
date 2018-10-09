@@ -267,6 +267,48 @@ Ideally, this would be automated through a DevOps / Delivery Tool such as Jenkin
 time constraints these manual build and deploy instructions should be followed when a new version
 of the API is ready to be released into Production.
 
-1. Build things...
-2. Deploy things...
-3. Sanity change things...
+## Version Build Tag
+1. Ensure that all tests are passing
+   * Run all Unit/Component Tests
+   * Launch application and run all Acceptance Tests
+2. Increment the `version` in the pom.xml
+   * A [Semantic Versioning](https://semver.org/) scheme of `MAJOR.MINOR.PATCH` should be used
+3. Perform a `maven clean install`. Ensure the the build resulted in a `BUILD SUCCESS`.
+4. Commit & Push the version number change to Github. Do a Pull Request. Receive PR Approval and Merge PR.
+5. Tag the Merge Commit in GitHub.
+
+## Deploy
+
+1. Follow all [Build, Version, & Tag](#version-build-tag) instructions
+2. Log into AWS Account
+3. Navigate to Elastic Beanstalk and find the `shmoozed-backend-api > Environments > ShmoozedBackendApi-en`
+4. Click the `Upload and Deploy` button
+5. Browse to `/BackEnd/shmoozed/target/shmoozed-X.Y.Z.jar` that was built previously using the `maven clean install` command
+6. Click the `Deploy` button
+7. Wait for the new JAR to be uploaded
+8. AWS Elastic Beanstalk should display a message `Elastic Beanstalk is updating your environment`. Wait for it to complete the update.
+9. Once the message disappears and the Health indicator goes Green and says `Ok` the application has been deployed and is ready to receive traffic
+10. Perform several "sanity checks" against the application by exercising the API with Postman.
+
+### Rollback
+
+1. If something is wrong and the application needs to be rolled back, navigate to `shmoozed-backend-api > Application versions`.
+2. Check the box of a previous JAR
+3. Click the `Deploy` button
+4. Verify the application is being deployed to the proper place. Click the `Deploy` button.
+5. A message `Info - The deployment to ShmoozedBackendApi-env started successfully` messages should appear.
+6. Navigate to the dashboard and ensure that the environment has gone Green and says `Ok`
+
+## Create GitHub Release
+
+Create a release in Github on the tagged commit...
+Upload the JAR...
+
+### Initial Elastic Beanstalk Application Deploy
+Based on instructions found at:
+* https://medium.com/@ryanzhou7/running-spring-boot-on-amazon-web-services-for-free-f3b0aeec809
+* A few additional pointers from https://medium.com/@autumn.bom/deploying-spring-boot-jar-application-on-beanstalk-java-se-platform-45d8d04608ae
+* A few additional pointers from https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/ 
+
+## Create GitHub Release
+Document release and add binaries in Github...
