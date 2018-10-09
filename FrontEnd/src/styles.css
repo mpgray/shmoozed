@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "assets/css/_cards.scss";
 @import "assets/css/_footer.scss";
 @import "assets/css/_global.scss";
