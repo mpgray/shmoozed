@@ -299,11 +299,6 @@ of the API is ready to be released into Production.
 5. A message `Info - The deployment to ShmoozedBackendApi-env started successfully` messages should appear.
 6. Navigate to the dashboard and ensure that the environment has gone Green and says `Ok`
 
-## Create GitHub Release
-
-Create a release in Github on the tagged commit...
-Upload the JAR...
-
 ### Initial Elastic Beanstalk Application Deploy
 Based on instructions found at:
 * https://medium.com/@ryanzhou7/running-spring-boot-on-amazon-web-services-for-free-f3b0aeec809
