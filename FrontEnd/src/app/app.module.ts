@@ -9,6 +9,7 @@ import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app.routing.module';
     AlertModule.forRoot(),
     MatIconModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
