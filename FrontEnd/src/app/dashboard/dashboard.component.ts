@@ -1,4 +1,6 @@
+import { RESTService } from '../rest.service';
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  products: any = [];
+
+  constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.getProducts();
   }
 
+  getProducts() {
+    this.products = [];
+    this.rest.getExampleItems().subscribe((data: {}) => {
+      console.log(data);
+      this.products = data;
+    });
+  }
 }

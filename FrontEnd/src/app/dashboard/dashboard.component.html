@@ -1,3 +1,45 @@
-<p>
-  dashboard works!
-</p>
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
+      </tfoot>
+      <tbody>
+      <tr *ngFor="let p of products; let i=index;">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.quantity}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Area Chart Example-->
+<div  *ngFor="let p of products; let i=index;">
+  <div>
+    <div class="card-header">
+      {{p.name}}</div>
+    <div class="card-body">
+      <canvas id="myAreaChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">The ID# {{p.id}}</div>
+  </div>
+</div>
+<ul class="products">
+  <li *ngFor="let p of products; let i=index;">
+    <a routerLink="/product-details/{{p.id}}">
+      <span class="badge">{{i+1}}</span> {{p.name}}
+    </a>
+    </li>
+</ul>
