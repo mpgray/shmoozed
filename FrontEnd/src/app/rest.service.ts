@@ -29,13 +29,11 @@ export class RESTService {
       map(this.extractData));
   }
 
-  // Not implemented!!!
   getExampleItem(id): Observable<any> {
     return this.http.get(endpoint + itempath + id).pipe(
       map(this.extractData));
   }
 
-  // Not implemented!!!
   addExampleItem (product): Observable<any> {
     console.log(product);
     return this.http.post<any>(endpoint + itempath, JSON.stringify(product), httpOptions).pipe(
