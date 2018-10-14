@@ -5,6 +5,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {BuyingComponent} from './buying/buying.component';
 import {SellingComponent} from './selling/selling.component';
 import {AccountComponent} from './account/account.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
 
 const routes: Routes = [{
   path: '',
@@ -14,17 +17,21 @@ const routes: Routes = [{
   path: 'dashboard',
     children: [{
       path: '',
-      component: DashboardComponent
+      component: DashboardComponent,
+      data: { title: 'Shmoozed' }
     }], },
   {
     path: 'account',
-    component: AccountComponent
+    component: AccountComponent,
+    data: { title: 'Account' }
   }, {
     path: 'buying',
-    component: BuyingComponent
+    component: BuyingComponent,
+    data: { title: 'Buying' }
   }, {
     path: 'selling',
-    component: SellingComponent
+    component: SellingComponent,
+    data: { title: 'Selling' }
   },
   {
   path: '**',
@@ -32,7 +39,11 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    FormsModule,
+    BrowserModule,
+    HttpClientModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

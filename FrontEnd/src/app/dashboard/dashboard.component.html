@@ -1,3 +1,27 @@
-<p>
-  dashboard works!
-</p>
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
+      </tfoot>
+      <tbody>
+      <tr *ngFor="let p of products; let i=index;">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.quantity}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
