@@ -1,7 +1,7 @@
 import { RESTService } from '../rest.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {isEmpty} from 'rxjs/operators';
+import {isNumeric} from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -12,6 +12,7 @@ import {isEmpty} from 'rxjs/operators';
 export class DashboardComponent implements OnInit {
 
   products: any = [];
+
   @Input() addProductData = { id: 0, name: '', quantity: 0 };
 
   constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) { }
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addProduct() {
-    if (this.addProductData.name.length !== 0) {
+    if (this.addProductData.name.length !== 0 && isNumeric(this.addProductData.quantity)) {
       this.rest.addExampleItem(this.addProductData).subscribe((result) => {
         location.reload();
       }, (err) => {

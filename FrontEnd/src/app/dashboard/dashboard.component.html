@@ -13,13 +13,14 @@
 
         <th>ID</th>
         <th>
+
           <label>
-            <input [(ngModel)]="addProductData.name" placeholder="Name"/>
+            <input [(ngModel)]="addProductData.name" size = 20 placeholder="Name"/>
           </label>
         </th>
         <th>
           <label>
-            <input [(ngModel)]="addProductData.quantity" placeholder="Quantity"/>
+            <input [(ngModel)]="addProductData.quantity" size = 3 placeholder="Quantity"/>
           </label>
         </th>
       </tr>
@@ -33,12 +34,12 @@
       </tbody>
     </table>
   </div>
+  <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <button mat-raised-button color="primary"  (click)="addProduct()">Add Item</button>
+  </form>
 </div>
 
 
-<div>
-  <button mat-raised-button color="primary"  (click)="addProduct()">Add Item</button>
-</div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
