@@ -1,6 +1,8 @@
 import { RESTService } from '../rest.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {isEmpty} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -27,10 +29,12 @@ export class DashboardComponent implements OnInit {
   }
 
   addProduct() {
-    this.rest.addExampleItem (this.addProductData).subscribe((result) => {
-      location.reload();
-    }, (err) => {
-      console.log(err);
-    });
+    if (this.addProductData.name.length !== 0) {
+      this.rest.addExampleItem(this.addProductData).subscribe((result) => {
+        location.reload();
+      }, (err) => {
+        console.log(err);
+      });
+    }
   }
 }

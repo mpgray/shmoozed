@@ -1,4 +1,5 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "assets/css/_variables.scss";
 @import "assets/css/_cards.scss";
 @import "assets/css/_footer.scss";
 @import "assets/css/_global.scss";
@@ -6,7 +7,6 @@
 @import "assets/css/_mixins.scss";
 @import "assets/css/_navbar.scss";
 @import "assets/css/_utilities.scss";
-@import "assets/css/_variables.scss";
 @import "assets/css/sb-admin.min.css";
 
 
