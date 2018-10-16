@@ -10,9 +10,18 @@
       </thead>
       <tfoot>
       <tr>
+
         <th>ID</th>
-        <th>Name</th>
-        <th>Quantity</th>
+        <th>
+          <label>
+            <input [(ngModel)]="addProductData.name" placeholder="Name"/>
+          </label>
+        </th>
+        <th>
+          <label>
+            <input [(ngModel)]="addProductData.quantity" placeholder="Quantity"/>
+          </label>
+        </th>
       </tr>
       </tfoot>
       <tbody>
@@ -25,3 +34,30 @@
     </table>
   </div>
 </div>
+
+
+
+<div>
+  <h2>Product Add</h2>
+  <div>
+
+    <label>
+      <input [(ngModel)]="addProductData.name" placeholder="Name"/>
+    </label><br>
+    <label>
+      <input [(ngModel)]="addProductData.quantity" placeholder="Quantity"/>
+    </label><br>
+  </div>
+  <button (click)="addProduct()">Save</button>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+

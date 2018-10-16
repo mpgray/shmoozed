@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import {MatIconModule} from '@angular/material/icon';
 import {AppRoutingModule} from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatIconModule,
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],
