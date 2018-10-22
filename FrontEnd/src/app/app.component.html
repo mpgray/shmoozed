@@ -1,7 +1,8 @@
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-  <a class="navbar-brand mr-1" href="index.html">Shmoozed</a>
+  <a class="navbar-brand mr-1" href="index.html">
+    <img class="img-responsive" src="assets/images/logoSmallLight.png">Shmoozed</a>
 
   <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
     <mat-icon>dehaze</mat-icon>
@@ -91,10 +92,16 @@
         <mat-icon>insert_chart_outlined</mat-icon>
         <span>Buying</span></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="selling">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="selling" id="sellingDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
         <mat-icon>table_chart</mat-icon>
         <span>Selling</span></a>
+      <div class="dropdown-menu" aria-labelledby="sellingDropdown">
+        <a class="dropdown-item" href="#">List Item</a>
+        <a class="dropdown-item" href="#">Inventory</a>
+        <a class="dropdown-item" href="#">Reports</a>
+      </div>
     </li>
   </ul>
 
