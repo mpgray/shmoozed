@@ -1,8 +1,8 @@
 import { RESTService } from '../rest.service';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNumeric} from 'rxjs/internal-compatibility';
-
+import {TableComponent} from '../shared/table/table.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +11,7 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 })
 export class DashboardComponent implements OnInit {
 
+  @ViewChild(TableComponent) list: TableComponent;
   products: any = [];
 
   @Input() addProductData = { id: 0, name: '', quantity: 0 };

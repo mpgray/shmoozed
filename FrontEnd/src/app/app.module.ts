@@ -8,12 +8,15 @@ import {AppRoutingModule} from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {LayoutComponent} from './shared/layout/layout.component';
+import { TableComponent } from './shared/table/table.component';
+
 
 
 
@@ -25,7 +28,8 @@ import {LayoutComponent} from './shared/layout/layout.component';
     AccountComponent,
     SellingComponent,
     BuyingComponent,
-    DashboardComponent
+    DashboardComponent,
+    TableComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -35,7 +39,8 @@ import {LayoutComponent} from './shared/layout/layout.component';
     BrowserModule,
     FormsModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDatatableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
