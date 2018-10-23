@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {ChartsModule} from 'ng2-charts';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
@@ -16,6 +17,8 @@ import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {LayoutComponent} from './shared/layout/layout.component';
 import { TableComponent } from './shared/table/table.component';
+import { ChartComponent } from './shared/chart/chart.component';
+
 
 
 
@@ -29,7 +32,8 @@ import { TableComponent } from './shared/table/table.component';
     SellingComponent,
     BuyingComponent,
     DashboardComponent,
-    TableComponent
+    TableComponent,
+    ChartComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -41,6 +45,7 @@ import { TableComponent } from './shared/table/table.component';
     MatButtonModule,
     HttpClientModule,
     NgxDatatableModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

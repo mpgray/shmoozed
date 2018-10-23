@@ -3,6 +3,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNumeric} from 'rxjs/internal-compatibility';
 import {TableComponent} from '../shared/table/table.component';
+import {ChartComponent} from '../shared/chart/chart.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,23 +13,13 @@ import {TableComponent} from '../shared/table/table.component';
 export class DashboardComponent implements OnInit {
 
   @ViewChild(TableComponent) list: TableComponent;
-  products: any = [];
 
   @Input() addProductData = { id: 0, name: '', quantity: 0 };
 
   constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
-    this.getProducts();
-  }
+  ngOnInit() {}
 
-  getProducts() {
-    this.products = [];
-    this.rest.getExampleItems().subscribe((data: {}) => {
-      console.log(data);
-      this.products = data;
-    });
-  }
 
   addProduct() {
     if (this.addProductData.name.length !== 0 && isNumeric(this.addProductData.quantity)) {
