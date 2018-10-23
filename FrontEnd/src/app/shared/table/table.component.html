@@ -6,6 +6,7 @@
     (keyup)='updateFilter($event)'
   />
   <ngx-datatable
+    #table
     class='material table table-bordered'
     [columns]="columns"
     [columnMode]="'force'"
