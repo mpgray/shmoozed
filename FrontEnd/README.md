@@ -30,7 +30,7 @@ When adding a module, put it here.
 
 **src/app/(name)/(name).component.css** - Write component specific css. Overwrite other behavior here as well
 
-**src/app/app.component.html** - contains the template dashboard main page 
+**src/app/share/template** - contains the templated dashboard main page 
 
 **src/app/(name)/(name).component.html** - contains the body of each component
 
