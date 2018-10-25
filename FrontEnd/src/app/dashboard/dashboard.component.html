@@ -1,39 +1,10 @@
+<ng-container>
+  <app-chart></app-chart>
+  <app-table></app-table>
+</ng-container>
 <div class="card-body">
-  <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Quantity</th>
-      </tr>
-      </thead>
-      <tfoot>
-      <tr>
-
-        <th>ID</th>
-        <th>
-
-          <label>
-            <input [(ngModel)]="addProductData.name" size = 20 placeholder="Name"/>
-          </label>
-        </th>
-        <th>
-          <label>
-            <input [(ngModel)]="addProductData.quantity" size = 3 placeholder="Quantity"/>
-          </label>
-        </th>
-      </tr>
-      </tfoot>
-      <tbody>
-      <tr *ngFor="let p of products; let i=index;">
-        <td>{{p.id}}</td>
-        <td>{{p.name}}</td>
-        <td>{{p.quantity}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <input [(ngModel)]="addProductData.name" size = 20 placeholder="Name"/>
+  <input [(ngModel)]="addProductData.quantity" size = 3 placeholder="Quantity"/>
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
     <button mat-raised-button color="primary"  (click)="addProduct()">Add Item</button>
   </form>
