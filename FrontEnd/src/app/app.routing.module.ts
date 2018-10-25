@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
+import {LoginComponent} from './account/login/login.component';
 
 const routes: Routes = [{
   path: '',
@@ -35,6 +36,11 @@ const routes: Routes = [{
       component: SellingComponent,
       data: { title: 'Selling' }
     }, ],
+  },
+  {
+    path: 'account/login',
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
 
   {
