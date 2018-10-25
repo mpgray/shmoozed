@@ -7,11 +7,13 @@ import {MatButtonModule} from '@angular/material';
 import {AppRoutingModule} from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {LayoutComponent} from './shared/layout/layout.component';
 
 
 
@@ -19,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LayoutComponent,
     AccountComponent,
     SellingComponent,
     BuyingComponent,
@@ -27,6 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     AlertModule.forRoot(),
     MatIconModule,
+    MatMenuModule,
     AppRoutingModule,
     BrowserModule,
     FormsModule,
