@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  isSidebarToggle = true;
   emailMessages = 13;
+  alertMessages = 20;
+  events: string[] = [];
+  opened: boolean;
 
   constructor() { }
 

@@ -45,7 +45,7 @@ export class TableComponent implements OnInit {
     // update the rows
     this.products = tmp;
     // Whenever the filter changes, always go back to the first page
-    this.table.offset = 0;
+    // this.table.offset = 0;
   }
 }
 
