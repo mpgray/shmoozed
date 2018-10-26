@@ -20,10 +20,10 @@ Shmoozed is made up of a Front-end application written using Angular, a Back-end
 ![](/Docs/high-level-arch.png)
 
 ### Detailed diagrams & documentation:
-* [Front-end](/FrontEnd/README.md#architecture)
-* [Back-end](/BackEnd/README.md#architecture)
-* [Database](/Database/README.md#architecture)
-* [Hosting](/Docs/Hosting.md#architecture)
+* [Front-end](/FrontEnd/README.md)
+* [Back-end](/BackEnd/README.md)
+* [Database](/Database/README.md)
+* [Hosting](/Docs/Hosting.md)
 
 ## Project Setup
 
