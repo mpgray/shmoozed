@@ -28,7 +28,7 @@ public class Item {
   private int quantity;
 
   public Item() {
-    // Empty default constructor. This is needed in order for JPA to work properly
+    // Empty default constructor. This is needed in order for JPA to work properly.
   }
 
   public Item(int id, String name, int quantity) {
