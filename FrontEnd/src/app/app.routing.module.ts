@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
+import {InventoryComponent} from "./inventory/inventory.component";
 
 const routes: Routes = [{
   path: '',
@@ -34,7 +35,11 @@ const routes: Routes = [{
       path: 'selling',
       component: SellingComponent,
       data: { title: 'Selling' }
-    }, ],
+    }, {
+        path: 'inventory',
+        component: InventoryComponent,
+        data: { title: 'Inventory' }
+      }],
   },
 
   {
