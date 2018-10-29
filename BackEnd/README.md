@@ -281,7 +281,7 @@ of the API is ready to be released into Production.
 
 1. Follow all [Build, Version, & Tag](#version-build-tag) instructions
 2. Log into AWS Account
-3. Navigate to Elastic Beanstalk and find the `shmoozed-backend-api > Environments > ShmoozedBackendApi-en`
+3. Navigate to Elastic Beanstalk and find the `shmoozed-backend-api > Environments > ShmoozedBackendApi-env`
 4. Click the `Upload and Deploy` button
 5. Browse to `/BackEnd/shmoozed/target/shmoozed-X.Y.Z.jar` that was built previously using the `maven clean install` command
 6. Click the `Deploy` button
