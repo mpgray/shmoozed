@@ -23,6 +23,7 @@ import { TableComponent } from './shared/table/table.component';
 import { ChartComponent } from './shared/chart/chart.component';
 import { LoginComponent } from './account/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { DoughnutComponent } from './shared/chart/doughnut.component';
 
 
 
@@ -38,7 +39,8 @@ import { InventoryComponent } from './inventory/inventory.component';
     ChartComponent,
     LoginComponent,
     ChartComponent,
-    InventoryComponent
+    InventoryComponent,
+    DoughnutComponent
   ],
   imports: [
     AlertModule.forRoot(),
