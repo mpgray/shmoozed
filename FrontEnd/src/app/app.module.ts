@@ -32,6 +32,7 @@ import { ChartComponent } from './shared/chart/chart.component';
 import { LoginComponent } from './account/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { DoughnutComponent } from './shared/chart/doughnut.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 
 
@@ -71,6 +72,7 @@ import { DoughnutComponent } from './shared/chart/doughnut.component';
     HttpClientModule,
     MatBadgeModule,
     NgxDatatableModule,
+    AngularFontAwesomeModule,
     ChartsModule
   ],
   providers: [],

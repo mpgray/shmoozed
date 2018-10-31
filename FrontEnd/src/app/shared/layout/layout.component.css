@@ -31,7 +31,10 @@ h1.dynamic-sidebar-app-name {
 }
 .material-title-bar {
   height: 25px;
+}
 
+.sidebar {
+  height: 100%;
 }
 
 .search-card {
