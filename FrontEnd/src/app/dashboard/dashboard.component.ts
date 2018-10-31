@@ -3,7 +3,6 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNumeric} from 'rxjs/internal-compatibility';
 import {TableComponent} from '../shared/table/table.component';
-import {ChartComponent} from '../shared/chart/chart.component';
 
 @Component({
   selector: 'app-dashboard',

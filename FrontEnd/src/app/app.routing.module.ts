@@ -9,7 +9,8 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
-import {InventoryComponent} from "./inventory/inventory.component";
+import {LoginComponent} from './account/login/login.component';
+import {InventoryComponent} from './inventory/inventory.component';
 
 const routes: Routes = [{
   path: '',
@@ -40,6 +41,11 @@ const routes: Routes = [{
         component: InventoryComponent,
         data: { title: 'Inventory' }
       }],
+  },
+  {
+    path: 'account/login',
+    component: LoginComponent,
+    data: { title: 'Login' }
   },
 
   {

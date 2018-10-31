@@ -10,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {ChartsModule} from 'ng2-charts';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 
@@ -21,7 +21,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {LayoutComponent} from './shared/layout/layout.component';
 import { TableComponent } from './shared/table/table.component';
 import { ChartComponent } from './shared/chart/chart.component';
+import { LoginComponent } from './account/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { DoughnutComponent } from './shared/chart/doughnut.component';
 
 
 
@@ -35,7 +37,10 @@ import { InventoryComponent } from './inventory/inventory.component';
     DashboardComponent,
     TableComponent,
     ChartComponent,
-    InventoryComponent
+    LoginComponent,
+    ChartComponent,
+    InventoryComponent,
+    DoughnutComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -43,8 +48,8 @@ import { InventoryComponent } from './inventory/inventory.component';
     MatCardModule,
     MatInputModule,
     MatMenuModule,
+    MatDialogModule,
     MatNativeDateModule,
-    MatSidenavModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
