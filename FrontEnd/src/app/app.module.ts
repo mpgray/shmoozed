@@ -3,7 +3,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
-import {MatButtonModule, MatIconModule, MatBadgeModule, MatNativeDateModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatBadgeModule,
+  MatNativeDateModule,
+  MatToolbarModule,
+  MatButtonToggleModule, MatProgressSpinnerModule
+} from '@angular/material';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -50,6 +58,10 @@ import { DoughnutComponent } from './shared/chart/doughnut.component';
     MatMenuModule,
     MatDialogModule,
     MatNativeDateModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
