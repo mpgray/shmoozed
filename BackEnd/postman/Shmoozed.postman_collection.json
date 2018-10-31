@@ -1,91 +1,242 @@
 {
 	"info": {
-		"_postman_id": "af8812d3-1c57-4990-8165-b40c9856aa99",
+		"_postman_id": "ec365905-5372-46ad-b8b4-512744c4adab",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Actuator",
+			"name": "Production",
 			"item": [
 				{
 					"name": "Actuator",
+					"item": [
+						{
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator HTTP Trace",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/configprops",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"actuator",
+										"configprops"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Metrics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/metrics",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"actuator",
+										"metrics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/health",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/example/item",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:9000/actuator",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"shmoozedbackendapi-env",
+								"p3uuygd4fp",
+								"us-east-2",
+								"elasticbeanstalk",
+								"com"
 							],
-							"port": "9000",
 							"path": [
-								"actuator"
+								"example",
+								"item"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Actuator Health",
+					"name": "/example/item/names?partial=Item",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:9000/actuator/health",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/names?partial=Item",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"shmoozedbackendapi-env",
+								"p3uuygd4fp",
+								"us-east-2",
+								"elasticbeanstalk",
+								"com"
 							],
-							"port": "9000",
 							"path": [
-								"actuator",
-								"health"
+								"example",
+								"item",
+								"names"
+							],
+							"query": [
+								{
+									"key": "partial",
+									"value": "Item"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Actuator HTTP Trace",
+					"name": "/example/item",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
+						},
 						"url": {
-							"raw": "http://localhost:9000/actuator/configprops",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"shmoozedbackendapi-env",
+								"p3uuygd4fp",
+								"us-east-2",
+								"elasticbeanstalk",
+								"com"
 							],
-							"port": "9000",
 							"path": [
-								"actuator",
-								"configprops"
+								"example",
+								"item"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Actuator Metrics",
+					"name": "/example/item/5",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:9000/actuator/metrics",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/5",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"shmoozedbackendapi-env",
+								"p3uuygd4fp",
+								"us-east-2",
+								"elasticbeanstalk",
+								"com"
 							],
-							"port": "9000",
 							"path": [
-								"actuator",
-								"metrics"
+								"example",
+								"item",
+								"5"
 							]
 						}
 					},
@@ -94,104 +245,219 @@
 			]
 		},
 		{
-			"name": "/example/item",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:5000/example/item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"example",
-						"item"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/example/item/names?partial=Item",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:5000/example/item/names?partial=Item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"example",
-						"item",
-						"names"
-					],
-					"query": [
+			"name": "Local",
+			"item": [
+				{
+					"name": "Actuator",
+					"item": [
 						{
-							"key": "partial",
-							"value": "Item"
+							"name": "Actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9000/actuator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9000/actuator/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator HTTP Trace",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9000/actuator/configprops",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator",
+										"configprops"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator Metrics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:9000/actuator/metrics",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator",
+										"metrics"
+									]
+								}
+							},
+							"response": []
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/example/item",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
+					],
+					"_postman_isSubFolder": true
 				},
-				"url": {
-					"raw": "http://localhost:5000/example/item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"example",
-						"item"
-					]
+				{
+					"name": "/example/item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/example/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"example",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/example/item/names?partial=Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/example/item/names?partial=Item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"example",
+								"item",
+								"names"
+							],
+							"query": [
+								{
+									"key": "partial",
+									"value": "Item"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/example/item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/example/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"example",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/example/item/5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/example/item/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"example",
+								"item",
+								"5"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "/example/item/5",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:5000/example/item/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"example",
-						"item",
-						"5"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
