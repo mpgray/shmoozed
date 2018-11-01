@@ -29,12 +29,16 @@ h1.dynamic-sidebar-app-name {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
-.material-title-bar {
+.material-footer-bar {
   height: 25px;
+}
+footer.sticky-footer {
+  width: 100%;
 }
 
 .sidebar {
   height: 100%;
+
 }
 
 .search-card {
