@@ -33,6 +33,7 @@ import { LoginComponent } from './account/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { DoughnutComponent } from './shared/chart/doughnut.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { Notfound404Component } from './session/notfound404/notfound404.component';
 
 
 
@@ -49,7 +50,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     LoginComponent,
     ChartComponent,
     InventoryComponent,
-    DoughnutComponent
+    DoughnutComponent,
+    Notfound404Component
   ],
   imports: [
     AlertModule.forRoot(),
