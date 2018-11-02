@@ -11,6 +11,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
 import {LoginComponent} from './account/login/login.component';
 import {InventoryComponent} from './inventory/inventory.component';
+import {Notfound404Component} from './session/notfound404/notfound404.component';
 
 const routes: Routes = [{
   path: '',
@@ -50,7 +51,8 @@ const routes: Routes = [{
 
   {
   path: '**',
-  redirectTo: 'session/404'
+    component: Notfound404Component,
+    data: { title: 'Not Found 404'}
 }];
 
 @NgModule({
