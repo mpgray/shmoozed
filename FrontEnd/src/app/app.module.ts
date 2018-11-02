@@ -21,6 +21,7 @@ import {ChartsModule} from 'ng2-charts';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
@@ -32,8 +33,8 @@ import { ChartComponent } from './shared/chart/chart.component';
 import { LoginComponent } from './account/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { DoughnutComponent } from './shared/chart/doughnut.component';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { Notfound404Component } from './session/notfound404/notfound404.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -51,7 +52,9 @@ import { Notfound404Component } from './session/notfound404/notfound404.componen
     ChartComponent,
     InventoryComponent,
     DoughnutComponent,
-    Notfound404Component
+    Notfound404Component,
+    DoughnutComponent,
+    HomepageComponent
   ],
   imports: [
     AlertModule.forRoot(),
