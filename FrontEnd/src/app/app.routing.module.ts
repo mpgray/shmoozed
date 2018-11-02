@@ -11,10 +11,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
 import {LoginComponent} from './account/login/login.component';
 import {InventoryComponent} from './inventory/inventory.component';
+import {HomepageComponent} from "./homepage/homepage.component";
 
 const routes: Routes = [{
   path: '',
-  redirectTo: 'dashboard',
+  redirectTo: 'homepage',
   pathMatch: 'full'
 }, {
   path: '',
@@ -46,9 +47,11 @@ const routes: Routes = [{
     path: 'account/login',
     component: LoginComponent,
     data: { title: 'Login' }
-  },
-
-  {
+  },{
+    path: 'homepage',
+    component: HomepageComponent,
+    data: { title: 'Shmoozed' }
+  },{
   path: '**',
   redirectTo: 'session/404'
 }];
