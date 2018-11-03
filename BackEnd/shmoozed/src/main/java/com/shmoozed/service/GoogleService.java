@@ -23,32 +23,31 @@ public class GoogleService {
   private Logger logger = LoggerFactory.getLogger(GoogleService.class);
 
   private final String clientId;
+  private final boolean shouldLogTokenDetails;
 
-  public GoogleService(@Value("${google.client-id}")String clientId) {
+  private NetHttpTransport transport = new NetHttpTransport();
+  private JsonFactory jsonFactory = new GsonFactory();
+
+  public GoogleService(@Value("${google.client-id}")String clientId,
+                       @Value("${google.log-token-details}")boolean shouldLogTokenDetails) {
     this.clientId = clientId;
+    this.shouldLogTokenDetails = shouldLogTokenDetails;
   }
 
   public String validateGoogleToken(String token) {
-    NetHttpTransport transport = new NetHttpTransport();
-    JsonFactory jsonFactory = new GsonFactory();
-
-    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+    GoogleIdTokenVerifier tokenVerifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
       .setAudience(singletonList(clientId))
       .build();
 
     try {
-      GoogleIdToken idToken = verifier.verify(token);
+      GoogleIdToken idToken = tokenVerifier.verify(token);
       if (idToken != null) {
         Payload payload = idToken.getPayload();
-
-        // Print user identifier
         String userId = payload.getSubject();
-        logger.debug("User Token Information: userId={}, email={}, emailVerified={}, name={}, pictureUrl={}, " +
-                       "locale={}, familyName={}, givenName={}",
-                     userId, payload.getEmail(), payload.getEmailVerified(),
-                     (String) payload.get("name"), (String) payload.get("picture"), (String) payload.get("locale"),
-                     (String) payload.get("family_name"), (String) payload.get("given_name"));
 
+        if (shouldLogTokenDetails) {
+          logTokenPayloadDetails(payload, userId);
+        }
       } else {
         logger.error("Invalid ID token! token={}", token);
       }
@@ -62,6 +61,14 @@ public class GoogleService {
 
     // TODO: This just turns right around and returns the same token we were given. In the future this should be a new token minted by the backend.
     return token;
+  }
+
+  private void logTokenPayloadDetails(Payload payload, String userId) {
+    logger.debug("User Token Information: userId={}, email={}, emailVerified={}, name={}, pictureUrl={}, " +
+                   "locale={}, familyName={}, givenName={}",
+                 userId, payload.getEmail(), payload.getEmailVerified(),
+                 (String) payload.get("name"), (String) payload.get("picture"), (String) payload.get("locale"),
+                 (String) payload.get("family_name"), (String) payload.get("given_name"));
   }
 
 }

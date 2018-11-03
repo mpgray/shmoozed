@@ -31,6 +31,18 @@ public class UserController {
     this.googleService = googleService;
   }
 
+  /**
+   * Attempts to authenticate a user using the provided token (created externally from Google). It first
+   * validates the token with Google. A {@link UserAuthorizations} object is returned to the caller. This
+   * objects contains a new token, which the caller should use on all subsequent calls to any API request,
+   * along with a list of {@link UserRoles} which the user has. The caller can use this, for example, to
+   * enable/disable feature sets, etc.
+   *
+   * Expects the token to be passed in via an {@code Authorization} header.
+   *
+   * @param token The JWS token created by Google's Authentication Service
+   * @return The {@link UserAuthorizations} for the now authenticated user
+   */
   @GetMapping("/authorization")
   public @ResponseBody
   ResponseEntity<UserAuthorizations> getUserAuthorizations(@RequestHeader("Authorization") String token) {

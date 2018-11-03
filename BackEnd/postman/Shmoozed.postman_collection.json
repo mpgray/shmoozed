@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ec365905-5372-46ad-b8b4-512744c4adab",
+		"_postman_id": "7248d57a-3a3d-4db8-9b70-a78ab6035751",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,7 +21,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator",
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com:9000/actuator",
 									"protocol": "http",
 									"host": [
 										"shmoozedbackendapi-env",
@@ -30,6 +30,7 @@
 										"elasticbeanstalk",
 										"com"
 									],
+									"port": "9000",
 									"path": [
 										"actuator"
 									]
@@ -47,7 +48,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/configprops",
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com:9000/actuator/configprops",
 									"protocol": "http",
 									"host": [
 										"shmoozedbackendapi-env",
@@ -56,6 +57,7 @@
 										"elasticbeanstalk",
 										"com"
 									],
+									"port": "9000",
 									"path": [
 										"actuator",
 										"configprops"
@@ -74,7 +76,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/metrics",
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com:9000/actuator/metrics",
 									"protocol": "http",
 									"host": [
 										"shmoozedbackendapi-env",
@@ -83,6 +85,7 @@
 										"elasticbeanstalk",
 										"com"
 									],
+									"port": "9000",
 									"path": [
 										"actuator",
 										"metrics"
@@ -101,7 +104,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/actuator/health",
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com:9000/actuator/health",
 									"protocol": "http",
 									"host": [
 										"shmoozedbackendapi-env",
@@ -110,9 +113,46 @@
 										"elasticbeanstalk",
 										"com"
 									],
+									"port": "9000",
 									"path": [
 										"actuator",
 										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "/user/authorization",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyODlkNTQyODBiNzY3MTJkZTQxY2QyZWY5NTk3MmIxMjNiZTlhYzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzAyMTM3ODc4NTI2LW1uZW82ZGdmOWxkanVraWZsam42Z2tuc3FzbDFpa2MwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzAyMTM3ODc4NTI2LW1uZW82ZGdmOWxkanVraWZsam42Z2tuc3FzbDFpa2MwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEwNDUzMTQ2MDkyNTA0NDMyMDI0IiwiaGQiOiJtYWlsLndlYmVyLmVkdSIsImVtYWlsIjoiY2hyaXN0b3BoZXJuYXNoMUBtYWlsLndlYmVyLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiUUs5aHBraHEwcnVsb2xHaTZ3cnRUUSIsIm5hbWUiOiJDaHJpc3RvcGhlciBOYXNoIiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tNUtUTFdNWEpWNW8vQUFBQUFBQUFBQUkvQUFBQUFBQUFBQk0vSWFHTlZZeG1vRWsvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6IkNocmlzdG9waGVyIiwiZmFtaWx5X25hbWUiOiJOYXNoIiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1NDEyNTA2ODcsImV4cCI6MTU0MTI1NDI4NywianRpIjoiYWJjNjZhMzg1MTlhNTU5NGU3N2U2ZGI5YjJhMmFjMTQ0NDQ2ZWI0MSJ9.K-C8qUEogA7qsZQbB7ypcjf46msekUCk-7Fr9GQRIz4Ft6ZuUUtA-ytZJnapgMT6p_rSoLT4qoKf4crFX6O0NrRkqenMOV41AryQlE_5oaBF3NPs3-1K3s16fP4-gb2Sv4wadovtHqCp601nDlcno7dtB2RXS_pV-B_zWSlFBt4vWkAurXrRr929OODRFs3HCGjDQGC1febxnnvU9gB-v2WaG2USUDsXhnQC0X-aR-6C68V65x3TFlXDATVzu0DcuCGhnShEeHZm1GuEdFbqBbdaA_4TcKM9m-ItZMFAO-YTe3pFvtUYjt1Bb8vNq0zob27uUxIRChXU3nOFHSoyqA"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com:5000/user/authorization",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"authorization"
 									]
 								}
 							},
@@ -340,6 +380,37 @@
 									"path": [
 										"actuator",
 										"metrics"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "/user/authorization",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyODlkNTQyODBiNzY3MTJkZTQxY2QyZWY5NTk3MmIxMjNiZTlhYzAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzAyMTM3ODc4NTI2LW1uZW82ZGdmOWxkanVraWZsam42Z2tuc3FzbDFpa2MwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzAyMTM3ODc4NTI2LW1uZW82ZGdmOWxkanVraWZsam42Z2tuc3FzbDFpa2MwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEwNDUzMTQ2MDkyNTA0NDMyMDI0IiwiaGQiOiJtYWlsLndlYmVyLmVkdSIsImVtYWlsIjoiY2hyaXN0b3BoZXJuYXNoMUBtYWlsLndlYmVyLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiUUs5aHBraHEwcnVsb2xHaTZ3cnRUUSIsIm5hbWUiOiJDaHJpc3RvcGhlciBOYXNoIiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tNUtUTFdNWEpWNW8vQUFBQUFBQUFBQUkvQUFBQUFBQUFBQk0vSWFHTlZZeG1vRWsvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6IkNocmlzdG9waGVyIiwiZmFtaWx5X25hbWUiOiJOYXNoIiwibG9jYWxlIjoiZW4iLCJpYXQiOjE1NDEyNTA2ODcsImV4cCI6MTU0MTI1NDI4NywianRpIjoiYWJjNjZhMzg1MTlhNTU5NGU3N2U2ZGI5YjJhMmFjMTQ0NDQ2ZWI0MSJ9.K-C8qUEogA7qsZQbB7ypcjf46msekUCk-7Fr9GQRIz4Ft6ZuUUtA-ytZJnapgMT6p_rSoLT4qoKf4crFX6O0NrRkqenMOV41AryQlE_5oaBF3NPs3-1K3s16fP4-gb2Sv4wadovtHqCp601nDlcno7dtB2RXS_pV-B_zWSlFBt4vWkAurXrRr929OODRFs3HCGjDQGC1febxnnvU9gB-v2WaG2USUDsXhnQC0X-aR-6C68V65x3TFlXDATVzu0DcuCGhnShEeHZm1GuEdFbqBbdaA_4TcKM9m-ItZMFAO-YTe3pFvtUYjt1Bb8vNq0zob27uUxIRChXU3nOFHSoyqA"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "localhost:5000/user/authorization",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"authorization"
 									]
 								}
 							},
