@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from './login/login.component';
 
@@ -13,10 +13,15 @@ export interface DialogData {
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
+  model: any = {};
+  loading = false;
 
   animal: string;
   name: string;
-
+  firstName: string;
+  lastName: string;
+  username: string;
+  password: string;
 
   constructor(public dialog: MatDialog) {}
 

@@ -15,11 +15,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
   emailMessages = 13;
   alertMessages = 20;
   private _mobileQueryListener: () => void;
-
+  searchValue = 'Clear me';
   name: string;
 
   constructor(public dialog: MatDialog, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 700px)');
+    this.mobileQuery = media.matchMedia('(max-width: 750px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
