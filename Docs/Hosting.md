@@ -1,5 +1,3 @@
-Hosting Docs Go Here...
-
 ## Front-end Server setup
 
 The Front-end server is an Amazon Linux AMI micro-ec2 instance. The instance can be setup using [this guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html)
