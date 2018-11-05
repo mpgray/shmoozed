@@ -35,6 +35,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { DoughnutComponent } from './shared/chart/doughnut.component';
 import { Notfound404Component } from './session/notfound404/notfound404.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import {NgxGalleryModule} from 'ngx-gallery';
 
 
 
@@ -78,7 +79,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatBadgeModule,
     NgxDatatableModule,
     AngularFontAwesomeModule,
-    ChartsModule
+    ChartsModule,
+    NgxGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
