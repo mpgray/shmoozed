@@ -34,3 +34,16 @@ The following modifications are needed for Angular routing:
   To:
   `<Directory "/var/www/html">
     AllowOverride All`
+
+
+## Database Server setup
+
+The database server is an Amazon RDS micro server running MySQL 5.7.23.  
+The server was setup using the amazon launch wizard with the default settings.
+
+The following modifications are needed to allow incoming connections for the Development team and Back-end server:
+
+1. Click `Edit` on the inbound security group rules page.
+2. Click `Add Rule`
+3. Select the following rules: `Type: MYSQL/Aurora` , `Protocol: TCP` , `Port Range: 3306` , `Source: Custom 0.0.0/0`
+4. Click `Save`
