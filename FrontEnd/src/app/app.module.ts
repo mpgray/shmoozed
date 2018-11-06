@@ -35,6 +35,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { DoughnutComponent } from './shared/chart/doughnut.component';
 import { Notfound404Component } from './session/notfound404/notfound404.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HasClaimDirective } from './directives/has-claim.directive';
+import { HttpInterceptorModule } from './services/http-request-interceptor.service';
 import {NgxGalleryModule} from 'ngx-gallery';
 
 
@@ -55,7 +57,8 @@ import {NgxGalleryModule} from 'ngx-gallery';
     DoughnutComponent,
     Notfound404Component,
     DoughnutComponent,
-    HomepageComponent
+    HomepageComponent,
+    HasClaimDirective
   ],
   imports: [
     AlertModule.forRoot(),
@@ -80,6 +83,7 @@ import {NgxGalleryModule} from 'ngx-gallery';
     NgxDatatableModule,
     AngularFontAwesomeModule,
     ChartsModule,
+    HttpInterceptorModule,
     NgxGalleryModule
   ],
   providers: [],

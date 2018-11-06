@@ -1,5 +1,5 @@
 # Shmoozed
-> A web application where Amazon Sellers and Buyers _BOTH_ win!
+> A web application where Sellers and Buyers _BOTH_ win!
 
 [![Front-End][front-end-image]](https://angular.io/)
 [![Back-End][backend-end-image]](https://spring.io/)
@@ -15,7 +15,8 @@ Shmoozed was developed as a project at Weber State University as part of CS 3750
 
 ## Architecture
 
-Shmoozed is made up of a Front-end application written using Angular, a Back-end Java API powered by Spring & Spring Boot, backed by a MySQL Database, and all hosted on Amazon Web Services.
+Shmoozed is made up of a Front-end application written using Angular, a Back-end Java API powered by Spring & Spring Boot, backed by a MySQL Database, and all hosted on Amazon Web Services. The Back-end
+calls to various online retailers APIs.
 
 ![](/Docs/high-level-arch.png)
 

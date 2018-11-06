@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from './login/login.component';
+import { UserAuthentication } from '../models/user-authentication';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -45,6 +46,9 @@ export class AccountComponent {
     // The ID token you need to pass to your backend:
     const id_token = googleUser.getAuthResponse().id_token;
     console.log('ID Token: ' + id_token);
+    const user = new UserAuthentication();
+    user.token = id_token;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
 }
