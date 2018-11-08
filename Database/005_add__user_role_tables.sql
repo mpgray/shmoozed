@@ -23,6 +23,10 @@ ALTER TABLE User_Role
 ADD FOREIGN KEY (User_Id) 
 REFERENCES User(User_Id);
 
+ALTER TABLE User_Role
+ADD FOREIGN KEY (Role_Id) 
+REFERENCES Role(Role_Id);
+
 
 
 -- Roles
