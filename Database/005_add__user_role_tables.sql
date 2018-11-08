@@ -5,13 +5,13 @@ USE shmoozed;
 -- Add Tables
 
 CREATE TABLE User_Role (
-    UserRole_Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	UserRole_Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	User_Id int,
 	Role_Id int
 );
 
 CREATE TABLE Role (
-    Role_Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	Role_Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	Role varchar(30)
 );
 
