@@ -2,6 +2,7 @@ package com.shmoozed.service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.time.Duration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.api.client.json.gson.GsonFactory;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,19 +25,29 @@ import static java.util.Collections.singletonList;
 public class WalmartService {
 
   private Logger logger = LoggerFactory.getLogger(WalmartService.class);
+
   private RestTemplate restTemplate;
   private final String apiKey = "ffqfc5hpwnqazpeua9w7e64u";
-  private final String apiUrl = "http://api.walmartlabs.com/";
+  private final String apiUrl = "http://api.walmartlabs.com";
+  private final String v1ItemsUrl = "/v1/items/{item_id}?format=json&apiKey={api_key}";
+
+  public WalmartService(RestTemplateBuilder restTemplateBuilder) {
+    this.restTemplate = restTemplateBuilder
+      .rootUri(apiUrl)
+      .build();
+
+  }
 
   public WalmartItem getSomething()
   //public String getSomething()
   {
     logger.debug("in getSomething");
-    //return new WalmartItem();
-    RestTemplate restTemplate = new RestTemplate();
-    logger.debug("resttemplate okay");
+
     //ResponseEntity<String> response = restTemplate.getForEntity(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, String.class);
-    WalmartItem wi = restTemplate.getForObject(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, WalmartItem.class);
+//    WalmartItem wi = restTemplate.getForObject(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, WalmartItem.class);
+
+    WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, "42608125", apiKey);
+
     logger.debug("wi={}", wi);
 
     logger.debug("done with walmart callout");
