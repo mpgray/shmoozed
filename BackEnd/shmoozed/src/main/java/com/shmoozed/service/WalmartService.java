@@ -22,18 +22,23 @@ import static java.util.Collections.singletonList;
 @Service
 public class WalmartService {
 
+  private Logger logger = LoggerFactory.getLogger(WalmartService.class);
   private RestTemplate restTemplate;
-  private final String apiKey = "'ffqfc5hpwnqazpeua9w7e64u";
+  private final String apiKey = "ffqfc5hpwnqazpeua9w7e64u";
   private final String apiUrl = "http://api.walmartlabs.com/";
 
   public WalmartItem getSomething()
+  //public String getSomething()
   {
-
-
+    logger.debug("in getSomething");
+    //return new WalmartItem();
     RestTemplate restTemplate = new RestTemplate();
-    // fooResourceUrl
-    //  = "http://localhost:8080/spring-rest/foos";
+    logger.debug("resttemplate okay");
+    //ResponseEntity<String> response = restTemplate.getForEntity(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, String.class);
     WalmartItem wi = restTemplate.getForObject(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, WalmartItem.class);
+    logger.debug("wi={}", wi);
+
+    logger.debug("done with walmart callout");
 
     return wi;
     /*

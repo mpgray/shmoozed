@@ -15,15 +15,13 @@ public class WalmartItem {
   @Id
   @GeneratedValue(strategy = IDENTITY)
   @Column(name = "Walmart_Item_Id")
-  private int id;
-
-
+  private int itemId;
 
   @Column(name = "Walmart_Name")
   private String name;
 
   @Column(name = "Walmart_Category_Path")
-  private String categoryPath;
+  private String categoryPath1;
 
   @Column(name = "Walmart_UPC")
   private String upc;
@@ -32,33 +30,33 @@ public class WalmartItem {
   private double msrp;
 
   @Column(name = "Walmart_Sale_Price")
-  private double price;
+  private double salePrice;
 
   @Column(name = "Walmart_Thumbnail_Image")
-  private String thumbnail;
+  private String thumbnailImage;
 
   @Column(name = "Walmart_Large_Image")
-  private String image;
+  private String largeImage;
 
   @Column(name = "Walmart_Model_Number")
-  private String model;
+  private String modelNumber;
 
   @Column(name = "Walmart_Affiliate_Add_To_Cart_Url")
-  private String affiliateUrl;
+  private String affiliateAddToCartUrl;
 
   @Column(name = "Walmart_Stock")
-  private int stock;
+  private String stock;
 
   public WalmartItem() {
     // Empty default constructor. This is needed in order for JPA to work properly.
   }
 
   public int getId() {
-    return id;
+    return itemId;
   }
 
   public void setId(int id) {
-    this.id = id;
+    this.itemId = id;
   }
 
   public String getName() {
@@ -69,12 +67,12 @@ public class WalmartItem {
     this.name = name;
   }
 
-  public String getCategoryPath() {
-    return categoryPath;
+  public String getCategoryPath1() {
+    return categoryPath1;
   }
 
-  public void setCategoryPath(String categoryPath) {
-    this.categoryPath = categoryPath;
+  public void setCategoryPath1(String categoryPath1) {
+    this.categoryPath1 = categoryPath1;
   }
 
   public String getUpc() {
@@ -94,59 +92,59 @@ public class WalmartItem {
   }
 
   public double getPrice() {
-    return price;
+    return salePrice;
   }
 
-  public void setPrice(double price) {
-    this.price = price;
+  public void setPrice(double salePrice) {
+    this.salePrice = salePrice;
   }
 
   public String getThumbnail() {
-    return thumbnail;
+    return thumbnailImage;
   }
 
-  public void setThumbnail(String thumbnail) {
-    this.thumbnail = thumbnail;
+  public void setThumbnail(String thumbnailImage) {
+    this.thumbnailImage = thumbnailImage;
   }
 
   public String getImage() {
-    return image;
+    return largeImage;
   }
 
-  public void setImage(String image) {
-    this.image = image;
+  public void setImage(String largeImage) {
+    this.largeImage = largeImage;
   }
 
   public String getModel() {
-    return model;
+    return modelNumber;
   }
 
-  public void setModel(String model) {
-    this.model = model;
+  public void setModel(String modelNumber) {
+    this.modelNumber = modelNumber;
   }
 
   public String getAffiliateUrl() {
-    return affiliateUrl;
+    return affiliateAddToCartUrl;
   }
 
-  public void setAffiliateUrl(String affiliateUrl) {
-    this.affiliateUrl = affiliateUrl;
+  public void setAffiliateUrl(String affiliateAddToCartUrl) {
+    this.affiliateAddToCartUrl = affiliateAddToCartUrl;
   }
 
-  public int getStock() {
+  public String getStock() {
     return stock;
   }
 
-  public void setStock(int stock) {
+  public void setStock(String stock) {
     this.stock = stock;
   }
   @Override
   public String toString() {
     return "WalmartItem{" +
-      "id=" + id +
+      "itemId=" + itemId +
       ", name='" + name + '\'' +
-      ", price'" + price + '\'' +
-      ", image'" + image + '\'' +
+      ", price'" + salePrice + '\'' +
+      ", image'" + largeImage + '\'' +
       '}';
   }
 

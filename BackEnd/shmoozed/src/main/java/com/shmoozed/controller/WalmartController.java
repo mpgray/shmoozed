@@ -3,6 +3,7 @@ package com.shmoozed.controller;
 import java.util.List;
 
 import com.shmoozed.model.BuyerItem;
+import com.shmoozed.model.Item;
 import com.shmoozed.model.SellerItem;
 import com.shmoozed.model.WalmartItem;
 import com.shmoozed.service.WalmartService;
@@ -29,17 +30,33 @@ public class WalmartController {
     this.walmartService = walmartService;
   }
 
-  @PostMapping(
+
+
+  /*public @ResponseBody ResponseEntity<List<Item>> getAllItems() {
+    logger.debug("Request to get all items.");
+    return new ResponseEntity<>(itemService.getAllItems(), HttpStatus.OK);
+  }*/
+
+
+
+  /*@PostMapping(
     path = "/test",
     consumes = APPLICATION_JSON_VALUE,
     produces = APPLICATION_JSON_VALUE
+  )*/
+  @GetMapping(
+    path="/aaa",
+    produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody ResponseEntity<WalmartItem> fakeSomething(@RequestHeader("Authorization") String token, @RequestBody SellerItem sellerItem) {
-    logger.debug("Request to add new seller item. token={}, sellerItem={}", token, sellerItem);
+  public @ResponseBody ResponseEntity<WalmartItem> fakeSomething() {
+  //public @ResponseBody ResponseEntity<WalmartItem> fakeSomething(//RequestHeader("Authorization") String token, @RequestBody SellerItem sellerItem) {
+    logger.debug("in fakeSomething");//Request to add new seller item. token={}, sellerItem={}", token, sellerItem);
 
     WalmartItem walmartItem = walmartService.getSomething();
-
-    return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
+    //String walmartItem2 = walmartService.getSomething();
+    logger.debug("returned from service. walmartService={}", walmartItem);
+   // WalmartItem walmartItem = new WalmartItem();
+    return new ResponseEntity<>(walmartItem, HttpStatus.OK);
   }
 /*
   @PostMapping(
