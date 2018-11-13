@@ -51,12 +51,12 @@ public class WalmartItem {
     // Empty default constructor. This is needed in order for JPA to work properly.
   }
 
-  public int getId() {
+  public int getItemId() {
     return itemId;
   }
 
-  public void setId(int id) {
-    this.itemId = id;
+  public void setItemId(int itemId) {
+    this.itemId = itemId;
   }
 
   public String getName() {
@@ -91,43 +91,43 @@ public class WalmartItem {
     this.msrp = msrp;
   }
 
-  public double getPrice() {
+  public double getSalePrice() {
     return salePrice;
   }
 
-  public void setPrice(double salePrice) {
+  public void setSalePrice(double salePrice) {
     this.salePrice = salePrice;
   }
 
-  public String getThumbnail() {
+  public String getThumbnailImage() {
     return thumbnailImage;
   }
 
-  public void setThumbnail(String thumbnailImage) {
+  public void setThumbnailImage(String thumbnailImage) {
     this.thumbnailImage = thumbnailImage;
   }
 
-  public String getImage() {
+  public String getLargeImage() {
     return largeImage;
   }
 
-  public void setImage(String largeImage) {
+  public void setLargeImage(String largeImage) {
     this.largeImage = largeImage;
   }
 
-  public String getModel() {
+  public String getModelNumber() {
     return modelNumber;
   }
 
-  public void setModel(String modelNumber) {
+  public void setModelNumber(String modelNumber) {
     this.modelNumber = modelNumber;
   }
 
-  public String getAffiliateUrl() {
+  public String getAffiliateAddToCartUrl() {
     return affiliateAddToCartUrl;
   }
 
-  public void setAffiliateUrl(String affiliateAddToCartUrl) {
+  public void setAffiliateAddToCartUrl(String affiliateAddToCartUrl) {
     this.affiliateAddToCartUrl = affiliateAddToCartUrl;
   }
 
@@ -138,16 +138,21 @@ public class WalmartItem {
   public void setStock(String stock) {
     this.stock = stock;
   }
+
   @Override
   public String toString() {
     return "WalmartItem{" +
       "itemId=" + itemId +
       ", name='" + name + '\'' +
-      ", price'" + salePrice + '\'' +
-      ", image'" + largeImage + '\'' +
+      ", categoryPath1='" + categoryPath1 + '\'' +
+      ", upc='" + upc + '\'' +
+      ", msrp=" + msrp +
+      ", salePrice=" + salePrice +
+      ", thumbnailImage='" + thumbnailImage + '\'' +
+      ", largeImage='" + largeImage + '\'' +
+      ", modelNumber='" + modelNumber + '\'' +
+      ", affiliateAddToCartUrl='" + affiliateAddToCartUrl + '\'' +
+      ", stock='" + stock + '\'' +
       '}';
   }
-
-
-
 }
