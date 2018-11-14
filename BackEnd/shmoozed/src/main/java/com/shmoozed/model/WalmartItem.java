@@ -21,7 +21,7 @@ public class WalmartItem {
   private String name;
 
   @Column(name = "Walmart_Category_Path")
-  private String categoryPath1;
+  private String categoryPath;
 
   @Column(name = "Walmart_UPC")
   private String upc;
@@ -67,12 +67,12 @@ public class WalmartItem {
     this.name = name;
   }
 
-  public String getCategoryPath1() {
-    return categoryPath1;
+  public String getCategoryPath() {
+    return categoryPath;
   }
 
-  public void setCategoryPath1(String categoryPath1) {
-    this.categoryPath1 = categoryPath1;
+  public void setCategoryPath(String categoryPath1) {
+    this.categoryPath = categoryPath;
   }
 
   public String getUpc() {
@@ -144,7 +144,7 @@ public class WalmartItem {
     return "WalmartItem{" +
       "itemId=" + itemId +
       ", name='" + name + '\'' +
-      ", categoryPath1='" + categoryPath1 + '\'' +
+      ", categoryPath1='" + categoryPath + '\'' +
       ", upc='" + upc + '\'' +
       ", msrp=" + msrp +
       ", salePrice=" + salePrice +

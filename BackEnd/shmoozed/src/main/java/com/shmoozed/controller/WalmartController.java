@@ -45,19 +45,35 @@ public class WalmartController {
     produces = APPLICATION_JSON_VALUE
   )*/
   @GetMapping(
-    path="/aaa",
+    path="/itemid/{itemid}",
     produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody ResponseEntity<WalmartItem> fakeSomething() {
-  //public @ResponseBody ResponseEntity<WalmartItem> fakeSomething(//RequestHeader("Authorization") String token, @RequestBody SellerItem sellerItem) {
-    logger.debug("in fakeSomething");//Request to add new seller item. token={}, sellerItem={}", token, sellerItem);
-
-    WalmartItem walmartItem = walmartService.getSomething();
-    //String walmartItem2 = walmartService.getSomething();
-    logger.debug("returned from service. walmartService={}", walmartItem);
-   // WalmartItem walmartItem = new WalmartItem();
+  public @ResponseBody ResponseEntity<WalmartItem> getItemById(@PathVariable("itemid") int itemId) {
+    logger.debug("Request for item by id. itemId={}", itemId);
+    WalmartItem walmartItem = walmartService.getItemById(itemId);
     return new ResponseEntity<>(walmartItem, HttpStatus.OK);
   }
+
+
+  @GetMapping(
+    path="/itemurl/{theurl}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<WalmartItem> getItemByUrl(@PathVariable("theurl") String url) {
+    logger.debug("Request for item by url. url={}", url);
+    //this doesn't actually work yet ;)
+    WalmartItem walmartItem = walmartService.getItemByUrl(url);
+    return new ResponseEntity<>(walmartItem, HttpStatus.OK);
+  }
+
+
+
+
+
+
+
+
+
 /*
   @PostMapping(
     path = "/buyer",

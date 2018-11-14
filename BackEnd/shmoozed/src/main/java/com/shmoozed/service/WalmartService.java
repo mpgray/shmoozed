@@ -1,12 +1,18 @@
 package com.shmoozed.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.time.Duration;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import com.shmoozed.controller.RestTemplateResponseErrorHandler;
 import com.shmoozed.model.WalmartItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,100 +40,45 @@ public class WalmartService {
   public WalmartService(RestTemplateBuilder restTemplateBuilder) {
     this.restTemplate = restTemplateBuilder
       .rootUri(apiUrl)
+      .errorHandler(new RestTemplateResponseErrorHandler())
       .build();
 
   }
 
-  public WalmartItem getSomething()
-  //public String getSomething()
+  public WalmartItem getItemById(int itemId)
   {
-    logger.debug("in getSomething");
-
-    //ResponseEntity<String> response = restTemplate.getForEntity(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, String.class);
-//    WalmartItem wi = restTemplate.getForObject(apiUrl + "/v1/items/42608125" + "?format=json&apiKey=" + apiKey, WalmartItem.class);
-
-    WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, "42608125", apiKey);
-
-    logger.debug("wi={}", wi);
-
-    logger.debug("done with walmart callout");
-
+    WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
     return wi;
-    /*
-   //ResponseEntity<String> response = restTemplate.getForEntity(ApiUrl + "/v1/items/42608125", String.class);
-    HttpStatus aa = response.getStatusCode();
-    //assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-*/
-    /*ObjectMapper mapper = new ObjectMapper();
-    JsonNode root = mapper.readTree(response.getBody());
-    JsonNode name = root.path("name");
-    assertThat(name.asText(), notNullValue());*/
-    /*return response.getBody();*/
-
   }
 
-  //http://api.walmartlabs.com/v1/items/12417832?apiKey={apiKey}&lsPublisherId={Your LinkShare Publisher Id}&format=json
-
-  //need to get from walmart url
-  //https://www.walmart.com/ip/Apple-iPod-touch-128GB/541357139
-
-
-
-
-
-
-
-
-
-  /*private Logger logger = LoggerFactory.getLogger(GoogleService.class);
-
-  private final String clientId;
-  private final boolean shouldLogTokenDetails;
-
-  private NetHttpTransport transport = new NetHttpTransport();
-  private JsonFactory jsonFactory = new GsonFactory();
-
-  public GoogleService(@Value("${google.client-id}")String clientId,
-                       @Value("${google.log-token-details}")boolean shouldLogTokenDetails) {
-    this.clientId = clientId;
-    this.shouldLogTokenDetails = shouldLogTokenDetails;
-  }
-
-  public String validateGoogleToken(String token) {
-    GoogleIdTokenVerifier tokenVerifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-      .setAudience(singletonList(clientId))
-      .build();
-
+  public WalmartItem getItemByUrl(String theUrl) {
+    //https://www.walmart.com/ip/PAW-Patrol-Paw-Patrol-Ultimate-Rescue-Fire-Truck-with-Extendable-2-ft-Tall-Ladder/814913483
+    logger.debug("in getItemByUrl theUrl={}", theUrl);
+    /*URL url = null;
     try {
-      GoogleIdToken idToken = tokenVerifier.verify(token);
-      if (idToken != null) {
-        Payload payload = idToken.getPayload();
-        String userId = payload.getSubject();
-
-        if (shouldLogTokenDetails) {
-          logTokenPayloadDetails(payload, userId);
-        }
-      } else {
-        logger.error("Invalid ID token! token={}", token);
-      }
+      url = new URL(theUrl);
     }
-    catch (GeneralSecurityException e) {
-      logger.error("Security Exception Occurred!", e);
+    catch (MalformedURLException e) {
+      e.printStackTrace();
     }
-    catch (IOException e) {
-      logger.error("IOException Occurred!", e);
-    }
-
-    // TODO: This just turns right around and returns the same token we were given. In the future this should be a new token minted by the backend.
-    return token;
+    String path = url.getPath();*/
+    String path = decode(theUrl);
+    path = path.substring(path.lastIndexOf("/"));
+    int itemId = Integer.parseInt(path);
+    logger.debug("in getItemByUrl itemId={}", itemId);
+    return getItemById(itemId);
   }
 
-  private void logTokenPayloadDetails(Payload payload, String userId) {
-    logger.debug("User Token Information: userId={}, email={}, emailVerified={}, name={}, pictureUrl={}, " +
-                   "locale={}, familyName={}, givenName={}",
-                 userId, payload.getEmail(), payload.getEmailVerified(),
-                 (String) payload.get("name"), (String) payload.get("picture"), (String) payload.get("locale"),
-                 (String) payload.get("family_name"), (String) payload.get("given_name"));
+  private String decode(String value) {
+    try {
+      return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+    }
+    catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+    return "";
   }
-*/
+
+
+
 }
