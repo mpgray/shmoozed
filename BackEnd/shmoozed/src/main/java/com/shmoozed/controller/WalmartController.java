@@ -30,20 +30,6 @@ public class WalmartController {
     this.walmartService = walmartService;
   }
 
-
-
-  /*public @ResponseBody ResponseEntity<List<Item>> getAllItems() {
-    logger.debug("Request to get all items.");
-    return new ResponseEntity<>(itemService.getAllItems(), HttpStatus.OK);
-  }*/
-
-
-
-  /*@PostMapping(
-    path = "/test",
-    consumes = APPLICATION_JSON_VALUE,
-    produces = APPLICATION_JSON_VALUE
-  )*/
   @GetMapping(
     path="/itemid/{itemid}",
     produces = APPLICATION_JSON_VALUE
@@ -53,7 +39,6 @@ public class WalmartController {
     WalmartItem walmartItem = walmartService.getItemById(itemId);
     return new ResponseEntity<>(walmartItem, HttpStatus.OK);
   }
-
 
   @GetMapping(
     path="/itemurl/{theurl}",
