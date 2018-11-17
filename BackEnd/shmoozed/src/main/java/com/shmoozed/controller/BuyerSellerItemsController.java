@@ -97,7 +97,7 @@ public class BuyerSellerItemsController {
   }
 
   @GetMapping(
-    path = "/seller/{buyer_id}",
+    path = "/buyer/{buyer_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody
