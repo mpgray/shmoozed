@@ -22,11 +22,6 @@ public class WalmartService {
   private final String apiUrl = "http://api.walmartlabs.com";
   private final String v1ItemsUrl = "/v1/items/{item_id}?format=json&apiKey={api_key}";
 
-  /*@Autowired
-  public WalmartService(WalmartRepository walmartRepository) {
-    this.walmartRepository = walmartRepository;
-  }*/
-
   @Autowired
   public WalmartService(RestTemplateBuilder restTemplateBuilder, WalmartRepository walmartRepository) {
     this.walmartRepository = walmartRepository;
@@ -40,7 +35,6 @@ public class WalmartService {
   {
     logger.debug("Attempting to find walmart item by id itemId={}", itemId);
     logger.debug("RestTemplate restTemplate={}", restTemplate);
-    //WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
     WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
     return wi;
   }
@@ -49,13 +43,6 @@ public class WalmartService {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
     logger.debug("restTemplate={}", restTemplate);
     logger.debug("walmartRepository={}", walmartRepository);
-
-
-    /////placeholder for item id (not walmart item id)
-    walmartItem.setLinkedItemId(1);
-
-
-
 
     WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
 
