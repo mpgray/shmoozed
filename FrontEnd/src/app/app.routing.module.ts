@@ -11,10 +11,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LayoutComponent} from './shared/layout/layout.component';
 import {LoginComponent} from './account/login/login.component';
 import {InventoryComponent} from './inventory/inventory.component';
+import {Notfound404Component} from './session/notfound404/notfound404.component';
+import {HomepageComponent} from './homepage/homepage.component';
 
 const routes: Routes = [{
   path: '',
-  redirectTo: 'dashboard',
+  redirectTo: 'homepage',
   pathMatch: 'full'
 }, {
   path: '',
@@ -22,7 +24,7 @@ const routes: Routes = [{
     children: [{
       path: 'dashboard',
       component: DashboardComponent,
-      data: { title: 'Shmoozed' }
+      data: { title: 'Dashboard' }
     },
     {
       path: 'account',
@@ -46,11 +48,14 @@ const routes: Routes = [{
     path: 'account/login',
     component: LoginComponent,
     data: { title: 'Login' }
-  },
-
-  {
+  }, {
+    path: 'homepage',
+    component: HomepageComponent,
+    data: { title: 'Shmoozed' }
+  }, {
   path: '**',
-  redirectTo: 'session/404'
+    component: Notfound404Component,
+    data: { title: 'Not Found 404'}
 }];
 
 @NgModule({

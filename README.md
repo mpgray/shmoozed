@@ -1,10 +1,13 @@
-# Shmoozed
-> A web application where Amazon Sellers and Buyers _BOTH_ win!
+<h1 align="center"><a href="http://shmoozed.com"><img src="/FrontEnd/src/assets/images/logoSmallDark.png" alt="Markdownify" width="50"></a>Shmoozed</h1>
 
-[![Front-End][front-end-image]](https://angular.io/)
-[![Back-End][backend-end-image]](https://spring.io/)
-[![Database][database-image]](https://www.mysql.com/)
-[![Hosting Platform][hosting-platform-image]](https://aws.amazon.com/)
+<h4 align="center">A web application where Sellers and Buyers <em>BOTH</em> win!</h4>
+
+<p align="center">
+  <a href="https://angular.io/"><img src="https://img.shields.io/badge/Front--end-Angular-blue.svg"></a>
+  <a href="https://spring.io/"><img src="https://img.shields.io/badge/Back--end-Java%20%26%20Spring%20Boot-brightgreen.svg"></a>
+  <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/Database-MySQL-orange.svg"></a>
+  <a href="https://aws.amazon.com/"><img src="https://img.shields.io/badge/Hosting--Platform-AWS-yellow.svg"></a>
+</p>
 
 [Shmoozed](http://www.shmoozed.com) is a web application designed to allow Amazon Sellers to better understand the market price for their items. This is done by trending price data for items over time. In addition, potential Buyers can provide their ideal price (how good of a deal or steal they want) and negotiate with sellers of those items, eventually coming to an agreement on a price.
 
@@ -15,7 +18,8 @@ Shmoozed was developed as a project at Weber State University as part of CS 3750
 
 ## Architecture
 
-Shmoozed is made up of a Front-end application written using Angular, a Back-end Java API powered by Spring & Spring Boot, backed by a MySQL Database, and all hosted on Amazon Web Services.
+Shmoozed is made up of a Front-end application written using Angular, a Back-end Java API powered by Spring & Spring Boot, backed by a MySQL Database, and all hosted on Amazon Web Services. The Back-end
+calls to various online retailers APIs.
 
 ![](/Docs/high-level-arch.png)
 
@@ -45,10 +49,3 @@ Project setup is dependant on which architectural piece, front-end or back-end, 
 * James Larson
 * Jonathan Pedregon
 * Michael Gray
-
-
-<!-- Markdown Image Definitions -->
-[front-end-image]: https://img.shields.io/badge/Front--end-Angular-blue.svg 
-[backend-end-image]: https://img.shields.io/badge/Back--end-Java%20%26%20Spring%20Boot-brightgreen.svg
-[database-image]: https://img.shields.io/badge/Database-MySQL-orange.svg
-[hosting-platform-image]: https://img.shields.io/badge/Hosting--Platform-AWS-yellow.svg
