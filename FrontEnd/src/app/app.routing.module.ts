@@ -13,6 +13,7 @@ import {LoginComponent} from './account/login/login.component';
 import {InventoryComponent} from './inventory/inventory.component';
 import {Notfound404Component} from './session/notfound404/notfound404.component';
 import {HomepageComponent} from './homepage/homepage.component';
+import {AdminComponent} from './account/admin/admin.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,6 +43,10 @@ const routes: Routes = [{
         path: 'inventory',
         component: InventoryComponent,
         data: { title: 'Inventory' }
+    }, {
+        path: 'admin',
+        component: AdminComponent,
+        data: {title: 'Admin'}
       }],
   },
   {

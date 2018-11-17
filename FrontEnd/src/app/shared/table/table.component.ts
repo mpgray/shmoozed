@@ -34,7 +34,7 @@ export class TableComponent implements OnInit {
 
   }
 
-  updateFilter(event) {
+  public updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data

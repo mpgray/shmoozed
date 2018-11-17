@@ -5,6 +5,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 const endpoint = 'http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/';
 const itempath = 'example/item';
+const buyerpath = 'item/buyer';
+const sellerpath = 'item/seller';
 const userpath = 'user';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,15 +26,91 @@ export class RESTService {
     const body = res;
     return body || { };
   }
+  //////////////////
+// Buyer Rest    //
+//////////////////
+  getBuyerItems(): Observable<any> {
+    return this.http.get(endpoint + buyerpath).pipe(
+      map(this.extractData));
+  }
+
+  getBuyerItem(id): Observable<any> {
+    return this.http.get(endpoint + buyerpath + id).pipe(
+      map(this.extractData));
+  }
+
+  addBuyerItems (product): Observable<any> {
+    console.log(product);
+    return this.http.post<any>(endpoint + buyerpath, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`added item w/ id=${product.id}`)),
+      catchError(this.handleError<any>('addItem'))
+    );
+  }
+
+  updateBuyerItems (id, product): Observable<any> {
+    return this.http.put(endpoint + buyerpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`updated item id=${id}`)),
+      catchError(this.handleError<any>('updateItem'))
+    );
+  }
+
+  deleteBuyerItems (id): Observable<any> {
+    return this.http.delete<any>(endpoint + buyerpath + '/' + id, httpOptions).pipe(
+      tap(_ => console.log(`deleted product id=${id}`)),
+      catchError(this.handleError<any>('deleteItem'))
+    );
+  }
+///////////////////////
+// End Buyer        //
+/////////////////////
+
+  //////////////////
+// Seller REST   //
+//////////////////
+  getSellerItems(): Observable<any> {
+    return this.http.get(endpoint + sellerpath).pipe(
+      map(this.extractData));
+  }
+
+  getSellerItem(id): Observable<any> {
+    return this.http.get(endpoint + sellerpath + id).pipe(
+      map(this.extractData));
+  }
+
+  addSellerItem (product): Observable<any> {
+    console.log(product);
+    return this.http.post<any>(endpoint + sellerpath, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`added item w/ id=${product.id}`)),
+      catchError(this.handleError<any>('addItem'))
+    );
+  }
+
+  updateSellerItem (id, product): Observable<any> {
+    return this.http.put(endpoint + sellerpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`updated product id=${id}`)),
+      catchError(this.handleError<any>('updateItem'))
+    );
+  }
+
+  deleteSellerItem (id): Observable<any> {
+    return this.http.delete<any>(endpoint + userpath + '/' + id, httpOptions).pipe(
+      tap(_ => console.log(`deleted product id=${id}`)),
+      catchError(this.handleError<any>('deleteItem'))
+    );
+  }
+///////////////////////
+// END Seller       //
+//////////////////////
+
 //////////////////
 // User REST    //
 //////////////////
-  getUser(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get(endpoint + userpath).pipe(
       map(this.extractData));
   }
 
-  getUsers(id): Observable<any> {
+  getUser(id): Observable<any> {
     return this.http.get(endpoint + userpath + id).pipe(
       map(this.extractData));
   }
