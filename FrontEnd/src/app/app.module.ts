@@ -37,6 +37,7 @@ import { Notfound404Component } from './session/notfound404/notfound404.componen
 import { HomepageComponent } from './homepage/homepage.component';
 import { HasClaimDirective } from './directives/has-claim.directive';
 import { HttpInterceptorModule } from './services/http-request-interceptor.service';
+import { ItemHistoryComponent } from './buying/item-history/item-history.component';
 
 
 
@@ -57,7 +58,8 @@ import { HttpInterceptorModule } from './services/http-request-interceptor.servi
     Notfound404Component,
     DoughnutComponent,
     HomepageComponent,
-    HasClaimDirective
+    HasClaimDirective,
+    ItemHistoryComponent
   ],
   imports: [
     AlertModule.forRoot(),
