@@ -9,13 +9,18 @@ import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "WalmartItems")
+@Table(name = "Walmart_Items")
 public class WalmartItem {
 
+
+
   @Id
-  @GeneratedValue(strategy = IDENTITY)
+  //@GeneratedValue(strategy = IDENTITY)
   @Column(name = "Walmart_Item_Id")
-  private int itemId;
+  private int itemId = 0;
+
+  @Column(name = "Item_Id")
+  private int linkedItemId;
 
   @Column(name = "Walmart_Name")
   private String name;
@@ -42,7 +47,7 @@ public class WalmartItem {
   private String modelNumber;
 
   @Column(name = "Walmart_Affiliate_Add_To_Cart_Url")
-  private String affiliateAddToCartUrl;
+  private String addToCartUrl;
 
   @Column(name = "Walmart_Stock")
   private String stock;
@@ -59,6 +64,14 @@ public class WalmartItem {
     this.itemId = itemId;
   }
 
+  public int getLinkedItemId() {
+    return linkedItemId;
+  }
+
+  public void setLinkedItemId(int linkedItemId) {
+    this.linkedItemId = linkedItemId;
+  }
+
   public String getName() {
     return name;
   }
@@ -71,7 +84,7 @@ public class WalmartItem {
     return categoryPath;
   }
 
-  public void setCategoryPath(String categoryPath1) {
+  public void setCategoryPath(String categoryPath) {
     this.categoryPath = categoryPath;
   }
 
@@ -123,21 +136,19 @@ public class WalmartItem {
     this.modelNumber = modelNumber;
   }
 
-  public String getAffiliateAddToCartUrl() {
-    return affiliateAddToCartUrl;
+  public String getAddToCartUrl() {
+    return addToCartUrl;
   }
 
-  public void setAffiliateAddToCartUrl(String affiliateAddToCartUrl) {
-    this.affiliateAddToCartUrl = affiliateAddToCartUrl;
+  public void setAddToCartUrl(String addToCartUrl) {
+    this.addToCartUrl = addToCartUrl;
   }
 
-  public String getStock() {
+  /*public String getStock() {
     return stock;
   }
 
-  public void setStock(String stock) {
-    this.stock = stock;
-  }
+  public void setStock(String stock) { this.stock = stock; }*/
 
   @Override
   public String toString() {
@@ -151,7 +162,7 @@ public class WalmartItem {
       ", thumbnailImage='" + thumbnailImage + '\'' +
       ", largeImage='" + largeImage + '\'' +
       ", modelNumber='" + modelNumber + '\'' +
-      ", affiliateAddToCartUrl='" + affiliateAddToCartUrl + '\'' +
+      ", affiliateAddToCartUrl='" + addToCartUrl + '\'' +
       ", stock='" + stock + '\'' +
       '}';
   }
