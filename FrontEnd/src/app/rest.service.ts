@@ -5,6 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 const endpoint = 'http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/';
 const itempath = 'example/item';
+const userpath = 'user';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -23,7 +24,43 @@ export class RESTService {
     const body = res;
     return body || { };
   }
+//////////////////
+// User REST    //
+//////////////////
+  getUser(): Observable<any> {
+    return this.http.get(endpoint + userpath).pipe(
+      map(this.extractData));
+  }
 
+  getUsers(id): Observable<any> {
+    return this.http.get(endpoint + userpath + id).pipe(
+      map(this.extractData));
+  }
+
+  addUser (product): Observable<any> {
+    console.log(product);
+    return this.http.post<any>(endpoint + userpath, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`added item w/ id=${product.id}`)),
+      catchError(this.handleError<any>('addItem'))
+    );
+  }
+
+  updateUser (id, product): Observable<any> {
+    return this.http.put(endpoint + userpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
+      tap(_ => console.log(`updated product id=${id}`)),
+      catchError(this.handleError<any>('updateItem'))
+    );
+  }
+
+  deleteUser (id): Observable<any> {
+    return this.http.delete<any>(endpoint + userpath + '/' + id, httpOptions).pipe(
+      tap(_ => console.log(`deleted product id=${id}`)),
+      catchError(this.handleError<any>('deleteItem'))
+    );
+  }
+///////////////////////
+// END User         //
+//////////////////////
   getExampleItems(): Observable<any> {
     return this.http.get(endpoint + itempath).pipe(
       map(this.extractData));
