@@ -1,4 +1,4 @@
-import { RESTService } from '../rest.service';
+import { RESTService } from '../services/rest.service';
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isNumeric} from 'rxjs/internal-compatibility';

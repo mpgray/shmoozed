@@ -22,6 +22,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {NgxGalleryModule} from 'ngx-gallery';
+
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
@@ -37,7 +39,10 @@ import { Notfound404Component } from './session/notfound404/notfound404.componen
 import { HomepageComponent } from './homepage/homepage.component';
 import { HasClaimDirective } from './directives/has-claim.directive';
 import { HttpInterceptorModule } from './services/http-request-interceptor.service';
-import {NgxGalleryModule} from 'ngx-gallery';
+import { UsersComponent } from './shared/table/users/users.component';
+import { SelleritemsComponent } from './shared/table/selleritems/selleritems.component';
+import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.component';
+import { AdminComponent } from './account/admin/admin.component';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 
 
@@ -60,7 +65,12 @@ import { GalleryComponent } from './shared/gallery/gallery.component';
     DoughnutComponent,
     HomepageComponent,
     HasClaimDirective,
-    GalleryComponent
+    GalleryComponent,
+    HasClaimDirective,
+    UsersComponent,
+    SelleritemsComponent,
+    BuyeritemsComponent,
+    AdminComponent
   ],
   imports: [
     AlertModule.forRoot(),

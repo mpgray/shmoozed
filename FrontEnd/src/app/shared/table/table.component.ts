@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {RESTService} from '../../rest.service';
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-table',
@@ -34,7 +34,7 @@ export class TableComponent implements OnInit {
 
   }
 
-  updateFilter(event) {
+  public updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
