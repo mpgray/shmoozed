@@ -1,10 +1,9 @@
 package com.shmoozed.controller;
 
 import java.util.List;
-import com.shmoozed.model.Item;
+
 import com.shmoozed.model.ItemPriceHistory;
 import com.shmoozed.service.ItemPriceHistoryService;
-import com.shmoozed.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +34,13 @@ public class ItemPriceHistoryController {
    * ID is found.
    */
   @GetMapping(
-    path="/item/{item_id}",
+    path="/{item_id}",
     produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody ResponseEntity<ItemPriceHistory> getItems(@PathVariable("item_id") int itemId) {
+  public @ResponseBody ResponseEntity<List<ItemPriceHistory>> getItemHistory(@PathVariable("item_id") int itemId) {
     logger.debug("Request for item. itemId={}", itemId);
 
-    return itemPriceHistoryService.getItem(itemId)
+    return itemPriceHistoryService.getItemHistory(itemId)
       .map(i -> new ResponseEntity<>(i, HttpStatus.OK))
       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
@@ -54,9 +53,9 @@ public class ItemPriceHistoryController {
                                                           @RequestBody ItemPriceHistory itemPriceHistory) {
     logger.debug("Request to add new itemPriceHistory. token={}, itemPriceHistory={}", token, itemPriceHistory);
 
-    ItemPriceHistory newUser = itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
+    ItemPriceHistory newItemPriceHistory = itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
 
-    return new ResponseEntity<>(newUser, HttpStatus.OK);
+    return new ResponseEntity<>(newItemPriceHistory, HttpStatus.OK);
   }
 
 

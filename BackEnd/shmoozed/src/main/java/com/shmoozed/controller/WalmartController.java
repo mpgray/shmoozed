@@ -1,6 +1,14 @@
 package com.shmoozed.controller;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import com.shmoozed.model.Item;
+import com.shmoozed.model.ItemPriceHistory;
 import com.shmoozed.model.WalmartItem;
+import com.shmoozed.service.ItemPriceHistoryService;
+import com.shmoozed.service.ItemService;
 import com.shmoozed.service.WalmartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +27,16 @@ public class WalmartController {
   private Logger logger = LoggerFactory.getLogger(WalmartController.class);
 
   private WalmartService walmartService;
+  private ItemService itemService;
+  private ItemPriceHistoryService itemPriceHistoryService;
 
   @Autowired
-  public WalmartController(WalmartService walmartService) {
+  public WalmartController(WalmartService walmartService, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService) {
+
     this.walmartService = walmartService;
+    this.itemService = itemService;
+    this.itemPriceHistoryService = itemPriceHistoryService;
+
   }
 
   @GetMapping(
@@ -45,6 +59,20 @@ public class WalmartController {
 
     WalmartItem newWalmartItem = walmartService.insertNewWalmartItem(walmartItem);
 
+    //Create item record
+    Item item = new Item();
+    item.setName(newWalmartItem.getName());
+    item.setQuantity(1);
+    Item itemResult = itemService.insertNewItem(item);
+
+    //Create item history record
+    ItemPriceHistory itemPriceHistory = new ItemPriceHistory();
+    itemPriceHistory.setItemId(item.getId());
+    itemPriceHistory.setPrice(new BigDecimal(newWalmartItem.getSalePrice()));
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    itemPriceHistory.setDate(timestamp);
+    itemPriceHistory.setLastUpdateDate(timestamp);
+    ItemPriceHistory itemPriceHistoryResult = itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
     return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
   }
 

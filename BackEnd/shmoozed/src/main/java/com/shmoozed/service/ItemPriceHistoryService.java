@@ -3,18 +3,15 @@ package com.shmoozed.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.shmoozed.model.Item;
 import com.shmoozed.model.ItemPriceHistory;
-import com.shmoozed.model.User;
 import com.shmoozed.repository.ItemPriceHistoryRepository;
-import com.shmoozed.repository.ItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * A Service to interact with {@link Item}
+ * A Service to interact with {@link ItemPriceHistory}
  */
 @Service
 public class ItemPriceHistoryService {
@@ -32,7 +29,7 @@ public class ItemPriceHistoryService {
    *
    * @return The list of all {@link ItemPriceHistory}
    */
-  public Optional<ItemPriceHistory> getItem(int itemId) {
+  public Optional<List<ItemPriceHistory>> getItemHistory(int itemId) {
     logger.debug("Fetching itemPriceHistory for itemId={}", itemId);
     return itemPriceHistoryRepository.findItemPriceHistoriesByItemId(itemId);
   }

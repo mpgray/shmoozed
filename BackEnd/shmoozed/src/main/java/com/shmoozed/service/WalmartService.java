@@ -69,7 +69,18 @@ public class WalmartService {
     int itemId = 0;
     try {
       String path = theUrl.substring(theUrl.lastIndexOf("/") + 1);
-      path = path.substring(0, path.length() - 1);
+      if(path.indexOf('?') > -1){
+        path = path.substring(0,path.indexOf('?'));
+      }
+      if(path.indexOf('/') > -1){
+        path = path.substring(0,path.indexOf('/'));
+      }
+      if(path.indexOf('\"') > -1){
+        path = path.substring(0,path.indexOf('\"'));
+      }
+      //path = path.substring(0, path.length() - 1);
+
+
       logger.debug("in getItemByUrl path={}", path);
       itemId = Integer.parseInt(path);
       logger.debug("in getItemByUrl itemId={}", itemId);
