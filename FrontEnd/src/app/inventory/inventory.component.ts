@@ -106,9 +106,9 @@ export class InventoryComponent implements OnInit {
       let product = this.csvRecords[i];
       let id = 0;
       product.splice(0,0, id);
-      product.splice(0,0, "id")
-      product.splice(2, 0, "name")
-      product.splice(4, 0, "quantity")
+      product.splice(0,0, "id");
+      product.splice(2, 0, "name");
+      product.splice(4, 0, "quantity");
       let newProduct = {};
       for (let i = 0; i < product.length; i+=2){
         newProduct[product[i]] = (product[i+1]);

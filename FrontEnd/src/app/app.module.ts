@@ -38,6 +38,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HasClaimDirective } from './directives/has-claim.directive';
 import { HttpInterceptorModule } from './services/http-request-interceptor.service';
 import {NgxGalleryModule} from 'ngx-gallery';
+import { GalleryComponent } from './shared/gallery/gallery.component';
 
 
 
@@ -58,7 +59,8 @@ import {NgxGalleryModule} from 'ngx-gallery';
     Notfound404Component,
     DoughnutComponent,
     HomepageComponent,
-    HasClaimDirective
+    HasClaimDirective,
+    GalleryComponent
   ],
   imports: [
     AlertModule.forRoot(),
