@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TableComponent} from "../shared/table/table.component";
 import {isNumeric} from "rxjs/internal-compatibility";
-import {RESTService} from "../rest.service";
+import {RESTService} from "../services/rest.service";
 
 @Component({
   selector: 'app-inventory',

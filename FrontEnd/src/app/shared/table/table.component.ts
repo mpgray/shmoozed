@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {RESTService} from '../../rest.service';
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-table',
