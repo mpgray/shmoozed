@@ -9,7 +9,10 @@ import {
   MatBadgeModule,
   MatNativeDateModule,
   MatToolbarModule,
-  MatButtonToggleModule, MatProgressSpinnerModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatSelectModule
 } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
@@ -71,6 +74,8 @@ import { HttpInterceptorModule } from './services/http-request-interceptor.servi
     MatToolbarModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

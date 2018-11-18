@@ -1,0 +1,22 @@
+::ng-deep .price-header {
+  background-color: #effff7 !important;
+  padding: 5px !important;
+}
+
+::ng-deep .historical-header {
+  background-color: #e0ebff !important;
+  padding: 5px !important;
+}
+
+::ng-deep .mat-card-title {
+  font-size: 16px !important;
+  margin-top: 2px !important;
+  padding: 0px !important;
+}
+
+::ng-deep .mat-card {
+  margin: 10px !important;
+  padding: 5px !important;
+}
+
+
