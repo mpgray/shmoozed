@@ -12,7 +12,8 @@ import {
   MatButtonToggleModule,
   MatProgressSpinnerModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatListModule
 } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
@@ -76,6 +77,7 @@ import { HttpInterceptorModule } from './services/http-request-interceptor.servi
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatListModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
