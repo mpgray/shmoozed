@@ -45,7 +45,6 @@ VALUES
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2FPampers-Swaddlers-Diapers-Choose-Size-and-Count-Size-3-136-Count%2F204175667%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi', 
 'Available'
 ),
-VALUES
 (
 2,
 '122270233',
@@ -60,7 +59,6 @@ VALUES
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2FGreat-Value-18-oz-Party-Plastic-Cups-120-count%2F122270233%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi',
 'Available'
 ),
-VALUES
 (
 3,
 '45707349',
