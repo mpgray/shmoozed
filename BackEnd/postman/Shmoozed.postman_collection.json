@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f07a6ebe-a179-4c75-923d-0e06278fe0e4",
+		"_postman_id": "1a9fdcb3-83aa-4554-af54-ca863c339fbe",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -296,6 +296,310 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "Buyer Items",
+					"item": [
+						{
+							"name": "Get All - /item/buyer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/buyer",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All for Buyer - /item/buyer/{buyer_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/buyer/1",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New Buyer Item - /item/buyer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 1,\n\t\"price\": 15.50,\n\t\"userId\": 2\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/buyer",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Buyer Item - /item/buyer/{buyer_item_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/buyer/3",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Seller Items",
+					"item": [
+						{
+							"name": "Get All - /item/seller",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All for Seller - /item/seller/{seller_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/1",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New Seller Item - /item/seller",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 1,\n\t\"price\": 15.50,\n\t\"userId\": 2\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Seller Item - /item/seller/{seller_item_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/1",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "/example/item",
 					"request": {
 						"method": "GET",
@@ -411,6 +715,167 @@
 								"example",
 								"item",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Walmart",
+			"item": [
+				{
+					"name": "WalmartItem by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart/itemid/814913483",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart",
+								"itemid",
+								"814913483"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Walmart Add by Url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"https://www.walmart.com/ip/814913483\""
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart/url/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart",
+								"url",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Walmart Insert Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemId\": 814913483,\n    \"name\": \"PAW Patrol Paw Patrol - Ultimate Rescue Fire Truck with Extendable 2 ft. Tall Ladder\",\n    \"categoryPath\": \"Toys/Action Figures/Action Figure Playsets\",\n    \"upc\": \"778988147283\",\n    \"msrp\": 59.99,\n    \"salePrice\": 44.44,\n    \"thumbnailImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF\",\n    \"largeImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF\",\n    \"modelNumber\": \"6043988\",\n    \"addToCartUrl\": \"http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D814913483%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi\",\n    \"stock\": \"Available\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ItemPriceHistory",
+			"item": [
+				{
+					"name": "ItemPriceHistory by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/itemhistory/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"itemhistory",
+								"3"
 							]
 						}
 					},
@@ -673,48 +1138,79 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Walmart",
+					"name": "Buyer Items",
 					"item": [
 						{
-							"name": "WalmartItem by Id",
+							"name": "Get All - /item/buyer",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:5000/walmart/itemid/814913483",
+									"raw": "http://localhost:5000/item/buyer",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"walmart",
-										"itemid",
-										"814913483"
+										"item",
+										"buyer"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Walmart Add by Url",
+							"name": "Get All for Buyer - /item/buyer/{buyer_id}",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "aaa",
-											"type": "string"
-										}
-									]
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
 								},
+								"url": {
+									"raw": "http://localhost:5000/item/buyer/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"buyer",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New Buyer Item - /item/buyer",
+							"request": {
 								"method": "POST",
 								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
@@ -724,39 +1220,33 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "\"https://www.walmart.com/ip/814913483\""
+									"raw": "{\n\t\"itemId\": 1,\n\t\"price\": 15.50,\n\t\"userId\": 2\n}"
 								},
 								"url": {
-									"raw": "http://localhost:5000/walmart/url/",
+									"raw": "http://localhost:5000/item/buyer",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"walmart",
-										"url",
-										""
+										"item",
+										"buyer"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Walmart Insert Item",
+							"name": "Delete Buyer Item - /item/buyer/{buyer_item_id}",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "aaa",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
+								"method": "DELETE",
 								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
@@ -766,17 +1256,19 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"itemId\": 814913483,\n    \"name\": \"PAW Patrol Paw Patrol - Ultimate Rescue Fire Truck with Extendable 2 ft. Tall Ladder\",\n    \"categoryPath\": \"Toys/Action Figures/Action Figure Playsets\",\n    \"upc\": \"778988147283\",\n    \"msrp\": 59.99,\n    \"salePrice\": 44.44,\n    \"thumbnailImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF\",\n    \"largeImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF\",\n    \"modelNumber\": \"6043988\",\n    \"addToCartUrl\": \"http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D814913483%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi\",\n    \"stock\": \"Available\"\n}"
+									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:5000/walmart",
+									"raw": "http://localhost:5000/item/buyer/3",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"walmart"
+										"item",
+										"buyer",
+										"3"
 									]
 								}
 							},
@@ -786,26 +1278,115 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "ItemPriceHistory",
+					"name": "Seller Items",
 					"item": [
 						{
-							"name": "ItemPriceHistory by Id",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
+							"name": "Get All - /item/seller",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "aaa",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All for Seller - /item/seller/{seller_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New Seller Item - /item/seller",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 1,\n\t\"price\": 15.50,\n\t\"userId\": 2\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Seller Item - /item/seller/{seller_item_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
@@ -818,15 +1399,16 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:5000/itemhistory/3",
+									"raw": "http://localhost:5000/item/seller/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"itemhistory",
-										"3"
+										"item",
+										"seller",
+										"1"
 									]
 								}
 							},
@@ -945,6 +1527,28 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bb4f8fd8-0069-465d-8982-b882cc9c6efe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c66fa5fc-d07e-4dcc-ab06-8a04af2e8ad4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
