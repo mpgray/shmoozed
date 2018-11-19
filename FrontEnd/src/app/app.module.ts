@@ -26,6 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {NgxGalleryModule} from 'ngx-gallery';
+
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
@@ -47,7 +49,9 @@ import { UsersComponent } from './shared/table/users/users.component';
 import { SelleritemsComponent } from './shared/table/selleritems/selleritems.component';
 import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.component';
 import { AdminComponent } from './account/admin/admin.component';
+import { GalleryComponent } from './shared/gallery/gallery.component';
 import { RegisterComponent } from './account/register/register.component';
+import {ItemHistory} from './models/item-history';
 
 
 
@@ -69,6 +73,8 @@ import { RegisterComponent } from './account/register/register.component';
     Notfound404Component,
     DoughnutComponent,
     HomepageComponent,
+    HasClaimDirective,
+    GalleryComponent,
     HasClaimDirective,
     ItemHistory,
     ItemHistoryComponent,
@@ -104,7 +110,8 @@ import { RegisterComponent } from './account/register/register.component';
     NgxDatatableModule,
     AngularFontAwesomeModule,
     ChartsModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
