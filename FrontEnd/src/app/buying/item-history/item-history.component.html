@@ -1,5 +1,7 @@
-<canvas baseChart width="400" height="400"
-              [datasets]="lineChartData" 
-              [labels]="lineChartLabels"
-              [chartType]="lineChartType">
-            </canvas>
+<div style="max-height: 40%;">
+  <h2>Historical Price Data for Item 1234</h2>
+  <canvas baseChart
+  [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
+    [legend]="true">
+  </canvas>
+</div>
