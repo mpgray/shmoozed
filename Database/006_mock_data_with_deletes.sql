@@ -7,20 +7,13 @@ DELETE FROM Walmart_Items;
 DELETE FROM Item;
 SET SQL_SAFE_UPDATES = 1;
 
-INSERT INTO Item(Item_Id, Item_Name, Item_Quantity)
+INSERT INTO Item
+(Item_Id, Item_Name, Item_Quantity)
 VALUES
-(1,'Pampers Swaddlers Diapers',25);
-INSERT INTO Item(Item_Id, Item_Name, Item_Quantity)
-VALUES
-(2,'Great Value 18 oz Party Plastic Cups',20);
-INSERT INTO Item(Item_Id, Item_Name, Item_Quantity)
-VALUES
-(3,'Boys Long Sleeve Crew T-Shirt with Rib Cuffs',10);
-INSERT INTO Item(Item_Id, Item_Name, Item_Quantity)
-VALUES
-(4,'(3 Pack) Great Value Cleaning Bleach, 128 fl oz',5);
-INSERT INTO Item(Item_Id, Item_Name, Item_Quantity)
-VALUES
+(1,'Pampers Swaddlers Diapers',25),
+(2,'Great Value 18 oz Party Plastic Cups',20),
+(3,'Boys Long Sleeve Crew T-Shirt with Rib Cuffs',10),
+(4,'(3 Pack) Great Value Cleaning Bleach, 128 fl oz',5),
 (5,'Trim Nailcare Fingernail & Toenail Clippers', 189);
  
 
@@ -51,20 +44,7 @@ VALUES
 '3700077306', 
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2FPampers-Swaddlers-Diapers-Choose-Size-and-Count-Size-3-136-Count%2F204175667%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi', 
 'Available'
-);
-INSERT INTO Walmart_Items(
-Item_Id, 
-Walmart_Item_Id, 
-Walmart_Name, 
-Walmart_MSRP, 
-Walmart_Sale_Price, 
-Walmart_UPC, 
-Walmart_Category_Path,
-Walmart_Thumbnail_Image,
-Walmart_Large_Image, 
-Walmart_Model_Number, 
-Walmart_Affiliate_Add_To_Cart_Url, 
-Walmart_Stock) 
+),
 VALUES
 (
 2,
@@ -79,20 +59,7 @@ VALUES
 'C67184',
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2FGreat-Value-18-oz-Party-Plastic-Cups-120-count%2F122270233%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi',
 'Available'
-);
-INSERT INTO Walmart_Items(
-Item_Id, 
-Walmart_Item_Id, 
-Walmart_Name, 
-Walmart_MSRP, 
-Walmart_Sale_Price, 
-Walmart_UPC, 
-Walmart_Category_Path,
-Walmart_Thumbnail_Image,
-Walmart_Large_Image, 
-Walmart_Model_Number, 
-Walmart_Affiliate_Add_To_Cart_Url, 
-Walmart_Stock) 
+),
 VALUES
 (
 3,
@@ -107,21 +74,7 @@ VALUES
 'CB05Q9F',
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2FBoys-Long-Sleeve-Crew-T-Shirt-with-Rib-Cuffs%2F45707349%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi',
 'Available'
-);
-INSERT INTO Walmart_Items(
-Item_Id, 
-Walmart_Item_Id, 
-Walmart_Name, 
-Walmart_MSRP, 
-Walmart_Sale_Price, 
-Walmart_UPC, 
-Walmart_Category_Path,
-Walmart_Thumbnail_Image,
-Walmart_Large_Image, 
-Walmart_Model_Number, 
-Walmart_Affiliate_Add_To_Cart_Url, 
-Walmart_Stock) 
-VALUES
+),
 (
 4,
 '168382713',
@@ -135,21 +88,7 @@ VALUES
 '',
 'http://c.affil.walmart.com/t/api01?l=https%3A%2F%2Fwww.walmart.com%2Fip%2F3-Pack-Great-Value-Cleaning-Bleach-128-fl-oz%2F168382713%3Faffp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi',
 'NOT_AVAILABLE'
-);
-INSERT INTO Walmart_Items(
-Item_Id, 
-Walmart_Item_Id, 
-Walmart_Name, 
-Walmart_MSRP, 
-Walmart_Sale_Price, 
-Walmart_UPC, 
-Walmart_Category_Path,
-Walmart_Thumbnail_Image,
-Walmart_Large_Image, 
-Walmart_Model_Number, 
-Walmart_Affiliate_Add_To_Cart_Url, 
-Walmart_Stock) 
-VALUES
+),
 (
 5,
 '299081844',
@@ -167,350 +106,28 @@ VALUES
 
 
 INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
+(Item_Price_Id, Item_Id, Price, Date, Last_update_Date)
 VALUES
-(
-1,
-1,
-39.00,
-'2018-07-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-2,
-1,
-41.00,
-'2018-08-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-3,
-1,
-43.00,
-'2018-09-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-4,
-1,
-40.00,
-'2018-10-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-5,
-1,
-39.00,
-'2018-11-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-6,
-2,
-10.00,
-'2018-06-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-7,
-2,
-9.50,
-'2018-07-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-8,
-2,
-9.50,
-'2018-08-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-9,
-2,
-9.25,
-'2018-09-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-10,
-2,
-8.75,
-'2018-10-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-11,
-2,
-8.00,
-'2018-11-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-12,
-3,
-6.50,
-'2018-09-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-13,
-3,
-6.55,
-'2018-10-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-14,
-3,
-6.49,
-'2018-11-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-15,
-4,
-4.00,
-'2018-08-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-16,
-4,
-4.00,
-'2018-09-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-17,
-4,
-4.10,
-'2018-10-01',
-date
-);
-
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-18,
-4,
-4.00,
-'2018-11-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-19,
-5,
-3.80,
-'2018-11-01',
-date
-);
-
-INSERT INTO Item_Price_History
-(
-Item_Price_Id,
-Item_Id,
-Price,
-Date,
-Last_update_Date
-)
-VALUES
-(
-20,
-5,
-3.90,
-'2018-11-01',
-date
-);
+(1, 1, 39.00, '2018-07-01', date),
+(2, 1, 41.00, '2018-08-01', date),
+(3, 1, 43.00, '2018-09-01', date),
+(4, 1, 40.00, '2018-10-01', date),
+(5, 1, 39.00, '2018-11-01', date),
+(6, 2, 10.00, '2018-06-01', date),
+(7, 2, 9.50, '2018-07-01', date),
+(8, 2, 9.50, '2018-08-01', date),
+(9, 2, 9.25, '2018-09-01', date),
+(10, 2, 8.75, '2018-10-01', date),
+(11, 2, 8.00, '2018-11-01', date),
+(12, 3, 6.50, '2018-09-01', date),
+(13, 3, 6.55, '2018-10-01', date),
+(14, 3, 6.49, '2018-11-01', date),
+(15, 4, 4.00, '2018-08-01', date),
+(16, 4, 4.00, '2018-09-01', date),
+(17, 4, 4.10, '2018-10-01', date),
+(18, 4, 4.00, '2018-11-01', date),
+(19, 5, 3.80, '2018-11-01', date),
+(20, 5, 3.90, '2018-11-01', date);
 
 
 
