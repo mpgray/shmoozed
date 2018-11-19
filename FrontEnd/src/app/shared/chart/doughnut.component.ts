@@ -10,7 +10,7 @@ export class DoughnutComponent implements OnInit {
   // Doughnut
   public doughnutChartLabels: string[] = ['Nike Shoes', 'Antique Doll', 'Cat Toy Box'];
   public doughnutChartData: number[] = [350, 450, 100];
-  public doughnutChartType: string = 'doughnut';
+  public doughnutChartType = 'doughnut';
 
   constructor() { }
 
@@ -20,11 +20,11 @@ export class DoughnutComponent implements OnInit {
 
 
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 }

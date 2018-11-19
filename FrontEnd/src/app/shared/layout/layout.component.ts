@@ -14,7 +14,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   emailMessages = 13;
   alertMessages = 20;
-  private _mobileQueryListener: () => void;
+  private readonly _mobileQueryListener: () => void;
   searchValue = 'Clear me';
   name: string;
 

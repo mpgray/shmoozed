@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {map, catchError, tap} from 'rxjs/operators';
 
 const endpoint = 'http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/';
 const itempath = 'example/item';
@@ -10,7 +10,7 @@ const sellerpath = 'item/seller';
 const userpath = 'user';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -20,12 +20,14 @@ const httpOptions = {
 
 export class RESTService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private extractData(res: Response) {
     const body = res;
-    return body || { };
+    return body || {};
   }
+
   //////////////////
 // Buyer Rest    //
 //////////////////
@@ -39,7 +41,7 @@ export class RESTService {
       map(this.extractData));
   }
 
-  addBuyerItems (product): Observable<any> {
+  addBuyerItems(product): Observable<any> {
     console.log(product);
     return this.http.post<any>(endpoint + buyerpath, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`added item w/ id=${product.id}`)),
@@ -47,19 +49,20 @@ export class RESTService {
     );
   }
 
-  updateBuyerItems (id, product): Observable<any> {
+  updateBuyerItems(id, product): Observable<any> {
     return this.http.put(endpoint + buyerpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`updated item id=${id}`)),
       catchError(this.handleError<any>('updateItem'))
     );
   }
 
-  deleteBuyerItems (id): Observable<any> {
+  deleteBuyerItems(id): Observable<any> {
     return this.http.delete<any>(endpoint + buyerpath + '/' + id, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteItem'))
     );
   }
+
 ///////////////////////
 // End Buyer        //
 /////////////////////
@@ -77,7 +80,7 @@ export class RESTService {
       map(this.extractData));
   }
 
-  addSellerItem (product): Observable<any> {
+  addSellerItem(product): Observable<any> {
     console.log(product);
     return this.http.post<any>(endpoint + sellerpath, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`added item w/ id=${product.id}`)),
@@ -85,19 +88,20 @@ export class RESTService {
     );
   }
 
-  updateSellerItem (id, product): Observable<any> {
+  updateSellerItem(id, product): Observable<any> {
     return this.http.put(endpoint + sellerpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateItem'))
     );
   }
 
-  deleteSellerItem (id): Observable<any> {
+  deleteSellerItem(id): Observable<any> {
     return this.http.delete<any>(endpoint + userpath + '/' + id, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteItem'))
     );
   }
+
 ///////////////////////
 // END Seller       //
 //////////////////////
@@ -115,7 +119,7 @@ export class RESTService {
       map(this.extractData));
   }
 
-  addUser (product): Observable<any> {
+  addUser(product): Observable<any> {
     console.log(product);
     return this.http.post<any>(endpoint + userpath, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`added item w/ id=${product.id}`)),
@@ -123,19 +127,20 @@ export class RESTService {
     );
   }
 
-  updateUser (id, product): Observable<any> {
+  updateUser(id, product): Observable<any> {
     return this.http.put(endpoint + userpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateItem'))
     );
   }
 
-  deleteUser (id): Observable<any> {
+  deleteUser(id): Observable<any> {
     return this.http.delete<any>(endpoint + userpath + '/' + id, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteItem'))
     );
   }
+
 ///////////////////////
 // END User         //
 //////////////////////
@@ -149,7 +154,7 @@ export class RESTService {
       map(this.extractData));
   }
 
-  addExampleItem (product): Observable<any> {
+  addExampleItem(product): Observable<any> {
     console.log(product);
     return this.http.post<any>(endpoint + itempath, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`added item w/ id=${product.id}`)),
@@ -157,23 +162,21 @@ export class RESTService {
     );
   }
 
-  // Not implemented!!!
-  updateExampleItem (id, product): Observable<any> {
+  updateExampleItem(id, product): Observable<any> {
     return this.http.put(endpoint + itempath + '/' + id, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateItem'))
     );
   }
 
-  // Not implemented!!!
-  deleteExampleItem (id): Observable<any> {
+  deleteExampleItem(id): Observable<any> {
     return this.http.delete<any>(endpoint + itempath + '/' + id, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteItem'))
     );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       console.error(error); // log to console instead
