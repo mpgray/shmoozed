@@ -37,11 +37,14 @@ import { Notfound404Component } from './session/notfound404/notfound404.componen
 import { HomepageComponent } from './homepage/homepage.component';
 import { HasClaimDirective } from './directives/has-claim.directive';
 import { HttpInterceptorModule } from './services/http-request-interceptor.service';
+
+import { ItemHistoryComponent } from './buying/item-history/item-history.component';
 import { UsersComponent } from './shared/table/users/users.component';
 import { SelleritemsComponent } from './shared/table/selleritems/selleritems.component';
 import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.component';
 import { AdminComponent } from './account/admin/admin.component';
 import { RegisterComponent } from './account/register/register.component';
+
 
 
 
@@ -63,6 +66,8 @@ import { RegisterComponent } from './account/register/register.component';
     DoughnutComponent,
     HomepageComponent,
     HasClaimDirective,
+    ItemHistory,
+    ItemHistoryComponent,
     UsersComponent,
     SelleritemsComponent,
     BuyeritemsComponent,

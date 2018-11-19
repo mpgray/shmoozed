@@ -89,9 +89,13 @@
         </div>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  routerLink="/buying">
+        <a class="nav-link dropdown-toggle"  routerLink="/buying" id="buyingDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
           <mat-icon>shopping_basket</mat-icon>
           <span>Buying</span></a>
+          <div class="dropdown-menu" aria-labelledby="sellingDropdown">
+            <a class="dropdown-item" routerLink="/itemHistory">Item History</a>
+            </div>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link dropdown-toggle"  routerLink="/selling" id="sellingDropdown" role="button" data-toggle="dropdown"
