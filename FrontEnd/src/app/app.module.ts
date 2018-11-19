@@ -41,6 +41,7 @@ import { UsersComponent } from './shared/table/users/users.component';
 import { SelleritemsComponent } from './shared/table/selleritems/selleritems.component';
 import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.component';
 import { AdminComponent } from './account/admin/admin.component';
+import { RegisterComponent } from './account/register/register.component';
 
 
 
@@ -65,7 +66,8 @@ import { AdminComponent } from './account/admin/admin.component';
     UsersComponent,
     SelleritemsComponent,
     BuyeritemsComponent,
-    AdminComponent
+    AdminComponent,
+    RegisterComponent
   ],
   imports: [
     AlertModule.forRoot(),

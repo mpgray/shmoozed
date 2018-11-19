@@ -14,6 +14,8 @@ import {InventoryComponent} from './inventory/inventory.component';
 import {Notfound404Component} from './session/notfound404/notfound404.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {AdminComponent} from './account/admin/admin.component';
+import {Register} from 'ts-node';
+import {RegisterComponent} from './account/register/register.component';
 
 const routes: Routes = [{
   path: '',
@@ -47,12 +49,11 @@ const routes: Routes = [{
         path: 'admin',
         component: AdminComponent,
         data: {title: 'Admin'}
-      }],
-  },
-  {
-    path: 'account/login',
-    component: LoginComponent,
-    data: { title: 'Login' }
+    }, {
+        path: 'register',
+        component: RegisterComponent,
+        data: {title: 'Register'}
+    }],
   }, {
     path: 'homepage',
     component: HomepageComponent,
