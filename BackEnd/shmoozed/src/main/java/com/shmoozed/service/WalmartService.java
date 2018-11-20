@@ -125,4 +125,14 @@ public class WalmartService {
     }
     return "";
   }
+
+  public void refreshAllItems() {
+    // TODO: Should perform the following functionality:
+    // Retrieve all Walmart Items from DB
+    // Stream over walmart items
+    // For each walmart item, call API and get values
+    // Update the database for each one's new details
+    // Add a price history entry for each item
+    // Adequately log information about counts, etc.
+  }
 }
