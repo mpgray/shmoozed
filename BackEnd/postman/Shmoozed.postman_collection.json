@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "18955cd2-7ed5-41ec-aabc-d426bcc5bcf0",
+		"_postman_id": "1a9fdcb3-83aa-4554-af54-ca863c339fbe",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -723,6 +723,167 @@
 			]
 		},
 		{
+			"name": "Walmart",
+			"item": [
+				{
+					"name": "WalmartItem by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart/itemid/814913483",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart",
+								"itemid",
+								"814913483"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Walmart Add by Url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"https://www.walmart.com/ip/814913483\""
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart/url/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart",
+								"url",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Walmart Insert Item",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemId\": 814913483,\n    \"name\": \"PAW Patrol Paw Patrol - Ultimate Rescue Fire Truck with Extendable 2 ft. Tall Ladder\",\n    \"categoryPath\": \"Toys/Action Figures/Action Figure Playsets\",\n    \"upc\": \"778988147283\",\n    \"msrp\": 59.99,\n    \"salePrice\": 44.44,\n    \"thumbnailImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF\",\n    \"largeImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF\",\n    \"modelNumber\": \"6043988\",\n    \"addToCartUrl\": \"http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D814913483%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi\",\n    \"stock\": \"Available\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/walmart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"walmart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ItemPriceHistory",
+			"item": [
+				{
+					"name": "ItemPriceHistory by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "aaa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/itemhistory/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"itemhistory",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Local",
 			"item": [
 				{
@@ -1366,6 +1527,28 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bb4f8fd8-0069-465d-8982-b882cc9c6efe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c66fa5fc-d07e-4dcc-ab06-8a04af2e8ad4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
