@@ -9,7 +9,12 @@ import {
   MatBadgeModule,
   MatNativeDateModule,
   MatToolbarModule,
-  MatButtonToggleModule, MatProgressSpinnerModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatListModule,
+  MatTooltipModule
 } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
@@ -87,12 +92,16 @@ import { RegisterComponent } from './account/register/register.component';
     MatToolbarModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatListModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
+    MatTooltipModule,
     HttpClientModule,
     MatBadgeModule,
     NgxDatatableModule,

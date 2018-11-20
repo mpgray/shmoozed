@@ -1,15 +1,133 @@
+<!-- cards with seller tools -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="col">
+      <!-- set price tool -->
+      <div>
+        <mat-card>
+          <mat-card-header class="price-header">
+            <mat-card-title>Set price targets for your inventory:</mat-card-title>
+            <mat-card-subtitle>We'll let you know when the target is reached</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <mat-label>Select an Item:</mat-label>
+              <mat-select>
+                <!-- TODO get inventory from database -->
+                <mat-option value="1">Id: 1</mat-option>
+                <mat-option value="2">Id: 2</mat-option>
+                <mat-option value="3">Id: 3</mat-option>
+                <mat-option value="4">Id: 4</mat-option>
+                <mat-option value="5">Id: 5</mat-option>
+                <mat-option value="6">Id: 6</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Enter the price:</mat-label>
+              <input matInput type="number">
+            </mat-form-field>
+          </mat-card-content>
+          <!-- TODO save to database -->
+          <button mat-raised-button color="primary">Save/Update</button>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <mat-card-header style="font-size: 125%;">Seller Insights</mat-card-header>
+          <table class="table table-responsive table-hover" style="width : 90%;">
+            <tbody>
+              <tr>
+                <th>Current Price</th>
+                <td>$25.99</td>
+              </tr>
+              <tr>
+                <th>Median Requested Price</th>
+                <td>$23.52</td>
+              </tr>
+              <tr>
+                <th>Requests</th>
+                <td>734</td>
+              </tr>
+              <tr>
+                <th>Schmoozed Suggested Price</th>
+                <td>$23.73</td>
+              </tr>
+              <tr>
+                <th>Forecasted Revenue</th>
+                <td matTooltip="330 of our users have requested a price above our suggested price. Dropping the price 8.7% to $23.73 will result in $7,838.02 of additional revenue.">$7,838.02</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card>
+      </div>
+
+      <!-- top 5 tool -->
+      <div>
+        <mat-card>
+          <mat-card-header class="top5-header">
+            <mat-card-title>Top 5 buyer requested items:</mat-card-title>
+            <mat-card-subtitle>Get inventory that sells!</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-list role="list">
+              <!-- TODO get top5 from database -->
+              <mat-list-item role="listitem">Item 1</mat-list-item>
+              <mat-list-item role="listitem">Item 2</mat-list-item>
+              <mat-list-item role="listitem">Item 3</mat-list-item>
+              <mat-list-item role="listitem">Item 4</mat-list-item>
+              <mat-list-item role="listitem">Item 5</mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- historical price tool -->
+  <div class="col-md-8">
+    <mat-card>
+      <mat-card-header class="historical-header">
+        <mat-card-title>Historical prices:</mat-card-title>
+        <mat-card-subtitle>Gain insights using historical prices and forecasts</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <!-- TODO get historical prices from database and figure out how to forecast -->
+          <canvas baseChart [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
+            [legend]="true">
+          </canvas>
+          <mat-form-field>
+            <mat-label>Select an Item:</mat-label>
+            <mat-select>
+              <!-- TODO get inventory from database -->
+              <mat-option value="1">Id: 1</mat-option>
+              <mat-option value="2">Id: 2</mat-option>
+              <mat-option value="3">Id: 3</mat-option>
+              <mat-option value="4">Id: 4</mat-option>
+              <mat-option value="5">Id: 5</mat-option>
+              <mat-option value="6">Id: 6</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- table with inventory -->
 <app-table></app-table>
+
+
+<!-- import csv to inventory -->
 <div>
-  <table class="table table-responsive table-hover"
-         style="width : 90%;">
+  <table class="table table-responsive table-hover" style="width : 90%;">
     <tbody>
-    <ng-container *ngFor="let csvRec of csvRecords;let i=index">
-      <tr>
-        <ng-container *ngFor="let data of csvRec;let j=index">
-          <td>{{data}}</td>
-        </ng-container>
-      </tr>
-    </ng-container>
+      <ng-container *ngFor="let csvRec of csvRecords;let i=index">
+        <tr>
+          <ng-container *ngFor="let data of csvRec;let j=index">
+            <td>{{data}}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>
@@ -22,10 +140,12 @@
     <button class="btn btn-outline-secondary" type="button" (click)="importProducts()">Import</button>
   </div>
 </div>
+
+<!-- add single item to inventory -->
 <div class="card-body">
-  <input [(ngModel)]="addProductData.name" size = 20 placeholder="Name"/>
-  <input [(ngModel)]="addProductData.quantity" size = 3 placeholder="Quantity"/>
+  <input [(ngModel)]="addProductData.name" size=20 placeholder="Name" />
+  <input [(ngModel)]="addProductData.quantity" size=3 placeholder="Quantity" />
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-    <button mat-raised-button color="primary"  (click)="addProduct()">Add Item</button>
+    <button mat-raised-button color="primary" (click)="addProduct()">Add Item</button>
   </form>
 </div>
