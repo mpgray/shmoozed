@@ -47,10 +47,6 @@ import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.compon
 import { AdminComponent } from './account/admin/admin.component';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 import { RegisterComponent } from './account/register/register.component';
-import {ItemHistory} from './models/item-history';
-
-
-
 
 @NgModule({
   declarations: [
@@ -72,7 +68,6 @@ import {ItemHistory} from './models/item-history';
     HasClaimDirective,
     GalleryComponent,
     HasClaimDirective,
-    ItemHistory,
     ItemHistoryComponent,
     UsersComponent,
     SelleritemsComponent,
