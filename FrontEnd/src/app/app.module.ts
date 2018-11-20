@@ -72,7 +72,6 @@ import {ItemHistory} from './models/item-history';
     HasClaimDirective,
     GalleryComponent,
     HasClaimDirective,
-    ItemHistory,
     ItemHistoryComponent,
     UsersComponent,
     SelleritemsComponent,
