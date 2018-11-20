@@ -27,16 +27,15 @@ public class WalmartController {
   private Logger logger = LoggerFactory.getLogger(WalmartController.class);
 
   private WalmartService walmartService;
-  private ItemService itemService;
-  private ItemPriceHistoryService itemPriceHistoryService;
+  //private ItemService itemService;
+  //private ItemPriceHistoryService itemPriceHistoryService;
 
   @Autowired
-  public WalmartController(WalmartService walmartService, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService) {
+  public WalmartController(WalmartService walmartService) { //}, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService) {
 
     this.walmartService = walmartService;
-    this.itemService = itemService;
-    this.itemPriceHistoryService = itemPriceHistoryService;
-
+    //this.itemService = itemService;
+    //this.itemPriceHistoryService = itemPriceHistoryService;
   }
 
   @GetMapping(
@@ -59,25 +58,11 @@ public class WalmartController {
 
     WalmartItem newWalmartItem = walmartService.insertNewWalmartItem(walmartItem);
 
-    //Create item record
-    Item item = new Item();
-    item.setName(newWalmartItem.getName());
-    item.setQuantity(1);
-    Item itemResult = itemService.insertNewItem(item);
-
-    //Create item history record
-    ItemPriceHistory itemPriceHistory = new ItemPriceHistory();
-    itemPriceHistory.setItemId(item.getId());
-    itemPriceHistory.setPrice(new BigDecimal(newWalmartItem.getSalePrice()));
-    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    itemPriceHistory.setDate(timestamp);
-    itemPriceHistory.setLastUpdateDate(timestamp);
-    ItemPriceHistory itemPriceHistoryResult = itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
     return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
   }
 
   @PostMapping(
-    value = "/url/",
+    value = "/url",
     consumes = APPLICATION_JSON_VALUE,
     produces = APPLICATION_JSON_VALUE
   )
@@ -87,9 +72,6 @@ public class WalmartController {
 
     WalmartItem newWalmartItem = walmartService.getItemByUrl(url);
 
-
     return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
   }
-
-
 }

@@ -40,7 +40,7 @@ public class ItemController {
    * @return The list of {@link Item}
    */
   @GetMapping(
-    path="/item",
+    path="",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<Item>> getAllItems() {
@@ -56,7 +56,7 @@ public class ItemController {
    * ID is found.
    */
   @GetMapping(
-    path="/item/{item_id}",
+    path="/{item_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<Item> getItems(@PathVariable("item_id") int itemId) {
@@ -74,7 +74,7 @@ public class ItemController {
    * @return The newly inserted {@link Item}
    */
   @PostMapping(
-    path = "/item",
+    path = "",
     consumes = APPLICATION_JSON_VALUE,
     produces = APPLICATION_JSON_VALUE
   )
@@ -92,7 +92,7 @@ public class ItemController {
    * @return The list of Item Names containing the partial name provided
    */
   @GetMapping(
-    value = "/item/names",
+    value = "/names",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<String>> getItemNamesWithPartialName(
