@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.stream.StreamSupport;
 
 import com.shmoozed.controller.RestTemplateResponseErrorHandler;
 import com.shmoozed.model.Item;
@@ -42,18 +43,16 @@ public class WalmartService {
       .build();
   }
 
-  public WalmartItem getItemById(int itemId)
-  {
+  public WalmartItem getItemById(int itemId) {
     logger.debug("Attempting to find walmart item by id itemId={}", itemId);
-    logger.debug("RestTemplate restTemplate={}", restTemplate);
-    WalmartItem wi = restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
-    return wi;
+    logger.trace("RestTemplate restTemplate={}", restTemplate);
+    return restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
   }
 
   public WalmartItem insertNewWalmartItem(WalmartItem walmartItem) {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
-    logger.debug("restTemplate={}", restTemplate);
-    logger.debug("walmartRepository={}", walmartRepository);
+    logger.trace("restTemplate={}", restTemplate);
+    logger.trace("walmartRepository={}", walmartRepository);
 
     //create the item
     Item newItem = insertItem(walmartItem);
@@ -74,8 +73,7 @@ public class WalmartService {
     Item item = new Item();
     item.setName(walmartItem.getName());
     item.setQuantity(1);
-    Item itemResult = itemService.insertNewItem(item);
-    return itemResult;
+    return itemService.insertNewItem(item);
   }
 
   private ItemPriceHistory insertItemPriceHistory(WalmartItem walmartItem){
@@ -85,8 +83,7 @@ public class WalmartService {
     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     itemPriceHistory.setDate(timestamp);
     itemPriceHistory.setLastUpdateDate(timestamp);
-    ItemPriceHistory itemPriceHistoryResult = itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
-    return itemPriceHistoryResult;
+    return itemPriceHistoryService.insertNewItemHistory(itemPriceHistory);
   }
 
   public WalmartItem getItemByUrl(String theUrl) {
@@ -112,8 +109,7 @@ public class WalmartService {
       //in case we cannot get the id from the url, will trap and return item 0
     }
     WalmartItem walmartItem = getItemById(itemId);
-    WalmartItem walmartItem1 = insertNewWalmartItem(walmartItem);
-    return walmartItem1;
+    return insertNewWalmartItem(walmartItem);
   }
 
   private String decode(String value) {
@@ -127,12 +123,24 @@ public class WalmartService {
   }
 
   public void refreshAllItems() {
-    // TODO: Should perform the following functionality:
-    // Retrieve all Walmart Items from DB
-    // Stream over walmart items
-    // For each walmart item, call API and get values
-    // Update the database for each one's new details
-    // Add a price history entry for each item
-    // Adequately log information about counts, etc.
+    StreamSupport.stream(walmartRepository.findAll().spliterator(), false)
+      .map(walmartItem -> getItemById(walmartItem.getItemId()))
+      .peek(this::updateWalmartItemInDatabase)
+      .forEach(this::insertItemPriceHistory);
   }
+
+  private void updateWalmartItemInDatabase(WalmartItem refreshedWalmartItem) {
+    logger.debug("Updating walmart item. refreshedWalmartItem={}", refreshedWalmartItem);
+
+    WalmartItem existingWalmartItem = walmartRepository.findById(refreshedWalmartItem.getItemId())
+      .orElseThrow(IllegalArgumentException::new);
+
+    logger.debug("Found existing walmart item. existingWalmartItem={}", existingWalmartItem);
+
+    // Make sure that the linked item remains the same
+    refreshedWalmartItem.setLinkedItemId(existingWalmartItem.getLinkedItemId());
+
+    walmartRepository.save(refreshedWalmartItem);
+  }
+
 }

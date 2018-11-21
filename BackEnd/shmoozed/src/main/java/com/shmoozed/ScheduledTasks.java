@@ -21,10 +21,10 @@ public class ScheduledTasks {
 
   @Scheduled(cron = "${refresh.walmartItems}")
   public void refreshWalmartItems() {
-    logger.debug("Launching Walmart Items Refresh Task");
+    logger.debug("Launching Walmart Items Refresh Task. task=walmartItemRefresh taskState=Start");
 
     walmartService.refreshAllItems();
     
-    logger.debug("almart Items Refresh Task Complete");
+    logger.debug("Walmart Items Refresh Task Complete. task=walmartItemRefresh taskState=Complete");
   }
 }
