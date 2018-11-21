@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import {sanitizeResourceUrl} from '@angular/core/src/sanitization/sanitization';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
@@ -9,8 +11,9 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 export class GalleryComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  walmartButton =  '';
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
 
@@ -31,40 +34,40 @@ export class GalleryComponent implements OnInit {
         small: 'assets/images/thumbnail-img-example.jpg',
         medium: 'assets/images/big-img-example.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This a watch <a href=#>Hi</a>',
+        description: 'This is a watch' + this.walmartButton,
         url: 'http://watch.com'
       },
       {
         small: 'assets/images/thumbnail-img-example2.jpg',
         medium: 'assets/images/big-img-example2.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick'
+        description: 'This is a brick' + this.walmartButton
       },
       {
         small: 'assets/images/thumbnail-img-example.jpg',
         medium: 'assets/images/big-img-example.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This a watch',
+        description: 'This a watch' + this.walmartButton,
         url: 'http://watch.com'
       },
       {
         small: 'assets/images/thumbnail-img-example2.jpg',
         medium: 'assets/images/big-img-example2.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick'
+        description: 'This is a brick' + this.walmartButton
       },
       {
         small: 'assets/images/thumbnail-img-example.jpg',
         medium: 'assets/images/big-img-example.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This a watch',
+        description: 'This a watch' + this.walmartButton,
         url: 'http://watch.com'
       },
       {
         small: 'assets/images/thumbnail-img-example2.jpg',
         medium: 'assets/images/big-img-example2.jpg',
         big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick'
+        description: 'This is a brick' + this.walmartButton
       },
     ];
   }
