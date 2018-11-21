@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from './login/login.component';
 import { UserAuthentication } from '../models/user-authentication';
@@ -13,7 +13,7 @@ export interface DialogData {
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
   model: any = {};
   loading = false;
 
@@ -49,6 +49,10 @@ export class AccountComponent {
     const user = new UserAuthentication();
     user.token = id_token;
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  ngOnInit(): void {
+    this.openLogin();
   }
 
 }

@@ -52,10 +52,6 @@ const routes: Routes = [{
         component: AdminComponent,
         data: {title: 'Admin'}
     }, {
-        path: 'register',
-        component: RegisterComponent,
-        data: {title: 'Register'}
-    }, {
         path: 'buying',
         component: BuyingComponent,
         data: { title: 'Buying' }
@@ -72,6 +68,10 @@ const routes: Routes = [{
       component: InventoryComponent,
       data: { title: 'Inventory' }
     }],
+}, {
+  path: 'register',
+  component: RegisterComponent,
+  data: {title: 'Register'}
 },
 {
   path: 'account/login',
