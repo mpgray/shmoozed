@@ -44,17 +44,17 @@ export class GalleryComponent implements OnInit {
         description: 'This is a brick' + this.walmartButton
       },
       {
-        small: 'assets/images/thumbnail-img-example.jpg',
-        medium: 'assets/images/big-img-example.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This a watch' + this.walmartButton,
+        small: 'assets/images/image.png',
+        medium: 'assets/images/image.png',
+        big: 'assets/images/image.png',
+        description: 'This a Ted' + this.walmartButton,
         url: 'http://watch.com'
       },
       {
-        small: 'assets/images/thumbnail-img-example2.jpg',
-        medium: 'assets/images/big-img-example2.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick' + this.walmartButton
+        small: 'assets/images/corn-on-the-cob.jpg',
+        medium: 'assets/images/corn-on-the-cob.jpg',
+        big: 'assets/images/corn-on-the-cob.jpg',
+        description: 'This is corn???' + this.walmartButton
       },
       {
         small: 'assets/images/thumbnail-img-example.jpg',
