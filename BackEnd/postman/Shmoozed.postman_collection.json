@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a9fdcb3-83aa-4554-af54-ca863c339fbe",
+		"_postman_id": "1f146718-c5d5-4b7b-8dd8-86bb88bff4f8",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -597,6 +597,84 @@
 							"response": []
 						}
 					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Alert",
+					"item": [
+						{
+							"name": "Get All for User - /alert/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert/{user_id}",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"alert",
+										"{user_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Alert Item - /alert/{alert_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert/{alert_id}",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"alert",
+										"{alert_id}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Alerts are used to notify the users that a potential deal can be made with a buyer/user",
 					"_postman_isSubFolder": true
 				},
 				{
@@ -1409,6 +1487,70 @@
 										"item",
 										"seller",
 										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Alert",
+					"item": [
+						{
+							"name": "Get All for User - /alert/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/alert/{user_id}",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"alert",
+										"{user_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Alert - /alert/{alert_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/alert/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"alert",
+										"3"
 									]
 								}
 							},
