@@ -14,7 +14,8 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatListModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTableModule
 } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
@@ -52,6 +53,7 @@ import { BuyeritemsComponent } from './shared/table/buyeritems/buyeritems.compon
 import { AdminComponent } from './account/admin/admin.component';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 import { RegisterComponent } from './account/register/register.component';
+import { BuyingService } from './buying/buying.service';
 
 @NgModule({
   declarations: [
@@ -108,9 +110,10 @@ import { RegisterComponent } from './account/register/register.component';
     AngularFontAwesomeModule,
     ChartsModule,
     HttpInterceptorModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [BuyingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
