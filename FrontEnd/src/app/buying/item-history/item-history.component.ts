@@ -12,10 +12,15 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ItemHistoryComponent implements OnInit {
   itemHistories: ItemHistory[];
   baseUrl = environment.baseUrl;
+  chartData = [];
+  chartLabels = [];
+  chartOptions = {
+    responsive: true
+  };
 
   constructor(private http: HttpClient,
   public dialogRef: MatDialogRef<ItemHistoryComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: number) { }
+  @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.getItemHistories();
@@ -26,7 +31,16 @@ export class ItemHistoryComponent implements OnInit {
     this.http.get<ItemHistory[]>(apiLocation)
     .subscribe(histories => {
       this.itemHistories = histories;
+      this.populateChartArrays();
     });
   }
 
+  populateChartArrays() {
+    this.chartData = [this.itemHistories.length];
+    this.chartLabels = [this.itemHistories.length];
+    for (let i = 0; i < this.itemHistories.length; i++) {
+      this.chartData[i] = '$' + this.itemHistories[i].price;
+      this.chartLabels[i] = this.itemHistories[i].date.toDateString();
+    }
+  }
 }

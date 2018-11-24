@@ -64,7 +64,7 @@ export class BuyingComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.buyerItems);
   }
 
-  openPriceHistoryDialog(itemId: number) {
-    this.dialog.open(ItemHistoryComponent, { data: itemId });
+  openPriceHistoryDialog(item: any) {
+    this.dialog.open(ItemHistoryComponent, { data: item });
   }
 }
