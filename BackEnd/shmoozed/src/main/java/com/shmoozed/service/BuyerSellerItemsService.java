@@ -41,7 +41,7 @@ public class BuyerSellerItemsService {
     return (List<SellerItem>) sellerItemRepository.findSellerItemsByUserId(sellerId);
   }
 
-  public List<BuyerItem> getBuyerItemsBySellerId(int buyerId) {
+  public List<BuyerItem> getBuyerItemsByBuyerId(int buyerId) {
     logger.debug("Fetching all buyer items for buyerId={}", buyerId);
     return (List<BuyerItem>) buyerItemRepository.findBuyerItemsByUserId(buyerId);
   }
