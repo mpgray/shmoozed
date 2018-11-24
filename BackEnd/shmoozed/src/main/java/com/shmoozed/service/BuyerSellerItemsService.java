@@ -1,8 +1,12 @@
 package com.shmoozed.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.shmoozed.model.BuyerItem;
+import com.shmoozed.model.DetailedBuyerItem;
+import com.shmoozed.model.DetailedItem;
+import com.shmoozed.model.DetailedSellerItem;
 import com.shmoozed.model.SellerItem;
 import com.shmoozed.repository.BuyerItemRepository;
 import com.shmoozed.repository.SellerItemRepository;
@@ -19,11 +23,15 @@ public class BuyerSellerItemsService {
   private final BuyerItemRepository buyerItemRepository;
   private final SellerItemRepository sellerItemRepository;
 
+  private final ItemService itemService;
+
   @Autowired
   public BuyerSellerItemsService(BuyerItemRepository buyerItemRepository,
-                                 SellerItemRepository sellerItemRepository) {
+                                 SellerItemRepository sellerItemRepository,
+                                 ItemService itemService) {
     this.buyerItemRepository = buyerItemRepository;
     this.sellerItemRepository = sellerItemRepository;
+    this.itemService = itemService;
   }
 
   public List<SellerItem> getAllSellerItems() {
@@ -41,9 +49,56 @@ public class BuyerSellerItemsService {
     return (List<SellerItem>) sellerItemRepository.findSellerItemsByUserId(sellerId);
   }
 
+  public DetailedSellerItem getDetailedSellerItemBySellerItemId(int sellerItemId) {
+    logger.debug("Fetching detailed seller item for sellerItemId={}", sellerItemId);
+
+    Optional<SellerItem> possibleSellerItem = sellerItemRepository.findById(sellerItemId);
+
+    if (possibleSellerItem.isPresent()) {
+      SellerItem sellerItem = possibleSellerItem.get();
+      Optional<DetailedItem> possibleDetailedItem = itemService.getDetailedItem(sellerItem.getItemId());
+
+      if (possibleDetailedItem.isPresent()) {
+        // TODO: What do we do about Detailed Items which only have and Item? Wouldn't we still want to return them?
+        DetailedSellerItem detailedSellerItem = new DetailedSellerItem(sellerItem, possibleDetailedItem.get());
+        logger.debug("Found detailed seller item for sellerItemId={} detailedSellerItem={}", sellerItemId, detailedSellerItem);
+        return detailedSellerItem;
+      }
+      else {
+        logger.warn("Seller Item found for sellerItemId={} but no detailed item found. sellerItem={}", sellerItemId, sellerItem);
+      }
+    }
+
+    return null;
+  }
+
   public List<BuyerItem> getBuyerItemsByBuyerId(int buyerId) {
     logger.debug("Fetching all buyer items for buyerId={}", buyerId);
     return (List<BuyerItem>) buyerItemRepository.findBuyerItemsByUserId(buyerId);
+  }
+
+  public DetailedBuyerItem getDetailedBuyerItemByBuyerItemId(int buyerItemId) {
+    logger.debug("Fetching detailed seller item for buyerItemId={}", buyerItemId);
+
+    Optional<BuyerItem> possibleBuyerItem = buyerItemRepository.findById(buyerItemId);
+
+    if (possibleBuyerItem.isPresent()) {
+      BuyerItem buyerItem = possibleBuyerItem.get();
+      Optional<DetailedItem> possibleDetailedItem = itemService.getDetailedItem(buyerItem.getItemId());
+
+      if (possibleDetailedItem.isPresent()) {
+        // TODO: What do we do about Detailed Items which only have and Item? Wouldn't we still want to return them?
+        DetailedBuyerItem detailedBuyerItem = new DetailedBuyerItem(buyerItem, possibleDetailedItem.get());
+        logger.debug("Found detailed buyer item for buyerItemId={} detailedBuyerItem={}", buyerItemId, detailedBuyerItem);
+        return detailedBuyerItem;
+      }
+
+      else {
+        logger.warn("Buyer Item found for buyerItemId={} but no detailed item found. buyerItem={}", buyerItemId, buyerItem);
+      }
+    }
+
+    return null;
   }
 
   public SellerItem insertNewSellerItem(SellerItem sellerItem) {

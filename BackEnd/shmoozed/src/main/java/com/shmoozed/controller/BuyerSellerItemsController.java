@@ -1,11 +1,12 @@
 package com.shmoozed.controller;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.shmoozed.model.BuyerItem;
-import com.shmoozed.model.DetailedItem;
+import com.shmoozed.model.DetailedBuyerItem;
+import com.shmoozed.model.DetailedSellerItem;
 import com.shmoozed.model.SellerItem;
 import com.shmoozed.service.BuyerSellerItemsService;
 import com.shmoozed.service.ItemService;
@@ -108,8 +109,8 @@ public class BuyerSellerItemsController {
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody
-  ResponseEntity<List<DetailedItem>> getDetailedSellerItemsForSeller(@RequestHeader("Authorization") String token,
-                                                                     @PathVariable("seller_id") String sellerId) {
+  ResponseEntity<List<DetailedSellerItem>> getDetailedSellerItemsForSeller(@RequestHeader("Authorization") String token,
+                                                                           @PathVariable("seller_id") String sellerId) {
     logger.debug("Request to get detailed seller items for specific seller. token={} sellerId={}", token, sellerId);
 
     // Fetch all the Seller Items
@@ -120,14 +121,13 @@ public class BuyerSellerItemsController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // Fetch all DetailedItems for items in the Seller Items
-    List<DetailedItem> detailedItems = sellerItems.stream()
-      .map(sellerItem -> itemService.getDetailedItem(sellerItem.getItemId()))
-      .filter(Optional::isPresent)
-      .map(Optional::get)
+    // Fetch all DetailedSellerItems for items in the Seller Items
+    List<DetailedSellerItem> detailedSellerItems = sellerItems.stream()
+      .map(sellerItem -> buyerSellerItemsService.getDetailedSellerItemBySellerItemId(sellerItem.getId()))
+      .filter(Objects::nonNull) // Filter out any nulls (see TODO in BuyerSellerItemsService)
       .collect(Collectors.toList());
 
-    return new ResponseEntity<>(detailedItems, HttpStatus.OK);
+    return new ResponseEntity<>(detailedSellerItems, HttpStatus.OK);
   }
 
   @GetMapping(
@@ -153,8 +153,8 @@ public class BuyerSellerItemsController {
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody
-  ResponseEntity<List<DetailedItem>> getDetailedBuyerItemsForBuyer(@RequestHeader("Authorization") String token,
-                                                                   @PathVariable("buyer_id") String buyerId) {
+  ResponseEntity<List<DetailedBuyerItem>> getDetailedBuyerItemsForBuyer(@RequestHeader("Authorization") String token,
+                                                                        @PathVariable("buyer_id") String buyerId) {
     logger.debug("Request to get detailed buyer items for specific buyer. token={} buyerId={}", token, buyerId);
 
     // Fetch all the Buyer Items
@@ -165,14 +165,13 @@ public class BuyerSellerItemsController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // Fetch all DetailedItems for items in the Buyer Items
-    List<DetailedItem> detailedItems = buyerItems.stream()
-      .map(buyerItem -> itemService.getDetailedItem(buyerItem.getItemId()))
-      .filter(Optional::isPresent)
-      .map(Optional::get)
+    // Fetch all DetailedBuyerItems for items in the Seller Items
+    List<DetailedBuyerItem> detailedBuyerItems = buyerItems.stream()
+      .map(buyerItem -> buyerSellerItemsService.getDetailedBuyerItemByBuyerItemId(buyerItem.getId()))
+      .filter(Objects::nonNull) // Filter out any nulls (see TODO in BuyerSellerItemsService)
       .collect(Collectors.toList());
 
-    return new ResponseEntity<>(detailedItems, HttpStatus.OK);
+    return new ResponseEntity<>(detailedBuyerItems, HttpStatus.OK);
   }
 
   @DeleteMapping(path = "/seller/{seller_item_id}")

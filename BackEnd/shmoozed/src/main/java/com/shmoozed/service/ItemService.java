@@ -62,6 +62,8 @@ public class ItemService {
       return Optional.empty();
     }
 
+    logger.debug("Found detailed item for itemId={} detailedItem={}", itemId, detailedItem);
+
     return Optional.of(detailedItem);
   }
 
