@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a9fdcb3-83aa-4554-af54-ca863c339fbe",
+		"_postman_id": "9b4d5b17-7b7d-43c2-903a-a66e7d0b7c2b",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -366,6 +366,47 @@
 							"response": []
 						},
 						{
+							"name": "Get All (Detailed) for Buyer - /item/buyer/{buyer_id}/details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/buyer/:buyer_id/details",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer",
+										":buyer_id",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "buyer_id",
+											"value": "2",
+											"description": "The ID of the Buyer"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Add New Buyer Item - /item/buyer",
 							"request": {
 								"method": "POST",
@@ -512,6 +553,47 @@
 										"item",
 										"seller",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All (Detailed) for Seller - /item/seller/{seller_id}/details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/:seller_id/details",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller",
+										":seller_id",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "seller_id",
+											"value": "2",
+											"description": "The ID of the Seller"
+										}
 									]
 								}
 							},
@@ -839,9 +921,6 @@
 			"item": [
 				{
 					"name": "ItemPriceHistory by Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1202,6 +1281,44 @@
 							"response": []
 						},
 						{
+							"name": "Get All (Detailed) for Buyer - /item/buyer/{buyer_id}/details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/buyer/:buyer_id/details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"buyer",
+										":buyer_id",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "buyer_id",
+											"value": "2",
+											"description": "The ID of the Buyer"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Add New Buyer Item - /item/buyer",
 							"request": {
 								"method": "POST",
@@ -1336,6 +1453,44 @@
 										"item",
 										"seller",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All (Detailed) for Seller - /item/seller/{seller_id}/details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller/:seller_id/details",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller",
+										":seller_id",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "seller_id",
+											"value": "2",
+											"description": "The ID of the Seller"
+										}
 									]
 								}
 							},
