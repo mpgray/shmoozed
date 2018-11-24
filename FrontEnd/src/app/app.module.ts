@@ -114,6 +114,7 @@ import { BuyingService } from './buying/buying.service';
     MatTableModule
   ],
   providers: [BuyingService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ItemHistoryComponent]
 })
 export class AppModule { }

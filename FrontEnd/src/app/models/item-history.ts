@@ -1,4 +1,6 @@
 export class ItemHistory {
-    public Date: string;
-    public Price: Number;
+    id: number;
+    itemId: number;
+    price: number;
+    date: Date;
 }
