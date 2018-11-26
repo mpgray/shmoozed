@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ItemHistory } from '../../models/item-history';
 import { environment } from '../../../environments/environment';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-item-history',
@@ -17,6 +18,7 @@ export class ItemHistoryComponent implements OnInit {
   chartOptions = {
     responsive: true
   };
+  chart = [];
 
   constructor(private http: HttpClient,
   public dialogRef: MatDialogRef<ItemHistoryComponent>,
@@ -27,7 +29,7 @@ export class ItemHistoryComponent implements OnInit {
   }
 
   getItemHistories() {
-    const apiLocation = this.baseUrl + 'itemhistory/' + this.data;
+    const apiLocation = this.baseUrl + 'itemhistory/' + this.data.id;
     this.http.get<ItemHistory[]>(apiLocation)
     .subscribe(histories => {
       this.itemHistories = histories;
@@ -39,8 +41,37 @@ export class ItemHistoryComponent implements OnInit {
     this.chartData = [this.itemHistories.length];
     this.chartLabels = [this.itemHistories.length];
     for (let i = 0; i < this.itemHistories.length; i++) {
-      this.chartData[i] = '$' + this.itemHistories[i].price;
-      this.chartLabels[i] = this.itemHistories[i].date.toDateString();
+      this.chartData[i] = this.itemHistories[i].price;
+      const date = new Date(this.itemHistories[i].date);
+      const dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+      this.chartLabels[i] = dateString;
     }
+
+    this.chart = new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: this.chartLabels,
+        datasets: [
+          {
+            data: this.chartData,
+            borderColor: '#3cba9f',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
+        }
+      }
+    });
   }
 }
