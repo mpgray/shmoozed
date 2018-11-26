@@ -1,7 +1,10 @@
-<div style="max-height: 40%;">
-  <h2>Historical Price Data for Item 1234</h2>
-  <canvas baseChart
-  [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
-    [legend]="true">
-  </canvas>
-</div>
+<mat-card>
+    <mat-card-header class="historical-header">
+      <mat-card-title>Historical Prices For {{data.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="chart">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div>
+    </mat-card-content>
+  </mat-card>

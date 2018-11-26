@@ -5,21 +5,29 @@
   <div class="wm_bnow">
     <a target="_blank" class="btn btn-compact btn-primary" id="buybutton" href="https://www.walmart.com/search/?query=watch"><img src="//affil.walmart.com/buttons/assets/images/spark.png"/> Buy Now</a>
   </div>
-  <img src="beacon.walmart.com/vm/ttap.gif?affpublisherid=<Publisher ID>&affsdkaction=buynow_button_impression&affsdktrack=<Unique Tracking ID>&veh=aff&affs=sdk&affsdktype=html&affsdkcomp=buynowbutton&colorscheme=orange&sizescheme=compact" style="display:none;width:0px;height:0px;"/>
+  <!-- <img src="beacon.walmart.com/vm/ttap.gif?affpublisherid=<Publisher ID>&affsdkaction=buynow_button_impression&affsdktrack=<Unique Tracking ID>&veh=aff&affs=sdk&affsdktype=html&affsdkcomp=buynowbutton&colorscheme=orange&sizescheme=compact" style="display:none;width:0px;height:0px;"/> -->
 <div>
   <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <!-- (keyup)="applyFilter($event.target.value)"  -->
+    <input matInput placeholder="Filter">
   </mat-form-field>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="ItemId">
       <th mat-header-cell *matHeaderCellDef> Item Id </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.itemId}} </td>
+      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.id}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="RequestedPrice">
-      <th mat-header-cell *matHeaderCellDef> Requested Price </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.price}} </td>
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let buyerItem"> 
+        <button (click)="openPriceHistoryDialog(buyerItem)">View Price History</button>  
+      </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
