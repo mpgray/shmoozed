@@ -65,6 +65,6 @@ export class BuyingComponent implements OnInit {
   }
 
   openPriceHistoryDialog(item: any) {
-    this.dialog.open(ItemHistoryComponent, { data: item });
+    this.dialog.open(ItemHistoryComponent, { data: item, height: '500px', width: '800px' });
   }
 }
