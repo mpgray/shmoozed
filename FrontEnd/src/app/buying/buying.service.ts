@@ -11,8 +11,8 @@ export class BuyingService {
 
   constructor(private http: HttpClient) { }
 
-  public getBuyerItems() {
-    const apiLocation = this.baseUrl + 'item/buyer/2';
+  public getBuyerItems(buyerId: number) {
+    const apiLocation = this.baseUrl + '/item/buyer/' + buyerId + '/details';
     return this.http.get<BuyerItem[]>(apiLocation);
   }
 }
