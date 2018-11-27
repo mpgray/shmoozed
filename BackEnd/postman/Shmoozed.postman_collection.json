@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9b4d5b17-7b7d-43c2-903a-a66e7d0b7c2b",
+		"_postman_id": "47c7b08b-507b-4182-aa71-476a94f71008",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -117,176 +117,6 @@
 									"path": [
 										"actuator",
 										"health"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "User",
-					"item": [
-						{
-							"name": "/user/authorization",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/authorization",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"user",
-										"authorization"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All - /user",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add New User - /user",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"firstName\" : \"Test\",\n\t\"lastName\" : \"McTesterson\",\n\t\"email\" : \"test@test.com\",\n\t\"password\" : \"MySuperSecretPassword\",\n\t\"username\" : \"test.mctester\"\n}"
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get User By ID - /user/{id}",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/1",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"user",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete User By ID - /user/{id}",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/1",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"user",
-										"1"
 									]
 								}
 							},
@@ -489,6 +319,111 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "ItemPriceHistory",
+					"item": [
+						{
+							"name": "Add New ItemPriceHistory - /itemhistory",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"itemId\": 1,\n    \"price\": 39.94,\n    \"date\": \"2018-11-21T05:09:05.000+0000\",\n    \"lastUpdateDate\": \"2018-11-21T05:09:05.000+0000\"\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/itemhistory",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"itemhistory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All ItemPriceHistory by Id - /itemhistory/{item_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/itemhistory/3",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"itemhistory",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All - /itemhistory",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/itemhistory",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"itemhistory"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Seller Items",
 					"item": [
 						{
@@ -682,6 +617,276 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "User",
+					"item": [
+						{
+							"name": "/user/authorization",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/authorization",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"user",
+										"authorization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All - /user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New User - /user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\" : \"Test\",\n\t\"lastName\" : \"McTesterson\",\n\t\"email\" : \"test@test.com\",\n\t\"password\" : \"MySuperSecretPassword\",\n\t\"username\" : \"test.mctester\"\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By ID - /user/{id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/1",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User By ID - /user/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/user/1",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Walmart",
+					"item": [
+						{
+							"name": "Get WalmartItem by Id - /walmart/itemid/{item_id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/walmart/itemid/814913483",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"walmart",
+										"itemid",
+										"814913483"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New WalmartItem by Url - /walmart/url",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "aaa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\"https://www.walmart.com/ip/Lego-Classic-Bricks-On-A-Roll-10715-60Th-Anniversary-Limited-Edition/867645281\""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/walmart/url",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"walmart",
+										"url"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fc0c2d5b-b4fb-40e1-910d-7e3f155aa308",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa34f88c-bc43-4fa2-a632-dbcb12a6be9e",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "/example/item",
 					"request": {
 						"method": "GET",
@@ -805,164 +1010,6 @@
 			]
 		},
 		{
-			"name": "Walmart",
-			"item": [
-				{
-					"name": "WalmartItem by Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:5000/walmart/itemid/814913483",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"walmart",
-								"itemid",
-								"814913483"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Walmart Add by Url",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "aaa",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "\"https://www.walmart.com/ip/814913483\""
-						},
-						"url": {
-							"raw": "http://localhost:5000/walmart/url/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"walmart",
-								"url",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Walmart Insert Item",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "aaa",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"itemId\": 814913483,\n    \"name\": \"PAW Patrol Paw Patrol - Ultimate Rescue Fire Truck with Extendable 2 ft. Tall Ladder\",\n    \"categoryPath\": \"Toys/Action Figures/Action Figure Playsets\",\n    \"upc\": \"778988147283\",\n    \"msrp\": 59.99,\n    \"salePrice\": 44.44,\n    \"thumbnailImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF\",\n    \"largeImage\": \"https://i5.walmartimages.com/asr/a540a7be-3933-4104-8af4-e259169adeb7_1.55dc77d13899221b1f531ee6869feeea.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF\",\n    \"modelNumber\": \"6043988\",\n    \"addToCartUrl\": \"http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D814913483%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi\",\n    \"stock\": \"Available\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:5000/walmart",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"walmart"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "ItemPriceHistory",
-			"item": [
-				{
-					"name": "ItemPriceHistory by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "aaa",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:5000/itemhistory/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"itemhistory",
-								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Local",
 			"item": [
 				{
@@ -1058,156 +1105,6 @@
 									"path": [
 										"actuator",
 										"metrics"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "User",
-					"item": [
-						{
-							"name": "/user/authorizations",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:5000/user/authorization",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"user",
-										"authorization"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get All - /user",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:5000/user",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add New User - /user",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									},
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"firstName\" : \"Test\",\n\t\"lastName\" : \"McTesterson\",\n\t\"email\" : \"test@test.com\",\n\t\"password\" : \"MySuperSecretPassword\",\n\t\"username\" : \"test.mctester\"\n}"
-								},
-								"url": {
-									"raw": "localhost:5000/user",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"user"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get User By ID - /user/{id}",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:5000/user/1",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"user",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete User By ID - /user/{id}",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:5000/user/1",
-									"host": [
-										"localhost"
-									],
-									"port": "5000",
-									"path": [
-										"user",
-										"1"
 									]
 								}
 							},
@@ -1395,6 +1292,102 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "ItemPriceHistory",
+					"item": [
+						{
+							"name": "Add New ItemPriceHistory - /itemhistory",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"itemId\": 1,\n    \"price\": 39.94,\n    \"date\": \"2018-11-21T05:09:05.000+0000\",\n    \"lastUpdateDate\": \"2018-11-21T05:09:05.000+0000\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/itemhistory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"itemhistory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All ItemPriceHistory by Id - /itemhistory/{item_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/itemhistory/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"itemhistory",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All - /itemhistory",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/itemhistory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"itemhistory"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Seller Items",
 					"item": [
 						{
@@ -1573,6 +1566,218 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "User",
+					"item": [
+						{
+							"name": "/user/authorizations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/user/authorization",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"authorization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All - /user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/user",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New User - /user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\" : \"Test\",\n\t\"lastName\" : \"McTesterson\",\n\t\"email\" : \"test@test.com\",\n\t\"password\" : \"MySuperSecretPassword\",\n\t\"username\" : \"test.mctester\"\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/user",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By ID - /user/{id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/user/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User By ID - /user/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/user/1",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Walmart",
+					"item": [
+						{
+							"name": "Get WalmartItem by Id - /walmart/itemid/{item_id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/walmart/itemid/814913483",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"walmart",
+										"itemid",
+										"814913483"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New WalmartItem by Url - /walmart/url",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\"https://www.walmart.com/ip/Lego-Classic-Bricks-On-A-Roll-10715-60Th-Anniversary-Limited-Edition/867645281\""
+								},
+								"url": {
+									"raw": "http://localhost:5000/walmart/url",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"walmart",
+										"url"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "/example/item",
 					"request": {
 						"method": "GET",
@@ -1684,6 +1889,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "testtoken",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
