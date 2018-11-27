@@ -4,6 +4,7 @@ import { ItemHistory } from '../../models/item-history';
 import { environment } from '../../../environments/environment';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Chart } from 'chart.js';
+import { BuyerItem } from 'src/app/models/buyer-item';
 
 @Component({
   selector: 'app-item-history',
@@ -22,14 +23,14 @@ export class ItemHistoryComponent implements OnInit {
 
   constructor(private http: HttpClient,
   public dialogRef: MatDialogRef<ItemHistoryComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: any) { }
+  @Inject(MAT_DIALOG_DATA) public data: BuyerItem) { }
 
   ngOnInit() {
     this.getItemHistories();
   }
 
   getItemHistories() {
-    const apiLocation = this.baseUrl + 'itemhistory/' + this.data.id;
+    const apiLocation = this.baseUrl + 'itemhistory/' + this.data.itemId;
     this.http.get<ItemHistory[]>(apiLocation)
     .subscribe(histories => {
       this.itemHistories = histories;
@@ -68,7 +69,18 @@ export class ItemHistoryComponent implements OnInit {
             display: true
           }],
           yAxes: [{
-            display: true
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                const twoPlacedFloat = parseFloat(value).toFixed(2);
+                // tslint:disable-next-line:radix
+                if (parseFloat(twoPlacedFloat) >= 1000) {
+                  return '$' + twoPlacedFloat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                } else {
+                  return '$' + twoPlacedFloat;
+                }
+              }
+            }
           }],
         }
       }

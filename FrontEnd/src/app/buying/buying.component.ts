@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BuyerItem } from '../models/buyer-item';
 import { BuyingService } from './buying.service';
-import { MatTableDataSource, MatHeaderRowDef, MatDialog } from '@angular/material';
-import { DataSource } from '@angular/cdk/table';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
 
 @Component({
@@ -11,9 +10,12 @@ import { ItemHistoryComponent } from './item-history/item-history.component';
   styleUrls: ['./buying.component.css']
 })
 export class BuyingComponent implements OnInit {
-  buyerItems: any[];
-  displayedColumns: string[] = ['Name', 'RequestedPrice', 'CurrentPrice', 'Actions', ];
+  buyerItems: BuyerItem[];
+  displayedColumns: string[] = ['item.name', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private buyingService: BuyingService,
     public dialog: MatDialog) { }
@@ -27,7 +29,8 @@ export class BuyingComponent implements OnInit {
       .subscribe(buyerItems => {
         this.buyerItems = buyerItems;
         this.dataSource = new MatTableDataSource(this.buyerItems);
-        console.log(this.buyerItems);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 

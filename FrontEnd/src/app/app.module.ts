@@ -15,7 +15,9 @@ import {
   MatSelectModule,
   MatListModule,
   MatTooltipModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AppRoutingModule} from './app.routing.module';
@@ -111,7 +113,9 @@ import { BuyingService } from './buying/buying.service';
     ChartsModule,
     HttpInterceptorModule,
     NgxGalleryModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [BuyingService],
   bootstrap: [AppComponent],
