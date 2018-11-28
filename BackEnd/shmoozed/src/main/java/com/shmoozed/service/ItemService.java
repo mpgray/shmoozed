@@ -3,8 +3,11 @@ package com.shmoozed.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.shmoozed.model.DetailedItem;
 import com.shmoozed.model.Item;
+import com.shmoozed.model.WalmartItem;
 import com.shmoozed.repository.ItemRepository;
+import com.shmoozed.repository.WalmartRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,12 @@ public class ItemService {
   private Logger logger = LoggerFactory.getLogger(ItemService.class);
 
   private ItemRepository itemRepository;
+  private WalmartRepository walmartRepository;
 
   @Autowired
-  public ItemService(ItemRepository itemRepository) {
+  public ItemService(ItemRepository itemRepository, WalmartRepository walmartRepository) {
     this.itemRepository = itemRepository;
+    this.walmartRepository = walmartRepository;
   }
 
   /**
@@ -44,6 +49,22 @@ public class ItemService {
    */
   public Optional<Item> getItem(int itemId) {
     return itemRepository.findById(itemId);
+  }
+
+  public Optional<DetailedItem> getDetailedItem(int itemId) {
+    DetailedItem detailedItem = new DetailedItem();
+
+    itemRepository.findById(itemId).ifPresent(detailedItem::setItem);
+    walmartRepository.findAllByLinkedItemId(itemId).ifPresent(detailedItem::setWalmartItem);
+
+    // TODO: What do we do about Detailed Items which only have and Item? Wouldn't we still want to return them?
+    if (detailedItem.getItem() == null || detailedItem.getWalmartItem() == null) {
+      return Optional.empty();
+    }
+
+    logger.debug("Found detailed item for itemId={} detailedItem={}", itemId, detailedItem);
+
+    return Optional.of(detailedItem);
   }
 
   /**

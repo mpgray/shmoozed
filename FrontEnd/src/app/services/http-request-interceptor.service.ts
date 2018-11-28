@@ -20,6 +20,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             });
         }
 
+        // Temporary hardcoding
+        newRequest = request.clone({
+            setHeaders: {
+                Authorization: 'ImALittleTeapot'
+            }
+        });
+
         return next.handle(newRequest).pipe(catchError((error, caught) => {
             console.log(error);
             this.handleTokenError(error);

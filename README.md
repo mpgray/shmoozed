@@ -13,8 +13,10 @@
 
 Shmoozed was developed as a project at Weber State University as part of CS 3750 Software Eng II.
 
-**Application Screenshot Eventually Goes Here...**
-![](screenshot.png)
+<p align="center">
+  <img src="/Docs/screenshots/Shmoozed_2018-11-23_01.png" alt="Shmoozed Application Screenshot"
+       width="683" height="384">
+</p>
 
 ## Architecture
 

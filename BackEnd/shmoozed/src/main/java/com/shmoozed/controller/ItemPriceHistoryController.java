@@ -58,6 +58,13 @@ public class ItemPriceHistoryController {
     return new ResponseEntity<>(newItemPriceHistory, HttpStatus.OK);
   }
 
+  @GetMapping(produces = APPLICATION_JSON_VALUE)
+  public @ResponseBody ResponseEntity<List<ItemPriceHistory>> getAll(@RequestHeader("Authorization") String token) {
+    logger.debug("Request to get all itemPriceHistory. token={}", token);
 
+    List<ItemPriceHistory> allUsers = itemPriceHistoryService.getAll();
+
+    return new ResponseEntity<>(allUsers, HttpStatus.OK);
+  }
 }
 

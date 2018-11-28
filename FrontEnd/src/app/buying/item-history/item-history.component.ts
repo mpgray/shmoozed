@@ -1,24 +1,89 @@
-import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/models/item';
-import { ItemHistory } from 'src/app/models/item-history';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ItemHistory } from '../../models/item-history';
+import { environment } from '../../../environments/environment';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Chart } from 'chart.js';
+import { BuyerItem } from 'src/app/models/buyer-item';
 
 @Component({
   selector: 'app-item-history',
   templateUrl: './item-history.component.html',
   styleUrls: ['./item-history.component.css']
 })
-export class ItemHistoryComponent {
+export class ItemHistoryComponent implements OnInit {
+  itemHistories: ItemHistory[];
+  baseUrl = environment.baseUrl;
+  chartData = [];
+  chartLabels = [];
   chartOptions = {
     responsive: true
   };
+  chart = [];
 
-  chartData = [
-    { data: [10.51, 13.34, 15.41, 14.87, 15.51, 13.74, 15.91, 16.87], label: 'Seller 1' },
-    { data: [10.99, 12.24, 14.35, 13.29, 13.51, 12.34, 16.41, 13.87], label: 'Seller 2' }
-  ];
+  constructor(private http: HttpClient,
+  public dialogRef: MatDialogRef<ItemHistoryComponent>,
+  @Inject(MAT_DIALOG_DATA) public data: BuyerItem) { }
 
-  chartLabels = ['9/1/2018', '9/15/2018', '10/1/2018', '10/15/2018', '11/1/2018', '11/15/2018', '12/1/2018', '12/15/2018'];
+  ngOnInit() {
+    this.getItemHistories();
+  }
 
+  getItemHistories() {
+    const apiLocation = this.baseUrl + 'itemhistory/' + this.data.itemId;
+    this.http.get<ItemHistory[]>(apiLocation)
+    .subscribe(histories => {
+      this.itemHistories = histories;
+      this.populateChartArrays();
+    });
+  }
 
-  constructor() { }
+  populateChartArrays() {
+    this.chartData = [this.itemHistories.length];
+    this.chartLabels = [this.itemHistories.length];
+    for (let i = 0; i < this.itemHistories.length; i++) {
+      this.chartData[i] = this.itemHistories[i].price;
+      const date = new Date(this.itemHistories[i].date);
+      const dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+      this.chartLabels[i] = dateString;
+    }
+
+    this.chart = new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: this.chartLabels,
+        datasets: [
+          {
+            data: this.chartData,
+            borderColor: '#3cba9f',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              callback: function(value, index, values) {
+                const twoPlacedFloat = parseFloat(value).toFixed(2);
+                // tslint:disable-next-line:radix
+                if (parseFloat(twoPlacedFloat) >= 1000) {
+                  return '$' + twoPlacedFloat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                } else {
+                  return '$' + twoPlacedFloat;
+                }
+              }
+            }
+          }],
+        }
+      }
+    });
+  }
 }

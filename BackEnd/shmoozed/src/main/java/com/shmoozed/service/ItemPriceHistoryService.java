@@ -41,4 +41,13 @@ public class ItemPriceHistoryService {
     return newItemPriceHistory;
   }
 
+  /**
+ * Answers with a list of all {@link ItemPriceHistory}.
+ *
+ * @return The list of all {@link ItemPriceHistory}
+ */
+  public List<ItemPriceHistory> getAll() {
+    logger.debug("Fetching all itemPriceHistory");
+    return ((List<ItemPriceHistory>) itemPriceHistoryRepository.findAll());
+  }
 }
