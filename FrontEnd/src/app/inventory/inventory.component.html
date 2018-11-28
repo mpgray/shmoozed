@@ -5,8 +5,8 @@
     <mat-form-field>
       <mat-select [(value)]="selectedItem">
         <mat-option value="none">None</mat-option>
-        <mat-option *ngFor="let item of selleritems" [value]="item.itemId">
-          {{item.itemId}}
+        <mat-option *ngFor="let item of products" [value]="item.id">
+          {{item.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
