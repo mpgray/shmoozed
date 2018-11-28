@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.DemandPricevsRevenueDataPoint;
@@ -28,38 +27,52 @@ public class SellerInsightService {
 
   public List<DemandPricevsRevenueDataPoint> getAllRevenueByBuyerItemId(int buyerItemId) {
     logger.debug("Fetching all Price v Revenue Data");
-    return (List<DemandPricevsRevenueDataPoint>) calculatePricevsRevenue();
+    return calculatePricevsRevenue(
+      doubleArrayFromBuyerItems(
+        (List<BuyerItem>) buyerItemRepository.findAllByItemId(buyerItemId)
+      )
+    );
   }
 
-  private List<DemandPricevsRevenueDataPoint> calculatePricevsRevenue() {
-    //input array
-    double[] daOfDemandedPrices = null; //todo: fix not null
 
+  /**
+   * Takes in List of buyerItems,
+   * extracts the price as a double (money friendly),
+   * puts into double array,
+   * sorts it, returns it
+   */
+  private double[] doubleArrayFromBuyerItems(List<BuyerItem> list){
+    double[] daToReturn = new double[list.size()];
+
+    for(int i = 0; i < list.size(); i++) {
+      daToReturn[i] = roundDoubleToMoney(list.get(i).getPrice().doubleValue());
+    }
+
+    Arrays.sort(daToReturn);
+
+    return daToReturn;
+  }
+
+  /**
+   * Returns full list of DemandPrice vs Revenue
+   * Assumes input double array already has valid money values and is sorted
+   */
+  private List<DemandPricevsRevenueDataPoint> calculatePricevsRevenue(double[] daOfDemandedPrices) {
     //for speed (porque es muy rapido)
     HashMap<Double,Double> hmOfDemandPriceAndRevenues = new HashMap();
 
-    //make array have all valid money values
-    //taken care of in random generation todo: not here it's not
-
-    //sort input array
-    Arrays.sort(daOfDemandedPrices);
-
     double demand, revenue;
 
-    for (int i = 0; i < daOfDemandedPrices.length; i++)
-    {
+    for (int i = 0; i < daOfDemandedPrices.length; i++) {
       demand = daOfDemandedPrices[i];
       revenue = roundDoubleToMoney((daOfDemandedPrices.length - i)*demand);
 
-      if(hmOfDemandPriceAndRevenues.containsKey(demand))
-      {
-        if(hmOfDemandPriceAndRevenues.get(demand) > revenue)
-        {
+      if(hmOfDemandPriceAndRevenues.containsKey(demand)) {
+        if(hmOfDemandPriceAndRevenues.get(demand) > revenue) {
           hmOfDemandPriceAndRevenues.replace(demand,revenue);
         }
       }
-      else
-      {
+      else {
         hmOfDemandPriceAndRevenues.put(demand,revenue);
       }
     }
@@ -74,8 +87,7 @@ public class SellerInsightService {
     return listToReturn;
   }
 
-  private double roundDoubleToMoney(double d)
-  {
+  private double roundDoubleToMoney(double d) {
     return (Math.round(d*100))/100.0;
   }
 
