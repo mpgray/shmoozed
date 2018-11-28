@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47c7b08b-507b-4182-aa71-476a94f71008",
+		"_postman_id": "2385667a-b72a-46d4-bb06-54f3b5e9f625",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -890,14 +890,14 @@
 					"name": "Alert",
 					"item": [
 						{
-							"name": "Get All for User - /alert/{user_id}",
+							"name": "Get All for User - /alert?userId={user_id}",
 							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{auth_token}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{auth_token}}"
 									}
 								],
 								"body": {
@@ -905,7 +905,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert/{user_id}",
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert?userId={user_id}",
 									"protocol": "http",
 									"host": [
 										"shmoozedbackendapi-env",
@@ -915,8 +915,13 @@
 										"com"
 									],
 									"path": [
-										"alert",
-										"{user_id}"
+										"alert"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{user_id}"
+										}
 									]
 								}
 							},
@@ -1859,14 +1864,14 @@
 					"name": "Alert",
 					"item": [
 						{
-							"name": "Get All for User - /alert/{user_id}",
+							"name": "Get All for User - /alert?userId={user_id}",
 							"request": {
 								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{auth_token}}",
-										"type": "text"
+										"type": "text",
+										"value": "{{auth_token}}"
 									}
 								],
 								"body": {
@@ -1874,14 +1879,20 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:5000/alert/{user_id}",
+									"raw": "http://localhost:5000/alert?userId=2",
+									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"alert",
-										"{user_id}"
+										"alert"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "2"
+										}
 									]
 								}
 							},
@@ -1903,7 +1914,8 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:5000/alert/3",
+									"raw": "http://localhost:5000/alert/3",
+									"protocol": "http",
 									"host": [
 										"localhost"
 									],

@@ -30,8 +30,7 @@ public class AlertService {
         alertRepository.deleteById(alertId);
     }
 
-    public Alert insertNewAlert(Alert alert)
-    {
+    public Alert insertNewAlert(Alert alert) {
         logger.debug("Attempting to insert alert={}", alert);
         Alert alertItem = alertRepository.save(alert);
         logger.debug("New alert item inserted. alert={}", alertItem);
