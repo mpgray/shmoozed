@@ -16,8 +16,10 @@ export class InventoryComponent implements OnInit {
   csvRecords = [];
   @ViewChild(TableComponent) list: TableComponent;
   @Input() addProductData = {id: 0, name: '', quantity: 0};
+  // TODO use a real userID once authentication is setup
+  @Input() setPriceTargetData = {itemId: 1, price: 1, userId: 2};
   // item selector
-  selectedItem: string;
+  selectedItem: number;
   products: any = [];
   temp: any = [];
 
@@ -26,7 +28,7 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit() {
     this.fileName = 'Click Browse to import CSV file';
-    this.selectedItem = 'none';
+    this.selectedItem = 1;
     this.getProducts();
   }
 
@@ -101,6 +103,17 @@ export class InventoryComponent implements OnInit {
     if (this.addProductData.name.length !== 0 && isNumeric(this.addProductData.quantity)) {
       this.rest.addExampleItem(this.addProductData).subscribe((result) => {
         location.reload();
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  setPriceTarget() {
+    if (this.setPriceTargetData.price != null ){
+      this.setPriceTargetData.itemId = this.selectedItem;
+      this.rest.addSellerItem(this.setPriceTargetData).subscribe((result) => {
+        //location.reload();
       }, (err) => {
         console.log(err);
       });
