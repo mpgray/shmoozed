@@ -17,7 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(path = "/alert")
 public class AlertController {
-  private Logger logger = LoggerFactory.getLogger(BuyerSellerItemsController.class);
+  private Logger logger = LoggerFactory.getLogger(AlertController.class);
 
   private AlertService alertService;
 
@@ -29,8 +29,7 @@ public class AlertController {
   @GetMapping(
     produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody
-  ResponseEntity<List<Alert>> getAlertsForUser(@RequestHeader("Authorization") String token,
+  public @ResponseBody ResponseEntity<List<Alert>> getAlertsForUser(@RequestHeader("Authorization") String token,
                                                @RequestParam("userId") int userId) {
     logger.debug("Request to get alert items for specific user. token={} userId={}", token, userId);
     List<Alert> alertItems =
@@ -44,8 +43,7 @@ public class AlertController {
   }
 
   @DeleteMapping(path = "/{alert_id}")
-  public @ResponseBody
-  ResponseEntity<Void> deleteBuyerItemById(@RequestHeader("Authorization") String token,
+  public @ResponseBody ResponseEntity<Void> deleteBuyerItemById(@RequestHeader("Authorization") String token,
                                            @PathVariable("alert_id") int alertId) {
     logger.debug("Request to delete alert. token={}, alertId={}", token, alertId);
 
