@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface BuyerItemRepository extends CrudRepository<BuyerItem, Integer> {
 
   Iterable<BuyerItem> findBuyerItemsByUserId(int userId);
+  Iterable<BuyerItem> findAllByItemId(int itemId);
 
 }
