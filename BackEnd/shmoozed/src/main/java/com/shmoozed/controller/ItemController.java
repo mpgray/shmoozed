@@ -40,7 +40,6 @@ public class ItemController {
    * @return The list of {@link Item}
    */
   @GetMapping(
-    path="",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<Item>> getAllItems() {
@@ -59,7 +58,7 @@ public class ItemController {
     path="/{item_id}",
     produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody ResponseEntity<Item> getItems(@PathVariable("item_id") int itemId) {
+  public @ResponseBody ResponseEntity<Item> getItem(@PathVariable("item_id") int itemId) {
     logger.debug("Request for item. itemId={}", itemId);
 
     return itemService.getItem(itemId)
@@ -74,7 +73,6 @@ public class ItemController {
    * @return The newly inserted {@link Item}
    */
   @PostMapping(
-    path = "",
     consumes = APPLICATION_JSON_VALUE,
     produces = APPLICATION_JSON_VALUE
   )
