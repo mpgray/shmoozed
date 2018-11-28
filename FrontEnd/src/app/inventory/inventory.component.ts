@@ -16,12 +16,18 @@ export class InventoryComponent implements OnInit {
   csvRecords = [];
   @ViewChild(TableComponent) list: TableComponent;
   @Input() addProductData = {id: 0, name: '', quantity: 0};
+  // item selector
+  selectedItem: string;
+  selleritems: any = [];
+  temp: any = [];
 
   constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
     this.fileName = 'Click Browse to import CSV file';
+    this.selectedItem = 'none';
+    this.getItems();
   }
 
   public fileListener(files: FileList) {
@@ -135,4 +141,15 @@ export class InventoryComponent implements OnInit {
   ];
 
   chartLabels = ['August', 'September', 'October', 'November', 'December'];
+
+  // item selection tool
+  getItems() {
+    this.selleritems = [];
+    this.rest.getSellerItems().subscribe((data: {}) => {
+      console.log(data);
+      this.selleritems = data;
+      this.temp = [...this.selleritems];
+    });
+  }
+
 }

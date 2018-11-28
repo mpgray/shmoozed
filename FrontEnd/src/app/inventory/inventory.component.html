@@ -1,3 +1,18 @@
+<!-- item selector tool to update other tools -->
+<div class="row">
+  <div class="col-md-auto"><p style="margin-top: 18px">Select an item to refresh the tools below: </p></div>
+  <div class="col-md-auto">
+    <mat-form-field>
+      <mat-select [(value)]="selectedItem">
+        <mat-option value="none">None</mat-option>
+        <mat-option *ngFor="let item of selleritems" [value]="item.itemId">
+          {{item.itemId}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-auto"><p style="margin-top: 18px">Selected Item: {{selectedItem}}</p></div>
+</div>
 <!-- cards with seller tools -->
 <div class="row">
   <div class="col-md-4">
