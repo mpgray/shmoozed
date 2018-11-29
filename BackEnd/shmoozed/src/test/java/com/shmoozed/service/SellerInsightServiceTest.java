@@ -10,9 +10,7 @@ package com.shmoozed.service;
   import org.junit.Test;
   import org.mockito.InjectMocks;
   import org.mockito.Mock;
-  import static java.util.Arrays.asList;
-  import static org.hamcrest.Matchers.*;
-  import static org.junit.Assert.assertThat;
+  import static org.junit.Assert.assertEquals;
   import static org.mockito.Mockito.when;
   import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -23,9 +21,6 @@ public class SellerInsightServiceTest {
 
   @Mock
   private BuyerItemRepository mockBuyerItemRepository;
-
-  @Mock
-  private BuyerItem mockBuyerItem;
 
   @Before
   public void setUp() {
@@ -120,11 +115,20 @@ public class SellerInsightServiceTest {
     DemandPricevsRevenueDataPoint dp008 = new DemandPricevsRevenueDataPoint(8,168);
     DemandPricevsRevenueDataPoint dp009 = new DemandPricevsRevenueDataPoint(9,54);
 
-    List<DemandPricevsRevenueDataPoint> listOfAnswers =
-      asList(dp001,dp002,dp003,dp004,dp005,dp006,dp007,dp008,dp009);
+    List<DemandPricevsRevenueDataPoint> listOfAnswers = new ArrayList<>();
+
+    listOfAnswers.add(dp001);
+    listOfAnswers.add(dp002);
+    listOfAnswers.add(dp003);
+    listOfAnswers.add(dp004);
+    listOfAnswers.add(dp005);
+    listOfAnswers.add(dp006);
+    listOfAnswers.add(dp007);
+    listOfAnswers.add(dp008);
+    listOfAnswers.add(dp009);
 
     List<DemandPricevsRevenueDataPoint> results = fixture.getAllRevenueByBuyerItemId(ItemId);
 
-    assertThat(listOfAnswers,is(results));
+    assertEquals(listOfAnswers,results);
   }
 }
