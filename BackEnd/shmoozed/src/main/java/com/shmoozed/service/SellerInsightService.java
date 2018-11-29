@@ -2,6 +2,7 @@ package com.shmoozed.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class SellerInsightService {
       revenue = roundDoubleToMoney((daOfDemandedPrices.length - i)*demand);
 
       if(hmOfDemandPriceAndRevenues.containsKey(demand)) {
-        if(hmOfDemandPriceAndRevenues.get(demand) > revenue) {
+        if(hmOfDemandPriceAndRevenues.get(demand) < revenue) {
           hmOfDemandPriceAndRevenues.replace(demand,revenue);
         }
       }
@@ -83,6 +84,16 @@ public class SellerInsightService {
     for (Map.Entry<Double,Double> e:hmOfDemandPriceAndRevenues.entrySet()) {
       listToReturn.add(new DemandPricevsRevenueDataPoint(e.getKey(),e.getValue()));
     }
+
+    //sort list to return
+    //not needed, but funsies
+    Comparator<DemandPricevsRevenueDataPoint> comparator = new Comparator<DemandPricevsRevenueDataPoint>() {
+      @Override
+      public int compare(DemandPricevsRevenueDataPoint o1, DemandPricevsRevenueDataPoint o2) {
+        return (int) (o1.getDemandPrice() - o2.getDemandPrice());
+      }
+    };
+    listToReturn.sort(comparator);
 
     return listToReturn;
   }
