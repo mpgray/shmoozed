@@ -1,7 +1,5 @@
 package com.shmoozed.model;
 
-import java.util.Objects;
-
 public class DemandPricevsRevenueDataPoint {
   private double demandPrice;
   private double revenue;

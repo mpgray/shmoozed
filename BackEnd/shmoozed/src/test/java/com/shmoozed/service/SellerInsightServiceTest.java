@@ -1,18 +1,18 @@
 package com.shmoozed.service;
 
-  import java.math.BigDecimal;
-  import java.util.ArrayList;
-  import java.util.List;
-  import com.shmoozed.model.BuyerItem;
-  import com.shmoozed.model.DemandPricevsRevenueDataPoint;
-  import com.shmoozed.repository.BuyerItemRepository;
-  import org.junit.Before;
-  import org.junit.Test;
-  import org.mockito.InjectMocks;
-  import org.mockito.Mock;
-  import static org.junit.Assert.assertEquals;
-  import static org.mockito.Mockito.when;
-  import static org.mockito.MockitoAnnotations.initMocks;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import com.shmoozed.model.BuyerItem;
+import com.shmoozed.model.DemandPricevsRevenueDataPoint;
+import com.shmoozed.repository.BuyerItemRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class SellerInsightServiceTest {
 
