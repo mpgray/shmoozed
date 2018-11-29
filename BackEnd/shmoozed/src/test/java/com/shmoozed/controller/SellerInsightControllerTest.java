@@ -1,7 +1,6 @@
 package com.shmoozed.controller;
 
 import com.shmoozed.model.DemandPricevsRevenueDataPoint;
-import com.shmoozed.repository.BuyerItemRepository;
 import com.shmoozed.service.SellerInsightService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +27,6 @@ public class SellerInsightControllerTest {
 
   @MockBean
   private SellerInsightService mockSellerInsightService;
-
-  @MockBean
-  private BuyerItemRepository mockBuyerItemRepository;
 
   @Test
   public void getPricevsRevenue() throws Exception {
