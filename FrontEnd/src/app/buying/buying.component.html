@@ -36,3 +36,15 @@
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
 </div>
+<!-- add walmart item by url -->
+<div class="row">
+  <div class="col-md-auto"><p style="margin-top: 18px">Add an item using a walmart url: </p></div>
+  <div class="col-md-auto">
+    <mat-form-field>
+      <input [(ngModel)]="walmartURL" matInput placeholder="enter walmart url here">
+    </mat-form-field>
+  </div>
+  <div class="col-md-auto">
+    <button mat-raised-button color="primary" style="margin-top: 10px" (click)="addWalmartItem(walmartURL)">Add Walmart Item</button>
+  </div>
+</div>

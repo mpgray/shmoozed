@@ -3,6 +3,7 @@ import { BuyerItem } from '../models/buyer-item';
 import { BuyingService } from './buying.service';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
+import {RESTService} from "../services/rest.service";
 
 @Component({
   selector: 'app-buying',
@@ -14,10 +15,12 @@ export class BuyingComponent implements OnInit {
   displayedColumns: string[] = ['item.name', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
 
+  walmartURL: string;
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private buyingService: BuyingService,
+  constructor(private buyingService: BuyingService, public rest: RESTService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -37,4 +40,15 @@ export class BuyingComponent implements OnInit {
   openPriceHistoryDialog(item: any) {
     this.dialog.open(ItemHistoryComponent, { data: item, height: '500px', width: '800px' });
   }
+
+  addWalmartItem(url){
+    if (url != null){
+      this.rest.addWalmartURL(url).subscribe((result) => {
+        //location.reload();
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
 }
