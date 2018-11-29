@@ -56,6 +56,7 @@ import { AdminComponent } from './account/admin/admin.component';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 import { RegisterComponent } from './account/register/register.component';
 import { BuyingService } from './buying/buying.service';
+import { SellerInsightsComponent } from './inventory/seller-insights/seller-insights.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { BuyingService } from './buying/buying.service';
     SelleritemsComponent,
     BuyeritemsComponent,
     AdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    SellerInsightsComponent
   ],
   imports: [
     AlertModule.forRoot(),
