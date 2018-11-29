@@ -127,7 +127,7 @@ public class SellerInsightServiceTest {
     listOfAnswers.add(dp008);
     listOfAnswers.add(dp009);
 
-    List<DemandPricevsRevenueDataPoint> results = fixture.getAllRevenueByBuyerItemId(ItemId);
+    List<DemandPricevsRevenueDataPoint> results = fixture.getAllRevenueByItemId(ItemId);
 
     assertEquals(listOfAnswers,results);
   }

@@ -26,7 +26,7 @@ public class SellerInsightService {
     this.buyerItemRepository = buyerItemRepository;
   }
 
-  public List<DemandPricevsRevenueDataPoint> getAllRevenueByBuyerItemId(int buyerItemId) {
+  public List<DemandPricevsRevenueDataPoint> getAllRevenueByItemId(int buyerItemId) {
     logger.debug("Fetching all Price v Revenue Data");
     return calculatePricevsRevenue(
       doubleArrayFromBuyerItems(
