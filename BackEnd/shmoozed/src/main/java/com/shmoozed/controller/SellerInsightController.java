@@ -40,7 +40,7 @@ public class SellerInsightController {
                                                         @PathVariable("item_id") int itemId) {
     logger.debug("Request for Price vs Revenue for itemId={}", itemId);
 
-    return new ResponseEntity<>(sellerInsightService.getAllRevenueByBuyerItemId(itemId), HttpStatus.OK);
+    return new ResponseEntity<>(sellerInsightService.getAllRevenueByItemId(itemId), HttpStatus.OK);
   }
 
 }

@@ -33,7 +33,7 @@ public class SellerInsightControllerTest {
     DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(1,61);
     DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(2,112);
 
-    when(mockSellerInsightService.getAllRevenueByBuyerItemId(1)).thenReturn(asList(dp001, dp002));
+    when(mockSellerInsightService.getAllRevenueByItemId(1)).thenReturn(asList(dp001, dp002));
 
     mockMvc.perform(get("/sellerinsight/1"))
       .andDo(print())
