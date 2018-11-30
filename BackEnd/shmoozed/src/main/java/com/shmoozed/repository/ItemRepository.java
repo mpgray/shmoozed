@@ -1,7 +1,11 @@
 package com.shmoozed.repository;
 
+import java.util.List;
+
 import com.shmoozed.model.Item;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 public interface ItemRepository extends CrudRepository<Item, Integer> {
 
@@ -16,4 +20,6 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
    */
   Iterable<Item> findItemsByNameContaining(String partialName);
 
+  @Query(value = "SELECT * from Item WHERE Item_Id in :ids order by Item_Quantity desc", nativeQuery = true)
+  List<Item> getTopItemsByBuyerItemCount2(@Param("ids") List<String> ids);
 }

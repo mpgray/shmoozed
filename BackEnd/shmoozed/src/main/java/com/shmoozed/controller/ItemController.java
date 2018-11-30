@@ -1,6 +1,8 @@
 package com.shmoozed.controller;
 
 import java.util.List;
+
+import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.service.ItemService;
 import org.slf4j.Logger;
@@ -99,5 +101,18 @@ public class ItemController {
     return new ResponseEntity<>(itemService.getNonSecretItemNamesWithNameLike(partial), HttpStatus.OK);
   }
 
+  /**
+   * Returns a list of the top 5 most requested Items
+   *
+   * @return The list of top 5 items
+   */
+  @GetMapping(
+    value = "/top",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<List<Item>> getTopRequestedItems() {
+    logger.debug("Request for top items.");
+    return new ResponseEntity<>(itemService.getTopRequestedItems(), HttpStatus.OK);
+  }
 }
 
