@@ -1,8 +1,6 @@
 package com.shmoozed.controller;
 
 import java.util.List;
-
-import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.service.ItemService;
 import org.slf4j.Logger;

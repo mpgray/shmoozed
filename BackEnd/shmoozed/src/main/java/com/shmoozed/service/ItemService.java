@@ -3,9 +3,6 @@ package com.shmoozed.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
-import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.DetailedItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.repository.BuyerItemRepository;
@@ -14,7 +11,6 @@ import com.shmoozed.repository.WalmartRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import static java.util.stream.Collectors.toList;
