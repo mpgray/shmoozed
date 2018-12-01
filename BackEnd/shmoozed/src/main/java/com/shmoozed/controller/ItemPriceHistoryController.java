@@ -40,7 +40,7 @@ public class ItemPriceHistoryController {
   public @ResponseBody ResponseEntity<List<ItemPriceHistory>> getItemHistory(@PathVariable("item_id") int itemId) {
     logger.debug("Request for item. itemId={}", itemId);
 
-    return itemPriceHistoryService.getItemHistory(itemId)
+    return itemPriceHistoryService.getItemPriceHistories(itemId)
       .map(i -> new ResponseEntity<>(i, HttpStatus.OK))
       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
@@ -62,9 +62,9 @@ public class ItemPriceHistoryController {
   public @ResponseBody ResponseEntity<List<ItemPriceHistory>> getAll(@RequestHeader("Authorization") String token) {
     logger.debug("Request to get all itemPriceHistory. token={}", token);
 
-    List<ItemPriceHistory> allUsers = itemPriceHistoryService.getAll();
+    List<ItemPriceHistory> priceHistories = itemPriceHistoryService.getAll();
 
-    return new ResponseEntity<>(allUsers, HttpStatus.OK);
+    return new ResponseEntity<>(priceHistories, HttpStatus.OK);
   }
 }
 
