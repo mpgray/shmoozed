@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { SellerInsightsService } from './seller-insights.service';
+import { SellerInsightDatapoint } from 'src/app/models/seller-insight-datapoint';
 
 @Component({
   selector: 'app-seller-insights',
@@ -8,20 +10,46 @@ import { Chart } from 'chart.js';
 })
 export class SellerInsightsComponent implements OnInit, AfterViewInit {
   chart = [];
-  chartLabels = ['10', '15', '20', '25', '30', '35'];
-  chartData = [1136.59, 1765.34, 2365.84, 3496.43, 3094.54, 2743.69];
+  sellerInsights: SellerInsightDatapoint[];
+  chartLabels = [];
+  chartData = [];
 
   @Input() itemId: number;
   @ViewChild('canvas') canvas: ElementRef;
 
-  constructor() { }
+  constructor(private service: SellerInsightsService) { }
 
   ngOnInit() {
 
   }
 
   ngAfterViewInit(): void {
-    this.getRevenueForecast();
+    this.getSellerInsightData();
+  }
+
+  getSellerInsightData() {
+    this.service.getSellerInsightData(this.itemId)
+      .subscribe(datapoints => {
+        this.sortDataPointsByPrice(datapoints);
+        this.sellerInsights.forEach(element => {
+          this.chartLabels.push(element.demandPrice.toString());
+          this.chartData.push(element.revenue.toString());
+        });
+        this.getRevenueForecast();
+      });
+  }
+
+  sortDataPointsByPrice(datapoints: SellerInsightDatapoint[]) {
+    function compare(a, b) {
+      if (a.last_nom < b.last_nom) {
+        return -1;
+      }
+      if (a.last_nom > b.last_nom) {
+        return 1;
+      }
+      return 0;
+    }
+    this.sellerInsights = datapoints.sort(compare);
   }
 
   getRevenueForecast() {
@@ -33,22 +61,24 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit {
           {
             data: this.chartData,
             borderColor: '#3cba9f',
-            fill: false
+            fill: false,
+            label: 'Revenue'
           }
         ]
       },
       options: {
+        hover: {
+          mode: 'index',
+          intersect: false
+        },
         legend: {
           display: false
         },
         scales: {
           xAxes: [{
-            display: true
-          }],
-          yAxes: [{
             ticks: {
               beginAtZero: true,
-              callback: function(value, index, values) {
+              callback: function (value, index, values) {
                 const twoPlacedFloat = parseFloat(value).toFixed(2);
                 // tslint:disable-next-line:radix
                 if (parseFloat(twoPlacedFloat) >= 1000) {
@@ -57,6 +87,26 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit {
                   return '$' + twoPlacedFloat;
                 }
               }
+            }, scaleLabel: {
+              display: true,
+              labelString: 'Sale Price'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              callback: function (value, index, values) {
+                const twoPlacedFloat = parseFloat(value).toFixed(2);
+                // tslint:disable-next-line:radix
+                if (parseFloat(twoPlacedFloat) >= 1000) {
+                  return '$' + twoPlacedFloat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                } else {
+                  return '$' + twoPlacedFloat;
+                }
+              }
+            }, scaleLabel: {
+              display: true,
+              labelString: 'Revenue'
             }
           }],
         }

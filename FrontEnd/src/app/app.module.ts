@@ -57,6 +57,7 @@ import { GalleryComponent } from './shared/gallery/gallery.component';
 import { RegisterComponent } from './account/register/register.component';
 import { BuyingService } from './buying/buying.service';
 import { SellerInsightsComponent } from './inventory/seller-insights/seller-insights.component';
+import { SellerInsightsService } from './inventory/seller-insights/seller-insights.service';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,7 @@ import { SellerInsightsComponent } from './inventory/seller-insights/seller-insi
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [BuyingService],
+  providers: [BuyingService, SellerInsightsService],
   bootstrap: [AppComponent],
   entryComponents: [ItemHistoryComponent]
 })
