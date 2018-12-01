@@ -71,6 +71,15 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit {
           mode: 'index',
           intersect: false
         },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return '$' + Number(tooltipItem.yLabel).toFixed(2).replace(/./g, function (c, i, a) {
+                return i > 0 && c !== '.' && (a.length - i) % 3 === 0 ? ',' + c : c;
+              });
+            }
+          }
+        },
         legend: {
           display: false
         },
@@ -96,7 +105,7 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit {
             ticks: {
               beginAtZero: true,
               callback: function (value, index, values) {
-                const twoPlacedFloat = parseFloat(value).toFixed(2);
+                const twoPlacedFloat = parseFloat(value).toFixed(0);
                 // tslint:disable-next-line:radix
                 if (parseFloat(twoPlacedFloat) >= 1000) {
                   return '$' + twoPlacedFloat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
