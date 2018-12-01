@@ -1,14 +1,8 @@
 package com.shmoozed.controller;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.Date;
 
-import com.shmoozed.model.Item;
-import com.shmoozed.model.ItemPriceHistory;
 import com.shmoozed.model.WalmartItem;
-import com.shmoozed.service.ItemPriceHistoryService;
-import com.shmoozed.service.ItemService;
 import com.shmoozed.service.WalmartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,10 +62,20 @@ public class WalmartController {
   )
   public @ResponseBody ResponseEntity<WalmartItem> addItemByUrl(@RequestHeader("Authorization") String token,
                                                                 @RequestBody String url) {
-    logger.debug("Request to find walmart item by url. token={}, url={}", token, url);
+    logger.debug("Request to add walmart item by url. token={}, url={}", token, url);
+    WalmartItem newWalmartItem = walmartService.insertNewWalmartItem(walmartService.findWalmartItemByUrl(url));
+    return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
+  }
 
-    WalmartItem newWalmartItem = walmartService.getItemByUrl(url);
-
+  @PostMapping(
+    value = "/urlbuyerdetails",
+    consumes = APPLICATION_JSON_VALUE,
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<WalmartItem> addItemByUrlWithBuyerDetails(@RequestHeader("Authorization") String token,
+                                                                @RequestBody String url, @RequestParam("quantity") int quantity, @RequestParam("userId") int userId, @RequestParam("price") BigDecimal price) {
+    logger.debug("Request to add walmart item by url with quantity and price details, with . token={}, url={}, quantity={}, price{}= userId={}", token, url, quantity, price, userId);
+    WalmartItem newWalmartItem = walmartService.insertNewWalmartItemWithBuyerInfo(walmartService.findWalmartItemByUrl(url), quantity, price, userId);
     return new ResponseEntity<>(newWalmartItem, HttpStatus.OK);
   }
 }
