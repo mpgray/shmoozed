@@ -159,8 +159,9 @@ public class WalmartService {
   }
 
   public void refreshAllItems() {
-    StreamSupport.stream(walmartRepository.findAll().spliterator(), false)
+    walmartRepository.findAllByOrderByItemId().stream()
       .map(walmartItem -> getItemById(walmartItem.getItemId()))
+      .filter(walmartItem -> walmartItem.getItemId() != 0) // Filter out any items which had an error when calling Walmart API
       .peek(this::updateWalmartItemInDatabase)
       .forEach(this::insertItemPriceHistory);
   }
