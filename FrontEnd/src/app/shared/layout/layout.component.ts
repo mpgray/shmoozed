@@ -6,6 +6,8 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {BuyeritemsComponent} from '../table/buyeritems/buyeritems.component';
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-layout',
@@ -20,26 +22,39 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private readonly _mobileQueryListener: () => void;
   searchValue = 'Clear me';
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  products: any = [];
+  temp: any = [];
+  options: any = [];
   filteredOptions: Observable<string[]>;
   name: string;
 
-  constructor(public dialog: MatDialog, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(public rest: RESTService, public dialog: MatDialog, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 750px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
   }
   ngOnInit(): void {
+    this.getProducts();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
   }
-
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  getProducts() {
+    this.products = [];
+    this.rest.getExampleItems().subscribe((data: {}) => {
+      console.log(data);
+      this.products = data;
+      this.temp = [...this.products];
+      this.options = this.temp.map(a => a.name);
+    });
+
   }
 
   private _filter(value: string): string[] {

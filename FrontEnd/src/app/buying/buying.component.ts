@@ -3,7 +3,7 @@ import { BuyerItem } from '../models/buyer-item';
 import { BuyingService } from './buying.service';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
-import {RESTService} from "../services/rest.service";
+import {RESTService} from '../services/rest.service';
 
 @Component({
   selector: 'app-buying',

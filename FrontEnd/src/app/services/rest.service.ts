@@ -8,7 +8,7 @@ const itempath = 'example/item';
 const buyerpath = 'item/buyer';
 const sellerpath = 'item/seller';
 const userpath = 'user';
-const walmartURL = "walmart/url";
+const walmartURL = 'walmart/url';
 const walmartURLDetails = "walmart/urlbuyerdetails?quantity=";
 const httpOptions = {
   headers: new HttpHeaders({
