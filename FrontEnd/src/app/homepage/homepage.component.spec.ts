@@ -6,12 +6,13 @@ describe('HomepageComponent', () => {
   let component: HomepageComponent;
   let fixture: ComponentFixture<HomepageComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HomepageComponent ]
-    })
-    .compileComponents();
-  }));
+  // Commenting this out because it's causing the site to load in the karma test window.
+  // beforeEach(async(() => {
+  //   TestBed.configureTestingModule({
+  //     declarations: [ HomepageComponent ]
+  //   })
+  //   .compileComponents();
+  // }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);
