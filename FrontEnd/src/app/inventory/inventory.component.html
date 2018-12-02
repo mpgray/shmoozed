@@ -1,10 +1,24 @@
+<!-- item selector tool to update other tools -->
+<div class="row">
+  <div class="col-md-auto"><p style="margin-top: 18px">Select an item to refresh the tools below: </p></div>
+  <div class="col-md-auto">
+    <mat-form-field>
+      <mat-select [(value)]="selectedItem">
+        <mat-option *ngFor="let item of products" [value]="item.id">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-auto"><p style="margin-top: 18px">Selected Item ID: {{selectedItem}}</p></div>
+</div>
 <!-- cards with seller tools -->
 <div class="row">
   <div class="col-md-4">
     <div class="col">
       <!-- Insights tool -->
       <div>
-        <app-seller-insights [itemId]=2></app-seller-insights>
+        <app-seller-insights [itemId]=selectedItem></app-seller-insights>
       </div>
       <!-- set price tool -->
       <div>
@@ -14,25 +28,13 @@
             <mat-card-subtitle>We'll let you know when the target is reached</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <mat-form-field>
-              <mat-label>Select an Item:</mat-label>
-              <mat-select>
-                <!-- TODO get inventory from database -->
-                <mat-option value="1">Id: 1</mat-option>
-                <mat-option value="2">Id: 2</mat-option>
-                <mat-option value="3">Id: 3</mat-option>
-                <mat-option value="4">Id: 4</mat-option>
-                <mat-option value="5">Id: 5</mat-option>
-                <mat-option value="6">Id: 6</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <p>Selected Item ID: {{selectedItem}}</p>
             <mat-form-field>
               <mat-label>Enter the price:</mat-label>
-              <input matInput type="number">
+              <input [(ngModel)]="setPriceTargetData.price" matInput type="number">
             </mat-form-field>
           </mat-card-content>
-          <!-- TODO save to database -->
-          <button mat-raised-button color="primary">Save/Update</button>
+          <button mat-raised-button color="primary" (click)="setPriceTarget()">Save/Update</button>
         </mat-card>
       </div>
       <!-- top 5 tool -->

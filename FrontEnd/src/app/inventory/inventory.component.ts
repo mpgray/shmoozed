@@ -16,12 +16,20 @@ export class InventoryComponent implements OnInit {
   csvRecords = [];
   @ViewChild(TableComponent) list: TableComponent;
   @Input() addProductData = {id: 0, name: '', quantity: 0};
+  // TODO use a real userID once authentication is setup
+  @Input() setPriceTargetData = {itemId: 1, price: 1, userId: 2};
+  // item selector
+  selectedItem: number;
+  products: any = [];
+  temp: any = [];
 
   constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
     this.fileName = 'Click Browse to import CSV file';
+    this.selectedItem = 1;
+    this.getProducts();
   }
 
   public fileListener(files: FileList) {
@@ -101,6 +109,17 @@ export class InventoryComponent implements OnInit {
     }
   }
 
+  setPriceTarget() {
+    if (this.setPriceTargetData.price != null ){
+      this.setPriceTargetData.itemId = this.selectedItem;
+      this.rest.addSellerItem(this.setPriceTargetData).subscribe((result) => {
+        //location.reload();
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
   importProducts() {
     for (let i = 0; i < this.csvRecords.length; i++) {
       const product = this.csvRecords[i];
@@ -135,4 +154,15 @@ export class InventoryComponent implements OnInit {
   ];
 
   chartLabels = ['August', 'September', 'October', 'November', 'December'];
+
+  // item selection tool
+  getProducts() {
+    this.products = [];
+    this.rest.getExampleItems().subscribe((data: {}) => {
+      console.log(data);
+      this.products = data;
+      this.temp = [...this.products];
+    });
+  }
+
 }
