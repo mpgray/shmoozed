@@ -1,38 +1,5 @@
-<app-gallery></app-gallery>
-<br />
-<link rel="stylesheet" href="//affil.walmart.com/buttons/styles/buynow.min.css" type="text/css" />
-<div class="wm_bnow">
-  <a target="_blank" class="btn btn-compact btn-primary" id="buybutton" href="https://www.walmart.com/search/?query=watch"><img
-      src="//affil.walmart.com/buttons/assets/images/spark.png" /> Buy Now</a>
+<div style="width: 100%; overflow: hidden;">
+  <div style="width: 800px; float: left;"><app-gallery></app-gallery></div>
+  <div style="buyer-table"><app-table-buyeritems></app-table-buyeritems></div>
 </div>
-<!-- <img src="beacon.walmart.com/vm/ttap.gif?affpublisherid=<Publisher ID>&affsdkaction=buynow_button_impression&affsdktrack=<Unique Tracking ID>&veh=aff&affs=sdk&affsdktype=html&affsdkcomp=buynowbutton&colorscheme=orange&sizescheme=compact" style="display:none;width:0px;height:0px;"/> -->
-<div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-    <ng-container matColumnDef="item.name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.detailedItem.item.name}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Requested Price </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.price | currency}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="salePrice">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Price </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.detailedItem.walmartItem.salePrice | currency}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let buyerItem">
-        <button (click)="openPriceHistoryDialog(buyerItem)">View Price History</button>
-        <button *ngIf="buyerItem.detailedItem.walmartItem.addToCartUrl"><a target="_blank" href="{{buyerItem.detailedItem.walmartItem.addToCartUrl}}">Buy Now</a></button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-</div>

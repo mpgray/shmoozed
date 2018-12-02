@@ -1,8 +1,11 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AccountComponent, DialogData} from '../../account/account.component';
+import {AccountComponent} from '../../account/account.component';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from '../../account/login/login.component';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',
@@ -16,6 +19,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
   alertMessages = 20;
   private readonly _mobileQueryListener: () => void;
   searchValue = 'Clear me';
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
   name: string;
 
   constructor(public dialog: MatDialog, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -25,10 +31,21 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   openLogin() {
