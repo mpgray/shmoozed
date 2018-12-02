@@ -29,7 +29,7 @@ public class ItemPriceHistoryService {
    *
    * @return The list of all {@link ItemPriceHistory}
    */
-  public Optional<List<ItemPriceHistory>> getItemHistory(int itemId) {
+  public Optional<List<ItemPriceHistory>> getItemPriceHistories(int itemId) {
     logger.debug("Fetching itemPriceHistory for itemId={}", itemId);
     return itemPriceHistoryRepository.findItemPriceHistoriesByItemId(itemId);
   }

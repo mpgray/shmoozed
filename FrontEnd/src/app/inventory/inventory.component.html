@@ -18,48 +18,7 @@
     <div class="col">
       <!-- Insights tool -->
       <div>
-        <mat-card>
-          <mat-card-header class="insights-header" style="font-size: 125%;">Seller Insights</mat-card-header>
-          <table class="table table-responsive table-hover" style="width : 90%;">
-            <tbody>
-              <mat-form-field>
-                <mat-label>Select an Item:</mat-label>
-                <mat-select>
-                  <!-- TODO get inventory from database -->
-                  <mat-option value="1">Id: 1</mat-option>
-                  <mat-option value="2">Id: 2</mat-option>
-                  <mat-option value="3">Id: 3</mat-option>
-                  <mat-option value="4">Id: 4</mat-option>
-                  <mat-option value="5">Id: 5</mat-option>
-                  <mat-option value="6">Id: 6</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <!-- TODO get insight data from database -->
-              <tr>
-                <th>Current Price</th>
-                <td>$25.99</td>
-              </tr>
-              <tr>
-                <th>Median Requested Price</th>
-                <td>$23.52</td>
-              </tr>
-              <tr>
-                <th>Requests</th>
-                <td>734</td>
-              </tr>
-              <tr>
-                <th>Schmoozed Suggested Price</th>
-                <td>$23.73</td>
-              </tr>
-              <tr>
-                <th>Forecasted Revenue</th>
-                <td matTooltip="330 of our users have requested a price above our suggested price. Dropping the price 8.7% to $23.73 will result in $7,838.02 of additional revenue.">
-                  $7,838.02
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-card>
+        <app-seller-insights [itemId]=2></app-seller-insights>
       </div>
       <!-- set price tool -->
       <div>

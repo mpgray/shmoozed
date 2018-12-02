@@ -1,11 +1,11 @@
 package com.shmoozed.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import com.shmoozed.model.DetailedItem;
 import com.shmoozed.model.Item;
-import com.shmoozed.model.WalmartItem;
+import com.shmoozed.repository.BuyerItemRepository;
 import com.shmoozed.repository.ItemRepository;
 import com.shmoozed.repository.WalmartRepository;
 import org.slf4j.Logger;
@@ -25,11 +25,13 @@ public class ItemService {
 
   private ItemRepository itemRepository;
   private WalmartRepository walmartRepository;
+  private BuyerItemRepository buyerItemRepository;
 
   @Autowired
-  public ItemService(ItemRepository itemRepository, WalmartRepository walmartRepository) {
+  public ItemService(ItemRepository itemRepository, WalmartRepository walmartRepository, BuyerItemRepository buyerItemRepository) {
     this.itemRepository = itemRepository;
     this.walmartRepository = walmartRepository;
+    this.buyerItemRepository = buyerItemRepository;
   }
 
   /**
@@ -106,4 +108,16 @@ public class ItemService {
     return newItem;
   }
 
+  public List<Item> getTopRequestedItems() {
+    List<String> ids = new ArrayList<>();
+
+    List<Object[]> results = buyerItemRepository.getTopItemsByBuyerItemCount();
+    for (Object[] result : results) {
+      Integer id = ((Number) result[0]).intValue();
+      ids.add(id.toString());
+    }
+
+    List<Item> items = itemRepository.getTopItemsByBuyerItemCount2(ids);
+    return items;
+  }
 }

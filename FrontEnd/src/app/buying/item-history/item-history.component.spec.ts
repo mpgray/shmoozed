@@ -1,25 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemHistoryComponent } from './item-history.component';
+import { HttpClient } from '@angular/common/http';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { BuyerItem } from '../../models/buyer-item';
+import { environment } from '../../../environments/environment';
+import { ItemHistory } from '../../models/item-history';
+import { of } from 'rxjs';
 
 describe('ItemHistoryComponent', () => {
-  let component: ItemHistoryComponent;
-  let fixture: ComponentFixture<ItemHistoryComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ItemHistoryComponent ]
-    })
-    .compileComponents();
-  }));
+  let mockHttpClient: any;
+  let itemHistoryComponent: ItemHistoryComponent;
+  const data = new BuyerItem();
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemHistoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockHttpClient = jasmine.createSpyObj(['get']);
+    data.itemId = 7;
+    itemHistoryComponent = new ItemHistoryComponent(mockHttpClient, data);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should call the correct endpoint on intialization', () => {
+    const expectedEndpoint = environment.baseUrl + 'itemhistory/' + data.itemId;
+    mockHttpClient.get.and.returnValue(of(ItemHistory));
+
+    itemHistoryComponent.ngOnInit();
+
+    expect(mockHttpClient.get).toHaveBeenCalledWith(expectedEndpoint);
   });
 });

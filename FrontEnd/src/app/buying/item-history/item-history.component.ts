@@ -22,7 +22,6 @@ export class ItemHistoryComponent implements OnInit {
   chart = [];
 
   constructor(private http: HttpClient,
-  public dialogRef: MatDialogRef<ItemHistoryComponent>,
   @Inject(MAT_DIALOG_DATA) public data: BuyerItem) { }
 
   ngOnInit() {
