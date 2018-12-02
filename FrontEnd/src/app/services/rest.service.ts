@@ -9,6 +9,7 @@ const buyerpath = 'item/buyer';
 const sellerpath = 'item/seller';
 const userpath = 'user';
 const walmartURL = "walmart/url";
+const walmartURLDetails = "walmart/urlbuyerdetails?quantity=";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -78,6 +79,14 @@ addWalmartURL(url): Observable<any> {
     catchError(this.handleError<any>('addItem'))
   );
 }
+
+  addWalmartBuyerDetails(quantity, price, userid, url): Observable<any> {
+    console.log(url);
+    return this.http.post<any>(endpoint + walmartURLDetails +quantity +"&price=" +price +"&userId=" +userid, JSON.stringify(url), httpOptions).pipe(
+      tap(_ => console.log(`added item w/ url=${url}`)),
+      catchError(this.handleError<any>('addItem'))
+    );
+  }
  //////////////////
 // End walmart  //
 //////////////////

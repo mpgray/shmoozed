@@ -16,6 +16,9 @@ export class BuyingComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   walmartURL: string;
+  walmartBuyerDetailURL: string;
+  walmartBuyerDetailPrice: number;
+  walmartBuyerDetailQuantity: number;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,7 +47,17 @@ export class BuyingComponent implements OnInit {
   addWalmartItem(url){
     if (url != null){
       this.rest.addWalmartURL(url).subscribe((result) => {
-        //location.reload();
+        location.reload();
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  addWalmartBuyerDetails(quantity, price, userid, url){
+    if (url != null){
+      this.rest.addWalmartBuyerDetails(quantity, price, userid, url).subscribe((result) => {
+        location.reload();
       }, (err) => {
         console.log(err);
       });
