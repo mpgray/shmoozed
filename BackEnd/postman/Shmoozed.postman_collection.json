@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2385667a-b72a-46d4-bb06-54f3b5e9f625",
+		"_postman_id": "58198f84-8e03-4c82-987e-773db51df462",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -123,6 +123,89 @@
 							"response": []
 						}
 					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Alert",
+					"item": [
+						{
+							"name": "Get All for User - /alert?userId={user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert?userId={user_id}",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"alert"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{user_id}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Alert Item - /alert/{alert_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert/{alert_id}",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"alert",
+										"{alert_id}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Alerts are used to notify the users that a potential deal can be made with a buyer/user",
 					"_postman_isSubFolder": true
 				},
 				{
@@ -860,6 +943,54 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Add New WalmartItem by BuyerDetails - /walmart/buyerdetails",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\"https://www.walmart.com/ip/Lego-Classic-Bricks-On-A-Roll-10715-60Th-Anniversary-Limited-Edition/867645281\""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/walmart/urlbuyerdetails?quantity=2&price=19.99&userId=2",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"walmart",
+										"urlbuyerdetails"
+									],
+									"query": [
+										{
+											"key": "quantity",
+											"value": "2"
+										},
+										{
+											"key": "price",
+											"value": "19.99"
+										},
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"event": [
@@ -884,89 +1015,6 @@
 							}
 						}
 					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Alert",
-					"item": [
-						{
-							"name": "Get All for User - /alert?userId={user_id}",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "{{auth_token}}"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert?userId={user_id}",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"alert"
-									],
-									"query": [
-										{
-											"key": "userId",
-											"value": "{user_id}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Alert Item - /alert/{alert_id}",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{auth_token}}",
-										"type": "text"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/alert/{alert_id}",
-									"protocol": "http",
-									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
-										"com"
-									],
-									"path": [
-										"alert",
-										"{alert_id}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"description": "Alerts are used to notify the users that a potential deal can be made with a buyer/user",
 					"_postman_isSubFolder": true
 				},
 				{
@@ -1188,6 +1236,77 @@
 									"path": [
 										"actuator",
 										"metrics"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Alert",
+					"item": [
+						{
+							"name": "Get All for User - /alert?userId={user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/alert?userId=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"alert"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Alert - /alert/{alert_id}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/alert/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"alert",
+										"3"
 									]
 								}
 							},
@@ -1856,39 +1975,43 @@
 								}
 							},
 							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Alert",
-					"item": [
+						},
 						{
-							"name": "Get All for User - /alert?userId={user_id}",
+							"name": "Add New WalmartItem by BuyerDetails - /walmart/buyerdetails",
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [
 									{
-										"key": "Authorization",
+										"key": "Content-Type",
+										"name": "Content-Type",
 										"type": "text",
-										"value": "{{auth_token}}"
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": ""
+									"raw": "\"https://www.walmart.com/ip/Lego-Classic-Bricks-On-A-Roll-10715-60Th-Anniversary-Limited-Edition/867645281\""
 								},
 								"url": {
-									"raw": "http://localhost:5000/alert?userId=2",
+									"raw": "http://localhost:5000/walmart/urlbuyerdetails?quantity=2&price=19.99&userId=2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"alert"
+										"walmart",
+										"urlbuyerdetails"
 									],
 									"query": [
+										{
+											"key": "quantity",
+											"value": "2"
+										},
+										{
+											"key": "price",
+											"value": "19.99"
+										},
 										{
 											"key": "userId",
 											"value": "2"
@@ -1897,32 +2020,137 @@
 								}
 							},
 							"response": []
-						},
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Item",
+					"item": [
 						{
-							"name": "Delete Alert - /alert/{alert_id}",
+							"name": "Get All Items - /item",
 							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "{{auth_token}}"
-									}
-								],
+								"method": "GET",
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:5000/alert/3",
+									"raw": "http://localhost:5000/item",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "5000",
 									"path": [
-										"alert",
-										"3"
+										"item"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Item By Name - /item/names?partial=Item",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/names?partial=Bleach",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"names"
+									],
+									"query": [
+										{
+											"key": "partial",
+											"value": "Bleach"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert New Item - /item",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/item",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Item By Id - /example/item/5",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Top Items - /item/top",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/top",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"top"
 									]
 								}
 							},
