@@ -45,3 +45,19 @@ The following modifications are needed to allow incoming connections for the Dev
 2. Click `Add Rule`
 3. Select the following rules: `Type: MYSQL/Aurora` , `Protocol: TCP` , `Port Range: 3306` , `Source: Custom 0.0.0.0/0`
 4. Click `Save`
+
+## Back-end Server Setup
+
+The back-end server is hosted in AWS using Elastic Beanstalk. The process for setup is quite straight forward.
+
+The following links were used as a reference when setting up the back-end server:
+* https://medium.com/@ryanzhou7/running-spring-boot-on-amazon-web-services-for-free-f3b0aeec809
+* https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/
+* https://medium.com/@autumn.bom/deploying-spring-boot-jar-application-on-beanstalk-java-se-platform-45d8d04608ae
+
+Essentially, all that is needed is the built JAR (see [Back-end](/BackEnd/README.md) for details on building) and
+an AWS account. Navigate to Elastic Beanstalk and click on `Create New Application`. Follow the wizard and enter
+the required information. As part of the server setup there will be a place to upload the built JAR file.
+
+After AWS provisions and launches the application, there is no further customization or configuration of the environment
+needed.
