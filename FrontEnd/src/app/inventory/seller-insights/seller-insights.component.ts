@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js';
 import { SellerInsightsService } from './seller-insights.service';
 import { SellerInsightDatapoint } from 'src/app/models/seller-insight-datapoint';
@@ -8,7 +8,7 @@ import { SellerInsightDatapoint } from 'src/app/models/seller-insight-datapoint'
   templateUrl: './seller-insights.component.html',
   styleUrls: ['./seller-insights.component.css']
 })
-export class SellerInsightsComponent implements OnInit, AfterViewInit {
+export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges {
   chart = [];
   sellerInsights: SellerInsightDatapoint[];
   chartLabels = [];
@@ -23,11 +23,19 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.itemId) {
+      this.getSellerInsightData();
+    }
+  }
+
   ngAfterViewInit(): void {
     this.getSellerInsightData();
   }
 
   getSellerInsightData() {
+    this.chartData = [];
+    this.chartLabels = [];
     this.service.getSellerInsightData(this.itemId)
       .subscribe(datapoints => {
         this.sortDataPointsByPrice(datapoints);
