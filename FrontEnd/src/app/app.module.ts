@@ -31,7 +31,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {NgxGalleryModule} from 'ngx-gallery';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
@@ -102,6 +102,8 @@ import { SellerInsightsService } from './inventory/seller-insights/seller-insigh
     MatFormFieldModule,
     MatSelectModule,
     MatListModule,
+    MatSortModule,
+    MatAutocompleteModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

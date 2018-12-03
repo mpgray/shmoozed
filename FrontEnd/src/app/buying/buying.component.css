@@ -9,3 +9,9 @@ button {
 th {
     font-size: 100%;
 }
+
+.buyer-table {
+  margin-left: 520px;
+  display: flex;
+
+}
