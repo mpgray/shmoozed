@@ -5,57 +5,44 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.util.stream.StreamSupport;
 
-import com.shmoozed.controller.RestTemplateResponseErrorHandler;
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.model.ItemPriceHistory;
 import com.shmoozed.model.WalmartItem;
+import com.shmoozed.remote.WalmartClient;
 import com.shmoozed.repository.WalmartRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WalmartService {
   private Logger logger = LoggerFactory.getLogger(WalmartService.class);
+  private WalmartClient walmartClient;
   private WalmartRepository walmartRepository;
-  private RestTemplate restTemplate;
   private ItemService itemService;
   private ItemPriceHistoryService itemPriceHistoryService;
   private BuyerSellerItemsService buyerSellerItemsService;
 
-  private final String apiKey = "ffqfc5hpwnqazpeua9w7e64u";
-  private final String apiUrl = "http://api.walmartlabs.com";
-  private final String v1ItemsUrl = "/v1/items/{item_id}?format=json&apiKey={api_key}";
-
   @Autowired
-  public WalmartService(RestTemplateBuilder restTemplateBuilder, WalmartRepository walmartRepository, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService,
+  public WalmartService(WalmartClient walmartClient, WalmartRepository walmartRepository, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService,
                         BuyerSellerItemsService buyerSellerItemsService) {
+    this.walmartClient = walmartClient;
     this.walmartRepository = walmartRepository;
     this.itemService = itemService;
     this.itemPriceHistoryService = itemPriceHistoryService;
     this.buyerSellerItemsService = buyerSellerItemsService;
-
-    this.restTemplate = restTemplateBuilder
-      .rootUri(apiUrl)
-      .errorHandler(new RestTemplateResponseErrorHandler())
-      .build();
   }
 
   public WalmartItem getItemById(int itemId) {
     logger.debug("Attempting to find walmart item by id itemId={}", itemId);
-    logger.trace("RestTemplate restTemplate={}", restTemplate);
-    return restTemplate.getForObject(v1ItemsUrl, WalmartItem.class, itemId, apiKey);
+    return walmartClient.getItemById(itemId);
   }
 
   public WalmartItem insertNewWalmartItem(WalmartItem walmartItem) {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
-    logger.trace("restTemplate={}", restTemplate);
     logger.trace("walmartRepository={}", walmartRepository);
 
     //create the item
@@ -75,7 +62,6 @@ public class WalmartService {
 
   public WalmartItem insertNewWalmartItemWithBuyerInfo(WalmartItem walmartItem, int quantity, BigDecimal price, int userId) {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
-    logger.trace("restTemplate={}", restTemplate);
     logger.trace("walmartRepository={}", walmartRepository);
 
     //create the item
@@ -85,14 +71,16 @@ public class WalmartService {
 
     //save walmart item
     WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
+    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newItem);
 
     //insert item price history
     ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(walmartItem);
+    logger.debug("New ItemPriceHistory inserted into database. newItemPriceHistory={}", newItemPriceHistory);
 
     //insert buyer item
     BuyerItem buyerItem = insertBuyerItem(newItem.getId(), price, userId);
+    logger.debug("New buyerItem inserted into database. buyerItem={}", buyerItem);
 
-    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
     return newWalmartItem;
   }
 
@@ -143,9 +131,7 @@ public class WalmartService {
     catch (Exception e ){
       //in case we cannot get the id from the url, will trap and return item 0
     }
-    //WalmartItem walmartItem = getItemById(itemId);
-    return getItemById(itemId);
-   // return insertNewWalmartItem(walmartItem);
+    return walmartClient.getItemById(itemId);
   }
 
   private String decode(String value) {
@@ -160,10 +146,21 @@ public class WalmartService {
 
   public void refreshAllItems() {
     walmartRepository.findAllByOrderByItemId().stream()
-      .map(walmartItem -> getItemById(walmartItem.getItemId()))
-      .filter(walmartItem -> walmartItem.getItemId() != 0) // Filter out any items which had an error when calling Walmart API
+      .map(walmartItem -> walmartClient.getItemById(walmartItem.getItemId()))
+      .filter(this::itemExistedInWalmartApi) // Filter out any items which had an error when calling Walmart API
       .peek(this::updateWalmartItemInDatabase)
       .forEach(this::insertItemPriceHistory);
+  }
+
+  private boolean itemExistedInWalmartApi(WalmartItem walmartItem) {
+    // If walmart erturned a 4XX level error, the resulting WalmartItem will have an ID of 0 and should be filtered out
+    boolean itemWasFound = walmartItem.getItemId() != 0;
+
+    if (!itemWasFound) {
+      logger.warn("Item Not Found in Walmart API");
+    }
+
+    return itemWasFound;
   }
 
   private void updateWalmartItemInDatabase(WalmartItem refreshedWalmartItem) {
