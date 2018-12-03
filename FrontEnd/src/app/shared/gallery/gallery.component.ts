@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import {sanitizeResourceUrl} from '@angular/core/src/sanitization/sanitization';
 import {DomSanitizer} from '@angular/platform-browser';
+import {MatTableDataSource} from '@angular/material';
+import {BuyerItem} from '../../models/buyer-item';
+import {BuyingService} from '../../buying/buying.service';
 
 @Component({
   selector: 'app-gallery',
@@ -12,64 +15,82 @@ export class GalleryComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   walmartButton =  '';
+  buyerItems: BuyerItem[];
+  products: any = [];
+  temp: any = [];
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private buyingService: BuyingService) { }
 
   ngOnInit(): void {
-
+    this.getProducts();
+    this.populateGalleryImages();
     this.galleryOptions = [
       {
         'imageDescription': true,
         'imageAutoPlay': true,
         'imageAutoPlayPauseOnHover': true,
         'previewAutoPlay': false,
-        'previewAutoPlayPauseOnHover': true
+        'previewAutoPlayPauseOnHover': true,
+        'thumbnailsAsLinks': true
       },
-      { 'breakpoint': 500, 'width': '550px', 'height': '550px', 'thumbnailsColumns': 3 },
+      { 'breakpoint': 500, 'width': '450px', 'height': '450px', 'thumbnailsColumns': 3 },
       { 'breakpoint': 300, 'width': '100%', 'height': '100px', 'thumbnailsColumns': 2 }
     ];
 
+
+  }
+  private populateGalleryImages(){
+    console.log(this.products);
     this.galleryImages = [
       {
-        small: 'assets/images/thumbnail-img-example.jpg',
-        medium: 'assets/images/big-img-example.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a watch' + this.walmartButton,
-        url: 'http://watch.com'
+        small: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        medium: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        big: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        description: 'Boys\' Long Sleeve Crew T-Shirt with Rib Cuffs',
+        url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45707349%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
-        small: 'assets/images/thumbnail-img-example2.jpg',
-        medium: 'assets/images/big-img-example2.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick' + this.walmartButton
+        small: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff",
+        medium: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+        big: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+        description: 'Trim Nailcare Fingernail & Toenail Clippers'
       },
       {
-        small: 'assets/images/image.png',
-        medium: 'assets/images/image.png',
-        big: 'assets/images/image.png',
-        description: 'This a Ted' + this.walmartButton,
-        url: 'http://watch.com'
+        small: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
+        medium: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
+        big: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
+        description: "Voyager Proton Electric Scooter",
+        url: "http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45707349%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi"
       },
       {
-        small: 'assets/images/corn-on-the-cob.jpg',
-        medium: 'assets/images/corn-on-the-cob.jpg',
-        big: 'assets/images/corn-on-the-cob.jpg',
-        description: 'This is corn???' + this.walmartButton
+        small: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
+        medium: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
+        big: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
+        description: 'Sceptre 50" Class FHD (1080P) LED TV (X505BV-FSR)',
+        url: "http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D631796609%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi"
       },
       {
-        small: 'assets/images/thumbnail-img-example.jpg',
-        medium: 'assets/images/big-img-example.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This a watch' + this.walmartButton,
-        url: 'http://watch.com'
+        small: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        medium: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        big: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        description: 'Coleman RoadTrip LXE Portable Propane Grill',
+        url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D43980087%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
-        small: 'assets/images/thumbnail-img-example2.jpg',
-        medium: 'assets/images/big-img-example2.jpg',
-        big: 'assets/images/massive-img-example.jpg',
-        description: 'This is a brick' + this.walmartButton
+        small: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff',
+        medium: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
+        big: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
+        description: 'Great Value 18 oz Party Plastic Cups',
+        url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D122270233%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
     ];
   }
-
+  getProducts() {
+    this.products = [];
+    this.buyingService.getBuyerItems(2).subscribe((data: {}) => {
+      this.products = data;
+      this.temp = [...this.products];
+      console.log(this.products);
+    });
+  }
 }
