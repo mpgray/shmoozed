@@ -12,8 +12,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "Walmart_Items")
 public class WalmartItem {
 
-
-
   @Id
   //@GeneratedValue(strategy = IDENTITY)
   @Column(name = "Walmart_Item_Id")
@@ -54,6 +52,23 @@ public class WalmartItem {
 
   public WalmartItem() {
     // Empty default constructor. This is needed in order for JPA to work properly.
+  }
+
+  public WalmartItem(int itemId, int linkedItemId, String name, String categoryPath, String upc, double msrp,
+                     double salePrice, String thumbnailImage, String largeImage, String modelNumber,
+                     String addToCartUrl, String stock) {
+    this.itemId = itemId;
+    this.linkedItemId = linkedItemId;
+    this.name = name;
+    this.categoryPath = categoryPath;
+    this.upc = upc;
+    this.msrp = msrp;
+    this.salePrice = salePrice;
+    this.thumbnailImage = thumbnailImage;
+    this.largeImage = largeImage;
+    this.modelNumber = modelNumber;
+    this.addToCartUrl = addToCartUrl;
+    this.stock = stock;
   }
 
   public int getItemId() {
