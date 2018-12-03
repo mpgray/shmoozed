@@ -12,7 +12,8 @@ describe('BuyingComponent', () => {
     beforeEach(() => {
         mockBuyingService = jasmine.createSpyObj(['getBuyerItems']);
         mockMatDialog = jasmine.createSpyObj(['open']);
-        buyingComponent = new BuyingComponent(mockBuyingService, mockMatDialog);
+        const restService = jasmine.createSpyObj([]);
+        buyingComponent = new BuyingComponent(mockBuyingService, restService, mockMatDialog);
     });
 
 
@@ -22,11 +23,5 @@ describe('BuyingComponent', () => {
         buyingComponent.ngOnInit();
 
         expect(mockBuyingService.getBuyerItems).toHaveBeenCalled();
-    });
-
-    it('should call MatDialog.open when the View Price History button is clicked', () => {
-        buyingComponent.openPriceHistoryDialog({});
-
-        expect(mockMatDialog.open).toHaveBeenCalled();
     });
 });

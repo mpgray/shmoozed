@@ -3,7 +3,7 @@ import { BuyerItem } from '../models/buyer-item';
 import { BuyingService } from './buying.service';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
-import {RESTService} from '../services/rest.service';
+import { RESTService } from '../services/rest.service';
 
 @Component({
   selector: 'app-buying',
@@ -42,8 +42,8 @@ export class BuyingComponent implements OnInit {
 
 
 
-  addWalmartItem(url){
-    if (url != null){
+  addWalmartItem(url) {
+    if (url != null) {
       this.rest.addWalmartURL(url).subscribe((result) => {
         location.reload();
       }, (err) => {
@@ -52,8 +52,8 @@ export class BuyingComponent implements OnInit {
     }
   }
 
-  addWalmartBuyerDetails(quantity, price, userid, url){
-    if (url != null){
+  addWalmartBuyerDetails(quantity, price, userid, url) {
+    if (url != null) {
       this.rest.addWalmartBuyerDetails(quantity, price, userid, url).subscribe((result) => {
         location.reload();
       }, (err) => {
