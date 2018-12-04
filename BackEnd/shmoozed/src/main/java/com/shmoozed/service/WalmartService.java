@@ -45,17 +45,8 @@ public class WalmartService {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
     logger.trace("walmartRepository={}", walmartRepository);
 
-    Item newItem;
-    if(walmartItem.getItemId() == 0)
-    {
-      //create the item
-      newItem = insertItem(walmartItem, 1);
-      logger.debug("New Item inserted into database. newItem={}", newItem);
-      walmartItem.setLinkedItemId(newItem.getId());
-    }
-
-    //save walmart item
-    WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
+    //get or create the walmart item
+    WalmartItem newWalmartItem = getOrCreateWalmartItem(walmartItem, 1);
 
     //insert item price history
     ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(walmartItem);
@@ -64,30 +55,42 @@ public class WalmartService {
     return newWalmartItem;
   }
 
-  public WalmartItem insertNewWalmartItemWithBuyerInfo(WalmartItem walmartItem, int quantity, BigDecimal price, int userId) {
-    logger.debug("Attempting to insert walmartItem={}", walmartItem);
+  public WalmartItem insertNewWalmartItemWithBuyerInfo(WalmartItem walmartItemIn, int quantity, BigDecimal price, int userId) {
+    logger.debug("Attempting to insert walmartItem={}", walmartItemIn);
     logger.trace("walmartRepository={}", walmartRepository);
 
-    Item newItem;
-    if(walmartItem.getItemId() == 0)
-    {
-      //create the item
-      newItem = insertItem(walmartItem, quantity);
-      logger.debug("New Item inserted into database. newItem={}", newItem);
-      walmartItem.setLinkedItemId(newItem.getId());
-    }
-
-    //save walmart item
-    WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
-    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
+    //get or create the walmart item
+    WalmartItem newWalmartItem = getOrCreateWalmartItem(walmartItemIn, quantity);
 
     //insert item price history
-    ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(walmartItem);
+    ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(newWalmartItem);
     logger.debug("New ItemPriceHistory inserted into database. newItemPriceHistory={}", newItemPriceHistory);
-    
+
     //insert buyer item
-    BuyerItem buyerItem = insertBuyerItem(walmartItem.getLinkedItemId(), price, userId);
+    BuyerItem buyerItem = insertBuyerItem(newWalmartItem.getLinkedItemId(), price, userId);
     logger.debug("New buyerItem inserted into database. buyerItem={}", buyerItem);
+
+    return newWalmartItem;
+  }
+
+  private WalmartItem getOrCreateWalmartItem(WalmartItem walmartItem, int quantity){
+    Item newItem;
+    WalmartItem newWalmartItem = walmartItem;
+    //check if we have an existing item
+    if(newWalmartItem.getItemId() == 0){
+      //create the item
+      newItem = insertItem(newWalmartItem, quantity);
+      logger.debug("New Item inserted into database. newItem={}", newItem);
+      newWalmartItem.setLinkedItemId(newItem.getId());
+      //save walmart item
+      newWalmartItem = walmartRepository.save(newWalmartItem);
+      logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
+    }
+    else
+    {
+      //find the existing item
+      newWalmartItem = getItemById(newWalmartItem.getItemId());
+    }
 
     return newWalmartItem;
   }
