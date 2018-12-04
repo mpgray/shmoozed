@@ -45,10 +45,14 @@ public class WalmartService {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
     logger.trace("walmartRepository={}", walmartRepository);
 
-    //create the item
-    Item newItem = insertItem(walmartItem, 1);
-    logger.debug("New Item inserted into database. newItem={}", newItem);
-    walmartItem.setLinkedItemId(newItem.getId());
+    Item newItem;
+    if(walmartItem.getItemId() == 0)
+    {
+      //create the item
+      newItem = insertItem(walmartItem, 1);
+      logger.debug("New Item inserted into database. newItem={}", newItem);
+      walmartItem.setLinkedItemId(newItem.getId());
+    }
 
     //save walmart item
     WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
@@ -64,21 +68,25 @@ public class WalmartService {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
     logger.trace("walmartRepository={}", walmartRepository);
 
-    //create the item
-    Item newItem = insertItem(walmartItem, quantity);
-    logger.debug("New Item inserted into database. newItem={}", newItem);
-    walmartItem.setLinkedItemId(newItem.getId());
+    Item newItem;
+    if(walmartItem.getItemId() == 0)
+    {
+      //create the item
+      newItem = insertItem(walmartItem, quantity);
+      logger.debug("New Item inserted into database. newItem={}", newItem);
+      walmartItem.setLinkedItemId(newItem.getId());
+    }
 
     //save walmart item
     WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
-    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newItem);
+    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
 
     //insert item price history
     ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(walmartItem);
     logger.debug("New ItemPriceHistory inserted into database. newItemPriceHistory={}", newItemPriceHistory);
-
+    
     //insert buyer item
-    BuyerItem buyerItem = insertBuyerItem(newItem.getId(), price, userId);
+    BuyerItem buyerItem = insertBuyerItem(walmartItem.getLinkedItemId(), price, userId);
     logger.debug("New buyerItem inserted into database. buyerItem={}", buyerItem);
 
     return newWalmartItem;
