@@ -60,7 +60,7 @@ public class WalmartService {
     WalmartItem newWalmartItem = getOrCreateWalmartItem(walmartItem, 1);
 
     //insert item price history
-    ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(walmartItem);
+    ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(newWalmartItem);
 
     logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
     return newWalmartItem;
@@ -78,21 +78,25 @@ public class WalmartService {
     logger.debug("New ItemPriceHistory inserted into database. newItemPriceHistory={}", newItemPriceHistory);
 
     //insert buyer item
-    BuyerItem buyerItem = insertBuyerItem(newWalmartItem.getLinkedItemId(), price, userId);
+    BuyerItem buyerItem = getOrCreateBuyerItem(newWalmartItem.getLinkedItemId(), price, userId);
     logger.debug("New buyerItem inserted into database. buyerItem={}", buyerItem);
 
     return newWalmartItem;
   }
-/*
-  private BuyerItem getOrCreateBuyerItem(int itemId, BigDecimal price, int userId){
-    BuyerItem buyerItem = buyerSellerItemsService.get
 
+  private BuyerItem getOrCreateBuyerItem(int itemId, BigDecimal price, int userId){
+    Optional<BuyerItem> buyerItem = buyerSellerItemsService.getBuyerItemByItemIdAndUserId(itemId, userId);
+    if (buyerItem.isPresent()) {
+      return buyerItem.get();
+    }
+
+    //insert new item
+    return insertBuyerItem(itemId, price, userId);
   }
-*/
+
   private WalmartItem getOrCreateWalmartItem(WalmartItem walmartItem, int quantity){
     Item newItem;
-    WalmartItem newWalmartItem = walmartItem;
-    newWalmartItem = getExistingItemById(newWalmartItem.getItemId());
+    WalmartItem newWalmartItem = getExistingItemById(walmartItem.getItemId());
 
     //check if we have an existing item
 
