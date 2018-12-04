@@ -28,7 +28,8 @@ public class WalmartService {
   private BuyerSellerItemsService buyerSellerItemsService;
 
   @Autowired
-  public WalmartService(WalmartClient walmartClient, WalmartRepository walmartRepository, ItemService itemService, ItemPriceHistoryService itemPriceHistoryService,
+  public WalmartService(WalmartClient walmartClient, WalmartRepository walmartRepository, ItemService itemService,
+                        ItemPriceHistoryService itemPriceHistoryService,
                         BuyerSellerItemsService buyerSellerItemsService) {
     this.walmartClient = walmartClient;
     this.walmartRepository = walmartRepository;
@@ -42,36 +43,29 @@ public class WalmartService {
     return walmartClient.getItemById(itemId);
   }
 
-  public WalmartItem getExistingItemById(int itemId){
-    logger.debug("Attempting to find walmart item by id in WalmartItems table itemId={}", itemId);
-    Optional<WalmartItem> walmartItem = walmartRepository.findById(itemId);
-    if (walmartItem.isPresent()) {
-      return walmartItem.get();
-    }
-
-    return null;
-  }
-
   public WalmartItem insertNewWalmartItem(WalmartItem walmartItem) {
     logger.debug("Attempting to insert walmartItem={}", walmartItem);
     logger.trace("walmartRepository={}", walmartRepository);
 
     //get or create the walmart item
     WalmartItem newWalmartItem = getOrCreateWalmartItem(walmartItem, 1);
+    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
 
     //insert item price history
     ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(newWalmartItem);
+    logger.debug("New ItemPriceHistory inserted into database. newItemPriceHistory={}", newItemPriceHistory);
 
-    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
     return newWalmartItem;
   }
 
-  public WalmartItem insertNewWalmartItemWithBuyerInfo(WalmartItem walmartItemIn, int quantity, BigDecimal price, int userId) {
+  public WalmartItem insertNewWalmartItemWithBuyerInfo(WalmartItem walmartItemIn, int quantity, BigDecimal price,
+                                                       int userId) {
     logger.debug("Attempting to insert walmartItem={}", walmartItemIn);
     logger.trace("walmartRepository={}", walmartRepository);
 
     //get or create the walmart item
     WalmartItem newWalmartItem = getOrCreateWalmartItem(walmartItemIn, quantity);
+    logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
 
     //insert item price history
     ItemPriceHistory newItemPriceHistory = insertItemPriceHistory(newWalmartItem);
@@ -86,31 +80,29 @@ public class WalmartService {
 
   private BuyerItem getOrCreateBuyerItem(int itemId, BigDecimal price, int userId){
     Optional<BuyerItem> buyerItem = buyerSellerItemsService.getBuyerItemByItemIdAndUserId(itemId, userId);
-    if (buyerItem.isPresent()) {
-      return buyerItem.get();
-    }
-
-    //insert new item
-    return insertBuyerItem(itemId, price, userId);
+    return buyerItem.orElseGet(() -> insertBuyerItem(itemId, price, userId));
   }
 
   private WalmartItem getOrCreateWalmartItem(WalmartItem walmartItem, int quantity){
-    Item newItem;
-    WalmartItem newWalmartItem = getExistingItemById(walmartItem.getItemId());
+    Optional<WalmartItem> existingWalmartItem = walmartRepository.findById(walmartItem.getItemId());
 
-    //check if we have an existing item
-
-    if(newWalmartItem == null){
-      //create the item
-      newItem = insertItem(newWalmartItem, quantity);
-      logger.debug("New Item inserted into database. newItem={}", newItem);
-      newWalmartItem.setLinkedItemId(newItem.getId());
-      //save walmart item
-      newWalmartItem = walmartRepository.save(newWalmartItem);
-      logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
+    if (existingWalmartItem.isPresent()) {
+      logger.debug("WalmartItem with walmart itemId={} already exists", walmartItem.getItemId());
+      return existingWalmartItem.get();
     }
+    else {
+      logger.debug("WalmartItem with walmart itemId={} does not yet exist. Creating new WalmartItem",
+                   walmartItem.getItemId());
 
-    return newWalmartItem;
+      //create the item
+      Item newItem = insertItem(walmartItem, quantity);
+      logger.debug("New Item inserted into database. newItem={}", newItem);
+      walmartItem.setLinkedItemId(newItem.getId());
+      //save walmart item
+      WalmartItem newWalmartItem = walmartRepository.save(walmartItem);
+      logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
+      return newWalmartItem;
+    }
   }
 
   private Item insertItem(WalmartItem walmartItem, int quantity){
