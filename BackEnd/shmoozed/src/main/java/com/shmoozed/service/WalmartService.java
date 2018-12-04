@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
@@ -37,8 +38,18 @@ public class WalmartService {
   }
 
   public WalmartItem getItemById(int itemId) {
-    logger.debug("Attempting to find walmart item by id itemId={}", itemId);
+    logger.debug("Attempting to find walmart item by id on Walmart.com itemId={}", itemId);
     return walmartClient.getItemById(itemId);
+  }
+
+  public WalmartItem getExistingItemById(int itemId){
+    logger.debug("Attempting to find walmart item by id in WalmartItems table itemId={}", itemId);
+    Optional<WalmartItem> walmartItem = walmartRepository.findById(itemId);
+    if (walmartItem.isPresent()) {
+      return walmartItem.get();
+    }
+
+    return null;
   }
 
   public WalmartItem insertNewWalmartItem(WalmartItem walmartItem) {
@@ -72,12 +83,20 @@ public class WalmartService {
 
     return newWalmartItem;
   }
+/*
+  private BuyerItem getOrCreateBuyerItem(int itemId, BigDecimal price, int userId){
+    BuyerItem buyerItem = buyerSellerItemsService.get
 
+  }
+*/
   private WalmartItem getOrCreateWalmartItem(WalmartItem walmartItem, int quantity){
     Item newItem;
     WalmartItem newWalmartItem = walmartItem;
+    newWalmartItem = getExistingItemById(newWalmartItem.getItemId());
+
     //check if we have an existing item
-    if(newWalmartItem.getItemId() == 0){
+
+    if(newWalmartItem == null){
       //create the item
       newItem = insertItem(newWalmartItem, quantity);
       logger.debug("New Item inserted into database. newItem={}", newItem);
@@ -85,11 +104,6 @@ public class WalmartService {
       //save walmart item
       newWalmartItem = walmartRepository.save(newWalmartItem);
       logger.debug("New walmartItem inserted into database. newWalmartItem={}", newWalmartItem);
-    }
-    else
-    {
-      //find the existing item
-      newWalmartItem = getItemById(newWalmartItem.getItemId());
     }
 
     return newWalmartItem;
