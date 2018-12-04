@@ -38,4 +38,11 @@ export class BuyeritemsComponent implements OnInit {
   openPriceHistoryDialog(item: any) {
     this.dialog.open(ItemHistoryComponent, { data: item, height: '500px', width: '800px' });
   }
+
+  removeBuyerItem(buyerItemId: number) {
+    this.buyingService.deleteItem(buyerItemId)
+    .subscribe(() => {
+      this.getBuyerItems();
+    });
+  }
 }

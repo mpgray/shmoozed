@@ -15,4 +15,9 @@ export class BuyingService {
     const apiLocation = this.baseUrl + '/item/buyer/' + buyerId + '/details';
     return this.http.get<BuyerItem[]>(apiLocation);
   }
+
+  public deleteItem(buyerItemId: number) {
+    const apiLocation = environment.baseUrl + 'item/buyer/' + buyerItemId;
+    return this.http.delete(apiLocation);
+  }
 }

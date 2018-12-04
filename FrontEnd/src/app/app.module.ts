@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
@@ -19,25 +19,25 @@ import {
   MatPaginatorModule,
   MatSortModule
 } from '@angular/material';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {AppRoutingModule} from './app.routing.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatMenuModule} from '@angular/material/menu';
-import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {ChartsModule} from 'ng2-charts';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import {NgxGalleryModule} from 'ngx-gallery';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ChartsModule } from 'ng2-charts';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AccountComponent } from './account/account.component';
 import { SellingComponent } from './selling/selling.component';
 import { BuyingComponent } from './buying/buying.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {LayoutComponent} from './shared/layout/layout.component';
+import { LayoutComponent } from './shared/layout/layout.component';
 import { TableComponent } from './shared/table/table.component';
 import { ChartComponent } from './shared/chart/chart.component';
 import { LoginComponent } from './account/login/login.component';
@@ -58,6 +58,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { BuyingService } from './buying/buying.service';
 import { SellerInsightsComponent } from './inventory/seller-insights/seller-insights.component';
 import { SellerInsightsService } from './inventory/seller-insights/seller-insights.service';
+import { AddBuyItemComponent } from './buying/add-buy-item/add-buy-item.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { SellerInsightsService } from './inventory/seller-insights/seller-insigh
     BuyeritemsComponent,
     AdminComponent,
     RegisterComponent,
-    SellerInsightsComponent
+    SellerInsightsComponent,
+    AddBuyItemComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -124,6 +126,6 @@ import { SellerInsightsService } from './inventory/seller-insights/seller-insigh
   ],
   providers: [BuyingService, SellerInsightsService],
   bootstrap: [AppComponent],
-  entryComponents: [ItemHistoryComponent]
+  entryComponents: [ItemHistoryComponent, AddBuyItemComponent]
 })
 export class AppModule { }

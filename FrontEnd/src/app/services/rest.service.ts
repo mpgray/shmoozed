@@ -82,6 +82,7 @@ addWalmartURL(url): Observable<any> {
 
   addWalmartBuyerDetails(quantity, price, userid, url): Observable<any> {
     console.log(url);
+    // tslint:disable-next-line:max-line-length
     return this.http.post<any>(endpoint + walmartURLDetails +quantity +"&price=" +price +"&userId=" +userid, JSON.stringify(url), httpOptions).pipe(
       tap(_ => console.log(`added item w/ url=${url}`)),
       catchError(this.handleError<any>('addItem'))

@@ -1,8 +1,11 @@
-<div style="width: 100%; overflow: hidden;">
-  <div style="width: 600px; float: left;"><app-gallery></app-gallery></div>
-  <div class="buyer-table"><app-table-buyeritems></app-table-buyeritems></div>
+<div>
+  <div class="contentContainer" style="width: 100%;"><app-gallery></app-gallery></div>
+  <div>
+    <button mat-raised-button color="primary" (click)="openAddWalmartItemDialog()">Add Item</button>
+  </div>
+  <div class="contentContainer" style="width: 100%;"><app-table-buyeritems></app-table-buyeritems></div>
 </div>
-<!-- add walmart item by url -->
+<!-- add walmart item by url
 <div class="row">
   <div class="col-md-auto"><p style="margin-top: 18px">Delete an item using a walmart url: </p></div>
   <div class="col-md-auto">
@@ -13,9 +16,9 @@
   <div class="col-md-auto">
     <button mat-raised-button color="primary" style="margin-top: 10px" (click)="addWalmartItem(walmartURL)">Delete Walmart Item</button>
   </div>
-</div>
+</div> -->
 <!-- add walmart buyer details by url -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-auto"><p style="margin-top: 18px">Add an item using a walmart url: </p></div>
   <div class="col-md-auto">
     <mat-form-field>
@@ -36,4 +39,4 @@
     <button mat-raised-button color="primary" style="margin-top: 10px"
             (click)="addWalmartBuyerDetails(walmartBuyerDetailQuantity, walmartBuyerDetailPrice, 2, walmartBuyerDetailURL)">Add Walmart Item</button>
   </div>
-</div>
+</div> -->
