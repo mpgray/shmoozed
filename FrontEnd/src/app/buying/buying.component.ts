@@ -4,6 +4,7 @@ import { BuyingService } from './buying.service';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
 import { RESTService } from '../services/rest.service';
+import { AddBuyItemComponent } from './add-buy-item/add-buy-item.component';
 
 @Component({
   selector: 'app-buying',
@@ -38,6 +39,17 @@ export class BuyingComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
+  }
+
+  openAddWalmartItemDialog() {
+    const dialog = this.dialog.open(AddBuyItemComponent, {width: '500px', height: '300px'});
+
+    dialog.afterClosed()
+    .subscribe(result => {
+      if (result) {
+        location.reload();
+      }
+    });
   }
 
 
