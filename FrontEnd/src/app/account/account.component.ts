@@ -24,8 +24,8 @@ export class AccountComponent implements OnInit {
   username: string;
   password: string;
 
-  constructorg) {}
-  
+  constructor() {}
+
   ngOnInit(): void {
   }
 
