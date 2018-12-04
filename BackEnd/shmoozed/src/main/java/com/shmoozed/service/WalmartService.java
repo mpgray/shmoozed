@@ -107,7 +107,7 @@ public class WalmartService {
     buyerItem.setItemId(itemId);
     buyerItem.setPrice(price);
     buyerItem.setUserId(userId);
-    return buyerSellerItemsService.insertNewBuyerItem(buyerItem);
+    return buyerSellerItemsService.insertNewBuyerItemIfNotAlreadyPresent(buyerItem);
   }
 
   private ItemPriceHistory insertItemPriceHistory(WalmartItem walmartItem){

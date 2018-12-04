@@ -45,7 +45,7 @@ public class BuyerSellerItemsController {
                                                                 @RequestBody SellerItem sellerItem) {
     logger.debug("Request to add new seller item. token={}, sellerItem={}", token, sellerItem);
 
-    SellerItem newSellerItem = buyerSellerItemsService.insertNewSellerItem(sellerItem);
+    SellerItem newSellerItem = buyerSellerItemsService.insertNewSellerItemIfNotAlreadyPresent(sellerItem);
 
     return new ResponseEntity<>(newSellerItem, HttpStatus.OK);
   }
@@ -59,7 +59,7 @@ public class BuyerSellerItemsController {
                                                                       @RequestBody BuyerItem buyerItem) {
     logger.debug("Request to add new buyer item. token={}, buyerItem={}", token, buyerItem);
 
-    BuyerItem newBuyerItem = buyerSellerItemsService.insertNewBuyerItem(buyerItem);
+    BuyerItem newBuyerItem = buyerSellerItemsService.insertNewBuyerItemIfNotAlreadyPresent(buyerItem);
 
     return new ResponseEntity<>(newBuyerItem, HttpStatus.OK);
   }

@@ -101,18 +101,40 @@ public class BuyerSellerItemsService {
     return null;
   }
 
-  public SellerItem insertNewSellerItem(SellerItem sellerItem) {
+  public SellerItem insertNewSellerItemIfNotAlreadyPresent(SellerItem sellerItem) {
     logger.debug("Attempting to insert sellerItem={}", sellerItem);
-    SellerItem newSellerItem = sellerItemRepository.save(sellerItem);
-    logger.debug("New seller item inserted. sellerItem={}", newSellerItem);
-    return newSellerItem;
+
+    // If there is already a seller item with that item id and this user id then don't insert it again.
+    Optional<SellerItem> existingSellerItem =
+      sellerItemRepository.findByItemIdEqualsAndUserIdEquals(sellerItem.getItemId(), sellerItem.getUserId());
+
+    if (existingSellerItem.isPresent()) {
+      logger.debug("SellerItem with itemId={} and userId={} already exists. Not attempting to insert again.");
+      return existingSellerItem.get();
+    }
+    else {
+      SellerItem newSellerItem = sellerItemRepository.save(sellerItem);
+      logger.debug("New seller item inserted. sellerItem={}", newSellerItem);
+      return newSellerItem;
+    }
   }
 
-  public BuyerItem insertNewBuyerItem(BuyerItem buyerItem) {
+  public BuyerItem insertNewBuyerItemIfNotAlreadyPresent(BuyerItem buyerItem) {
     logger.debug("Attempting to insert buyerItem={}", buyerItem);
-    BuyerItem newBuyerItem = buyerItemRepository.save(buyerItem);
-    logger.debug("New buyer item inserted. buyerItem={}", newBuyerItem);
-    return newBuyerItem;
+
+    // If there is already a buyer item with that item id and this user id then don't insert it again.
+    Optional<BuyerItem> existingBuyerItem =
+      buyerItemRepository.findByItemIdEqualsAndUserIdEquals(buyerItem.getItemId(), buyerItem.getUserId());
+
+    if (existingBuyerItem.isPresent()) {
+      logger.debug("BuyerItem with itemId={} and userId={} already exists. Not attempting to insert again.");
+      return existingBuyerItem.get();
+    }
+    else {
+      BuyerItem newBuyerItem = buyerItemRepository.save(buyerItem);
+      logger.debug("New buyer item inserted. buyerItem={}", newBuyerItem);
+      return newBuyerItem;
+    }
   }
 
   public void deleteSellerItem(int sellerItemId) {

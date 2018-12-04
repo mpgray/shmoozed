@@ -1,7 +1,6 @@
 package com.shmoozed.service;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,7 +110,7 @@ public class WalmartServiceTest {
 
     // Verify the BuyerItem was inserted properly
     ArgumentCaptor<BuyerItem> buyerItemArg = ArgumentCaptor.forClass(BuyerItem.class);
-    verify(mockBuyerSellerItemsService).insertNewBuyerItem(buyerItemArg.capture());
+    verify(mockBuyerSellerItemsService).insertNewBuyerItemIfNotAlreadyPresent(buyerItemArg.capture());
     assertThat(buyerItemArg.getValue().getItemId(), is(1));
     assertThat(buyerItemArg.getValue().getPrice().doubleValue(), is(15.0));
     assertThat(buyerItemArg.getValue().getUserId(), is(1));
