@@ -73,7 +73,7 @@ public class WalmartControllerTest {
 
     mockMvc.perform(post("/walmart/urlbuyerdetails?quantity=2&price=19.99&userId=2")
                       .contentType(MediaType.APPLICATION_JSON)
-                      .content("{\"url\":\"https://www.walmart.com/ip/MSI-GV62-Performance-Gaming-Laptop-15-6-Intel-Core-Gen-i5-8300-NVIDIA-GeForce-GTX-1060-3G-256GB-NVMe-SSD-8GB-RAM-Windows-10-Black-GV62061-Fortnite-Bu/202194529\"}")
+                      .content("{\"https://www.walmart.com/ip/MSI-GV62-Performance-Gaming-Laptop-15-6-Intel-Core-Gen-i5-8300-NVIDIA-GeForce-GTX-1060-3G-256GB-NVMe-SSD-8GB-RAM-Windows-10-Black-GV62061-Fortnite-Bu/202194529\"}")
                       .header("Authorization", AUTH_TOKEN))
       .andDo(print())
       .andExpect(status().isOk())
