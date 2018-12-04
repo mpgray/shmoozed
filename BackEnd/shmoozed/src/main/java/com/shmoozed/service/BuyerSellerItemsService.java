@@ -49,6 +49,11 @@ public class BuyerSellerItemsService {
     return (List<SellerItem>) sellerItemRepository.findSellerItemsByUserId(sellerId);
   }
 
+  public Optional<SellerItem> getSellertemByItemIdAndUserId(int itemId, int userId) {
+    logger.debug("Fetching SellerItem with itemId={} and userId={}", itemId, userId);
+    return sellerItemRepository.findByItemIdEqualsAndUserIdEquals(itemId, userId);
+  }
+
   public DetailedSellerItem getDetailedSellerItemBySellerItemId(int sellerItemId) {
     logger.debug("Fetching detailed seller item for sellerItemId={}", sellerItemId);
 
@@ -75,6 +80,11 @@ public class BuyerSellerItemsService {
   public List<BuyerItem> getBuyerItemsByBuyerId(int buyerId) {
     logger.debug("Fetching all buyer items for buyerId={}", buyerId);
     return (List<BuyerItem>) buyerItemRepository.findBuyerItemsByUserId(buyerId);
+  }
+
+  public Optional<BuyerItem> getBuyerItemByItemIdAndUserId(int itemId, int userId) {
+    logger.debug("Fetching BuyerItem with itemId={} and userId={}", itemId, userId);
+    return buyerItemRepository.findByItemIdEqualsAndUserIdEquals(itemId, userId);
   }
 
   public DetailedBuyerItem getDetailedBuyerItemByBuyerItemId(int buyerItemId) {
