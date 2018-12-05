@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BuyerItem } from '../models/buyer-item';
 import { BuyingService } from './buying.service';
-import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { ItemHistoryComponent } from './item-history/item-history.component';
 import { RESTService } from '../services/rest.service';
 import { AddBuyItemComponent } from './add-buy-item/add-buy-item.component';
@@ -24,8 +24,10 @@ export class BuyingComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private buyingService: BuyingService, public rest: RESTService,
-    public dialog: MatDialog) { }
+  constructor(private buyingService: BuyingService,
+    public rest: RESTService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getBuyerItems();
@@ -48,10 +50,16 @@ export class BuyingComponent implements OnInit {
     .subscribe(result => {
       if (result) {
         location.reload();
+        this.openSnackBar('New Item Added Successfully');
       }
     });
   }
 
+  openSnackBar(message: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 1500;
+    this.snackBar.open(message, '', config);
+  }
 
 
   addWalmartItem(url) {

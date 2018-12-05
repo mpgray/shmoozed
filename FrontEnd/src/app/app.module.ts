@@ -17,7 +17,8 @@ import {
   MatTooltipModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app.routing.module';
@@ -124,7 +125,8 @@ import { Top5Component } from './inventory/top5/top5.component';
     NgxGalleryModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
   ],
   providers: [BuyingService, SellerInsightsService],
   bootstrap: [AppComponent],
