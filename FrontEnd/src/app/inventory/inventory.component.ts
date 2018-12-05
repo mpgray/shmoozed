@@ -28,7 +28,7 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit() {
     this.fileName = 'Click Browse to import CSV file';
-    this.selectedItem = 1;
+    // this.selectedItem = 1;
     this.getProducts();
   }
 
@@ -150,6 +150,7 @@ export class InventoryComponent implements OnInit {
       console.log(data);
       this.products = data;
       this.temp = [...this.products];
+      this.selectedItem = this.products[0].id;
     });
   }
 
