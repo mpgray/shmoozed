@@ -10,6 +10,7 @@ const sellerpath = 'item/seller';
 const userpath = 'user';
 const walmartURL = 'walmart/url';
 const walmartURLDetails = "walmart/urlbuyerdetails?quantity=";
+const top5 = "item/top";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -125,6 +126,11 @@ addWalmartURL(url): Observable<any> {
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<any>('deleteItem'))
     );
+  }
+
+  getTop5(): Observable<any> {
+    return this.http.get(endpoint + top5).pipe(
+      map(this.extractData));
   }
 
 ///////////////////////
