@@ -130,5 +130,4 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
       }
     });
   }
-
 }

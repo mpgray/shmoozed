@@ -32,9 +32,22 @@ export class ItemHistoryComponent implements OnInit {
     const apiLocation = this.baseUrl + 'itemhistory/' + this.data.itemId;
     this.http.get<ItemHistory[]>(apiLocation)
     .subscribe(histories => {
-      this.itemHistories = histories;
+      this.sortHistoriesByDate(histories);
       this.populateChartArrays();
     });
+  }
+
+  sortHistoriesByDate(histories: ItemHistory[]) {
+    function compare(a, b) {
+      if (a.date < b.date) {
+        return -1;
+      }
+      if (a.date > b.date) {
+        return 1;
+      }
+      return 0;
+    }
+    this.itemHistories = histories.sort(compare);
   }
 
   populateChartArrays() {
