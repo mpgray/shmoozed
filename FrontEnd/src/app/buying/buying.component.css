@@ -10,11 +10,16 @@ th {
     font-size: 100%;
 }
 
-.buyer-table {
+/* .buyer-table {
     margin-left: 50%;
 	margin-right: 50%;
-}
+} */
 
 .contentContainer {
     text-align: center;
+    margin-right: 15%;
+}
+
+.buttonContainer {
+    text-align: right;
 }
