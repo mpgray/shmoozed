@@ -60,7 +60,11 @@ import { BuyingService } from './buying/buying.service';
 import { SellerInsightsComponent } from './inventory/seller-insights/seller-insights.component';
 import { SellerInsightsService } from './inventory/seller-insights/seller-insights.service';
 import { AddBuyItemComponent } from './buying/add-buy-item/add-buy-item.component';
+
+import { HistoricalPriceComponent } from './inventory/historical-price/historical-price.component';
+
 import { Top5Component } from './inventory/top5/top5.component';
+
 
 @NgModule({
   declarations: [
@@ -90,6 +94,7 @@ import { Top5Component } from './inventory/top5/top5.component';
     RegisterComponent,
     SellerInsightsComponent,
     AddBuyItemComponent,
+    HistoricalPriceComponent,
     Top5Component
   ],
   imports: [

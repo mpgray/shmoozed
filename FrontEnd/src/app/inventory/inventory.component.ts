@@ -143,18 +143,6 @@ export class InventoryComponent implements OnInit {
     }
   }
 
-  chartOptions = {
-    responsive: true
-  };
-
-  chartData = [
-    { data: [330, 600, 260, 700], label: 'Last Year' },
-    { data: [120, 455, 100, 340], label: 'This Year' },
-    { data: [120, 455, 100, 340, 460], label: 'Forecast' }
-  ];
-
-  chartLabels = ['August', 'September', 'October', 'November', 'December'];
-
   // item selection tool
   getProducts() {
     this.products = [];
