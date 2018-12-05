@@ -11,7 +11,7 @@ export class HistoricalPriceComponent implements OnInit {
 
   @Input() itemId: number;
   priceData: any = [];
-  thisYearPrices: any = [];
+  thisYearPrices: number[] = [0,0,0,0,0,0,0,0,0,0,0,0];
   date = new Date();
 
   constructor(public rest: RESTService) { }
@@ -32,7 +32,7 @@ export class HistoricalPriceComponent implements OnInit {
 
   chartData = [
     { data: [33, 60, 26, 70], label: 'Last Year' },
-    { data: [this.thisYearPrices[this.date.getMonth()-3], this.thisYearPrices[this.date.getMonth()-2], this.thisYearPrices[this.date.getMonth()-1], this.thisYearPrices[this.date.getMonth()]], label: 'This Year' },
+    { data: [0,0,0,0], label: 'This Year' },
     { data: [, , , 34, 46], label: 'Forecast' }
   ];
 
@@ -81,7 +81,18 @@ export class HistoricalPriceComponent implements OnInit {
   computeMonthlyAvg(){
 
     // denominator for each monthly average, counts the number of prices in each month
-    let count0, count1, count2, count3, count4, count5, count6, count7, count8 , count9, count10, count11 = 0;
+    let count0 = 0;
+    let count1 = 0;
+    let count2 = 0;
+    let count3 = 0;
+    let count4 = 0;
+    let count5 = 0;
+    let count6 = 0;
+    let count7 = 0;
+    let count8 = 0;
+    let count9 = 0;
+    let count10 = 0;
+    let count11 = 0;
     let oldTotal = 0;
 
     //parse the priceData and calculate average price for each month
@@ -153,9 +164,13 @@ export class HistoricalPriceComponent implements OnInit {
           break;
       }
     }
-    for (let entry of this.thisYearPrices){
-      console.log(entry)
-    }
+
+    this.chartData = [
+      { data: [33, 60, 26, 70], label: 'Last Year' },
+      { data: [this.thisYearPrices[this.date.getMonth()-3], this.thisYearPrices[this.date.getMonth()-2], this.thisYearPrices[this.date.getMonth()-1], this.thisYearPrices[this.date.getMonth()]], label: 'This Year' },
+      { data: [, , , this.thisYearPrices[this.date.getMonth()], 46], label: 'Forecast' }
+    ];
+
   }
 
 
