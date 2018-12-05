@@ -53,7 +53,8 @@ export class GalleryComponent implements OnInit {
         small: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff",
         medium: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
         big: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
-        description: 'Trim Nailcare Fingernail & Toenail Clippers'
+        description: 'Trim Nailcare Fingernail & Toenail Clippers',
+        url: 'https://www.walmart.com/ip/Trim-Nailcare-Fingernail-Toenail-09625-Clippers-2-ct/14528578'
       },
       {
         small: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
