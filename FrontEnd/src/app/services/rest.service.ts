@@ -11,6 +11,8 @@ const userpath = 'user';
 const walmartURL = 'walmart/url';
 const walmartURLDetails = "walmart/urlbuyerdetails?quantity=";
 const itemPriceHistory = 'itemhistory/'
+const top5 = "item/top";
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -128,8 +130,15 @@ addWalmartURL(url): Observable<any> {
     );
   }
 
+
   getItemPriceHistory(id): Observable<any> {
     return this.http.get(endpoint + itemPriceHistory + id).pipe(
+      map(this.extractData));
+  }
+  
+  getTop5(): Observable<any> {
+    return this.http.get(endpoint + top5).pipe(
+
       map(this.extractData));
   }
 
