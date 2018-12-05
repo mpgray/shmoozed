@@ -135,7 +135,7 @@ addWalmartURL(url): Observable<any> {
     return this.http.get(endpoint + itemPriceHistory + id).pipe(
       map(this.extractData));
   }
-  
+
   getTop5(): Observable<any> {
     return this.http.get(endpoint + top5).pipe(
 

@@ -154,7 +154,7 @@ export class HistoricalPriceComponent implements OnInit {
       }
     }
     for (let entry of this.thisYearPrices){
-      console.log(entry)
+      console.log(entry.toString())
     }
   }
 
