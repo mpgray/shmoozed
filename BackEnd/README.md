@@ -267,15 +267,47 @@ Ideally, this would be automated through a DevOps / Delivery Tool such as Jenkin
 time constraints these manual build and deploy instructions should be followed when a new version
 of the API is ready to be released into Production.
 
-## Version Build Tag
+## Version, Build, Tag
 1. Ensure that all tests are passing
    * Run all Unit/Component Tests
    * Launch application and run all Acceptance Tests
 2. Increment the `version` in the pom.xml
    * A [Semantic Versioning](https://semver.org/) scheme of `MAJOR.MINOR.PATCH` should be used
-3. Perform a `maven clean install`. Ensure the the build resulted in a `BUILD SUCCESS`.
+3. Perform a `maven clean install`. Ensure that the build resulted in a `BUILD SUCCESS`.
 4. Commit & Push the version number change to Github. Do a Pull Request. Receive PR Approval and Merge PR.
 5. Tag the Merge Commit in GitHub.
+
+## Build Docker Image
+1. Ensure that the [Build, Version, & Tag](#version-build-tag) have been completed
+2. Perform a `docker build -t shmoozed/shmoozed-api:latest -t shmoozed/shmoozed-api:X.Y.Z .` from within the `/shmoozed/BackEnd/` directory.
+   * Substitute the current `version` from the pom.xml in as the `X.Y.Z` tag version.
+3. Ensure that the docker build resulted in a `Successfully built`.
+   ```
+   Sending build context to Docker daemon  43.58MB
+   Step 1/4 : FROM java:8-jdk-alpine
+    ---> 3fd9dd82815c
+   Step 2/4 : VOLUME /tmp
+    ---> Using cache 
+    ---> 1a6a0e74fd18
+   Step 3/4 : COPY target/*.jar app.jar
+    ---> Using cache
+    ---> 59f4b8cd483a
+   Step 4/4 : ENTRYPOINT ["java","-jar","/app.jar"]
+    ---> Using cache
+    ---> 93e73e16e65d
+   Successfully built 93e73e16e65d
+   Successfully tagged shmoozed/shmoozed-api:latest
+   ```
+4. Verify the image was built and tagged properly using `docker images`
+   ```
+   REPOSITORY              TAG                 IMAGE ID            CREATED              SIZE
+   shmoozed/shmoozed-api   0.2.8               b531127d5d17        About a minute ago   188MB
+   shmoozed/shmoozed-api   latest              b531127d5d17        About a minute ago   188MB
+   openjdk                 8-jdk-alpine        2cfb1dc1f0c8        30 hours ago         103MB
+   jenkins/jenkins         lts                 5907903170ad        5 weeks ago          701MB
+   java                    8-jdk-alpine        3fd9dd82815c        22 months ago        145MB
+   ```
+5. Test the built image by performing `docker run -p 5000:5000 -p 9000:9000 shmoozed/shmoozed-api`
 
 ## Deploy
 
