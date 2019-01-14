@@ -34,7 +34,7 @@ The Shmoozed Back-end API is developed in Java.
 - [Deploy Procedure](#deploy-procedure)
   * [Version, Build, Tag](#version--build--tag)
   * [Build Docker Image](#build-docker-image)
-    + [Docker Base Image](#docker-base-image)
+    + [Docker Base Image Selection](#docker-base-image-selection)
   * [Deploy](#deploy)
     + [Rollback](#rollback)
     + [Initial Elastic Beanstalk Application Deploy](#initial-elastic-beanstalk-application-deploy)
@@ -314,9 +314,9 @@ of the API is ready to be released into Production.
    openjdk                 8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
 
    ```
-5. Test the built image by performing `docker run -p 5000:5000 -p 9000:9000 shmoozed/shmoozed-api`
+5. Test the built image by performing `docker run --name shmoozed -p 5000:5000 -p 9000:9000 shmoozed/shmoozed-api`
 
-### Docker Base Image
+### Docker Base Image Selection
 
 We want to keep the Docker image which is created as small as possible so that it is faster to deploy. There are various java
 base images which are available to run the application.
