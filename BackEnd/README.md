@@ -15,6 +15,7 @@ The Shmoozed Back-end API is developed in Java.
 
 - [Shmoozed Back-end API](#shmoozed-back-end-api)
   * [Technologies Used](#technologies-used)
+  * [Table of Contents](#table-of-contents)
 - [Development Setup](#development-setup)
   * [Prerequisites](#prerequisites)
   * [Maven Installation](#maven-installation)
@@ -31,6 +32,13 @@ The Shmoozed Back-end API is developed in Java.
   * [Separation of Concerns](#separation-of-concerns)
   * [Spring Initializr](#spring-initializr)
 - [Deploy Procedure](#deploy-procedure)
+  * [Version, Build, Tag](#version--build--tag)
+  * [Build Docker Image](#build-docker-image)
+    + [Docker Base Image](#docker-base-image)
+  * [Deploy](#deploy)
+    + [Rollback](#rollback)
+    + [Initial Elastic Beanstalk Application Deploy](#initial-elastic-beanstalk-application-deploy)
+  * [Create GitHub Release](#create-github-release)
 
 # Development Setup
 
