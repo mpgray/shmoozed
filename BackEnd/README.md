@@ -300,14 +300,30 @@ of the API is ready to be released into Production.
    ```
 4. Verify the image was built and tagged properly using `docker images`
    ```
-   REPOSITORY              TAG                 IMAGE ID            CREATED              SIZE
-   shmoozed/shmoozed-api   0.2.8               b531127d5d17        About a minute ago   188MB
-   shmoozed/shmoozed-api   latest              b531127d5d17        About a minute ago   188MB
-   openjdk                 8-jdk-alpine        2cfb1dc1f0c8        30 hours ago         103MB
-   jenkins/jenkins         lts                 5907903170ad        5 weeks ago          701MB
-   java                    8-jdk-alpine        3fd9dd82815c        22 months ago        145MB
+   REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+   shmoozed/shmoozed-api   0.2.8               df4e936490a6        2 seconds ago       126MB
+   shmoozed/shmoozed-api   latest              df4e936490a6        2 seconds ago       126MB
+   openjdk                 8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+
    ```
 5. Test the built image by performing `docker run -p 5000:5000 -p 9000:9000 shmoozed/shmoozed-api`
+
+### Docker Base Image
+
+We want to keep the Docker image which is created as small as possible so that it is faster to deploy. There are various java
+base images which are available to run the application.
+
+After pulling and building on all alpine-based image bases, we will be using the `openjdk:8-jre-alpine` image as it is the 
+smallest size available at the time of writing for Java 8.
+
+```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+openjdk             8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+openjdk             8-jdk-alpine        2cfb1dc1f0c8        3 days ago          103MB
+java                8-jre-alpine        fdc893b19a14        22 months ago       108MB
+java                8-jdk-alpine        3fd9dd82815c        22 months ago       145MB
+```
 
 ## Deploy
 
