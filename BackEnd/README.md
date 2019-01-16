@@ -287,7 +287,7 @@ of the API is ready to be released into Production.
 
 ## Build Docker Image
 1. Ensure that the [Build, Version, & Tag](#version-build-tag) have been completed
-2. Perform a `docker build -t shmoozed/shmoozed-api:latest -t shmoozed/shmoozed-api:X.Y.Z .` from within the `/shmoozed/BackEnd/` directory.
+2. Perform a `docker build -t shmoozed/shmoozed-api:latest -t shmoozed/shmoozed-api:X.Y.Z .` from within the `/BackEnd/shmoozed/` directory.
    * Substitute the current `version` from the pom.xml in as the `X.Y.Z` tag version.
 3. Ensure that the docker build resulted in a `Successfully built`.
    ```
@@ -306,6 +306,8 @@ of the API is ready to be released into Production.
    Successfully built 93e73e16e65d
    Successfully tagged shmoozed/shmoozed-api:latest
    ```
+   * Note that if you are building the image on Windows you may get a Security Warning. This warning is safe to ignore for our application.
+   ```SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker...```
 4. Verify the image was built and tagged properly using `docker images`
    ```
    REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
