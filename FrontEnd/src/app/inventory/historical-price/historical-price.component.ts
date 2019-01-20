@@ -17,12 +17,12 @@ export class HistoricalPriceComponent implements OnInit {
   monthArray: any = [];
 
   // tensorflow vars
-  linearModel: tf.Sequential;
+  model: tf.Sequential;
   prediction: any;
-  predictionDates: any = [];
-  predictionPrices: any = [];
-  start = new Date(2018, 7, 1);
-  oneDay = 1000 * 60 * 60 * 24;
+  //predictionDates: any = [];
+  prices: any = [];
+  //start = new Date(2018, 7, 1);
+  //oneDay = 1000 * 60 * 60 * 24;
 
   constructor(public rest: RESTService) {
   }
@@ -165,20 +165,20 @@ export class HistoricalPriceComponent implements OnInit {
       this.thisYearPrices[i] = 0;
     }
 
-    // clear the tensorflow data arrays
-    this.predictionDates = [];
-    this.predictionPrices = [];
+    // clear the price data array
+    this.prices = [];
 
     //parse the priceData and calculate average price for each month
+    this.priceData.sort((a, b) => a.date.localeCompare(b.date));
+    //console.log(this.priceData);
+
     for (let entry of this.priceData) {
-      let dateString = entry.date
-      let dateSubString = new Date(dateString.substring(0, 10))
+      let dateString = entry.date;
+      let dateSubString = new Date(dateString.substring(0, 10));
       //console.log(dateString.substring(0,10));
 
       // get data for tensorflow
-      let timeSinceStart = dateSubString.getTime() - this.start.getTime();
-      this.predictionDates.push(timeSinceStart / this.oneDay);
-      this.predictionPrices.push(entry.price);
+      this.prices.push(entry.price);
 
       switch (dateSubString.getMonth()) {
         case 0:
@@ -256,35 +256,68 @@ export class HistoricalPriceComponent implements OnInit {
   }
 
   async trainNewModel(): Promise<any> {
-    const learningRate = 0.00001;
-    const optimizerVar = tf.train.sgd(learningRate);
+    // shape the data for lstm
+    const sampleSize = 1;
+    let samplesX = [];
+    let samplesY = [];
+    let start = this.prices.length - 42; // must be multiple of sample size
+    let predictForward = 28; // must be multiple of sampleSize
+    for (let i = start; i < this.prices.length - predictForward; i += sampleSize) {
+      let chunk = this.prices.slice(i, i + sampleSize);
+      samplesX.push(chunk);
+    }
+    for (let i = start + predictForward; i < this.prices.length; i += sampleSize) {
+      let chunk = this.prices.slice(i, i + sampleSize);
+      samplesY.push(chunk);
+    }
 
-    // Define a model for linear regression.
-    // TODO define a model that fits the data better
-    this.linearModel = tf.sequential();
-    this.linearModel.add(tf.layers.dense({units: 1, inputShape: [1], activation: "relu", kernelInitializer: 'ones'}));
-
-    // Prepare the model for training: Specify the loss and the optimizer.
-    this.linearModel.compile({loss: 'meanSquaredError', optimizer: optimizerVar});
+    let tensorSamplesX = tf.tensor2d(samplesX);
+    let tensorSamplesY = tf.tensor2d(samplesY);
 
 
-    // Training data
-    const xs = tf.tensor1d(this.predictionDates);
-    const ys = tf.tensor1d(this.predictionPrices);
+    // setup the model
+    this.model = tf.sequential();
+    const learningRate = 0.5;
+    const optimizerVar = tf.train.adam(learningRate);
 
-    // Train
-    await this.linearModel.fit(xs, ys, {epochs: 10});
-    console.log('model trained!');
-    let dateToPredict = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + 31);
-    this.predict((dateToPredict.getTime() - this.start.getTime()) / this.oneDay);
-  }
+    // layer 1
+    this.model.add(tf.layers.lstm({
+      units: 50,
+      returnSequences: true,
+      inputShape: [tensorSamplesX.shape[1], 1],
+      dropout: 0.2
+    }));
 
-  predict(val) {
-    val = parseFloat(val);
-    const output = this.linearModel.predict(tf.tensor2d([val], [1, 1])) as any;
+    // layer 2
+    this.model.add(tf.layers.lstm({
+      units: 50,
+      returnSequences: true,
+      dropout: 0.2
+    }));
+
+    // layer 3
+    this.model.add(tf.layers.lstm({
+      units: 50,
+      returnSequences: true,
+      dropout: 0.2
+    }));
+
+    // output layer
+    this.model.add(tf.layers.dense({units: 1}));
+
+    // compile and fit
+    this.model.compile({loss: 'meanSquaredError', optimizer: optimizerVar});
+    let shape = [samplesX.length, sampleSize, 1];
+    await this.model.fit(tensorSamplesX.reshape(shape), tensorSamplesY.reshape(shape), {epochs: 50});
+    //console.log("Model trained!");
+
+    // predict
+    const output = this.model.predict(tensorSamplesY.reshape(shape)) as any;
     this.prediction = Array.from(output.dataSync())[0];
-    console.log(output.toString());
-    this.linearModel.dispose();
+    //console.log(this.prediction);
+
+    //stop memory leaks
+    this.model.dispose();
     tf.disposeVariables();
   }
 
