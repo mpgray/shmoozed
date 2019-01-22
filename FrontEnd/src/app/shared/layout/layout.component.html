@@ -147,6 +147,27 @@
           <div class="copyright text-center my-auto">
             <span>Copyright © Shmoozed 2019</span>
 
+            <script src="http://coinwidget.com/widget/coin.js"></script>
+            <script>
+              CoinWidgetCom.go({
+                wallet_address		: '3A9fgjFSyvYp3GCzssTi7PrU27zrWUdxnu',
+                currency 		: 'bitcoin',
+                counter			: 'amount',
+                lbl_button 		: 'Donate to Shmoozed',
+                lbl_count		: 'payments',
+                lbl_amount 		: 'coins',
+                lbl_address		: 'Please send bitcoin tips to:',
+                qrcode			: false,
+                decimals		: 0,
+                onShow 			: function(){
+                  alert('window opened!');
+                },
+                onHide 			: function(){
+                  alert('window closed!');
+                }
+              });
+            </script>
+
           </div>
         </div>
       </footer>

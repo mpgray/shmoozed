@@ -56,6 +56,13 @@
 
 .data-card-shmoozed {
   width: 300px;
+
+}
+.data-card-page-titles {
+  width: 100%;
+  color: white;
+  font-size: 28px;
+  font-weight: 400;
 }
 
 .data-card-icon {
