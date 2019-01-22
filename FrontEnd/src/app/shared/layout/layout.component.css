@@ -11,7 +11,9 @@
   left: 0;
   right: 0;
 }
-
+.grey-background {
+  background: #444444;
+}
 .dynamic-sidebar-is-mobile .dynamic-sidebar-toolbar {
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
@@ -42,7 +44,10 @@ footer.sticky-footer {
 
 .sidebar {
   height: 100%;
-
+  background-color: #ffffff;
+  background-image: url("../../../assets/images/sidebar.png");
+  background-repeat: no-repeat;
+  overflow-scrolling: unset;
 }
 
 .search-card {
@@ -56,3 +61,10 @@ footer.sticky-footer {
   height: 100%;
   vertical-align: middle;
 }
+.btn-green {
+  background-color: green;
+  border-color: green;
+}
+
+
+

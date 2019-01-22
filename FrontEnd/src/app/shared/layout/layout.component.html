@@ -1,11 +1,20 @@
 <div class="example-container" [class.dynamic-sidebar-is-mobile]="mobileQuery.matches">
-  <nav class="navbar navbar-expand navbar-dark  bg-dark static-top">
-    <mat-button-toggle id="sidebarToggle" class="btn btn-sm text-white order-1 order-sm-0" (click)="snav.toggle()">
-      <mat-icon>dehaze</mat-icon>
-    </mat-button-toggle>
-    <a class="navbar-brand mr-1" routerLink="/dashboard">
-        <img class="img-responsive" src="assets/images/logoSmallLight.png" alt="Shmoozed"> Shmoozed
-    </a>
+  <nav class="navbar navbar-expand navbar-dark grey-background static-top">
+
+      <a class="nav-link" id="sidebarToggle" class="btn btn-sm text-white order-1 order-sm-0" matRipple (click)="snav.toggle()">
+        <div class="data-card data-card-shmoozed" matRipple fxFlex="32" fxFlex.xs="100">
+          <div class="data-card-icon" style="padding-top: 10px; padding-left: 5px">
+            <mat-icon>dehaze</mat-icon>
+          </div>
+          <div class="data-card-text" style="padding-top: 5px">
+            &nbsp;<a class="navbar-brand mr-1" routerLink="/dashboard">
+                <img class="img-responsive" src="assets/images/logoSmallLight.png" alt="Shmoozed"> Shmoozed
+            </a>
+          </div>
+        </div>
+      </a>
+
+
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -18,7 +27,7 @@
         </mat-autocomplete>
         <div class="input-group-append">
           <a target="_blank" id="search-button" href="https://www.walmart.com/search/?query={{searchInput.value}}&affp1=5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo&wmlspartner=readonlyapi&sourceid=api014b407293c940426a86cd48ac6d5454e7&veh=aff">
-          <button class="btn btn-primary" type="button">
+          <button class="btn btn-primary btn-green" type="button">
             <fa name="search"></fa>
           </button>
           </a>
@@ -65,50 +74,61 @@
     </ul> -->
   </nav>
   <div id="wrapper">
-    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0" style="height: 1200px; background-color: black" >
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0" style="height: 1200px">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 
     <!-- Sidebar -->
-    <ul class="sidebar navbar-nav" style="height: 1500px; width: 215px; background-color: #050505">
+    <ul class="sidebar navbar-nav" style="height: 1500px; width: 215px">
+
       <li class="nav-item active" routerLinkActive="active">
         <a class="nav-link" matRipple routerLink="/dashboard">
-          <mat-icon>dashboard</mat-icon>
-          <span>Dashboard
-          </span>
+            <div class="data-card" matRipple fxFlex="32" fxFlex.xs="100">
+              <div class="data-card-icon">
+                <mat-icon>dashboard</mat-icon>
+              </div>
+              <div class="data-card-text">
+                &nbsp;Dashboard
+              </div>
+          </div>
         </a>
-
       </li>
-
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link dropdown-toggle" routerLink="/account" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <mat-icon>account_circle</mat-icon>
-          <span>Account </span>
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" matRipple routerLink="/account">
+          <div class="data-card" matRipple fxFlex="32" fxFlex.xs="100">
+            <div class="data-card-icon">
+              <mat-icon>account_circle</mat-icon>
+            </div>
+            <div class="data-card-text">
+              &nbsp;Account
+            </div>
+          </div>
         </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item"  (click)="openLogin()"> Login</a>
-          <a class="dropdown-item" href="/register">Register</a>
-          <!-- <a class="dropdown-item" href="forgot-password.html">Forgot Password</a> -->
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
-        </div>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  routerLink="/buying" id="buyingDropdown" role="button">
-          <mat-icon>shopping_basket</mat-icon>
-          <span>Buying</span></a>
-          <!-- <div class="dropdown-menu" aria-labelledby="sellingDropdown">
-            <a class="dropdown-item" routerLink="/itemHistory">Item History</a>
-            </div> -->
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" matRipple routerLink="/buying">
+          <div class="data-card" matRipple fxFlex="32" fxFlex.xs="100">
+            <div class="data-card-icon">
+              <mat-icon>shopping_basket</mat-icon>
+            </div>
+            <div class="data-card-text">
+              &nbsp;Buying
+            </div>
+          </div>
+        </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  routerLink="/inventory" id="sellingDropdown" role="button">
-          <mat-icon>attach_money</mat-icon>
-          <span>Selling</span></a>
-        <!-- <img src="assets/images/cloudy.png" height="307" width="225"/></li> -->
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" matRipple routerLink="/selling">
+          <div class="data-card" matRipple fxFlex="32" fxFlex.xs="100">
+            <div class="data-card-icon">
+              <mat-icon>attach_money</mat-icon>
+            </div>
+            <div class="data-card-text">
+              &nbsp;Selling
+            </div>
+          </div>
+        </a>
+      </li>
     </ul>
 
       </mat-sidenav>
@@ -125,7 +145,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Shmoozed 2018</span>
+            <span>Copyright © Shmoozed 2019</span>
 
           </div>
         </div>
