@@ -7,7 +7,7 @@
   .nav-item {
     &.active {
       .nav-link {
-        color: $white;
+        color: white;
       }
     }
     &.dropdown {
@@ -66,11 +66,11 @@
   @include sidebar-icons;
   .nav-item {
     .nav-link {
-      color: fade-out($white, 0.5);
+      color: fade-out(white, .5);
       &:active,
       &:focus,
       &:hover {
-        color: fade-out($white, 0.25);
+        color: fade-out(white, 0.25);
       }
     }
   }
