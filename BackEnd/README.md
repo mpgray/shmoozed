@@ -15,6 +15,7 @@ The Shmoozed Back-end API is developed in Java.
 
 - [Shmoozed Back-end API](#shmoozed-back-end-api)
   * [Technologies Used](#technologies-used)
+  * [Table of Contents](#table-of-contents)
 - [Development Setup](#development-setup)
   * [Prerequisites](#prerequisites)
   * [Maven Installation](#maven-installation)
@@ -31,6 +32,13 @@ The Shmoozed Back-end API is developed in Java.
   * [Separation of Concerns](#separation-of-concerns)
   * [Spring Initializr](#spring-initializr)
 - [Deploy Procedure](#deploy-procedure)
+  * [Version, Build, Tag](#version--build--tag)
+  * [Build Docker Image](#build-docker-image)
+    + [Docker Base Image Selection](#docker-base-image-selection)
+  * [Deploy](#deploy)
+    + [Rollback](#rollback)
+    + [Initial Elastic Beanstalk Application Deploy](#initial-elastic-beanstalk-application-deploy)
+  * [Create GitHub Release](#create-github-release)
 
 # Development Setup
 
@@ -267,15 +275,65 @@ Ideally, this would be automated through a DevOps / Delivery Tool such as Jenkin
 time constraints these manual build and deploy instructions should be followed when a new version
 of the API is ready to be released into Production.
 
-## Version Build Tag
+## Version, Build, Tag
 1. Ensure that all tests are passing
    * Run all Unit/Component Tests
    * Launch application and run all Acceptance Tests
 2. Increment the `version` in the pom.xml
    * A [Semantic Versioning](https://semver.org/) scheme of `MAJOR.MINOR.PATCH` should be used
-3. Perform a `maven clean install`. Ensure the the build resulted in a `BUILD SUCCESS`.
+3. Perform a `maven clean install`. Ensure that the build resulted in a `BUILD SUCCESS`.
 4. Commit & Push the version number change to Github. Do a Pull Request. Receive PR Approval and Merge PR.
 5. Tag the Merge Commit in GitHub.
+
+## Build Docker Image
+1. Ensure that the [Build, Version, & Tag](#version-build-tag) have been completed
+2. Perform a `docker build -t shmoozed/shmoozed-api:latest -t shmoozed/shmoozed-api:X.Y.Z .` from within the `/BackEnd/shmoozed/` directory.
+   * Substitute the current `version` from the pom.xml in as the `X.Y.Z` tag version.
+3. Ensure that the docker build resulted in a `Successfully built`.
+   ```
+   Sending build context to Docker daemon  43.58MB
+   Step 1/4 : FROM java:8-jdk-alpine
+    ---> 3fd9dd82815c
+   Step 2/4 : VOLUME /tmp
+    ---> Using cache 
+    ---> 1a6a0e74fd18
+   Step 3/4 : COPY target/*.jar app.jar
+    ---> Using cache
+    ---> 59f4b8cd483a
+   Step 4/4 : ENTRYPOINT ["java","-jar","/app.jar"]
+    ---> Using cache
+    ---> 93e73e16e65d
+   Successfully built 93e73e16e65d
+   Successfully tagged shmoozed/shmoozed-api:latest
+   ```
+   * Note that if you are building the image on Windows you may get a Security Warning. This warning is safe to ignore for our application.
+   ```SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker...```
+4. Verify the image was built and tagged properly using `docker images`
+   ```
+   REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+   shmoozed/shmoozed-api   0.2.8               df4e936490a6        2 seconds ago       126MB
+   shmoozed/shmoozed-api   latest              df4e936490a6        2 seconds ago       126MB
+   openjdk                 8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+
+   ```
+5. Test the built image by performing `docker run --name shmoozed -p 5000:5000 -p 9000:9000 shmoozed/shmoozed-api`
+
+### Docker Base Image Selection
+
+We want to keep the Docker image which is created as small as possible so that it is faster to deploy. There are various java
+base images which are available to run the application.
+
+After pulling and building on all alpine-based image bases, we will be using the `openjdk:8-jre-alpine` image as it is the 
+smallest size available at the time of writing for Java 8.
+
+```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+openjdk             8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+openjdk             8-jdk-alpine        2cfb1dc1f0c8        3 days ago          103MB
+java                8-jre-alpine        fdc893b19a14        22 months ago       108MB
+java                8-jdk-alpine        3fd9dd82815c        22 months ago       145MB
+```
 
 ## Deploy
 
