@@ -9,7 +9,7 @@ import { SellerInsightDatapoint } from 'src/app/models/seller-insight-datapoint'
   styleUrls: ['./seller-insights.component.css']
 })
 export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges {
-  chart = [];
+  chart: Chart = [];
   sellerInsights: SellerInsightDatapoint[];
   chartLabels = [];
   chartData = [];
@@ -30,12 +30,11 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   }
 
   ngAfterViewInit(): void {
+    this.createChart();
     this.getSellerInsightData();
   }
 
   getSellerInsightData() {
-    this.chartData = [];
-    this.chartLabels = [];
     this.service.getSellerInsightData(this.itemId)
       .subscribe(datapoints => {
         this.sortDataPointsByPrice(datapoints);
@@ -43,7 +42,7 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
           this.chartLabels.push(element.demandPrice.toString());
           this.chartData.push(element.revenue.toString());
         });
-        this.getRevenueForecast();
+        this.updateChart();
       });
   }
 
@@ -60,7 +59,22 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
     this.sellerInsights = datapoints.sort(compare);
   }
 
-  getRevenueForecast() {
+  updateChart() {
+    this.chart.data = {
+      labels: this.chartLabels,
+      datasets: [
+        {
+          data: this.chartData,
+          borderColor: '#3cba9f',
+          fill: false,
+          label: 'Revenue'
+        }
+      ]
+    };
+    this.chart.update();
+  }
+
+  createChart() {
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
       type: 'line',
       data: {
