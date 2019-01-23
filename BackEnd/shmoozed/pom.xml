@@ -26,6 +26,9 @@
     <google-api-client.version>1.26.0</google-api-client.version>
     <google-http-client-gson.version>1.26.0</google-http-client-gson.version>
     <dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>
+
+    <!-- Default to NOT build the docker image as part of the build. To enable do `mvn clean install -Ddocker.skip=false`-->
+    <docker.skip>true</docker.skip>
   </properties>
 
   <dependencies>
@@ -107,6 +110,7 @@
               <goal>build</goal>
             </goals>
             <configuration>
+              <skip>${docker.skip}</skip>
               <tag>${project.version}</tag>
             </configuration>
           </execution>
@@ -116,6 +120,7 @@
               <goal>tag</goal>
             </goals>
             <configuration>
+              <skip>${docker.skip}</skip>
               <tag>latest</tag>
             </configuration>
           </execution>

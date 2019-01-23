@@ -4,7 +4,10 @@
 
 - [Build & Deploy Procedures](#build---deploy-procedures)
   * [Version, Build, Tag](#version--build--tag)
-  * [Manually Build Docker Image](#manually-build-docker-image)
+  * [Build Docker Image](#build-docker-image)
+    + [Automatic Building During Maven Build](#automatic-building-during-maven-build)
+      - [Configure IntelliJ Maven Properties](#configure-intellij-maven-properties)
+    + [Manual Building](#manual-building)
     + [Docker Base Image Selection](#docker-base-image-selection)
   * [Deploy](#deploy)
     + [Rollback](#rollback)
@@ -25,11 +28,53 @@ of the API is ready to be released into Production.
 4. Commit & Push the version number change to Github. Do a Pull Request. Receive PR Approval and Merge PR.
 5. Tag the Merge Commit in GitHub.
 
-## Manually Build Docker Image
+## Build Docker Image
 
-A Docker Image is *automatically created* during the `install` phase of the maven build. 
+### Automatic Building During Maven Build
 
-However, if needed, a Docker Image can be created manually using the below process.
+A Docker Image _can_ be automatically created during the `install` phase of the maven build. By default this
+functionality is disabled (mainly because of some configuration issues with Docker, Maven, and Windows). To
+activate this feature, run the build with an additional `-Ddocker.skip=false` flag:
+```bash
+mvn clean install -Ddocker.skip=false
+```
+Following the maven build, you can verify the image was built and tagged properly using `docker images`:
+   ```
+   REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+   shmoozed/shmoozed-api   0.2.8               df4e936490a6        2 seconds ago       126MB
+   shmoozed/shmoozed-api   latest              df4e936490a6        2 seconds ago       126MB
+   openjdk                 8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+
+   ```
+
+#### Configure IntelliJ Maven Properties
+
+If using IntelliJ to launch the maven `clean` and `install` phases, additional configuration is needed so that
+IntelliJ will launch maven the correct `-Ddocker.skip=false` flag. This configuration only needs to be performed
+once.
+1. File --> Settings...
+2. Expand Build, Execution, Deployment --> Maven --> Runner
+3. Click the `+` in the Properties panel in the right side of the settings window
+4. Set the Name to `docker.skip` and the value to `false`. Click OK to add it.
+5. Click the Apply button.
+6. Click the OK button.
+7. In the Right Side of IntelliJ, expand the `Maven Projects` tab
+8. Expand shmoozed --> Lifecycle
+9. Ctrl + Click to select both `clean` and `install`
+10. Click the green "Run Maven Build" button at the top of the panel
+11. A teminal window will appear with a bunch of log output
+12. Ensure that it ends with a message of `BUILD SUCCESS` with output logs
+13. Verify the image was built and tagged properly using `docker images`:
+   ```
+   REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+   shmoozed/shmoozed-api   0.2.8               df4e936490a6        2 seconds ago       126MB
+   shmoozed/shmoozed-api   latest              df4e936490a6        2 seconds ago       126MB
+   openjdk                 8-jre-alpine        7e72a7dcf7dc        3 days ago          83.1MB
+   ```
+
+### Manual Building
+
+A Docker Image can be created manually using the below process.
 1. Ensure that the [Build, Version, & Tag](#version-build-tag) have been completed
 2. Perform a `docker build -t shmoozed/shmoozed-api:latest -t shmoozed/shmoozed-api:X.Y.Z .` from within 
 the `/BackEnd/shmoozed/` directory.
