@@ -1,5 +1,12 @@
+dist: xenial
 language: java
 jdk:
   - openjdk8
 before_install:
   - cd BackEnd/shmoozed/
+script:
+  - mvn clean install
+  - cd ../../FrontEnd/
+  - npm install --verbose
+  - npm install -g @angular/cli
+  - ng build
