@@ -51,3 +51,4 @@ Project setup is dependant on which architectural piece, front-end or back-end, 
 * James Larson
 * Jonathan Pedregon
 * Michael Gray
+* Anthony Perez
