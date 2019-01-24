@@ -18,6 +18,7 @@ When adding a module, put it here.
   - [TypeScript](https://www.typescriptlang.org/) Programming Language
   - [Bootstrap 4](http://getbootstrap.com/) Styles, Mobile
   - [Angular Materials](https://material.angular.io/) - icons, menus, text assets.
+  - [TensorFlow.js](https://js.tensorflow.org/) - training and deploying ML models in the browser and on Node.js
 
 ## Code Structure
 **tslint.json** - gives a list of rules governing typescript
@@ -42,9 +43,15 @@ Each component contains a .ts file for typescript, including **app.component**.
 
 ## Development server
 
+Angular requires Node.js version 8.x or 10.x. To check your version, run node -v in a terminal/console window. You can download Node.js [here.](https://nodejs.org/en/)
+
+Clone the repo on your local machine. In a terminal/console window, navigate to the `/FrontEnd` folder. Type `npm install` to install the project dependencies.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Note: After cloning you may may need to run 'npm install" from the /FrontEnd directory to build the modules.
+Note: You may may need to run `npm install` periodically (from the `/FrontEnd` directory) as modules are added to the project. If `ng serve` fails, try this first.
+
+Note 2: On Linux, you may also need to followup the `npm install` with a `npm install -g @angular/cli` before the `npm build` will work properly.
 
 ## Code scaffolding
 
