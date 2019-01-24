@@ -51,6 +51,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Note: You may may need to run `npm install` periodically (from the `/FrontEnd` directory) as modules are added to the project. If `ng serve` fails, try this first.
 
+Note 2: On Linux, you may also need to followup the `npm install` with a `npm install -g @angular/cli` before the `npm build` will work properly.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
