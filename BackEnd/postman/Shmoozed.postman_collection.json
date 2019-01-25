@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "58198f84-8e03-4c82-987e-773db51df462",
+		"_postman_id": "319fa034-926e-4773-9c39-47e798044890",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -991,6 +991,34 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Search WalmartItem - /walmart/search/{searchterm}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/walmart/search/xbox",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"walmart",
+										"search",
+										"xbox"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"event": [
@@ -1940,6 +1968,31 @@
 										"walmart",
 										"itemid",
 										"814913483"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search WalmartItem - /walmart/search/{searchterm}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/walmart/search/xbox",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"walmart",
+										"search",
+										"xbox"
 									]
 								}
 							},

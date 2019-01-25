@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 import com.shmoozed.model.BuyerItem;
@@ -41,6 +42,11 @@ public class WalmartService {
   public WalmartItem getItemById(int itemId) {
     logger.debug("Attempting to find walmart item by id on Walmart.com itemId={}", itemId);
     return walmartClient.getItemById(itemId);
+  }
+
+  public List<WalmartItem> searchWalmartSiteForItem(String searchTerm){
+    logger.debug("Attempting to search walmart API for searchTerm={}", searchTerm);
+    return walmartClient.searchWalmartSiteForItem(searchTerm);
   }
 
   public WalmartItem insertNewWalmartItem(WalmartItem walmartItem) {
