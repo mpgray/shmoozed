@@ -6,6 +6,7 @@
   * [Prerequisites](#prerequisites)
   * [Docker Installation](#docker-installation)
   * [Maven Installation](#maven-installation)
+    + [Specifying a different Maven version in IntelliJ](#specifying-a-different-maven-version-in-intellij)
   * [Docker MySQL](#docker-mysql)
     + [Useful Docker Commands](#useful-docker-commands)
   * [IntelliJ IDE Configuration](#intellij-ide-configuration)
@@ -51,6 +52,25 @@ The high level description of installing Maven is:
 2. Extract to a directory
 3. Set up Maven directories into your system's Path
 4. After installation and configuration of IntelliJ, remember to instruct IntelliJ to use the installed version
+
+### Specifying a different Maven version in IntelliJ
+
+If a newer version of Maven is installed than what is bundled with IntelliJ, you need to tell IntelliJ to use that version instead of
+IntelliJ's version.
+
+Before following these steps, make sure that the later Maven version is installed and configured then restart IntelliJ. It does a
+fairly good job of detecting other Maven installations which simplifies the following steps.
+
+1. File --> Settings...
+2. Build, Execution, Deployment --> Maven
+3. Change the `Maven home directory` dropdown to point to the proper directory
+   * You may need to actually browse to the proper location if IntelliJ didn't detect it properly. However, this is usually
+   a sign that Maven wasn't fully configured (specifically the M2_HOME was set, etc.).
+4. Ensure that the expected Maven Version number is now showing under the `Maven home directory` dropdown. This indicates that
+IntelliJ was able to communicate with it properly.
+5. Click Apply. Click Ok.
+
+Run a `mvn clean install` and ensure that the build finishes successfully.
 
 ## Docker MySQL
 
