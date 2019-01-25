@@ -44,6 +44,7 @@ Project setup is dependant on which architectural piece, front-end or back-end, 
 
 ## Contributors
 
+* Anthony Perez
 * Charles Durfee
 * Christopher Nash
 * Daniel Kiser
@@ -51,4 +52,3 @@ Project setup is dependant on which architectural piece, front-end or back-end, 
 * James Larson
 * Jonathan Pedregon
 * Michael Gray
-* Anthony Perez
