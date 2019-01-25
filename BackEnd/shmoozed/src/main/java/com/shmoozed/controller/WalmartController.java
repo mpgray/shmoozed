@@ -1,6 +1,7 @@
 package com.shmoozed.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.shmoozed.model.WalmartItem;
 import com.shmoozed.service.WalmartService;
@@ -40,6 +41,17 @@ public class WalmartController {
     logger.debug("Request for item by id. itemId={}", itemId);
     WalmartItem walmartItem = walmartService.getItemById(itemId);
     return new ResponseEntity<>(walmartItem, HttpStatus.OK);
+  }
+
+  @GetMapping(
+    path="/search/{searchterm}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<List<WalmartItem>> searchWalmartSiteForItem(@PathVariable("searchterm") String searchTerm){
+    logger.debug("Request to search for searchTerm={}", searchTerm);
+    List<WalmartItem> walmartItems = walmartService.searchWalmartSiteForItem(searchTerm);
+    return new ResponseEntity<>(walmartItems, HttpStatus.OK);
+
   }
 
   @PostMapping(
