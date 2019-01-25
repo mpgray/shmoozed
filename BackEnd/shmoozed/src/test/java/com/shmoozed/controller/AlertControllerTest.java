@@ -1,6 +1,7 @@
 package com.shmoozed.controller;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 import com.shmoozed.model.Alert;
 import com.shmoozed.service.AlertService;
@@ -34,16 +35,22 @@ public class AlertControllerTest {
 
   @Test
   public void getAlertByUserId_AlertFound() throws Exception {
-    Alert alert1 = new Alert(1, 2, 3, Timestamp.valueOf("2016-11-16 06:43:19.77"), 4);
-    Alert alert2 = new Alert(5, 6, 7, Timestamp.valueOf("2016-11-16 06:43:19.77"), 8);
+    Instant now = Instant.now();
+    Timestamp rightNow = Timestamp.from(now);
+    String formattedNowString = now.toString().replace("Z", "+0000");
+
+    Alert alert1 = new Alert(1, 2, 3, rightNow, 4);
+    Alert alert2 = new Alert(5, 6, 7, rightNow, 8);
+
     when(mockAlertService.getAlertsByUserId(4)).thenReturn(asList(alert1, alert2));
+
     mockMvc.perform(get("/alert?userId=4").header("Authorization", "ImALittleTeapot"))
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().json("[{\"id\":1,\"buyerItemId\":2,\"sellerItemId\":3," +
-                                  "\"lastUpdateDate\":\"2016-11-16T13:43:19.770+0000\",\"userId\":4}" +
+                                  "\"lastUpdateDate\":\"" + formattedNowString + "\",\"userId\":4}" +
                                   ",{\"id\":5,\"buyerItemId\":6,\"sellerItemId\":7," +
-                                  "\"lastUpdateDate\":\"2016-11-16T13:43:19.770+0000\",\"userId\":8}]"));
+                                  "\"lastUpdateDate\":\"" + formattedNowString + "\",\"userId\":8}]"));
   }
 
   @Test
