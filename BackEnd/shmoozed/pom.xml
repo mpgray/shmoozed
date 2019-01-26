@@ -5,7 +5,7 @@
 
   <groupId>com.shmoozed</groupId>
   <artifactId>shmoozed</artifactId>
-  <version>0.2.9</version>
+  <version>0.3.0</version>
   <packaging>jar</packaging>
 
   <name>shmoozed</name>
@@ -25,6 +25,10 @@
     <gson.version>2.8.5</gson.version>
     <google-api-client.version>1.26.0</google-api-client.version>
     <google-http-client-gson.version>1.26.0</google-http-client-gson.version>
+    <dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>
+
+    <!-- Default to NOT build the docker image as part of the build. To enable do `mvn clean install -Ddocker.skip=false`-->
+    <docker.skip>true</docker.skip>
   </properties>
 
   <dependencies>
@@ -93,6 +97,37 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>${dockerfile-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <configuration>
+              <skip>${docker.skip}</skip>
+              <tag>${project.version}</tag>
+            </configuration>
+          </execution>
+          <execution>
+            <id>tag-latest</id>
+            <goals>
+              <goal>tag</goal>
+            </goals>
+            <configuration>
+              <skip>${docker.skip}</skip>
+              <tag>latest</tag>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <repository>shmoozed/shmoozed-api</repository>
+        </configuration>
       </plugin>
     </plugins>
   </build>
