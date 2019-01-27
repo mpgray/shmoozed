@@ -1,5 +1,6 @@
 package com.shmoozed.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -34,6 +35,66 @@ public class SellerInsightService {
       )
     );
   }
+
+  public List<DemandPricevsRevenueDataPoint> getProfitByItemIdAndCost(
+    int itemId, BigDecimal cost) {
+    logger.debug("Fetching all Price v Profit Data");
+    return calculatePricevsProfit(
+      doubleArrayFromBuyerItems(
+        (List<BuyerItem>) buyerItemRepository.findAllByItemId(itemId)
+      ), cost
+    );
+  }
+
+  /**
+   * Can re-use Revenue model if you trim the input array of values less than cost
+   * Also need to convert to profit (subtract cost from price)
+   * Final output adds price back to x-vals
+   * @param doubleArrayFromBuyerItems
+   * @param cost
+   * @return
+   */
+  private List<DemandPricevsRevenueDataPoint> calculatePricevsProfit(double[] doubleArrayFromBuyerItems, BigDecimal cost) {
+    int countSmallerThanCost = 0;
+    double dCost = roundDoubleToMoney(cost.doubleValue());
+    double[] daOfProfitPotentials;
+
+    while(countSmallerThanCost < doubleArrayFromBuyerItems.length)
+    {
+      if(doubleArrayFromBuyerItems[countSmallerThanCost] <= dCost)
+      {
+        countSmallerThanCost++;
+      }
+      else
+      {
+        break;
+      }
+    }
+
+    int lengthOfNewArray = doubleArrayFromBuyerItems.length - countSmallerThanCost;
+
+    daOfProfitPotentials = new double[lengthOfNewArray];
+
+    int iter = 0;
+    for(int i = countSmallerThanCost; i < doubleArrayFromBuyerItems.length; i++)
+    {
+      daOfProfitPotentials[iter] = doubleArrayFromBuyerItems[i] - dCost;
+      iter++;
+    }
+
+    return addBackCostToXvals(calculatePricevsRevenue(daOfProfitPotentials),dCost);
+  }
+
+  private List<DemandPricevsRevenueDataPoint> addBackCostToXvals(
+    List<DemandPricevsRevenueDataPoint> listToAddTo, double cost)
+  {
+    for (DemandPricevsRevenueDataPoint point:listToAddTo) {
+      point.setDemandPrice(point.getDemandPrice() + cost);
+    }
+
+    return listToAddTo;
+  }
+
 
 
   /**

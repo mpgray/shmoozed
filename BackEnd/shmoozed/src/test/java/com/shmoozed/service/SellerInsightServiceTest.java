@@ -28,6 +28,50 @@ public class SellerInsightServiceTest {
   }
 
   @Test
+  public void getProfitByItemIdAndCost() {
+    int ItemId = 1;
+    BigDecimal cost = new BigDecimal(3.5);
+
+    List<BuyerItem> buyerItemList = new ArrayList<>();
+
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.1), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.4), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6.04), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.12), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(11.9), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(12.64), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(0.11), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.55), 1));
+
+    when(mockBuyerItemRepository.findAllByItemId(ItemId)).thenReturn(buyerItemList);
+
+    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(3.55,0.25);
+    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(5,6);
+    DemandPricevsRevenueDataPoint dp003 = new DemandPricevsRevenueDataPoint(6.04,7.62);
+    DemandPricevsRevenueDataPoint dp004 = new DemandPricevsRevenueDataPoint(11.9,16.8);
+    DemandPricevsRevenueDataPoint dp005 = new DemandPricevsRevenueDataPoint(12.64,9.14);
+
+    List<DemandPricevsRevenueDataPoint> listOfAnswers = new ArrayList<>();
+
+    listOfAnswers.add(dp001);
+    listOfAnswers.add(dp002);
+    listOfAnswers.add(dp003);
+    listOfAnswers.add(dp004);
+    listOfAnswers.add(dp005);
+
+    List<DemandPricevsRevenueDataPoint> results = fixture.getProfitByItemIdAndCost(ItemId,cost);
+
+    assertEquals(listOfAnswers,results);
+  }
+
+  @Test
   public void getAllRevenueByItemId() {
     int ItemId = 1;
 
