@@ -8,6 +8,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  hide = true;
 
   constructor() {
   }
