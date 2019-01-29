@@ -8,7 +8,7 @@ public class DetailedSellerItem extends SellerItem {
   }
 
   public DetailedSellerItem(SellerItem sellerItem, DetailedItem detailedItem) {
-    super(sellerItem.getId(), sellerItem.getItemId(), sellerItem.getPrice(), sellerItem.getUserId());
+    super(sellerItem.getId(), sellerItem.getItemId(), sellerItem.getPrice(), sellerItem.getUserId(),sellerItem.getSellerCost());
     this.detailedItem = detailedItem;
   }
 
