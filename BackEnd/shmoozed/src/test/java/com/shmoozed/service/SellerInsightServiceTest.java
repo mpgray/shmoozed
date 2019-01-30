@@ -3,6 +3,7 @@ package com.shmoozed.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.DemandPricevsRevenueDataPoint;
 import com.shmoozed.repository.BuyerItemRepository;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -52,11 +54,11 @@ public class SellerInsightServiceTest {
 
     when(mockBuyerItemRepository.findAllByItemId(ItemId)).thenReturn(buyerItemList);
 
-    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(3.55,0.25);
-    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(5,6);
-    DemandPricevsRevenueDataPoint dp003 = new DemandPricevsRevenueDataPoint(6.04,7.62);
-    DemandPricevsRevenueDataPoint dp004 = new DemandPricevsRevenueDataPoint(11.9,16.8);
-    DemandPricevsRevenueDataPoint dp005 = new DemandPricevsRevenueDataPoint(12.64,9.14);
+    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(3.55, 0.25);
+    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(5, 6);
+    DemandPricevsRevenueDataPoint dp003 = new DemandPricevsRevenueDataPoint(6.04, 7.62);
+    DemandPricevsRevenueDataPoint dp004 = new DemandPricevsRevenueDataPoint(11.9, 16.8);
+    DemandPricevsRevenueDataPoint dp005 = new DemandPricevsRevenueDataPoint(12.64, 9.14);
 
     List<DemandPricevsRevenueDataPoint> listOfAnswers = new ArrayList<>();
 
@@ -66,9 +68,9 @@ public class SellerInsightServiceTest {
     listOfAnswers.add(dp004);
     listOfAnswers.add(dp005);
 
-    List<DemandPricevsRevenueDataPoint> results = fixture.getProfitByItemIdAndCost(ItemId,cost);
+    List<DemandPricevsRevenueDataPoint> results = fixture.getProfitByItemIdAndCost(ItemId, cost);
 
-    assertEquals(listOfAnswers,results);
+    assertEquals(listOfAnswers, results);
   }
 
   @Test
@@ -149,15 +151,15 @@ public class SellerInsightServiceTest {
 
     when(mockBuyerItemRepository.findAllByItemId(ItemId)).thenReturn(buyerItemList);
 
-    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(1,61);
-    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(2,112);
-    DemandPricevsRevenueDataPoint dp003 = new DemandPricevsRevenueDataPoint(3,138);
-    DemandPricevsRevenueDataPoint dp004 = new DemandPricevsRevenueDataPoint(4,172);
-    DemandPricevsRevenueDataPoint dp005 = new DemandPricevsRevenueDataPoint(5,190);
-    DemandPricevsRevenueDataPoint dp006 = new DemandPricevsRevenueDataPoint(6,204);
-    DemandPricevsRevenueDataPoint dp007 = new DemandPricevsRevenueDataPoint(7,196);
-    DemandPricevsRevenueDataPoint dp008 = new DemandPricevsRevenueDataPoint(8,168);
-    DemandPricevsRevenueDataPoint dp009 = new DemandPricevsRevenueDataPoint(9,54);
+    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(1, 61);
+    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(2, 112);
+    DemandPricevsRevenueDataPoint dp003 = new DemandPricevsRevenueDataPoint(3, 138);
+    DemandPricevsRevenueDataPoint dp004 = new DemandPricevsRevenueDataPoint(4, 172);
+    DemandPricevsRevenueDataPoint dp005 = new DemandPricevsRevenueDataPoint(5, 190);
+    DemandPricevsRevenueDataPoint dp006 = new DemandPricevsRevenueDataPoint(6, 204);
+    DemandPricevsRevenueDataPoint dp007 = new DemandPricevsRevenueDataPoint(7, 196);
+    DemandPricevsRevenueDataPoint dp008 = new DemandPricevsRevenueDataPoint(8, 168);
+    DemandPricevsRevenueDataPoint dp009 = new DemandPricevsRevenueDataPoint(9, 54);
 
     List<DemandPricevsRevenueDataPoint> listOfAnswers = new ArrayList<>();
 
@@ -173,6 +175,6 @@ public class SellerInsightServiceTest {
 
     List<DemandPricevsRevenueDataPoint> results = fixture.getAllRevenueByItemId(ItemId);
 
-    assertEquals(listOfAnswers,results);
+    assertEquals(listOfAnswers, results);
   }
 }

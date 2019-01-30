@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SellerInsightService {
+
   private Logger logger = LoggerFactory.getLogger(SellerInsightService.class);
 
   private final BuyerItemRepository buyerItemRepository;
@@ -39,10 +40,9 @@ public class SellerInsightService {
   public List<DemandPricevsRevenueDataPoint> getProfitByItemIdAndCost(
     int itemId, BigDecimal cost) {
     logger.debug("Fetching all Price v Profit Data");
-    return calculatePricevsProfit(
-      doubleArrayFromBuyerItems(
-        (List<BuyerItem>) buyerItemRepository.findAllByItemId(itemId)
-      ), cost
+    return calculatePricevsProfit((
+                                    (List<BuyerItem>) buyerItemRepository.findAllByItemId(itemId)
+                                  ), cost
     );
   }
 
@@ -50,52 +50,34 @@ public class SellerInsightService {
    * Can re-use Revenue model if you trim the input array of values less than cost
    * Also need to convert to profit (subtract cost from price)
    * Final output adds price back to x-vals
-   * @param doubleArrayFromBuyerItems
-   * @param cost
-   * @return
    */
-  private List<DemandPricevsRevenueDataPoint> calculatePricevsProfit(double[] doubleArrayFromBuyerItems, BigDecimal cost) {
-    int countSmallerThanCost = 0;
+  private List<DemandPricevsRevenueDataPoint> calculatePricevsProfit(List<BuyerItem> allByItemId, BigDecimal cost) {
+
     double dCost = roundDoubleToMoney(cost.doubleValue());
-    double[] daOfProfitPotentials;
 
-    while(countSmallerThanCost < doubleArrayFromBuyerItems.length)
-    {
-      if(doubleArrayFromBuyerItems[countSmallerThanCost] <= dCost)
-      {
-        countSmallerThanCost++;
-      }
-      else
-      {
-        break;
-      }
-    }
+    double[] profitArray =
+      allByItemId.stream()
+        .map(BuyerItem::getPrice)
+        .map(BigDecimal::doubleValue)
+        .map(x -> x - dCost)
+        .map(this::roundDoubleToMoney)
+        .filter(x -> x > 0)
+        .mapToDouble(x -> x)
+        .toArray();
 
-    int lengthOfNewArray = doubleArrayFromBuyerItems.length - countSmallerThanCost;
+    Arrays.sort(profitArray);
 
-    daOfProfitPotentials = new double[lengthOfNewArray];
-
-    int iter = 0;
-    for(int i = countSmallerThanCost; i < doubleArrayFromBuyerItems.length; i++)
-    {
-      daOfProfitPotentials[iter] = doubleArrayFromBuyerItems[i] - dCost;
-      iter++;
-    }
-
-    return addBackCostToXvals(calculatePricevsRevenue(daOfProfitPotentials),dCost);
+    return addBackCostToXvals(calculatePricevsRevenue(profitArray), dCost);
   }
 
   private List<DemandPricevsRevenueDataPoint> addBackCostToXvals(
-    List<DemandPricevsRevenueDataPoint> listToAddTo, double cost)
-  {
-    for (DemandPricevsRevenueDataPoint point:listToAddTo) {
+    List<DemandPricevsRevenueDataPoint> listToAddTo, double cost) {
+    for (DemandPricevsRevenueDataPoint point : listToAddTo) {
       point.setDemandPrice(point.getDemandPrice() + cost);
     }
 
     return listToAddTo;
   }
-
-
 
   /**
    * Takes in List of buyerItems,
@@ -103,10 +85,10 @@ public class SellerInsightService {
    * puts into double array,
    * sorts it, returns it
    */
-  private double[] doubleArrayFromBuyerItems(List<BuyerItem> list){
+  private double[] doubleArrayFromBuyerItems(List<BuyerItem> list) {
     double[] daToReturn = new double[list.size()];
 
-    for(int i = 0; i < list.size(); i++) {
+    for (int i = 0; i < list.size(); i++) {
       daToReturn[i] = roundDoubleToMoney(list.get(i).getPrice().doubleValue());
     }
 
@@ -121,29 +103,29 @@ public class SellerInsightService {
    */
   private List<DemandPricevsRevenueDataPoint> calculatePricevsRevenue(double[] daOfDemandedPrices) {
     //for speed (porque es muy rapido)
-    HashMap<Double,Double> hmOfDemandPriceAndRevenues = new HashMap();
+    HashMap<Double, Double> hmOfDemandPriceAndRevenues = new HashMap();
 
     double demand, revenue;
 
     for (int i = 0; i < daOfDemandedPrices.length; i++) {
       demand = daOfDemandedPrices[i];
-      revenue = roundDoubleToMoney((daOfDemandedPrices.length - i)*demand);
+      revenue = roundDoubleToMoney((daOfDemandedPrices.length - i) * demand);
 
-      if(hmOfDemandPriceAndRevenues.containsKey(demand)) {
-        if(hmOfDemandPriceAndRevenues.get(demand) < revenue) {
-          hmOfDemandPriceAndRevenues.replace(demand,revenue);
+      if (hmOfDemandPriceAndRevenues.containsKey(demand)) {
+        if (hmOfDemandPriceAndRevenues.get(demand) < revenue) {
+          hmOfDemandPriceAndRevenues.replace(demand, revenue);
         }
       }
       else {
-        hmOfDemandPriceAndRevenues.put(demand,revenue);
+        hmOfDemandPriceAndRevenues.put(demand, revenue);
       }
     }
 
     //revenues to list
     List<DemandPricevsRevenueDataPoint> listToReturn = new ArrayList<>();
 
-    for (Map.Entry<Double,Double> e:hmOfDemandPriceAndRevenues.entrySet()) {
-      listToReturn.add(new DemandPricevsRevenueDataPoint(e.getKey(),e.getValue()));
+    for (Map.Entry<Double, Double> e : hmOfDemandPriceAndRevenues.entrySet()) {
+      listToReturn.add(new DemandPricevsRevenueDataPoint(e.getKey(), e.getValue()));
     }
 
     //sort list to return
@@ -160,7 +142,7 @@ public class SellerInsightService {
   }
 
   private double roundDoubleToMoney(double d) {
-    return (Math.round(d*100))/100.0;
+    return (Math.round(d * 100)) / 100.0;
   }
 
 }
