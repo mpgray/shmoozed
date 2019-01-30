@@ -19,6 +19,8 @@ script:
 
 # Deploy the Backend to Elasticbeanstalk
 deploy:
+  # For some weird reason, Travis decides that it is a good idea to blow away everything it made during the build phase... This stops that from happening.
+  skip_cleanup: true
   provider: elasticbeanstalk
   access_key_id: AKIAJ25AYVIIHFSCP4IQ
   secret_access_key:
