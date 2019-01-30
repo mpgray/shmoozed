@@ -28,7 +28,7 @@ deploy:
   env: ShmoozedBackendApi-env
   bucket_name: elasticbeanstalk-us-east-2-867543728765
   # Although this says "zip_file" it really means "deploy_file" so point it directly at the jar file
-  zip_file: 'BackEnd/shmoozed/target/shmoozed-0.3.0.jar'
+  zip_file: '/home/travis/build/cowancs3750fall18/semesterproject-group-2/BackEnd/shmoozed/target/shmoozed-0.3.0.jar'
   on:
     repo: cowancs3750fall18/semesterproject-group-2
     branch: master
