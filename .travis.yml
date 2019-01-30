@@ -11,10 +11,10 @@ script:
   # Perform Backend build
   - mvn clean install
   # Perform Frontend build
-#  - cd ../../FrontEnd/
-#  - npm install
-#  - npm install -g @angular/cli
-#  - ng build
+  - cd ../../FrontEnd/
+  - npm install
+  - npm install -g @angular/cli
+  - ng build
   # FUTURE - Deploy Frontend using SCP
 
 # Deploy the Backend to Elasticbeanstalk
