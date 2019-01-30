@@ -10,7 +10,7 @@ script:
   - mvn clean install
   # Perform Frontend build
   - cd ../../FrontEnd/
-  - npm install --verbose
+  - npm install
   - npm install -g @angular/cli
   - ng build
   # FUTURE - Deploy Frontend using SCP
