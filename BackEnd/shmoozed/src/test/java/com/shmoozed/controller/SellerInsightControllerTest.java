@@ -1,5 +1,7 @@
 package com.shmoozed.controller;
 
+import java.math.BigDecimal;
+
 import com.shmoozed.model.DemandPricevsRevenueDataPoint;
 import com.shmoozed.service.SellerInsightService;
 import org.junit.Test;
@@ -39,6 +41,21 @@ public class SellerInsightControllerTest {
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().json("[{\"demandPrice\":1.0,\"revenue\":61.0}," +
-                                          "{\"demandPrice\":2.0,\"revenue\":112.0}]"));
+                                  "{\"demandPrice\":2.0,\"revenue\":112.0}]"));
+  }
+
+  @Test
+  public void getPricevsProfit() throws Exception {
+    DemandPricevsRevenueDataPoint dp001 = new DemandPricevsRevenueDataPoint(1,61);
+    DemandPricevsRevenueDataPoint dp002 = new DemandPricevsRevenueDataPoint(2,112);
+
+    when(mockSellerInsightService.getProfitByItemIdAndCost(
+      1,new BigDecimal(3.50))).thenReturn(asList(dp001, dp002));
+
+    mockMvc.perform(get("/sellerinsight/profit/1/3.50"))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().json("[{\"demandPrice\":1.0,\"revenue\":61.0}," +
+                                  "{\"demandPrice\":2.0,\"revenue\":112.0}]"));
   }
 }
