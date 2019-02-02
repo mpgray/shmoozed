@@ -73,7 +73,7 @@ public class SellerInsightService {
   private List<DemandPricevsRevenueDataPoint> addBackCostToXvals(
     List<DemandPricevsRevenueDataPoint> listToAddTo, double cost) {
     for (DemandPricevsRevenueDataPoint point : listToAddTo) {
-      point.setDemandPrice(point.getDemandPrice() + cost);
+      point.setDemandPrice(roundDoubleToMoney(point.getDemandPrice() + cost));
     }
 
     return listToAddTo;
