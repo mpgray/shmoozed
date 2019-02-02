@@ -479,6 +479,64 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "SellerInsight",
+					"item": [
+						{
+							"name": "Get Revenue - /sellerinsight/{itemId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/sellerinsight/92",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"sellerinsight",
+										"92"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profit - /selerinsight/profit/{itemId}/{cost}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/sellerinsight/profit/92/100",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"sellerinsight",
+										"profit",
+										"92",
+										"100"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Seller Items",
 					"item": [
 						{
@@ -1551,6 +1609,68 @@
 									"port": "5000",
 									"path": [
 										"itemhistory"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "SellerInsight",
+					"item": [
+						{
+							"name": "Get Revenue - /sellerinsight/{itemId}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/sellerinsight/92",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"sellerinsight",
+										"92"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profit - /selerinsight/profit/{itemId}/{cost}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/sellerinsight/profit/92/100",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"sellerinsight",
+										"profit",
+										"92",
+										"100"
 									]
 								}
 							},
