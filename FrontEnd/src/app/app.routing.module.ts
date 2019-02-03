@@ -17,6 +17,7 @@ import {AdminComponent} from './account/admin/admin.component';
 import { ItemHistoryComponent } from './buying/item-history/item-history.component';
 import {Register} from 'ts-node';
 import {RegisterComponent} from './account/register/register.component';
+import {OnboardComponent} from './account/onboard/onboard.component';
 
 
 const routes: Routes = [{
@@ -78,6 +79,11 @@ const routes: Routes = [{
   component: LoginComponent,
   data: { title: 'Login' }
 }, {
+    path: 'onboard',
+    component: OnboardComponent,
+    data: { title: 'Onboarding' }
+  },
+  {
   path: 'homepage',
   component: HomepageComponent,
   data: { title: 'Shmoozed' }

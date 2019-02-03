@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AlertModule } from 'ngx-bootstrap';
+import {MatTabsModule} from '@angular/material/tabs';
 import { AppComponent } from './app.component';
 import {
   MatButtonModule,
@@ -64,11 +65,13 @@ import { AddBuyItemComponent } from './buying/add-buy-item/add-buy-item.componen
 import { HistoricalPriceComponent } from './inventory/historical-price/historical-price.component';
 
 import { Top5Component } from './inventory/top5/top5.component';
+import { OnboardComponent } from './account/onboard/onboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminComponent,
     LayoutComponent,
     AccountComponent,
     SellingComponent,
@@ -76,6 +79,7 @@ import { Top5Component } from './inventory/top5/top5.component';
     DashboardComponent,
     TableComponent,
     ChartComponent,
+    RegisterComponent,
     LoginComponent,
     ChartComponent,
     InventoryComponent,
@@ -95,7 +99,8 @@ import { Top5Component } from './inventory/top5/top5.component';
     SellerInsightsComponent,
     AddBuyItemComponent,
     HistoricalPriceComponent,
-    Top5Component
+    Top5Component,
+    OnboardComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -114,6 +119,7 @@ import { Top5Component } from './inventory/top5/top5.component';
     MatListModule,
     MatSortModule,
     MatAutocompleteModule,
+    MatTabsModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
