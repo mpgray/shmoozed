@@ -65,6 +65,7 @@ import { AddBuyItemComponent } from './buying/add-buy-item/add-buy-item.componen
 import { HistoricalPriceComponent } from './inventory/historical-price/historical-price.component';
 
 import { Top5Component } from './inventory/top5/top5.component';
+import { OnboardComponent } from './account/onboard/onboard.component';
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import { Top5Component } from './inventory/top5/top5.component';
     SellerInsightsComponent,
     AddBuyItemComponent,
     HistoricalPriceComponent,
-    Top5Component
+    Top5Component,
+    OnboardComponent
   ],
   imports: [
     AlertModule.forRoot(),
