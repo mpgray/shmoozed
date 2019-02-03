@@ -43,3 +43,13 @@ are some hoops we are going to have to jump through in order for it to work for 
 3. Validate API (Integration Tests)
 4. Launch UI Fullstack Tests (Acceptance Tests)
 
+### Backend Travis / Elastic Beanstalk Deploy Setup
+
+Instructions for setting up the Backend deploy via Elastic Beanstalk directly can be found at https://docs.travis-ci.com/user/deployment/elasticbeanstalk/
+
+Note that credentials for deploying must be encrypted via the `travis-cli` tool. That involves installing Ruby and a Gem they created for it. Ick...
+Thanksfully, a docker image was created by a group and available to use without needing to install Ruby, the gem, etc. It is available at 
+https://hub.docker.com/r/skandyla/travis-cli/ Follow the instructions on the docker image to run commands against the `travis-cli`.
+
+I chose to use the `travis setup elasticbeanstalk` option in the Travis instructions instead of setting it all up by hand. This made it go alot smoother.
+

@@ -30,15 +30,19 @@ public class SellerItem {
   @Column(name = "User_Id")
   private int userId;
 
+  @Column(name = "Seller_Cost")
+  private BigDecimal sellerCost;
+
   public SellerItem() {
     // Empty default constructor. This is needed in order for JPA to work properly.
   }
 
-  public SellerItem(int id, int itemId, BigDecimal price, int userId) {
+  public SellerItem(int id, int itemId, BigDecimal price, int userId, BigDecimal sellerCost) {
     this.id = id;
     this.itemId = itemId;
     this.price = price;
     this.userId = userId;
+    this.sellerCost = sellerCost;
   }
 
   public int getId() {
@@ -73,6 +77,10 @@ public class SellerItem {
     this.userId = userId;
   }
 
+  public BigDecimal getSellerCost() { return sellerCost; }
+
+  public void setSellerCost(BigDecimal sellerCost) { this.sellerCost = sellerCost; }
+
   @Override
   public String toString() {
     return "SellerItem{" +
@@ -80,6 +88,7 @@ public class SellerItem {
       ", itemId=" + itemId +
       ", price=" + price +
       ", userId=" + userId +
+      ", sellerCost=" + sellerCost +
       '}';
   }
 }

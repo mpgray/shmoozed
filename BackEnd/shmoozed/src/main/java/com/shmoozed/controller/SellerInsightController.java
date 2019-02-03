@@ -1,5 +1,6 @@
 package com.shmoozed.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.shmoozed.model.DemandPricevsRevenueDataPoint;
@@ -37,10 +38,22 @@ public class SellerInsightController {
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<DemandPricevsRevenueDataPoint>> getPricevsRevenue(
-                                                        @PathVariable("item_id") int itemId) {
+    @PathVariable("item_id") int itemId) {
     logger.debug("Request for Price vs Revenue for itemId={}", itemId);
 
     return new ResponseEntity<>(sellerInsightService.getAllRevenueByItemId(itemId), HttpStatus.OK);
+  }
+
+  @GetMapping(
+    path="/profit/{item_id}/{cost}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<List<DemandPricevsRevenueDataPoint>> getPricevsProfit(
+    @PathVariable("item_id") int itemId, @PathVariable("cost") double cost) {
+    logger.debug("Request for Price vs Profit for itemId={} and cost={}", itemId, cost);
+
+    return new ResponseEntity<>(sellerInsightService.getProfitByItemIdAndCost(
+      itemId, new BigDecimal(cost)), HttpStatus.OK);
   }
 
 }

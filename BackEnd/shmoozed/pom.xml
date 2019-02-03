@@ -78,6 +78,17 @@
     </dependency>
 
     <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <!--
+      This h2 database should only be included while running tests
+      so that Spring Boot will automatically launch it so our controller
+      tests aren't dependent on an external database to run
+      -->
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>pl.project13.maven</groupId>
       <artifactId>git-commit-id-plugin</artifactId>
       <version>${git-commit-id-plugin.version}</version>
