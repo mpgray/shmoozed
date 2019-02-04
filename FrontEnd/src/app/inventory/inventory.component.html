@@ -51,7 +51,7 @@
       <button class="expandButton" mat-icon-button (click)="divStatus2=!divStatus2">
         <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
       </button>
-      <app-historical-price [itemId]=selectedItem></app-historical-price>
+      <app-historical-price [itemId]=selectedItem [divStatus]=divStatus2></app-historical-price>
     </div>
   </ng-template>
   <!-- set price tool -->
