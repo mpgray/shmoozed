@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TableComponent} from '../shared/table/table.component';
 import {isNumeric} from 'rxjs/internal-compatibility';
 import {RESTService} from '../services/rest.service';
+import { MatDialog } from '@angular/material';
+import { AddSellerItemComponent } from './add-seller-item/add-seller-item.component';
 
 @Component({
   selector: 'app-inventory',
@@ -23,8 +25,12 @@ export class InventoryComponent implements OnInit {
   products: any = [];
   temp: any = [];
 
-  constructor(public rest: RESTService, private route: ActivatedRoute, private router: Router) {
+  constructor(public rest: RESTService,
+    private route: ActivatedRoute,
+    private router: Router,
+    public dialog: MatDialog) {
   }
+
 
   ngOnInit() {
     this.fileName = 'Click Browse to import CSV file';
@@ -57,6 +63,10 @@ export class InventoryComponent implements OnInit {
         this.csvRecords = this.getDataFromCSVFile(this.csvRecordsArray);
       };
     }
+  }
+
+  public openAddItemDialog() {
+    this.dialog.open(AddSellerItemComponent, { width: '500px' });
   }
 
   isCSVFile(file) {

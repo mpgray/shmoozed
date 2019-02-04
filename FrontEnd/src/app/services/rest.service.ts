@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {map, catchError, tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/';
+const endpoint = 'http://api.shmoozed.com/';
 const itempath = 'example/item';
 const buyerpath = 'item/buyer';
 const sellerpath = 'item/seller';
 const userpath = 'user';
 const walmartURL = 'walmart/url';
-const walmartURLDetails = "walmart/urlbuyerdetails?quantity=";
-const itemPriceHistory = 'itemhistory/'
-const top5 = "item/top";
+const walmartURLDetails = 'walmart/urlbuyerdetails?quantity=';
+const itemPriceHistory = 'itemhistory/';
+const top5 = 'item/top';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,8 +34,8 @@ export class RESTService {
   }
 
   //////////////////
-// Buyer Rest    //
-//////////////////
+  // Buyer Rest    //
+  //////////////////
   getBuyerItems(): Observable<any> {
     return this.http.get(endpoint + buyerpath).pipe(
       map(this.extractData));
@@ -68,36 +68,36 @@ export class RESTService {
     );
   }
 
-///////////////////////
-// End Buyer        //
-/////////////////////
+  ///////////////////////
+  // End Buyer        //
+  /////////////////////
 
- ///////////////////
-// walmart REST   //
-//////////////////
-addWalmartURL(url): Observable<any> {
-  console.log(url);
-  return this.http.post<any>(endpoint + walmartURL, JSON.stringify(url), httpOptions).pipe(
-    tap(_ => console.log(`added item w/ url=${url}`)),
-    catchError(this.handleError<any>('addItem'))
-  );
-}
-
-  addWalmartBuyerDetails(quantity, price, userid, url): Observable<any> {
+  ///////////////////
+  // walmart REST   //
+  //////////////////
+  addWalmartURL(url): Observable<any> {
     console.log(url);
-    // tslint:disable-next-line:max-line-length
-    return this.http.post<any>(endpoint + walmartURLDetails +quantity +"&price=" +price +"&userId=" +userid, JSON.stringify(url), httpOptions).pipe(
+    return this.http.post<any>(endpoint + walmartURL, JSON.stringify(url), httpOptions).pipe(
       tap(_ => console.log(`added item w/ url=${url}`)),
       catchError(this.handleError<any>('addItem'))
     );
   }
- //////////////////
-// End walmart  //
-//////////////////
+
+  addWalmartBuyerDetails(quantity, price, userid, url): Observable<any> {
+    console.log(url);
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>(endpoint + walmartURLDetails + quantity + '&price=' + price + '&userId=' + userid, JSON.stringify(url), httpOptions).pipe(
+      tap(_ => console.log(`added item w/ url=${url}`)),
+      catchError(this.handleError<any>('addItem'))
+    );
+  }
+  //////////////////
+  // End walmart  //
+  //////////////////
 
   //////////////////
-// Seller REST   //
-//////////////////
+  // Seller REST   //
+  //////////////////
   getSellerItems(): Observable<any> {
     return this.http.get(endpoint + sellerpath).pipe(
       map(this.extractData));
@@ -142,13 +142,13 @@ addWalmartURL(url): Observable<any> {
       map(this.extractData));
   }
 
-///////////////////////
-// END Seller       //
-//////////////////////
+  ///////////////////////
+  // END Seller       //
+  //////////////////////
 
-//////////////////
-// User REST    //
-//////////////////
+  //////////////////
+  // User REST    //
+  //////////////////
   getUsers(): Observable<any> {
     return this.http.get(endpoint + userpath).pipe(
       map(this.extractData));
@@ -181,9 +181,9 @@ addWalmartURL(url): Observable<any> {
     );
   }
 
-///////////////////////
-// END User         //
-//////////////////////
+  ///////////////////////
+  // END User         //
+  //////////////////////
   getExampleItems(): Observable<any> {
     return this.http.get(endpoint + itempath).pipe(
       map(this.extractData));
