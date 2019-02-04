@@ -19,6 +19,12 @@ export class InventoryComponent implements OnInit {
   selectedItem: number;
   products: any = [];
   temp: any = [];
+  divStatus1 = false;
+  divStatus2 = false;
+  divStatus3 = false;
+  divStatus4 = false;
+  divStatus5 = false;
+  divStatus6 = false;
 
   constructor(public rest: RESTService,
     private route: ActivatedRoute,
@@ -32,16 +38,6 @@ export class InventoryComponent implements OnInit {
 
   public openAddItemDialog() {
     this.dialog.open(AddSellerItemComponent, { width: '500px' });
-  }
-
-  addProduct() {
-    if (this.addProductData.name.length !== 0 && isNumeric(this.addProductData.quantity)) {
-      this.rest.addExampleItem(this.addProductData).subscribe((result) => {
-        location.reload();
-      }, (err) => {
-        console.log(err);
-      });
-    }
   }
 
   // item selection tool
