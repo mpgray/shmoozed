@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { SellerItem } from 'src/app/models/seller-item';
+import { AddSellerItemService } from './add-seller-item.service';
 
 @Component({
   selector: 'app-add-seller-item',
@@ -7,10 +9,13 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./add-seller-item.component.css']
 })
 export class AddSellerItemComponent implements OnInit {
-
-  constructor(private dialogRef: MatDialogRef<AddSellerItemComponent>) { }
+  public sellerItem = new SellerItem();
+  public itemUrl = '';
+  constructor(private dialogRef: MatDialogRef<AddSellerItemComponent>,
+    private service: AddSellerItemService) { }
 
   ngOnInit() {
+    this.sellerItem.userId = 2;
   }
 
   cancel() {
@@ -18,7 +23,15 @@ export class AddSellerItemComponent implements OnInit {
   }
 
   addSellerItem() {
-    this.dialogRef.close(false);
+    this.service.GetWalmartItem(this.itemUrl)
+    .subscribe(walmartItem => {
+      this.sellerItem.itemId = walmartItem.linkedItemId;
+      this.service.AddSellerItem(this.sellerItem)
+      .subscribe(() => {
+        this.dialogRef.close(true);
+      });
+    });
+    // this.dialogRef.close(false);
   }
 
 
