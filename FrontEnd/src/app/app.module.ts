@@ -66,6 +66,7 @@ import { HistoricalPriceComponent } from './inventory/historical-price/historica
 
 import { Top5Component } from './inventory/top5/top5.component';
 import { OnboardComponent } from './account/onboard/onboard.component';
+import { AddSellerItemComponent } from './inventory/add-seller-item/add-seller-item.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { OnboardComponent } from './account/onboard/onboard.component';
     AddBuyItemComponent,
     HistoricalPriceComponent,
     Top5Component,
-    OnboardComponent
+    OnboardComponent,
+    AddSellerItemComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -141,6 +143,6 @@ import { OnboardComponent } from './account/onboard/onboard.component';
   ],
   providers: [BuyingService, SellerInsightsService],
   bootstrap: [AppComponent],
-  entryComponents: [ItemHistoryComponent, AddBuyItemComponent]
+  entryComponents: [ItemHistoryComponent, AddBuyItemComponent, AddSellerItemComponent]
 })
 export class AppModule { }
