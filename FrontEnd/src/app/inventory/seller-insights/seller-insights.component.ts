@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnChang
 import { Chart } from 'chart.js';
 import { SellerInsightsService } from './seller-insights.service';
 import { SellerInsightDatapoint } from 'src/app/models/seller-insight-datapoint';
+import { DetailedSellerItem } from 'src/app/models/detailed-seller-item';
+import { SellerItem } from 'src/app/models/seller-item';
 
 @Component({
   selector: 'app-seller-insights',
@@ -13,6 +15,7 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   sellerInsights: SellerInsightDatapoint[];
   chartLabels = [];
   chartData = [];
+  sellerItems: SellerItem[];
 
   @Input() itemId: number;
   @ViewChild('canvas') canvas: ElementRef;
@@ -20,11 +23,18 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   constructor(private service: SellerInsightsService) { }
 
   ngOnInit() {
-
+    this.service.getDetailedSellerItems(2)
+    .subscribe(items => {
+      this.sellerItems = items;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.itemId) {
+      const item = this.getSellerItem(this.itemId);
+      if (item !== undefined && item.sellerCost) {
+        console.log(item.sellerCost);
+      }
       this.getSellerInsightData();
     }
   }
@@ -57,6 +67,13 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
       return 0;
     }
     this.sellerInsights = datapoints.sort(compare);
+  }
+
+  getSellerItem(itemId: number) {
+    if (this.sellerItems === undefined) {
+      return;
+    }
+    return this.sellerItems.find(x => x.itemId === itemId);
   }
 
   updateChart() {
