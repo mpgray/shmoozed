@@ -1,4 +1,3 @@
-
 <div class="data-card data-card-page-titles" matRipple fxFlex="32" fxFlex.xs="100">
   <div class="data-card-icon">
     <mat-icon>attach_money</mat-icon>
@@ -19,79 +18,100 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <!-- add item dialog button -->
   <div class="col-md-auto"><p style="margin-top: 18px">Selected Item ID: {{selectedItem}}</p></div>
   <button mat-raised-button color="primary" (click)="openAddItemDialog()">Add Test Item</button>
 </div>
 <!-- cards with seller tools -->
 <div class="row">
-  <div class="col-md-4">
-    <div class="col">
-      <!-- Insights tool -->
-      <div>
-        <app-seller-insights [itemId]=selectedItem></app-seller-insights>
-      </div>
-      <!-- set price tool -->
-      <div>
-        <mat-card>
-          <mat-card-header class="price-header">
-            <mat-card-title>Set price targets for your inventory:</mat-card-title>
-            <mat-card-subtitle>We'll let you know when the target is reached</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>Selected Item ID: {{selectedItem}}</p>
-            <mat-form-field>
-              <mat-label>Enter the price:</mat-label>
-              <input [(ngModel)]="setPriceTargetData.price" matInput type="number">
-            </mat-form-field>
-          </mat-card-content>
-          <button mat-raised-button color="primary" (click)="setPriceTarget()">Save/Update</button>
-        </mat-card>
-      </div>
-      <!-- top 5 tool -->
+  <!-- Insights tool -->
+  <ng-container *ngIf="!divStatus1; then small1; else expanded1"></ng-container>
+  <ng-template #small1>
+    <div [ngClass]="divStatus1 ? 'col-md-8' : 'col-md-4'" (click)="divStatus1=!divStatus1">
+      <app-seller-insights [itemId]=selectedItem></app-seller-insights>
+    </div>
+  </ng-template>
+  <ng-template #expanded1>
+    <div [ngClass]="divStatus1 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus1=!divStatus1">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-seller-insights [itemId]=selectedItem></app-seller-insights>
+    </div>
+  </ng-template>
+  <!-- historical price tool -->
+  <ng-container *ngIf="!divStatus2; then small2; else expanded2"></ng-container>
+  <ng-template #small2>
+    <div [ngClass]="divStatus2 ? 'col-md-8' : 'col-md-4'" (click)="divStatus2=!divStatus2">
+      <app-historical-price [itemId]=selectedItem [divStatus]=divStatus2></app-historical-price>
+    </div>
+  </ng-template>
+  <ng-template #expanded2>
+    <div [ngClass]="divStatus2 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus2=!divStatus2">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-historical-price [itemId]=selectedItem [divStatus]=divStatus2></app-historical-price>
+    </div>
+  </ng-template>
+  <!-- set price tool -->
+  <ng-container *ngIf="!divStatus3; then small3; else expanded3"></ng-container>
+  <ng-template #small3>
+    <div [ngClass]="divStatus3 ? 'col-md-8' : 'col-md-4'" (click)="divStatus3=!divStatus3">
+      <app-set-price [itemId]=selectedItem></app-set-price>
+    </div>
+  </ng-template>
+  <ng-template #expanded3>
+    <div [ngClass]="divStatus3 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus3=!divStatus3">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-set-price [itemId]=selectedItem></app-set-price>
+    </div>
+  </ng-template>
+  <!-- top 5 tool -->
+  <ng-container *ngIf="!divStatus4; then small4; else expanded4"></ng-container>
+  <ng-template #small4>
+    <div [ngClass]="divStatus4 ? 'col-md-8' : 'col-md-4'" (click)="divStatus4=!divStatus4">
       <app-top5></app-top5>
     </div>
-  </div>
-  <!-- historical price tool -->
-  <div class="col-md-8">
-    <div class="col">
-      <div>
-        <app-historical-price [itemId]=selectedItem></app-historical-price>
-      </div>
+  </ng-template>
+  <ng-template #expanded4>
+    <div [ngClass]="divStatus4 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus4=!divStatus4">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-top5></app-top5>
     </div>
-    <div>
-      <!-- table with inventory -->
+  </ng-template>
+  <!-- table with inventory -->
+  <ng-container *ngIf="!divStatus5; then small5; else expanded5"></ng-container>
+  <ng-template #small5>
+    <div [ngClass]="divStatus5 ? 'col-md-8' : 'col-md-4'" (click)="divStatus5=!divStatus5">
       <app-table></app-table>
     </div>
-    <!-- add single item to inventory -->
-    <div class="card-body">
-      <input [(ngModel)]="addProductData.name" size=20 placeholder="Name" />
-      <input [(ngModel)]="addProductData.quantity" size=3 placeholder="Quantity" />
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <button mat-raised-button color="primary" (click)="addProduct()">Add Item</button>
-      </form>
+  </ng-template>
+  <ng-template #expanded5>
+    <div [ngClass]="divStatus5 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus5=!divStatus5">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-table></app-table>
     </div>
-    <!-- import csv to inventory -->
-    <div>
-      <table class="table table-responsive table-hover" style="width : 90%;">
-        <tbody>
-          <ng-container *ngFor="let csvRec of csvRecords;let i=index">
-            <tr>
-              <ng-container *ngFor="let data of csvRec;let j=index">
-                <td>{{data}}</td>
-              </ng-container>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
+  </ng-template>
+  <!-- import csv to inventory -->
+  <ng-container *ngIf="!divStatus6; then small6; else expanded6"></ng-container>
+  <ng-template #small6>
+    <div [ngClass]="divStatus6 ? 'col-md-8' : 'col-md-4'" (click)="divStatus6=!divStatus6">
+      <app-import-csv></app-import-csv>
     </div>
-    <div class="input-group">
-      <div class="custom-file">
-        <input type="file" class="upload" id="inputGroupFile04" (change)="fileListener($event.target.files)">
-        <label class="custom-file-label" for="inputGroupFile04">{{fileName}}</label>
-      </div>
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" (click)="importProducts()">Import</button>
-      </div>
+  </ng-template>
+  <ng-template #expanded6>
+    <div [ngClass]="divStatus6 ? 'col-md-8' : 'col-md-4'">
+      <button class="expandButton" mat-icon-button (click)="divStatus6=!divStatus6">
+        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+      </button>
+      <app-import-csv></app-import-csv>
     </div>
-  </div>
+  </ng-template>
 </div>

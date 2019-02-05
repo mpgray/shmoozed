@@ -1,5 +1,8 @@
 <mat-card>
-  <mat-card-header>Revenue Forecast</mat-card-header>
+  <mat-card-header class="insights-header">
+    <mat-card-title>Revenue Forecast:</mat-card-title>
+    <mat-card-subtitle>Show me the money!</mat-card-subtitle>
+  </mat-card-header>
   <mat-card-content>
     <div *ngIf="chart">
       <canvas #canvas id="canvas">{{ chart }}</canvas>
