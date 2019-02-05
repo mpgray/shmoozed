@@ -7,6 +7,8 @@
   * [Docker Installation](#docker-installation)
   * [Maven Installation](#maven-installation)
     + [Specifying a different Maven version in IntelliJ](#specifying-a-different-maven-version-in-intellij)
+  * [AWS CLI](#aws-cli)
+    + [AWS CLI Configuration](#aws-cli-configuration)
   * [Docker MySQL](#docker-mysql)
     + [Useful Docker Commands](#useful-docker-commands)
   * [IntelliJ IDE Configuration](#intellij-ide-configuration)
@@ -71,6 +73,30 @@ IntelliJ was able to communicate with it properly.
 5. Click Apply. Click Ok.
 
 Run a `mvn clean install` and ensure that the build finishes successfully.
+
+## AWS CLI
+
+In order to deploy Docker images to AWS, the `aws-cli` needs to be installed.
+
+In install, follow the instructions for your OS at https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+
+The easiest solution is generally to install via a "bundled installer". 
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html#install-tool-bundled
+
+### AWS CLI Configuration
+
+In order to use the AWS CLI it first needs to be configured with your security credentials. For detailed instructions,
+follow Amazon's instructions here: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
+
+```
+$ aws configure 
+AWS Access Key ID [None]: XXXXXXXXXX
+AWS Secret Access Key [None]: XXXXXXXXXX
+Default region name [None]: us-east-2         
+Default output format [None]: json
+```
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/single-container-docker-configuration.html
 
 ## Docker MySQL
 
