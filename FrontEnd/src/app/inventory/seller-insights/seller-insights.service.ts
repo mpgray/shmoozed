@@ -22,4 +22,9 @@ export class SellerInsightsService {
     const apiLocation = environment.baseUrl + 'sellerinsight/' + itemId;
     return this.http.get<SellerInsightDatapoint[]>(apiLocation);
   }
+
+  getSellerProfitInsightData(itemId: number, sellerCost: number) {
+    const apiLocation = environment.baseUrl + 'sellerinsight/profit/' + itemId + '/' + sellerCost;
+    return this.http.get<SellerInsightDatapoint[]>(apiLocation);
+  }
 }

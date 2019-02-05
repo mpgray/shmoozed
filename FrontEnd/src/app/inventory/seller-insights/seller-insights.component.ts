@@ -16,6 +16,8 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   chartLabels = [];
   chartData = [];
   sellerItems: SellerItem[];
+  profitForecast = false;
+  chartHasData = true;
 
   @Input() itemId: number;
   @ViewChild('canvas') canvas: ElementRef;
@@ -26,15 +28,23 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
     this.service.getDetailedSellerItems(2)
     .subscribe(items => {
       this.sellerItems = items;
+      this.getChartData();
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.itemId) {
-      const item = this.getSellerItem(this.itemId);
-      if (item !== undefined && item.sellerCost) {
-        console.log(item.sellerCost);
-      }
+      this.getChartData();
+    }
+  }
+
+  getChartData() {
+    const item = this.getSellerItem(this.itemId);
+    if (item !== undefined && item.sellerCost) {
+      this.profitForecast = true;
+      this.getProfitForecast(item.sellerCost);
+    } else {
+      this.profitForecast = false;
       this.getSellerInsightData();
     }
   }
@@ -44,15 +54,31 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
     this.getSellerInsightData();
   }
 
+  getProfitForecast(sellerCost: number) {
+    this.service.getSellerProfitInsightData(this.itemId, sellerCost)
+    .subscribe(datapoints => {
+      if (datapoints.length > 0) {
+        this.publishChartData(datapoints);
+      } else {
+        this.getSellerInsightData();
+      }
+    });
+  }
+
+  private publishChartData(datapoints: SellerInsightDatapoint[]) {
+    this.chartHasData = datapoints.length > 0;
+    this.sortDataPointsByPrice(datapoints);
+    this.sellerInsights.forEach(element => {
+      this.chartLabels.push(element.demandPrice.toString());
+      this.chartData.push(element.revenue.toString());
+    });
+    this.updateChart();
+  }
+
   getSellerInsightData() {
     this.service.getSellerInsightData(this.itemId)
       .subscribe(datapoints => {
-        this.sortDataPointsByPrice(datapoints);
-        this.sellerInsights.forEach(element => {
-          this.chartLabels.push(element.demandPrice.toString());
-          this.chartData.push(element.revenue.toString());
-        });
-        this.updateChart();
+        this.publishChartData(datapoints);
       });
   }
 
@@ -77,6 +103,7 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   }
 
   updateChart() {
+    const axisLabel = this.profitForecast ? 'Profit' : 'Revenue';
     this.chart.data = {
       labels: this.chartLabels,
       datasets: [
@@ -84,7 +111,7 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
           data: this.chartData,
           borderColor: '#3cba9f',
           fill: false,
-          label: 'Revenue'
+          label: axisLabel
         }
       ]
     };
