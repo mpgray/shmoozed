@@ -43,7 +43,7 @@
   <ng-container *ngIf="!divStatus2; then small2; else expanded2"></ng-container>
   <ng-template #small2>
     <div [ngClass]="divStatus2 ? 'col-md-8' : 'col-md-4'" (click)="divStatus2=!divStatus2">
-      <app-historical-price [itemId]=selectedItem></app-historical-price>
+      <app-historical-price [itemId]=selectedItem [divStatus]=divStatus2></app-historical-price>
     </div>
   </ng-template>
   <ng-template #expanded2>
