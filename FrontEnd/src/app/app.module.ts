@@ -67,6 +67,8 @@ import { HistoricalPriceComponent } from './inventory/historical-price/historica
 import { Top5Component } from './inventory/top5/top5.component';
 import { OnboardComponent } from './account/onboard/onboard.component';
 import { AddSellerItemComponent } from './inventory/add-seller-item/add-seller-item.component';
+import { SetPriceComponent } from './inventory/set-price/set-price.component';
+import { ImportCsvComponent } from './inventory/import-csv/import-csv.component';
 
 
 @NgModule({
@@ -102,7 +104,9 @@ import { AddSellerItemComponent } from './inventory/add-seller-item/add-seller-i
     HistoricalPriceComponent,
     Top5Component,
     OnboardComponent,
-    AddSellerItemComponent
+    AddSellerItemComponent,
+    SetPriceComponent,
+    ImportCsvComponent
   ],
   imports: [
     AlertModule.forRoot(),

@@ -11,6 +11,7 @@ import * as tf from '@tensorflow/tfjs';
 export class HistoricalPriceComponent implements OnInit {
 
   @Input() itemId: number;
+  @Input() divStatus: boolean;
   priceData: any = [];
   thisYearPrices: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   date = new Date();
@@ -19,10 +20,7 @@ export class HistoricalPriceComponent implements OnInit {
   // tensorflow vars
   model: tf.Sequential;
   prediction: any;
-  //predictionDates: any = [];
   prices: any = [];
-  //start = new Date(2018, 7, 1);
-  //oneDay = 1000 * 60 * 60 * 24;
 
   constructor(public rest: RESTService) {
   }
@@ -34,7 +32,7 @@ export class HistoricalPriceComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.itemId) {
+    if (changes.itemId || changes.divStatus) {
       this.updateChartData();
     }
   }
@@ -46,13 +44,24 @@ export class HistoricalPriceComponent implements OnInit {
   chartData = [
     {data: [33, 60, 26, 70], label: 'Last Year'},
     {data: [0, 0, 0, 0], label: 'This Year'},
-    {data: [, , , 34, 46], label: 'Forecast'}
+    {data: [, , , ,], label: 'Forecast'}
   ];
 
   chartLabels = [];
 
   updateChartData() {
     this.getItemPrices();
+  }
+
+  setChartData() {
+    this.chartData = [
+      {data: [33, 60, 26, 70], label: 'Last Year'},
+      {
+        data: [this.thisYearPrices[this.monthArray[0]], this.thisYearPrices[this.monthArray[1]], this.thisYearPrices[this.monthArray[2]], this.thisYearPrices[this.monthArray[3]]],
+        label: 'This Year'
+      },
+      {data: [, , , this.thisYearPrices[this.monthArray[3]], this.prediction], label: 'Forecast'}
+    ];
   }
 
   getItemPrices() {
@@ -167,6 +176,7 @@ export class HistoricalPriceComponent implements OnInit {
 
     // clear the price data array
     this.prices = [];
+    this.prediction = null;
 
     //parse the priceData and calculate average price for each month
     this.priceData.sort((a, b) => a.date.localeCompare(b.date));
@@ -243,42 +253,38 @@ export class HistoricalPriceComponent implements OnInit {
           break;
       }
     }
+    this.setChartData();
     this.trainNewModel().then(() => {
-      this.chartData = [
-        {data: [33, 60, 26, 70], label: 'Last Year'},
-        {
-          data: [this.thisYearPrices[this.monthArray[0]], this.thisYearPrices[this.monthArray[1]], this.thisYearPrices[this.monthArray[2]], this.thisYearPrices[this.monthArray[3]]],
-          label: 'This Year'
-        },
-        {data: [, , , this.thisYearPrices[this.monthArray[3]], this.prediction], label: 'Forecast'}
-      ];
+      // set the prediction in the chart
+      this.setChartData();
+      console.log(this.prediction);
     });
   }
 
   async trainNewModel(): Promise<any> {
+
     // shape the data for lstm
     const sampleSize = 1;
     let samplesX = [];
     let samplesY = [];
-    let start = this.prices.length - 42; // must be multiple of sample size
+    let start = 0; // must be multiple of sample size
     let predictForward = 28; // must be multiple of sampleSize
+    let j = start + predictForward;
     for (let i = start; i < this.prices.length - predictForward; i += sampleSize) {
       let chunk = this.prices.slice(i, i + sampleSize);
       samplesX.push(chunk);
-    }
-    for (let i = start + predictForward; i < this.prices.length; i += sampleSize) {
-      let chunk = this.prices.slice(i, i + sampleSize);
+
+      chunk = this.prices.slice(j, j + sampleSize);
       samplesY.push(chunk);
+      j += sampleSize;
     }
-
-    let tensorSamplesX = tf.tensor2d(samplesX);
-    let tensorSamplesY = tf.tensor2d(samplesY);
-
 
     // setup the model
     this.model = tf.sequential();
-    const learningRate = 0.5;
+    const learningRate = 0.05;
     const optimizerVar = tf.train.adam(learningRate);
+    let tensorSamplesX = tf.tensor(samplesX, [samplesX.length, sampleSize, 1]);
+    let tensorSamplesY = tf.tensor(samplesY, [samplesY.length, sampleSize, 1]);
 
     // layer 1
     this.model.add(tf.layers.lstm({
@@ -307,18 +313,18 @@ export class HistoricalPriceComponent implements OnInit {
 
     // compile and fit
     this.model.compile({loss: 'meanSquaredError', optimizer: optimizerVar});
-    let shape = [samplesX.length, sampleSize, 1];
-    await this.model.fit(tensorSamplesX.reshape(shape), tensorSamplesY.reshape(shape), {epochs: 50});
-    //console.log("Model trained!");
+    await this.model.fit(tensorSamplesX, tensorSamplesY, {epochs: 30, batchSize: 10});
+    console.log("Model trained!");
 
     // predict
-    const output = this.model.predict(tensorSamplesY.reshape(shape)) as any;
+    const output = this.model.predict(tensorSamplesX) as any;
     this.prediction = Array.from(output.dataSync())[0];
-    //console.log(this.prediction);
+
 
     //stop memory leaks
     this.model.dispose();
     tf.disposeVariables();
+
   }
 
 }

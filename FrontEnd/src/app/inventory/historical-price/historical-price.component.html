@@ -6,7 +6,6 @@
   <mat-card-content>
     <p>Selected Item ID: {{itemId}}</p>
     <div>
-      <!-- TODO get historical prices from database and figure out how to forecast -->
       <canvas baseChart [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions"
               [legend]="true">
       </canvas>
