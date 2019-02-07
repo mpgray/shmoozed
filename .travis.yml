@@ -3,6 +3,11 @@ language: java
 jdk:
   - openjdk8
 
+cache:
+  directories:
+  # Cache Maven's .m2 directory. This will (in theory) speed up the builds quite a bit.
+  - $HOME/.m2
+
 before_install:
   # Change into the Backend directory so that Travis can identify dependencies automatically
   - cd BackEnd/shmoozed/
