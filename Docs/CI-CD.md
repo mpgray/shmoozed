@@ -53,3 +53,9 @@ https://hub.docker.com/r/skandyla/travis-cli/ Follow the instructions on the doc
 
 I chose to use the `travis setup elasticbeanstalk` option in the Travis instructions instead of setting it all up by hand. This made it go alot smoother.
 
+### Travis CLI
+
+Some useful links related to the Travis CLI:
+* https://github.com/travis-ci/travis.rb#command-line-client
+* https://hub.docker.com/r/skandyla/travis-cli/
+
