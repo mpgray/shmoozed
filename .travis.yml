@@ -2,11 +2,15 @@ dist: xenial
 language: java
 jdk:
   - openjdk8
+sudo: false
 
 cache:
   directories:
-  # Cache Maven's .m2 directory. This will (in theory) speed up the builds quite a bit.
+  # Cache both Maven's .m2 directory and the installed node modules to speed up build
   - $HOME/.m2
+  - $TRAVIS_BUILD_DIR/FrontEnd/node_modules
+before_cache:
+  - rm -rf $HOME/.m2/repository/com/shmoozed/
 
 before_install:
   # Change into the Backend directory so that Travis can identify dependencies automatically
