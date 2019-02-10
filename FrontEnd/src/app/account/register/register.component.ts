@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +29,6 @@ export class RegisterComponent implements OnInit {
 
   openSnackBar() {
     const snackBarRef = this.snackBar.open('User Successfully Registered', 'Log In', { duration: 10000 });
-    snackBarRef.onAction().subscribe(() => { }); // todo go to log in page
+    snackBarRef.onAction().subscribe(() => { location.reload(); });
   }
-
 }
