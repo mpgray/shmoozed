@@ -1,44 +1,41 @@
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 <div class="col-md-6 col-md-offset-3">
-  <form name="form" novalidate>
     <mat-form-field appearance="outline">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="" name="firstName" required />
+      <input matInput placeholder="" required [(ngModel)]="user.firstName"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 50 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="" name="lastName" required />
+      <input matInput placeholder="" required [(ngModel)]="user.lastName"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 50 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="" name="email" required />
+      <input matInput placeholder="" required [(ngModel)]="user.email"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 100 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field type="password" appearance="outline" name="password">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" required />
+      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" required [(ngModel)]="user.password"/>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-hint>Case sensitive. No spaces</mat-hint>
     </mat-form-field>
     <br />
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Password</label>
       <input type="password" class="form-control" name="password" required />
 
-    </div>
+    </div> -->
     <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Register</button>
-
+      <button class="btn btn-primary" (click)="register()">Register</button>
       <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
     </div>
-  </form>
 </div>
