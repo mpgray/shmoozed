@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RESTService} from "../../services/rest.service";
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-set-price',
@@ -18,10 +18,10 @@ export class SetPriceComponent implements OnInit {
   }
 
   setPriceTarget() {
-    if (this.setPriceTargetData.price != null ){
+    if (this.setPriceTargetData.price != null ) {
       this.setPriceTargetData.itemId = this.itemId;
       this.rest.addSellerItem(this.setPriceTargetData).subscribe((result) => {
-        //location.reload();
+        // location.reload();
       }, (err) => {
         console.log(err);
       });

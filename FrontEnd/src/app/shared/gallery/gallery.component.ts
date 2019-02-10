@@ -39,49 +39,72 @@ export class GalleryComponent implements OnInit {
 
 
   }
-  private populateGalleryImages(){
+  private populateGalleryImages() {
     console.log(this.products);
     this.galleryImages = [
       {
+        // tslint:disable-next-line:max-line-length
         small: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
         medium: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
         big: 'https://i5.walmartimages.com/asr/6a58d244-149d-4289-810e-a38cb1809782_1.db9222a98866370ca1692ea6de7ad850.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
         description: 'Boys\' Long Sleeve Crew T-Shirt with Rib Cuffs',
+        // tslint:disable-next-line:max-line-length
         url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45707349%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
-        small: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff",
-        medium: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
-        big: "https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+        // tslint:disable-next-line:max-line-length
+        small: 'https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff',
+        // tslint:disable-next-line:max-line-length
+        medium: 'https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
+        // tslint:disable-next-line:max-line-length
+        big: 'https://i5.walmartimages.com/asr/bb331b76-5693-456f-bce1-57b01189baa3_1.920aa980e78a7a59dccf03deff759c94.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
         description: 'Trim Nailcare Fingernail & Toenail Clippers',
         url: 'https://www.walmart.com/ip/Trim-Nailcare-Fingernail-Toenail-09625-Clippers-2-ct/14528578'
       },
       {
-        small: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-        medium: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
-        big: "https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
-        description: "Voyager Proton Electric Scooter",
-        url: "http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45707349%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi"
+        // tslint:disable-next-line:max-line-length
+        small: 'https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
+        medium: 'https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
+        big: 'https://i5.walmartimages.com/asr/c533f391-4c9f-433f-813b-dc177950397d_1.f92d2bf14fdc83d728ca75f8ba229121.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        description: 'Voyager Proton Electric Scooter',
+        // tslint:disable-next-line:max-line-length
+        url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D45707349%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
-        small: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-        medium: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-        big: "https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
+        // tslint:disable-next-line:max-line-length
+        small: 'https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
+        medium: 'https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
+        big: 'https://i5.walmartimages.com/asr/5652268b-ec67-4eb9-8768-0dc7d3a9354a_3.5506e228514ae2a327889ac57910feba.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
         description: 'Sceptre 50" Class FHD (1080P) LED TV (X505BV-FSR)',
-        url: "http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D631796609%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi"
+        // tslint:disable-next-line:max-line-length
+        url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D631796609%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
+        // tslint:disable-next-line:max-line-length
         small: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
         medium: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+        // tslint:disable-next-line:max-line-length
         big: 'https://i5.walmartimages.com/asr/5df772df-cee8-406a-b136-72f3f3eac73a_1.9577e1db19d1b8566e1aa4709408109b.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
         description: 'Coleman RoadTrip LXE Portable Propane Grill',
+        // tslint:disable-next-line:max-line-length
         url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D43980087%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
       {
+        // tslint:disable-next-line:max-line-length
         small: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=100&odnWidth=100&odnBg=ffffff',
+        // tslint:disable-next-line:max-line-length
         medium: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
+        // tslint:disable-next-line:max-line-length
         big: 'https://i5.walmartimages.com/asr/3bc5a57f-3660-4cb9-b29b-3d4f13a0fa98_1.2cd6cb184b8a8bfafef09f4fc9ba8f87.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff',
         description: 'Great Value 18 oz Party Plastic Cups',
+        // tslint:disable-next-line:max-line-length
         url: 'http://c.affil.walmart.com/t/api01?l=http%3A%2F%2Faffil.walmart.com%2Fcart%2FaddToCart%3Fitems%3D122270233%7C1%26affp1%3D5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo%26affilsrc%3Dapi%26veh%3Daff%26wmlspartner%3Dreadonlyapi'
       },
     ];
