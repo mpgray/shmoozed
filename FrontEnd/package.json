@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "deploy": "node deploy",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -29,6 +30,7 @@
     "chart.js": "^2.7.3",
     "core-js": "^2.6.2",
     "font-awesome": "^4.7.0",
+    "ftp-deploy": "^2.3.1",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
     "material-design-icons": "^3.0.1",

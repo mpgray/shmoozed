@@ -9,7 +9,7 @@ time constraints these manual build and deploy instructions should be followed w
 of the application is ready to be released into Production.
 
 1. From the `\FrontEnd` directory run `ng build`. This will create a `\FrontEnd\dist` folder with the needed files.
-2. It is recommended to use a visual FTP client such as [WinSCP](https://winscp.net/eng/download.php) to connect to the server. See [this link](https://weber.instructure.com/groups/134925/files) for the needed ppk file and example WinSCP configuration. Once connected navigate to the `/var/www/html/` folder and download the contents of this folder as a backup. Once you have a backup, delete the contents of the `/var/www/html/` folder except for the `.htaccess` file. Copy the contents from the `\FrontEnd\dist\` folder on your local machine to the `/var/www/html/` folder on the server. 
+2. Type `npm run deploy` then wait for a few minutes while the files are transferred to the server. Once complete you will see a `finsihed:` message. 
 3. In your web browser go to [http://www.shmoozed.com](http://www.shmoozed.com) to check for functionality. You may need to hold shift while clicking refresh for the changes to reflect.
 
 ## Resources
