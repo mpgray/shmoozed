@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {isNumeric} from "rxjs/internal-compatibility";
-import {RESTService} from "../../services/rest.service";
+import {isNumeric} from 'rxjs/internal-compatibility';
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-import-csv',
@@ -41,7 +41,7 @@ export class ImportCsvComponent implements OnInit {
         const csv: string = reader.result;
         this.csv = csv;
         this.csvRecordsArray = csv.split(/\r\n|\n/);
-        //console.log(csv);
+        // console.log(csv);
         this.csvRecords = this.getDataFromCSVFile(this.csvRecordsArray);
       };
     }
@@ -96,6 +96,7 @@ export class ImportCsvComponent implements OnInit {
       product.splice(2, 0, 'name');
       product.splice(4, 0, 'quantity');
       const newProduct = {};
+      // tslint:disable-next-line:no-shadowed-variable
       for (let i = 0; i < product.length; i += 2) {
         newProduct[product[i]] = (product[i + 1]);
       }

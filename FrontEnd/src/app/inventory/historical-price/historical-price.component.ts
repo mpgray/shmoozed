@@ -1,6 +1,5 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
-import {RESTService} from "../../services/rest.service";
-import {forEach} from "@angular/router/src/utils/collection";
+import {Component, Input, OnInit, SimpleChanges, OnChanges} from '@angular/core';
+import {RESTService} from '../../services/rest.service';
 import * as tf from '@tensorflow/tfjs';
 
 @Component({
@@ -8,7 +7,7 @@ import * as tf from '@tensorflow/tfjs';
   templateUrl: './historical-price.component.html',
   styleUrls: ['./historical-price.component.css']
 })
-export class HistoricalPriceComponent implements OnInit {
+export class HistoricalPriceComponent implements OnInit, OnChanges {
 
   @Input() itemId: number;
   @Input() divStatus: boolean;
@@ -21,6 +20,18 @@ export class HistoricalPriceComponent implements OnInit {
   model: tf.Sequential;
   prediction: any;
   prices: any = [];
+
+  chartOptions = {
+    responsive: true
+  };
+
+  chartData = [
+    {data: [33, 60, 26, 70], label: 'Last Year'},
+    {data: [0, 0, 0, 0], label: 'This Year'},
+    {data: [, , , , ], label: 'Forecast'}
+  ];
+
+  chartLabels = [];
 
   constructor(public rest: RESTService) {
   }
@@ -37,18 +48,6 @@ export class HistoricalPriceComponent implements OnInit {
     }
   }
 
-  chartOptions = {
-    responsive: true
-  };
-
-  chartData = [
-    {data: [33, 60, 26, 70], label: 'Last Year'},
-    {data: [0, 0, 0, 0], label: 'This Year'},
-    {data: [, , , ,], label: 'Forecast'}
-  ];
-
-  chartLabels = [];
-
   updateChartData() {
     this.getItemPrices();
   }
@@ -57,7 +56,8 @@ export class HistoricalPriceComponent implements OnInit {
     this.chartData = [
       {data: [33, 60, 26, 70], label: 'Last Year'},
       {
-        data: [this.thisYearPrices[this.monthArray[0]], this.thisYearPrices[this.monthArray[1]], this.thisYearPrices[this.monthArray[2]], this.thisYearPrices[this.monthArray[3]]],
+        data: [this.thisYearPrices[this.monthArray[0]], this.thisYearPrices[this.monthArray[1]],
+        this.thisYearPrices[this.monthArray[2]], this.thisYearPrices[this.monthArray[3]]],
         label: 'This Year'
       },
       {data: [, , , this.thisYearPrices[this.monthArray[3]], this.prediction], label: 'Forecast'}
@@ -72,7 +72,7 @@ export class HistoricalPriceComponent implements OnInit {
   }
 
   setMonthArray() {
-    let currentMonth = this.date.getMonth();
+    const currentMonth = this.date.getMonth();
 
     switch (currentMonth) {
 
@@ -82,7 +82,7 @@ export class HistoricalPriceComponent implements OnInit {
         this.monthArray[2] = 11;
         this.monthArray[3] = 0;
         this.monthArray[4] = 1;
-        break
+        break;
 
       case 1:
         this.monthArray[0] = 10;
@@ -90,7 +90,7 @@ export class HistoricalPriceComponent implements OnInit {
         this.monthArray[2] = 0;
         this.monthArray[3] = 1;
         this.monthArray[4] = 2;
-        break
+        break;
 
       case 2:
         this.monthArray[0] = 11;
@@ -98,7 +98,7 @@ export class HistoricalPriceComponent implements OnInit {
         this.monthArray[2] = 1;
         this.monthArray[3] = 2;
         this.monthArray[4] = 3;
-        break
+        break;
 
       case 3:
         this.monthArray[0] = 0;
@@ -106,7 +106,7 @@ export class HistoricalPriceComponent implements OnInit {
         this.monthArray[2] = 2;
         this.monthArray[3] = 3;
         this.monthArray[4] = 4;
-        break
+        break;
 
       case 11:
         this.monthArray[0] = currentMonth - 3;
@@ -114,7 +114,7 @@ export class HistoricalPriceComponent implements OnInit {
         this.monthArray[2] = currentMonth - 1;
         this.monthArray[3] = currentMonth;
         this.monthArray[4] = 0;
-        break
+        break;
 
       default:
         this.monthArray[0] = currentMonth - 3;
@@ -129,20 +129,19 @@ export class HistoricalPriceComponent implements OnInit {
   }
 
   setChartLabels() {
-
-    let month = [];
-    month[0] = "January";
-    month[1] = "February";
-    month[2] = "March";
-    month[3] = "April";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "August";
-    month[8] = "September";
-    month[9] = "October";
-    month[10] = "November";
-    month[11] = "December";
+    const month = [];
+    month[0] = 'January';
+    month[1] = 'February';
+    month[2] = 'March';
+    month[3] = 'April';
+    month[4] = 'May';
+    month[5] = 'June';
+    month[6] = 'July';
+    month[7] = 'August';
+    month[8] = 'September';
+    month[9] = 'October';
+    month[10] = 'November';
+    month[11] = 'December';
 
     this.chartLabels[0] = month[this.monthArray[0]];
     this.chartLabels[1] = month[this.monthArray[1]];
@@ -153,7 +152,6 @@ export class HistoricalPriceComponent implements OnInit {
   }
 
   computeMonthlyAvg() {
-
     // denominator for each monthly average, counts the number of prices in each month
     let count0 = 0;
     let count1 = 0;
@@ -170,7 +168,7 @@ export class HistoricalPriceComponent implements OnInit {
     let oldTotal = 0;
 
     // clear the prices array
-    for (var i = 0; i < 11; i++) {
+    for (let i = 0; i < 11; i++) {
       this.thisYearPrices[i] = 0;
     }
 
@@ -178,14 +176,14 @@ export class HistoricalPriceComponent implements OnInit {
     this.prices = [];
     this.prediction = null;
 
-    //parse the priceData and calculate average price for each month
+    // parse the priceData and calculate average price for each month
     this.priceData.sort((a, b) => a.date.localeCompare(b.date));
-    //console.log(this.priceData);
+    // console.log(this.priceData);
 
-    for (let entry of this.priceData) {
-      let dateString = entry.date;
-      let dateSubString = new Date(dateString.substring(0, 10));
-      //console.log(dateString.substring(0,10));
+    for (const entry of this.priceData) {
+      const dateString = entry.date;
+      const dateSubString = new Date(dateString.substring(0, 10));
+      // console.log(dateString.substring(0,10));
 
       // get data for tensorflow
       this.prices.push(entry.price);
@@ -265,10 +263,10 @@ export class HistoricalPriceComponent implements OnInit {
 
     // shape the data for lstm
     const sampleSize = 1;
-    let samplesX = [];
-    let samplesY = [];
-    let start = 0; // must be multiple of sample size
-    let predictForward = 28; // must be multiple of sampleSize
+    const samplesX = [];
+    const samplesY = [];
+    const start = 0; // must be multiple of sample size
+    const predictForward = 28; // must be multiple of sampleSize
     let j = start + predictForward;
     for (let i = start; i < this.prices.length - predictForward; i += sampleSize) {
       let chunk = this.prices.slice(i, i + sampleSize);
@@ -283,8 +281,8 @@ export class HistoricalPriceComponent implements OnInit {
     this.model = tf.sequential();
     const learningRate = 0.05;
     const optimizerVar = tf.train.adam(learningRate);
-    let tensorSamplesX = tf.tensor(samplesX, [samplesX.length, sampleSize, 1]);
-    let tensorSamplesY = tf.tensor(samplesY, [samplesY.length, sampleSize, 1]);
+    const tensorSamplesX = tf.tensor(samplesX, [samplesX.length, sampleSize, 1]);
+    const tensorSamplesY = tf.tensor(samplesY, [samplesY.length, sampleSize, 1]);
 
     // layer 1
     this.model.add(tf.layers.lstm({
@@ -314,17 +312,14 @@ export class HistoricalPriceComponent implements OnInit {
     // compile and fit
     this.model.compile({loss: 'meanSquaredError', optimizer: optimizerVar});
     await this.model.fit(tensorSamplesX, tensorSamplesY, {epochs: 30, batchSize: 10});
-    console.log("Model trained!");
+    console.log('Model trained!');
 
     // predict
     const output = this.model.predict(tensorSamplesX) as any;
     this.prediction = Array.from(output.dataSync())[0];
 
-
-    //stop memory leaks
+    // stop memory leaks
     this.model.dispose();
     tf.disposeVariables();
-
   }
-
 }

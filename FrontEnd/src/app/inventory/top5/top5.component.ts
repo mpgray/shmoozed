@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RESTService} from "../../services/rest.service";
+import {RESTService} from '../../services/rest.service';
 
 @Component({
   selector: 'app-top5',
