@@ -9,7 +9,7 @@ time constraints these manual build and deploy instructions should be followed w
 of the application is ready to be released into Production.
 
 1. From the `\FrontEnd` directory run `ng build`. This will create a `\FrontEnd\dist` folder with the needed files.
-2. Type `npm run deploy` then wait for a few minutes while the files are transferred to the server. Once complete you will see a `finsihed:` message. 
+2. Type `npm run deploy` then wait for a few minutes while the files are transferred to the server. Once complete you will see a `finished:` message. 
 3. In your web browser go to [http://www.shmoozed.com](http://www.shmoozed.com) to check for functionality. You may need to hold shift while clicking refresh for the changes to reflect.
 
 ## Resources
