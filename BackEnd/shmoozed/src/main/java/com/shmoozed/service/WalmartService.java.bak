@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,23 +116,6 @@ public class WalmartService {
     item.setName(walmartItem.getName());
     item.setQuantity(quantity);
     return itemService.insertNewItem(item);
-  }
-
-  public List<Item> convertToItem(List<WalmartItem> walmartItems){
-    List<Item> Items = new ArrayList<>();
-    for(WalmartItem walmartItem : walmartItems)
-    {
-      Item item = convertToItem(walmartItem);
-      Items.add(item);
-    }
-    return Items;
-  }
-
-  public Item convertToItem(WalmartItem walmartItem){
-    Item item = new Item();
-    item.setName(walmartItem.getName());
-    item.setQuantity(1);
-    return item;
   }
 
   private BuyerItem insertBuyerItem(int itemId, BigDecimal price, int userId){
