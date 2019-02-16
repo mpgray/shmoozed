@@ -17,7 +17,7 @@ public class BestBuyService {
   private ItemService itemService;
 
   @Autowired
-  public BestBuyService(ItemService itemService) {
+  public BestBuyService(ItemService itemService, BestBuyClient bestBuyClient) {
     this.bestBuyClient = bestBuyClient;
     this.itemService = itemService;
   }

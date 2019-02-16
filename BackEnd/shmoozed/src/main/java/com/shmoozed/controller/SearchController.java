@@ -3,6 +3,7 @@ package com.shmoozed.controller;
 import java.util.List;
 
 import com.shmoozed.model.Item;
+import com.shmoozed.model.WalmartItem;
 import com.shmoozed.service.SearchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +38,9 @@ public class SearchController {
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody
-  ResponseEntity<List<Item>> search(@PathVariable("searchterm") String searchTerm){
+  ResponseEntity<List<WalmartItem>> search(@PathVariable("searchterm") String searchTerm){
     logger.debug("Request to search for searchTerm={}", searchTerm);
-    List<Item> items = searchService.search(searchTerm);
+    List<WalmartItem> items = searchService.search(searchTerm);
     return new ResponseEntity<>(items, HttpStatus.OK);
 
   }

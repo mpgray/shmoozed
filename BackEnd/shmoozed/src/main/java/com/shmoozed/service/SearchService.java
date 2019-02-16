@@ -24,7 +24,7 @@ public class SearchService {
     this.walmartService = walmartService;
     this.bestBuyService = bestBuyService;
   }
-  public List<Item> search(String searchTerm){
+  public List<WalmartItem> search(String searchTerm){
     //does item have enough info for the end user?
     //doesn't have price info
     //may want to change what we are doing here
@@ -32,10 +32,9 @@ public class SearchService {
     logger.debug("Attempting to search all vendors for searchTerm={}", searchTerm);
     List<WalmartItem> walmartItems = walmartService.searchWalmartSiteForItem(searchTerm);
     List<BestBuyItem> bestBuyItems = bestBuyService.searchBestBuySiteForItem(searchTerm);
-
-    return walmartService.convertToItem(walmartItems);
-
-
+    logger.debug("bestBuyItems search results bestBuyItems={}", bestBuyItems);
+    walmartItems.addAll(walmartService.convertBestBuyToWalmart(bestBuyItems));
+    return walmartItems;
   }
 }
 

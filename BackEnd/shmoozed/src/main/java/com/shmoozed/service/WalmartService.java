@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.shmoozed.model.BestBuyItem;
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.model.ItemPriceHistory;
@@ -222,4 +223,21 @@ public class WalmartService {
     walmartRepository.save(refreshedWalmartItem);
   }
 
+  public List<WalmartItem> convertBestBuyToWalmart(List<BestBuyItem> bestBuyItems)
+  {
+    List<WalmartItem> walmartItems = new ArrayList<WalmartItem>();
+    for(BestBuyItem bbi : bestBuyItems){
+      WalmartItem walmartItem = new WalmartItem();
+      walmartItem.setName(bbi.getName());
+      walmartItem.setMsrp(bbi.getRegularPrice());
+      walmartItem.setSalePrice(bbi.getSalePrice());
+      walmartItem.setThumbnailImage(bbi.getThumbnailImage());
+      walmartItem.setLargeImage(bbi.getLargeImage());
+      walmartItem.setModelNumber(bbi.getModelNumber());
+      walmartItem.setAddToCartUrl(bbi.getAddToCartUrl());
+      walmartItem.setUpc(bbi.getUpc());
+      walmartItems.add(walmartItem);
+    }
+    return walmartItems;
+  }
 }
