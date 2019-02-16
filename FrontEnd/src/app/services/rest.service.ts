@@ -117,7 +117,7 @@ export class RESTService {
   }
 
   updateSellerItem(id, product): Observable<any> {
-    return this.http.put(endpoint + sellerpath + '/' + id, JSON.stringify(product), httpOptions).pipe(
+    return this.http.post(endpoint + sellerpath + '/update/' + id, JSON.stringify(product), httpOptions).pipe(
       tap(_ => console.log(`updated product id=${id}`)),
       catchError(this.handleError<any>('updateItem'))
     );

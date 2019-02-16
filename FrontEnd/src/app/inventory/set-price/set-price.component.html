@@ -6,8 +6,13 @@
   <mat-card-content>
     <p>Selected Item ID: {{itemId}}</p>
     <mat-form-field>
-      <mat-label>Enter the price:</mat-label>
+      <mat-label>Update the price:</mat-label>
       <input [(ngModel)]="setPriceTargetData.price" matInput type="number">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Update the Cost:</mat-label>
+      <input [(ngModel)]="setPriceTargetData.sellerCost" matInput type="number">
     </mat-form-field>
   </mat-card-content>
   <button mat-raised-button color="primary" (click)="setPriceTarget()">Save/Update</button>
