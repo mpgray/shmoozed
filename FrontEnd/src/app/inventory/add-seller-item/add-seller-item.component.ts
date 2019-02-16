@@ -33,6 +33,4 @@ export class AddSellerItemComponent implements OnInit {
     });
     // this.dialogRef.close(false);
   }
-
-
 }

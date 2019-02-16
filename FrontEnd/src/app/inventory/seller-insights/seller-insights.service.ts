@@ -15,7 +15,6 @@ export class SellerInsightsService {
   getDetailedSellerItems(sellerId: number) {
     const apiLocation = environment.baseUrl + 'item/seller';
     return this.http.get<SellerItem[]>(apiLocation);
-
   }
 
   getSellerInsightData(itemId: number) {
