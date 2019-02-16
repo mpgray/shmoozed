@@ -1,5 +1,5 @@
 import { BuyingService } from './buying.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { BuyingComponent } from './buying.component';
 import { BuyerItem } from '../models/buyer-item';
 import { of } from 'rxjs';
@@ -13,8 +13,8 @@ describe('BuyingComponent', () => {
     beforeEach(() => {
         mockBuyingService = jasmine.createSpyObj(['getBuyerItems']);
         mockMatDialog = jasmine.createSpyObj(['open']);
-        mockSnackBar = jasmine.createSpyObj([]);
-        const restService = jasmine.createSpyObj([]);
+        mockSnackBar = jasmine.createSpyObj(['open']);
+        const restService = jasmine.createSpyObj(['addWalmartURL']);
         buyingComponent = new BuyingComponent(mockBuyingService, restService, mockMatDialog, mockSnackBar);
     });
 
@@ -25,5 +25,15 @@ describe('BuyingComponent', () => {
         buyingComponent.ngOnInit();
 
         expect(mockBuyingService.getBuyerItems).toHaveBeenCalled();
+    });
+
+    it('should open the snackbar with the correct message and duration', () => {
+        const config = new MatSnackBarConfig();
+        config.duration = 1500;
+        const message = 'test message';
+
+        buyingComponent.openSnackBar(message);
+
+        expect(mockSnackBar.open).toHaveBeenCalledWith(message, '', config);
     });
 });
