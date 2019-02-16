@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "90a434f3-2a6e-48b9-8e2f-10c315ac0351",
-		"name": "Shmoozed",
+		"_postman_id": "474506f5-12f5-46f8-b9fe-d2b9ebbe16b4",
+		"name": "Shmoozed copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -715,6 +715,47 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":240.45\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller",
+										"update",
+										":item_id"
+									],
+									"variable": [
+										{
+											"key": "item_id",
+											"value": "90"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
@@ -1082,7 +1123,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item/names?partial=Item",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/names?partial=Item",
 							"protocol": "http",
 							"host": [
 								"shmoozedbackendapi-env",
@@ -1121,7 +1162,7 @@
 							"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item",
 							"protocol": "http",
 							"host": [
 								"shmoozedbackendapi-env",
@@ -1148,7 +1189,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item/5",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/5",
 							"protocol": "http",
 							"host": [
 								"shmoozedbackendapi-env",
@@ -1849,6 +1890,44 @@
 										"item",
 										"seller",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/item/seller/update/:item_id",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":25.50\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller/update/:item_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller",
+										"update",
+										":item_id"
+									],
+									"variable": [
+										{
+											"key": "item_id",
+											"value": "90"
+										}
 									]
 								}
 							},
