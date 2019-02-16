@@ -746,6 +746,47 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":240.45\n}"
+								},
+								"url": {
+									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+									"protocol": "http",
+									"host": [
+										"shmoozedbackendapi-env",
+										"p3uuygd4fp",
+										"us-east-2",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"item",
+										"seller",
+										"update",
+										":item_id"
+									],
+									"variable": [
+										{
+											"key": "item_id",
+											"value": "90"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
@@ -1910,6 +1951,44 @@
 										"item",
 										"seller",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:5000/item/seller/update/:item_id",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":25.50\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/seller/update/:item_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"seller",
+										"update",
+										":item_id"
+									],
+									"variable": [
+										{
+											"key": "item_id",
+											"value": "90"
+										}
 									]
 								}
 							},
