@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to shmoozed!');
+    expect(page.getParagraphText()).toEqual('Buyers and sellers BOTH win!');
   });
 });
