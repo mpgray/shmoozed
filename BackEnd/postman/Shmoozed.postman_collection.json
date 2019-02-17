@@ -766,10 +766,8 @@
 									"raw": "http://api.shmoozed.com/item/seller/update/:item_id",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
@@ -1157,10 +1155,8 @@
 							"raw": "http://api.shmoozed.com/example/item/names?partial=Item",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1196,10 +1192,8 @@
 							"raw": "http://api.shmoozed.com/example/item",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1223,10 +1217,8 @@
 							"raw": "http://api.shmoozed.com/example/item/5",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1735,10 +1727,8 @@
 									"raw": "http://api.shmoozed.com/sellerinsight/92",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
@@ -1762,10 +1752,8 @@
 									"raw": "http://api.shmoozed.com/sellerinsight/profit/92/100",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
