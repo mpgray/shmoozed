@@ -15,5 +15,5 @@
       <input [(ngModel)]="setPriceTargetData.sellerCost" matInput type="number">
     </mat-form-field>
   </mat-card-content>
-  <button mat-raised-button color="primary" (click)="setPriceTarget()">Save/Update</button>
+  <button mat-raised-button color="primary" [disabled]="! isSellerItem" (click)="setPriceTarget()">Save/Update</button>
 </mat-card>
