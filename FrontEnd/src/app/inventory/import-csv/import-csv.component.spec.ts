@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ImportCsvComponent } from './import-csv.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ImportCsvComponent', () => {
   let component: ImportCsvComponent;
@@ -8,6 +8,7 @@ describe('ImportCsvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ ImportCsvComponent ]
     })
     .compileComponents();
