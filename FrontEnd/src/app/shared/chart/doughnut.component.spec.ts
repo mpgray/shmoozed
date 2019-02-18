@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DoughnutComponent } from './doughnut.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 describe('DoughnutComponent', () => {
   let component: DoughnutComponent;
@@ -8,6 +9,7 @@ describe('DoughnutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ChartsModule],
       declarations: [ DoughnutComponent ]
     })
     .compileComponents();
