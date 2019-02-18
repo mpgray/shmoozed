@@ -1152,7 +1152,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item/names?partial=Item",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/names?partial=Item",
 							"protocol": "http",
 							"host": [
 								"api",
@@ -1189,7 +1189,7 @@
 							"raw": "{\n\t\"name\" : \"Inserted Item 3\",\n\t\"quantity\" : 3\n}"
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item",
 							"protocol": "http",
 							"host": [
 								"api",
@@ -1214,7 +1214,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://api.shmoozed.com/example/item/5",
+							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/5",
 							"protocol": "http",
 							"host": [
 								"api",

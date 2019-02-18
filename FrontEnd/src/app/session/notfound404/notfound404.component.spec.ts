@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Notfound404Component } from './notfound404.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('Notfound404Component', () => {
   let component: Notfound404Component;
@@ -8,7 +9,8 @@ describe('Notfound404Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Notfound404Component ]
+      declarations: [ Notfound404Component ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
