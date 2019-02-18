@@ -25,10 +25,6 @@ public class SearchService {
     this.bestBuyService = bestBuyService;
   }
   public List<WalmartItem> search(String searchTerm){
-    //does item have enough info for the end user?
-    //doesn't have price info
-    //may want to change what we are doing here
-
     logger.debug("Attempting to search all vendors for searchTerm={}", searchTerm);
     List<WalmartItem> walmartItems = walmartService.searchWalmartSiteForItem(searchTerm);
     List<BestBuyItem> bestBuyItems = bestBuyService.searchBestBuySiteForItem(searchTerm);
