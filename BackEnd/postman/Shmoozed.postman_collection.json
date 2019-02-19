@@ -950,6 +950,221 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "User Role",
+					"item": [
+						{
+							"name": "Get UserRole By UserRoleID - /userrole/{userRoleid}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/userrole/10002",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"userrole",
+										"10002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All UserRoles By UserID - /userrole/getallrolesforuserid/{userId}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/getallrolesforuserid/2",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"getallrolesforuserid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Buyer - /userrole/userisbuyer/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/userrole/userisbuyer/3",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"userrole",
+										"userisbuyer",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Seller - /userrole/userisseller/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/userisbuyer/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"userisbuyer",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Admin - /userrole/userisadmin/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/userisadmin/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"userisadmin",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New User Role - /userrole",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"user_Id\" : 3,\n\t\"role_Id\" : 2\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/userrole",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete UserRole By UserRoleID - /userrole/{userRoleid}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/10003",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"10003"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Walmart",
 					"item": [
 						{
@@ -2127,6 +2342,217 @@
 									"path": [
 										"user",
 										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "User Role",
+					"item": [
+						{
+							"name": "Get UserRole By UserRoleID - /userrole/{userRoleid}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/10002",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"10002"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All UserRoles By UserID - /userrole/getallrolesforuserid/{userId}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/getallrolesforuserid/2",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"getallrolesforuserid",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Buyer - /userrole/userisbuyer/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/userisbuyer/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"userisbuyer",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Seller - /userrole/userisseller/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/userisbuyer/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"userisbuyer",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User is Admin - /userrole/userisadmin/{user_id}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/userisadmin/3",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"userisadmin",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add New User Role - /userrole",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"user_Id\" : 3,\n\t\"role_Id\" : 2\n}"
+								},
+								"url": {
+									"raw": "localhost:5000/userrole",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete UserRole By UserRoleID - /userrole/{userRoleid}",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/userrole/10003",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"userrole",
+										"10003"
 									]
 								}
 							},
