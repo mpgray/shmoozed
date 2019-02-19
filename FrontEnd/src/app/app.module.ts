@@ -70,6 +70,7 @@ import { OnboardComponent } from './account/onboard/onboard.component';
 import { AddSellerItemComponent } from './inventory/add-seller-item/add-seller-item.component';
 import { SetPriceComponent } from './inventory/set-price/set-price.component';
 import { ImportCsvComponent } from './inventory/import-csv/import-csv.component';
+import {BuyersearchComponent} from './shared/table/buyersearch/buyersearch.component';
 
 
 @NgModule({
@@ -107,7 +108,8 @@ import { ImportCsvComponent } from './inventory/import-csv/import-csv.component'
     OnboardComponent,
     AddSellerItemComponent,
     SetPriceComponent,
-    ImportCsvComponent
+    ImportCsvComponent,
+    BuyersearchComponent
   ],
   imports: [
     AlertModule.forRoot(),

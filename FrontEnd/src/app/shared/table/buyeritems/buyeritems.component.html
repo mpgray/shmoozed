@@ -2,7 +2,8 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort>
     <ng-container matColumnDef="item.name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.detailedItem.item.name}} </td>
+      <td mat-cell *matCellDef="let buyerItem"> {{buyerItem.detailedItem.item.name.substring(0,75)}}
+      <span *ngIf="buyerItem.detailedItem.item.name.length > 100">...  </span> </td>
     </ng-container>
   
     <ng-container matColumnDef="price">

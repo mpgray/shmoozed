@@ -5,6 +5,7 @@ import { MatTableDataSource, MatDialog, MatPaginator, MatSort, MatSnackBar, MatS
 import { ItemHistoryComponent } from './item-history/item-history.component';
 import { RESTService } from '../services/rest.service';
 import { AddBuyItemComponent } from './add-buy-item/add-buy-item.component';
+import {BuyerSearchItem} from '../models/Searched-Items';
 
 @Component({
   selector: 'app-buying',
@@ -13,6 +14,7 @@ import { AddBuyItemComponent } from './add-buy-item/add-buy-item.component';
 })
 export class BuyingComponent implements OnInit {
   buyerItems: BuyerItem[];
+  buyerSearchItems: BuyerSearchItem[];
   displayedColumns: string[] = ['item.name', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
 
@@ -41,6 +43,13 @@ export class BuyingComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
+    this.buyingService.getSearchItems(2)
+      .subscribe(buyerSearchItems => {
+        this.buyerSearchItems = buyerSearchItems;
+        this.dataSource = new MatTableDataSource(this.buyerItems);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    });
   }
 
   openAddWalmartItemDialog() {
