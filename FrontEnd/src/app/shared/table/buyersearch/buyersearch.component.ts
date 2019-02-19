@@ -16,7 +16,7 @@ export class BuyersearchComponent implements OnInit {
   displayedColumns: string[] = ['name', 'thumbnail', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
   searchTerm: 'Enter Your Search...';
-  searchedItems = Array('TV', 'Books', 'TShirts', 'Dresses', 'Video Games');
+  searchedItems = Array('TVs', 'Books', 'TShirts', 'Dresses', 'Video Games');
   searchedItem = this.searchedItems[Math.floor(Math.random() * this.searchedItems.length)];
   searchStarted = false;
 

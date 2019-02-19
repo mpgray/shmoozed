@@ -1,7 +1,7 @@
 
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
     <div class="input-group">
-      <input (input) = "searchedItem = $event.target.value" type="search" class="form-control" placeholder="Search For Your Purchases..." aria-label="Search" aria-describedby="basic-addon2">
+      <input (input) = "searchedItem = $event.target.value" size="50" type="search" class="form-control" placeholder="Search Retailers for Items to Track..." aria-label="Search" aria-describedby="basic-addon2">
       <div class="input-group-append">
         <button class="btn btn-primary btn-green" type="button" (click)="getBuyerSearchItems(this.searchedItem); searchStarted = true">
           <fa name="search"></fa>
@@ -11,7 +11,7 @@
   </form>
 
   <div class="tableContainer">
-    <h2><span *ngIf="!searchStarted">You Might Like </span>Results For:</h2><h3> {{this.searchedItem}}</h3>
+    <h2><span *ngIf="!searchStarted">We thought you might Like </span><strong>Results</strong> For:</h2><h3> {{this.searchedItem}}</h3>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort>
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
