@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "474506f5-12f5-46f8-b9fe-d2b9ebbe16b4",
-		"name": "Shmoozed copy",
+		"_postman_id": "5d28576b-dbb5-4b28-807f-eaa227cb9599",
+		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -479,6 +479,37 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "Search - /search/{searchterm}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/search/xbox",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"search",
+										"xbox"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "SellerInsight",
 					"item": [
 						{
@@ -717,7 +748,7 @@
 							"response": []
 						},
 						{
-							"name": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+							"name": "http://api.shmoozed.com/item/seller/update/:item_id",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -732,13 +763,11 @@
 									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":240.45\n}"
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/item/seller/update/:item_id",
+									"raw": "http://api.shmoozed.com/item/seller/update/:item_id",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
@@ -1126,10 +1155,8 @@
 							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/names?partial=Item",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1165,10 +1192,8 @@
 							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1192,10 +1217,8 @@
 							"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/example/item/5",
 							"protocol": "http",
 							"host": [
-								"shmoozedbackendapi-env",
-								"p3uuygd4fp",
-								"us-east-2",
-								"elasticbeanstalk",
+								"api",
+								"shmoozed",
 								"com"
 							],
 							"path": [
@@ -1659,6 +1682,36 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "Search - /search/{searchterm}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:5000/search/xbox",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"search",
+										"xbox"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "SellerInsight",
 					"item": [
 						{
@@ -1671,13 +1724,11 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/sellerinsight/92",
+									"raw": "http://api.shmoozed.com/sellerinsight/92",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
@@ -1698,13 +1749,11 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://shmoozedbackendapi-env.p3uuygd4fp.us-east-2.elasticbeanstalk.com/sellerinsight/profit/92/100",
+									"raw": "http://api.shmoozed.com/sellerinsight/profit/92/100",
 									"protocol": "http",
 									"host": [
-										"shmoozedbackendapi-env",
-										"p3uuygd4fp",
-										"us-east-2",
-										"elasticbeanstalk",
+										"api",
+										"shmoozed",
 										"com"
 									],
 									"path": [
@@ -2461,6 +2510,49 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "BestBuy",
+					"item": [
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://api.bestbuy.com/v1/products/search=xbox&apiKey=9hSBRQLAT9D8vc3Uo7H6uX1d",
+									"protocol": "https",
+									"host": [
+										"api",
+										"bestbuy",
+										"com"
+									],
+									"path": [
+										"v1",
+										"products",
+										"search=xbox&apiKey=9hSBRQLAT9D8vc3Uo7H6uX1d"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		}
