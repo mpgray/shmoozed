@@ -20,6 +20,7 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatSnackBarModule,
+  MatBottomSheetModule,
   MatRadioModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -62,7 +63,6 @@ import { BuyingService } from './buying/buying.service';
 import { SellerInsightsComponent } from './inventory/seller-insights/seller-insights.component';
 import { SellerInsightsService } from './inventory/seller-insights/seller-insights.service';
 import { AddBuyItemComponent } from './buying/add-buy-item/add-buy-item.component';
-
 import { HistoricalPriceComponent } from './inventory/historical-price/historical-price.component';
 
 import { Top5Component } from './inventory/top5/top5.component';
@@ -71,6 +71,7 @@ import { AddSellerItemComponent } from './inventory/add-seller-item/add-seller-i
 import { SetPriceComponent } from './inventory/set-price/set-price.component';
 import { ImportCsvComponent } from './inventory/import-csv/import-csv.component';
 import {BuyersearchComponent} from './shared/table/buyersearch/buyersearch.component';
+import { LargeimgComponent } from './shared/table/buyersearch/largeimg/largeimg.component';
 
 
 @NgModule({
@@ -109,7 +110,8 @@ import {BuyersearchComponent} from './shared/table/buyersearch/buyersearch.compo
     AddSellerItemComponent,
     SetPriceComponent,
     ImportCsvComponent,
-    BuyersearchComponent
+    BuyersearchComponent,
+    LargeimgComponent
   ],
   imports: [
     AlertModule.forRoot(),
@@ -119,6 +121,7 @@ import {BuyersearchComponent} from './shared/table/buyersearch/buyersearch.compo
     MatMenuModule,
     MatDialogModule,
     MatNativeDateModule,
+    MatBottomSheetModule,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonToggleModule,

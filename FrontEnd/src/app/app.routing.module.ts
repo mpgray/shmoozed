@@ -18,6 +18,7 @@ import { ItemHistoryComponent } from './buying/item-history/item-history.compone
 import {Register} from 'ts-node';
 import {RegisterComponent} from './account/register/register.component';
 import {OnboardComponent} from './account/onboard/onboard.component';
+import {LargeimgComponent} from './shared/table/buyersearch/largeimg/largeimg.component';
 
 
 const routes: Routes = [{
@@ -69,7 +70,13 @@ const routes: Routes = [{
       component: InventoryComponent,
       data: { title: 'Inventory' }
     }],
-}, {
+},
+  {
+    path: 'largeimg',
+    component: LargeimgComponent,
+    data: {title: 'Large Image'}
+  },
+    {
   path: 'register',
   component: RegisterComponent,
   data: {title: 'Register'}
