@@ -19,7 +19,8 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatRadioModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AppRoutingModule } from './app.routing.module';
@@ -143,7 +144,8 @@ import { ImportCsvComponent } from './inventory/import-csv/import-csv.component'
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule
   ],
   providers: [BuyingService, SellerInsightsService],
   bootstrap: [AppComponent],
