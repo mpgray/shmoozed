@@ -7,26 +7,8 @@
   </div>
 </div>
 <div style="width: 100%; overflow: hidden;">
-  <div style="width: 600px; float: left;"> <app-gallery></app-gallery></div>
-  <div style="margin-left: 620px;">
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input type="text" #searchInput class="form-control" placeholder="Search for items to Buy" aria-label="Search" aria-describedby="basic-addon2" [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let options of filteredOptions | async" [value]="options">
-            {{options}}
-          </mat-option>
-        </mat-autocomplete>
-        <div class="input-group-append">
-          <a target="_blank" id="search-button" href="https://www.walmart.com/search/?query={{searchInput.value}}&affp1=5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo&wmlspartner=readonlyapi&sourceid=api014b407293c940426a86cd48ac6d5454e7&veh=aff">
-            <button class="btn btn-primary btn-green" type="button">
-              <fa name="search"></fa>
-            </button>
-          </a>
-        </div>
-      </div>
-
-    </form>
+  <div style="width: 500px; float: left;"> <app-gallery></app-gallery></div>
+  <div style="margin-left: 520px;">
     <app-table-buyersearch></app-table-buyersearch>
   </div>
 </div>

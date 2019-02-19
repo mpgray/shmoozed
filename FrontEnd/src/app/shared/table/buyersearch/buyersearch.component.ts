@@ -14,6 +14,8 @@ export class BuyersearchComponent implements OnInit {
   buyerSearchItems: BuyerSearchItem[];
   displayedColumns: string[] = ['name', 'thumbnail', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
+  searchTerm: 'Enter Your Search...';
+  searchStarted = false;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -23,11 +25,12 @@ export class BuyersearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBuyerSearchItems();
+    // this.getBuyerSearchItems(this.searchTerm);
   }
 
-  private getBuyerSearchItems() {
-    this.buyingService.getSearchItems('tv')
+  public getBuyerSearchItems(searchterm) {
+    this.searchStarted = true;
+    this.buyingService.getSearchItems(searchterm)
       .subscribe(buyerSearchItems => {
         this.buyerSearchItems = buyerSearchItems;
         this.dataSource = new MatTableDataSource(this.buyerSearchItems);
