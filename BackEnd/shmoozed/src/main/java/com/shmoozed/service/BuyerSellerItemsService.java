@@ -1,5 +1,6 @@
 package com.shmoozed.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,6 +146,46 @@ public class BuyerSellerItemsService {
       logger.debug("New buyer item inserted. buyerItem={}", newBuyerItem);
       return newBuyerItem;
     }
+  }
+
+  public void updateSellerItemPrice(SellerItem itemToUpdate) {
+
+    Optional<SellerItem> itemCheck = sellerItemRepository.findByItemIdEqualsAndUserIdEquals(itemToUpdate.getItemId(),itemToUpdate.getUserId());
+    BigDecimal newPrice = itemToUpdate.getPrice();
+    BigDecimal newCost = itemToUpdate.getSellerCost();
+
+    //Check that seller item exists
+    if(itemCheck.isPresent())
+    {
+      SellerItem sellerItem = itemCheck.get();
+
+      if(!newPrice.equals(sellerItem.getPrice())) {
+
+        logger.debug("Updating item sellerItem{} to itemToUpdate{}",sellerItem,itemToUpdate);
+
+        //Set new item price
+        sellerItem.setPrice(newPrice);
+
+        //Update sellerItem in DB
+        sellerItemRepository.save(sellerItem);
+
+      }
+
+      if(!newCost.equals(sellerItem.getSellerCost())){
+
+        logger.debug("Updating item sellerItem{} to itemToUpdate{}",sellerItem,itemToUpdate);
+
+        sellerItem.setSellerCost(newCost);
+
+        //Update sellerItem in DB
+        sellerItemRepository.save(sellerItem);
+      }
+
+    }
+    else {
+      logger.debug("Item did not exist, check item id.");
+    }
+
   }
 
   public void deleteSellerItem(int sellerItemId) {

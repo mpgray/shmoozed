@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.shmoozed.model.BestBuyItem;
 import com.shmoozed.model.BuyerItem;
 import com.shmoozed.model.Item;
 import com.shmoozed.model.ItemPriceHistory;
@@ -118,6 +120,23 @@ public class WalmartService {
     return itemService.insertNewItem(item);
   }
 
+  public List<Item> convertToItem(List<WalmartItem> walmartItems){
+    List<Item> Items = new ArrayList<>();
+    for(WalmartItem walmartItem : walmartItems)
+    {
+      Item item = convertToItem(walmartItem);
+      Items.add(item);
+    }
+    return Items;
+  }
+
+  public Item convertToItem(WalmartItem walmartItem){
+    Item item = new Item();
+    item.setName(walmartItem.getName());
+    item.setQuantity(1);
+    return item;
+  }
+
   private BuyerItem insertBuyerItem(int itemId, BigDecimal price, int userId){
     BuyerItem buyerItem = new BuyerItem();
     buyerItem.setItemId(itemId);
@@ -204,4 +223,21 @@ public class WalmartService {
     walmartRepository.save(refreshedWalmartItem);
   }
 
+  public List<WalmartItem> convertBestBuyToWalmart(List<BestBuyItem> bestBuyItems)
+  {
+    List<WalmartItem> walmartItems = new ArrayList<WalmartItem>();
+    for(BestBuyItem bbi : bestBuyItems){
+      WalmartItem walmartItem = new WalmartItem();
+      walmartItem.setName(bbi.getName());
+      walmartItem.setMsrp(bbi.getRegularPrice());
+      walmartItem.setSalePrice(bbi.getSalePrice());
+      walmartItem.setThumbnailImage(bbi.getThumbnailImage());
+      walmartItem.setLargeImage(bbi.getLargeImage());
+      walmartItem.setModelNumber(bbi.getModelNumber());
+      walmartItem.setAddToCartUrl(bbi.getAddToCartUrl());
+      walmartItem.setUpc(bbi.getUpc());
+      walmartItems.add(walmartItem);
+    }
+    return walmartItems;
+  }
 }

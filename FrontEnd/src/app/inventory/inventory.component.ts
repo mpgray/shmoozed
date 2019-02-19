@@ -44,7 +44,7 @@ export class InventoryComponent implements OnInit {
   getProducts() {
     this.products = [];
     this.rest.getExampleItems().subscribe((data: {}) => {
-      console.log(data);
+      //console.log(data);
       this.products = data;
       this.temp = [...this.products];
       this.selectedItem = this.products[0].id;

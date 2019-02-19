@@ -1,5 +1,6 @@
 package com.shmoozed.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -172,6 +173,19 @@ public class BuyerSellerItemsController {
       .collect(Collectors.toList());
 
     return new ResponseEntity<>(detailedBuyerItems, HttpStatus.OK);
+  }
+
+  @PostMapping(path = "/seller/update/{item_id}",
+    consumes = APPLICATION_JSON_VALUE,
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<SellerItem> updateSellerItem(@RequestHeader("Authorization") String token,
+                                                                   @RequestBody SellerItem updateItem) {
+    logger.debug("Request to update user item. token={}, sellerItem={}", token, updateItem);
+
+    buyerSellerItemsService.updateSellerItemPrice(updateItem);
+
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @DeleteMapping(path = "/seller/{seller_item_id}")
