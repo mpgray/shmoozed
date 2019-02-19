@@ -36,7 +36,7 @@ public class UserRoleControllerTest {
 
     when(mockUserRoleService.getAllRolesGivenUserId(1)).thenReturn(asList(userRole1, userRole2));
 
-    mockMvc.perform(get("/userRole/getAllRolesForUserId/1"))
+    mockMvc.perform(get("/userrole/getallrolesforuserid/1"))
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().json("[" +

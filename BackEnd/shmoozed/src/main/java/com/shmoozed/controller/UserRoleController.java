@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin // Allow All CORS Requests. See https://spring.io/blog/2015/06/08/cors-support-in-spring-framework
 @RestController
-@RequestMapping(path = "/userRole")
+@RequestMapping(path = "/userrole")
 public class UserRoleController {
 
   private Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -58,7 +58,7 @@ public class UserRoleController {
   }
 
   @GetMapping(
-    value = "/getAllRolesForUserId/{user_id}",
+    value = "/getallrolesforuserid/{user_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<UserRole>> getAllRolesForUser(@PathVariable("user_id") int user_id) {
@@ -70,7 +70,7 @@ public class UserRoleController {
   }
 
   @GetMapping(
-    value = "/userIsBuyer/{user_id}",
+    value = "/userisbuyer/{user_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<Boolean> isUserBuyer(@PathVariable("user_id") int user_id) {
@@ -82,7 +82,7 @@ public class UserRoleController {
   }
 
   @GetMapping(
-    value = "/userIsSeller/{user_id}",
+    value = "/userisseller/{user_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<Boolean> isUserSeller(@PathVariable("user_id") int user_id) {
@@ -94,7 +94,7 @@ public class UserRoleController {
   }
 
   @GetMapping(
-    value = "/userIsAdmin/{user_id}",
+    value = "/userisadmin/{user_id}",
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<Boolean> isUserAdmin(@PathVariable("user_id") int user_id) {
