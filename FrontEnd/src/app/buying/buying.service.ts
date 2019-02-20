@@ -18,7 +18,7 @@ export class BuyingService {
   }
 
   public getSearchItems(searched) {
-    const apiLocation = this.baseUrl + 'walmart/search/' + searched;
+    const apiLocation = this.baseUrl + 'search/' + searched;
     return this.http.get<BuyerSearchItem[]>(apiLocation);
   }
 
