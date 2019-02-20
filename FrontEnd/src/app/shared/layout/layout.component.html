@@ -19,7 +19,7 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-        <input type="text" #searchInput class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text" #searchInput class="form-control" placeholder="Search Shmoozed for..." aria-label="Search" aria-describedby="basic-addon2" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let options of filteredOptions | async" [value]="options">
             {{options}}

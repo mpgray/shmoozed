@@ -6,14 +6,23 @@
     &nbsp;<img src="/assets/images/logoSmallDark.png" height="32" width="32"/> Items to <strong>Buy</strong>
   </div>
 </div>
-
-<div>
-  <div class="contentContainer" style="width: 100%;"><app-gallery></app-gallery></div>
-  <div class="buttonContainer">
-    <button mat-raised-button color="primary" (click)="openAddWalmartItemDialog()">Add Item</button>
+<div style="width: 100%; overflow: hidden;">
+  <div style="width: 500px; float: left;"> <app-gallery></app-gallery></div>
+  <div style="margin-left: 520px;">
+    <app-table-buyersearch></app-table-buyersearch>
   </div>
-  <div class="contentContainer" style="width: 100%;"><app-table-buyeritems style="width: 100%;"></app-table-buyeritems></div>
 </div>
+
+<div class="data-card data-card-page-titles" matRipple fxFlex="32" fxFlex.xs="100">
+  <div class="data-card-icon">
+    <mat-icon>shopping_basket</mat-icon>
+  </div>
+  <div class="data-card-text" style="padding-top: 5px">
+    &nbsp;<img src="/assets/images/logoSmallDark.png" height="32" width="32"/> Browse your Watched <strong>Items</strong>
+  </div>
+</div>
+<button mat-raised-button color="primary" style="float: right;" (click)="openAddWalmartItemDialog()">Add Item to Your Watchlist</button>
+<div class="contentContainer" style="width: 100%;"><app-table-buyeritems style="width: 100%;"></app-table-buyeritems></div>
 <!-- add walmart item by url
 <div class="row">
   <div class="col-md-auto"><p style="margin-top: 18px">Delete an item using a walmart url: </p></div>

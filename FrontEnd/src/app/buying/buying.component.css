@@ -16,10 +16,20 @@ th {
 } */
 
 .contentContainer {
-    text-align: center;
-    margin-right: 15%;
+    text-align: left;
+    width: 400px;
+    float: left;
 }
 
 .buttonContainer {
     text-align: right;
+    margin-left: 420px;
+  float: right;
+}
+
+.buyerInformation {
+  width: 100%;
+
+  overflow: hidden;
+
 }
