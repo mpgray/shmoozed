@@ -22,7 +22,7 @@
         <button mat-raised-button (click)="openPriceHistoryDialog(buyerItem)">View Price History</button>
         <a target="_blank" id="buybutton" href="{{buyerItem.detailedItem.walmartItem.addToCartUrl}}">
             <button mat-raised-button color="primary" *ngIf="buyerItem.detailedItem.walmartItem.addToCartUrl">
-                <img src="//affil.walmart.com/buttons/assets/images/spark.png" /> Buy Now
+                Buy Now
             </button>
         </a>
         <button mat-raised-button (click)="removeBuyerItem(buyerItem.id)">Remove Item</button>
