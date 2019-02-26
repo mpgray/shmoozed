@@ -9,9 +9,9 @@
   <a href="https://aws.amazon.com/"><img src="https://img.shields.io/badge/Hosting--Platform-AWS-yellow.svg"></a>
 </p>
 
-[Shmoozed](http://www.shmoozed.com) is a web application designed to allow Amazon Sellers to better understand the market price for their items. This is done by trending price data for items over time. In addition, potential Buyers can provide their ideal price (how good of a deal or steal they want) and negotiate with sellers of those items, eventually coming to an agreement on a price.
+[Shmoozed](http://www.shmoozed.com) is a web application designed to allow Sellers to better understand the market price for their items. This is done by trending price data for items over time. In addition, potential Buyers can provide their ideal price (how good of a deal or steal they want) and negotiate with sellers of those items, eventually coming to an agreement on a price.
 
-Shmoozed was developed as a project at Weber State University as part of CS 3750 Software Eng II.
+Shmoozed was developed as a project at Weber State University as part of CS 3750 Software Eng II and CS 4450 Advanced Software Eng.
 
 <p align="center">
   <img src="/Docs/screenshots/Shmoozed_2018-11-23_01.png" alt="Shmoozed Application Screenshot"
