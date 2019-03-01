@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OnboardComponent } from './onboard.component';
+import { AccountComponent} from "../account.component";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('OnboardComponent', () => {
   let component: OnboardComponent;
@@ -8,7 +10,8 @@ describe('OnboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OnboardComponent ]
+      declarations: [ OnboardComponent, AccountComponent],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
