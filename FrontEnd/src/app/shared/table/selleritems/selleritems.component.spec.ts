@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelleritemsComponent } from './selleritems.component';
+import { NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('SelleritemsComponent', () => {
   let component: SelleritemsComponent;
@@ -8,6 +10,7 @@ describe('SelleritemsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [NgxDatatableModule, HttpClientTestingModule],
       declarations: [ SelleritemsComponent ]
     })
     .compileComponents();
