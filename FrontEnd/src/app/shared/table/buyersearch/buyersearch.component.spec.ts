@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BuyersearchComponent } from './buyersearch.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import { AngularFontAwesomeModule} from "angular-font-awesome";
+import {MatTableModule, MatTooltipModule, MatDialogModule, MatBottomSheetModule} from "@angular/material";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('BuyersearchComponent', () => {
   let component: BuyersearchComponent;
@@ -8,7 +11,10 @@ describe('BuyersearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuyersearchComponent ]
+      imports: [AngularFontAwesomeModule, MatTableModule, MatTooltipModule,
+        HttpClientTestingModule, MatDialogModule, MatBottomSheetModule],
+      declarations: [ BuyersearchComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
