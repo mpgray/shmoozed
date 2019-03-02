@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -8,6 +10,7 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [NgxDatatableModule, HttpClientTestingModule],
       declarations: [ UsersComponent ]
     })
     .compileComponents();
