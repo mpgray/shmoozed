@@ -47,8 +47,15 @@ export class InventoryComponent implements OnInit {
       //console.log(data);
       this.products = data;
       this.temp = [...this.products];
-      this.selectedItem = this.products[0].id;
+      if (localStorage.getItem("inventoryPageSelectedItem") == null){
+        localStorage.setItem("inventoryPageSelectedItem", this.products[0].id.toString());
+      }
+      this.selectedItem = parseInt(localStorage.getItem("inventoryPageSelectedItem"), 10);
     });
   }
 
+  saveSelectedValue(value: any) {
+    localStorage.setItem("inventoryPageSelectedItem", value.toString());
+    this.selectedItem = parseInt(localStorage.getItem("inventoryPageSelectedItem"), 10);
+  }
 }
