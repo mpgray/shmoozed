@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { BuyingService } from '../../../buying/buying.service';
-import {MatTableDataSource, MatDialog, MatPaginator, MatSort, MatBottomSheet} from '@angular/material';
+import {MatTableDataSource, MatDialog, MatPaginator, MatSort, MatBottomSheet, PageEvent} from '@angular/material';
 import {BuyerItem} from '../../../models/buyer-item';
 import {BuyerSearchItem} from '../../../models/Searched-Items';
 import {LargeimgComponent} from './largeimg/largeimg.component';
@@ -12,6 +12,7 @@ import {LargeimgComponent} from './largeimg/largeimg.component';
   styleUrls: ['./buyersearch.component.css']
 })
 export class BuyersearchComponent implements OnInit {
+  pageSizeSelection: number = parseInt(localStorage.getItem("buyerSearchPageSizeSelection"), 10);
   buyerSearchItems: BuyerSearchItem[];
   displayedColumns: string[] = ['name', 'thumbnail', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
@@ -44,5 +45,10 @@ export class BuyersearchComponent implements OnInit {
 
   openBottomSheet(largeimg): void {
     this.bottomSheet.open(LargeimgComponent);
+  }
+
+  handlePage($event: PageEvent) {
+    localStorage.setItem("buyerSearchPageSizeSelection", this.paginator.pageSize.toString());
+    this.pageSizeSelection = parseInt(localStorage.getItem("buyerSearchPageSizeSelection"), 10);
   }
 }

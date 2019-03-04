@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BuyerItem } from '../../../models/buyer-item';
 import { BuyingService } from '../../../buying/buying.service';
-import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
+import {MatTableDataSource, MatDialog, MatPaginator, MatSort, PageEvent} from '@angular/material';
 import { ItemHistoryComponent } from '../../../buying/item-history/item-history.component';
 
 
@@ -11,6 +11,7 @@ import { ItemHistoryComponent } from '../../../buying/item-history/item-history.
   styleUrls: ['./buyeritems.component.css']
 })
 export class BuyeritemsComponent implements OnInit {
+  pageSizeSelection: number = parseInt(localStorage.getItem("buyerItemsPageSizeSelection"), 10);
   buyerItems: BuyerItem[];
   displayedColumns: string[] = ['item.name', 'price', 'salePrice', 'Actions'];
   dataSource: MatTableDataSource<any>;
@@ -45,4 +46,10 @@ export class BuyeritemsComponent implements OnInit {
       this.getBuyerItems();
     });
   }
+
+  handlePage($event: PageEvent) {
+    localStorage.setItem("buyerItemsPageSizeSelection", this.paginator.pageSize.toString());
+    this.pageSizeSelection = parseInt(localStorage.getItem("buyerItemsPageSizeSelection"), 10);
+  }
+
 }
