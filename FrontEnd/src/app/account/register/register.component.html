@@ -31,10 +31,10 @@
     </mat-form-field>
     <br />
     <div>
-      <mat-radio-group>
-        <mat-radio-button value="Buyer" checked>Buyer</mat-radio-button>
-        <mat-radio-button value="Seller">Seller</mat-radio-button>
-        <mat-radio-button value="Admin">Both</mat-radio-button>
+      <mat-radio-group [(ngModel)]="role">
+        <mat-radio-button value=1 checked>Buyer</mat-radio-button>
+        <mat-radio-button value=2>Seller</mat-radio-button>
+        <mat-radio-button value=3>Both</mat-radio-button>
       </mat-radio-group>
     </div>
     
