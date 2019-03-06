@@ -11,7 +11,7 @@
   <div class="col-md-auto"><p style="margin-top: 18px">Select an item to refresh the tools below: </p></div>
   <div class="col-md-auto">
     <mat-form-field>
-      <mat-select [(value)]="selectedItem">
+      <mat-select [(value)]="selectedItem" (selectionChange)="saveSelectedValue($event.value)">
         <mat-option *ngFor="let item of products" [value]="item.id">
           {{item.name}}
         </mat-option>
