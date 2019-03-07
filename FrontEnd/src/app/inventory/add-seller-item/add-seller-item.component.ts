@@ -29,9 +29,13 @@ export class AddSellerItemComponent implements OnInit {
       this.service.AddSellerItem(this.sellerItem)
       .subscribe(() => {
         this.dialogRef.close(true);
-        location.reload();
+        this.reload();
       });
     });
     // this.dialogRef.close(false);
+  }
+
+  reload() {
+    location.reload();
   }
 }
