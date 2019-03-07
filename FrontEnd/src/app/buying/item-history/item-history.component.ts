@@ -47,7 +47,7 @@ export class ItemHistoryComponent implements OnInit {
       }
       return 0;
     }
-    this.itemHistories = histories.sort(compare);
+    this.itemHistories = histories.sort();
   }
 
   populateChartArrays() {

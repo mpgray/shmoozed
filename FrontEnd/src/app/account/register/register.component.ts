@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { UserRole } from 'src/app/models/user-role';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-register',
@@ -13,22 +15,38 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   hide = true;
   user = new User();
+  role = 0;
   constructor(private http: HttpClient,
-    private snackBar: MatSnackBar) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   register() {
     const apiLocation = environment.baseUrl + 'user';
-    this.http.post(apiLocation, this.user)
-      .subscribe(() => {
-        this.openSnackBar();
+    this.http.post<User>(apiLocation, this.user)
+      .subscribe(user => {
+        this.addUserRole(user);
       });
   }
 
-  openSnackBar() {
-    const snackBarRef = this.snackBar.open('User Successfully Registered', 'Log In', { duration: 10000 });
-    snackBarRef.onAction().subscribe(() => { location.reload(); });
+  addUserRole(user: User) {
+    const userRole = new UserRole();
+    userRole.role_Id = this.role;
+    userRole.user_Id = user.id;
+    const apiLocation = environment.baseUrl + 'userrole';
+    this.http.post(apiLocation, userRole)
+    .subscribe(() => {
+      this.login(user.id);
+    });
+  }
+
+  login(userId: number) {
+    const apiLocation = environment.baseUrl + 'userrole/getallrolesforuserid/' + userId;
+    this.http.get<Role[]>(apiLocation)
+    .subscribe(roles => {
+      localStorage.setItem('roles', JSON.stringify(roles));
+      this.router.navigate(['dashboard']);
+    });
   }
 }
