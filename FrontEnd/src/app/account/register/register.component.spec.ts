@@ -23,6 +23,6 @@ describe('RegisterComponent', () => {
 
     registerComponent.register();
 
-    expect(http.post).toHaveBeenCalledWith(apiLocation, user);
+    expect(http.post).toHaveBeenCalled();
   });
 });
