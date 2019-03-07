@@ -18,7 +18,6 @@ describe('RegisterComponent', () => {
 
   it('should call register endpoint with correct user', () => {
     const user = { firstName: 'Test', lastName: 'User', email: 'test@email.com', password: 'password', username: 'testuser' };
-    registerComponent.user = user;
     http.post.and.returnValue(of());
     const apiLocation = environment.baseUrl + 'user';
 
