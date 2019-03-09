@@ -36,7 +36,7 @@ describe('AddSellerItemComponent', () => {
     component.itemUrl = itemUrl;
     const sellerItem = new SellerItem();
     sellerItem.itemId = walmartItem.linkedItemId;
-
+    spyOn(component, "reload").and.callFake(function(){});
     component.addSellerItem();
 
     expect(service.GetWalmartItem).toHaveBeenCalledWith(itemUrl);
