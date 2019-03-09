@@ -30,15 +30,19 @@ public class BuyerItem {
   @Column(name = "User_Id")
   private int userId;
 
+  @Column(name = "Notify_user")
+  private boolean notifyUser;
+
   public BuyerItem() {
     // Empty default constructor. This is needed in order for JPA to work properly.
   }
 
-  public BuyerItem(int id, int itemId, BigDecimal price, int userId) {
+  public BuyerItem(int id, int itemId, BigDecimal price, int userId, boolean notifyUser) {
     this.id = id;
     this.itemId = itemId;
     this.price = price;
     this.userId = userId;
+    this.notifyUser = notifyUser;
   }
 
   public int getId() {
@@ -73,6 +77,10 @@ public class BuyerItem {
     this.userId = userId;
   }
 
+  public boolean getNotifyUser() { return notifyUser; }
+
+  public void setNotifyUser(boolean notifyUser) { this.notifyUser = notifyUser; }
+
   @Override
   public String toString() {
     return "BuyerItem{" +
@@ -80,6 +88,7 @@ public class BuyerItem {
       ", itemId=" + itemId +
       ", price=" + price +
       ", userId=" + userId +
+      ", notifyUser=" + notifyUser +
       '}';
   }
 }

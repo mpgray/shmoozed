@@ -12,8 +12,10 @@ public interface BuyerItemRepository extends CrudRepository<BuyerItem, Integer> 
   Iterable<BuyerItem> findBuyerItemsByUserId(int userId);
   Iterable<BuyerItem> findAllByItemId(int itemId);
 
+  @Query(value = "Select Item_Id from Buyer_Items where user_Id=:userId")
+  List<BuyerItem> findBuyerItemsWithAlert(int userId);
+
   @Query(value = "SELECT Item_Id, COUNT(Item_Id) from Buyer_Items group by Item_Id Order by Count(Item_Id) desc limit 5", nativeQuery = true)
   List<Object[]> getTopItemsByBuyerItemCount();
-
   Optional<BuyerItem> findByItemIdEqualsAndUserIdEquals(int itemId, int userId);
 }

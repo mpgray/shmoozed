@@ -42,7 +42,7 @@ public class AlertControllerTest {
     Alert alert1 = new Alert(1, 2, 3, rightNow, 4);
     Alert alert2 = new Alert(5, 6, 7, rightNow, 8);
 
-    when(mockAlertService.getAlertsByUserId(4)).thenReturn(asList(alert1, alert2));
+   // when(mockAlertService.getAlertsByUserId(4)).thenReturn(asList(alert1, alert2));
 
     mockMvc.perform(get("/alert?userId=4").header("Authorization", "ImALittleTeapot"))
       .andDo(print())

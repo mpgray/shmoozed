@@ -9,6 +9,7 @@ import com.shmoozed.model.DetailedBuyerItem;
 import com.shmoozed.model.DetailedItem;
 import com.shmoozed.model.DetailedSellerItem;
 import com.shmoozed.model.SellerItem;
+import com.shmoozed.repository.AlertRepository;
 import com.shmoozed.repository.BuyerItemRepository;
 import com.shmoozed.repository.SellerItemRepository;
 import org.slf4j.Logger;
@@ -23,16 +24,22 @@ public class BuyerSellerItemsService {
 
   private final BuyerItemRepository buyerItemRepository;
   private final SellerItemRepository sellerItemRepository;
-
+  private final AlertRepository alertRepository;
+  private final AlertService alertService;
   private final ItemService itemService;
 
   @Autowired
   public BuyerSellerItemsService(BuyerItemRepository buyerItemRepository,
                                  SellerItemRepository sellerItemRepository,
-                                 ItemService itemService) {
+                                 AlertRepository alertRepository,
+                                 ItemService itemService,
+                                 AlertService alertService) {
+
     this.buyerItemRepository = buyerItemRepository;
     this.sellerItemRepository = sellerItemRepository;
     this.itemService = itemService;
+    this.alertService = alertService;
+    this.alertRepository = alertRepository;
   }
 
   public List<SellerItem> getAllSellerItems() {
@@ -165,7 +172,7 @@ public class BuyerSellerItemsService {
 
         //Set new item price
         sellerItem.setPrice(newPrice);
-
+        alertService.buyerNotification(sellerItem);
         //Update sellerItem in DB
         sellerItemRepository.save(sellerItem);
 

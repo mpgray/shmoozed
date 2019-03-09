@@ -1,6 +1,7 @@
 package com.shmoozed.controller;
 
 import com.shmoozed.model.Alert;
+import com.shmoozed.model.BuyerItem;
 import com.shmoozed.service.AlertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,28 +27,29 @@ public class AlertController {
     this.alertService  = alertService;
   }
 
+
+  //Need to fix ResponseEntity<ListBuyerItem>
   @GetMapping(
     produces = APPLICATION_JSON_VALUE
   )
-  public @ResponseBody ResponseEntity<List<Alert>> getAlertsForUser(@RequestHeader("Authorization") String token,
+  public @ResponseBody ResponseEntity<List<BuyerItem>> getAlertsForUser(@RequestHeader("Authorization") String token,
                                                @RequestParam("userId") int userId) {
     logger.debug("Request to get alert items for specific user. token={} userId={}", token, userId);
-    List<Alert> alertItems =
-      alertService.getAlertsByUserId(userId);
+     List<BuyerItem> buyerItem = alertService.getAlertsByUserId(userId);
 
-    if (alertItems.isEmpty()) {
+    if (buyerItem.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    return new ResponseEntity<>(alertItems, HttpStatus.OK);
+    return new ResponseEntity<>(buyerItem, HttpStatus.OK);
   }
 
-  @DeleteMapping(path = "/{alert_id}")
-  public @ResponseBody ResponseEntity<Void> deleteBuyerItemById(@RequestHeader("Authorization") String token,
-                                           @PathVariable("alert_id") int alertId) {
-    logger.debug("Request to delete alert. token={}, alertId={}", token, alertId);
+  @DeleteMapping(path = "/{item_id}")
+  public @ResponseBody ResponseEntity<Void> resetBuyerItemNotification(@RequestHeader("Authorization") String token,
+                                           @PathVariable("item_id") int itemId) {
+    logger.debug("Request to delete alert. token={}, alertId={}", token, itemId);
 
-    alertService.deleteAlertById(alertId);
+    alertService.resetNotification(itemId);
 
     return new ResponseEntity<>(HttpStatus.OK);
   }
