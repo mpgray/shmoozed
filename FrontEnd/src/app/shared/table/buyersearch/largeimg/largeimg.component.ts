@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatBottomSheetRef} from '@angular/material';
-import {BuyersearchComponent} from '../buyersearch.component';
-
+import { BuyingService } from '../../../../buying/buying.service';
 
 @Component({
   selector: 'app-largeimg',
@@ -9,11 +8,14 @@ import {BuyersearchComponent} from '../buyersearch.component';
   styleUrls: ['./largeimg.component.css']
 })
 export class LargeimgComponent implements OnInit {
-  largeImage = '';
-  constructor(private bottomSheetRef: MatBottomSheetRef<LargeimgComponent>, private buyerSearch: BuyersearchComponent) {
+  largeImg: string;
+  itemName: string;
+  constructor(public buyingService: BuyingService, private bottomSheetRef: MatBottomSheetRef<LargeimgComponent>) {
   }
 
   ngOnInit() {
+    this.largeImg = this.buyingService.largeImg;
+    this.itemName = this.buyingService.itemName;
   }
 
   openLink(event: MouseEvent): void {

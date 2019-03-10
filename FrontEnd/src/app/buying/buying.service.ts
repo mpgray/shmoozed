@@ -9,7 +9,8 @@ import {BuyerSearchItem} from '../models/Searched-Items';
 })
 export class BuyingService {
   baseUrl = environment.baseUrl;
-
+  largeImg: string;
+  itemName: string;
   constructor(private http: HttpClient) { }
 
   public getBuyerItems(buyerId: number) {

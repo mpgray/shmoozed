@@ -19,6 +19,7 @@ import {Register} from 'ts-node';
 import {RegisterComponent} from './account/register/register.component';
 import {OnboardComponent} from './account/onboard/onboard.component';
 import {LargeimgComponent} from './shared/table/buyersearch/largeimg/largeimg.component';
+import {ComparepriceComponent} from './shared/table/buyersearch/compareprice/compareprice.component';
 
 
 const routes: Routes = [{
@@ -74,6 +75,11 @@ const routes: Routes = [{
   {
     path: 'largeimg',
     component: LargeimgComponent,
+    data: {title: 'Large Image'}
+  },
+  {
+    path: 'compareprice',
+    component: ComparepriceComponent,
     data: {title: 'Large Image'}
   },
     {
