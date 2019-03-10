@@ -1,5 +1,6 @@
 import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 import { UserAuthentication } from '../models/user-authentication';
+import { Role } from '../models/role';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -11,7 +12,7 @@ export class HasClaimDirective {
     private viewContainer: ViewContainerRef) { }
 
   @Input() set hasClaim(claimType: any) {
-    const userObject = localStorage.getItem('user');
+    const userObject = localStorage.getItem('roles');
     if (!userObject) {
       this.viewContainer.clear();
     } else if (this.securityObjectHasClaim(claimType, JSON.parse(userObject))) {
@@ -21,12 +22,13 @@ export class HasClaimDirective {
     }
   }
 
-  securityObjectHasClaim(claim: string, securityObject: UserAuthentication) {
-    if (securityObject === null) {
+  securityObjectHasClaim(claim: string, roles: Role[]) {
+    if (roles === null) {
       return false;
     }
-    const matchingClaim = securityObject.roles.find(x => x === claim);
-    if (matchingClaim === undefined) {
+    const matchingClaim = roles.find(x => x.role === claim);
+    const matchingAdmin = roles.find(x => x.role === 'Admin');
+    if (matchingClaim === undefined && matchingAdmin === undefined) {
       return false;
     }
     return true;
