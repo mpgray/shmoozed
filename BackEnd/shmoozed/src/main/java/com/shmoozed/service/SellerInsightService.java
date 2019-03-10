@@ -133,8 +133,7 @@ public class SellerInsightService {
     Comparator<DemandPricevsRevenueDataPoint> comparator = new Comparator<DemandPricevsRevenueDataPoint>() {
       @Override
       public int compare(DemandPricevsRevenueDataPoint o1, DemandPricevsRevenueDataPoint o2) {
-        if((o1.getDemandPrice() - o2.getDemandPrice()) < 0)
-        {
+        if ((o1.getDemandPrice() - o2.getDemandPrice()) < 0) {
           return -1;
         }
         return 1;
