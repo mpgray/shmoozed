@@ -15,7 +15,7 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort>
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let buyerItem" matTooltip="{{buyerItem.categoryPath}}"> <a (click)="openBottomSheetSearch(buyerItem.name)">
+      <td mat-cell *matCellDef="let buyerItem" matTooltip="{{buyerItem.categoryPath}}"> <a [routerLink]="" (click)="openBottomSheetSearch(buyerItem.name)">
         {{buyerItem.name.substring(0,50)}}</a>
         <span *ngIf="buyerItem.name.length > 50">...  </span> </td>
     </ng-container>

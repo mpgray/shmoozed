@@ -20,18 +20,20 @@ export class BuyersearchComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   searchTerm: 'Enter Your Search...';
   searchedItems = Array('TVs', 'Books', 'TShirts', 'Dresses', 'Video Games');
-  searchedItem = this.searchedItems[Math.floor(Math.random() * this.searchedItems.length)];
+  searchedItem: string;
   searchStarted = false;
   largeImg: string;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  @Input() searchItem: string;
   constructor(public buyingService: BuyingService,
               public dialog: MatDialog, private bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit() {
+    this.searchedItem = this.searchedItems[Math.floor(Math.random() * this.searchedItems.length)];
     this.getBuyerSearchItems(this.searchedItem);
+
   }
 
   public getBuyerSearchItems(searchterm) {
@@ -41,8 +43,8 @@ export class BuyersearchComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.buyerSearchItems);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.buyingService.mySearchItems = this.buyerSearchItems;
       });
-
   }
 
   openBottomSheetImage(itemName, largeimg): void {

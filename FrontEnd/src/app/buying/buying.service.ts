@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BuyerItem } from '../models/buyer-item';
 import {BuyerSearchItem} from '../models/Searched-Items';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class BuyingService {
   baseUrl = environment.baseUrl;
   largeImg: string;
   itemName: string;
+  mySearchItems: BuyerSearchItem[];
+
   constructor(private http: HttpClient) { }
 
   public getBuyerItems(buyerId: number) {
