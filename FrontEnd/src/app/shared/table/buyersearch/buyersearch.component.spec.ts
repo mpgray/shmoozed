@@ -4,6 +4,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import { AngularFontAwesomeModule} from "angular-font-awesome";
 import {MatTableModule, MatTooltipModule, MatDialogModule, MatBottomSheetModule} from "@angular/material";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('BuyersearchComponent', () => {
   let component: BuyersearchComponent;
@@ -12,7 +13,7 @@ describe('BuyersearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [AngularFontAwesomeModule, MatTableModule, MatTooltipModule,
-        HttpClientTestingModule, MatDialogModule, MatBottomSheetModule],
+        HttpClientTestingModule, MatDialogModule, MatBottomSheetModule, RouterTestingModule],
       declarations: [ BuyersearchComponent ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
