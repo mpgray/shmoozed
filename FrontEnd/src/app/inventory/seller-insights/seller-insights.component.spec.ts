@@ -5,7 +5,7 @@ import { SellerItem } from 'src/app/models/seller-item';
 import { of } from 'rxjs';
 import { assert } from '@tensorflow/tfjs-core/dist/util';
 
-describe('SellerInsightsComponent', () => {
+/*describe('SellerInsightsComponent', () => {
   let component: SellerInsightsComponent;
   let service;
 
@@ -21,4 +21,4 @@ describe('SellerInsightsComponent', () => {
 
     expect(service.getDetailedSellerItems).toHaveBeenCalled();
   });
-});
+});*/
