@@ -43,24 +43,28 @@ public class AlertService {
     }
 
     public void buyerNotification(SellerItem sellerItem){
-
         for (BuyerItem buyerItem : buyerItemRepository.findAllByItemId(sellerItem.getItemId())) {
-            logger.debug("Found item on: " + buyerItem.toString());
-            logger.debug("Found item on: " + sellerItem.toString());
+                logger.debug("Found item on: " + buyerItem.toString());
 
-            if(buyerItem.getPrice().compareTo(sellerItem.getPrice()) < 1){
+               if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) == -1 || buyerItem.getPrice().compareTo(sellerItem.getPrice()) == 0) {
 
-                logger.debug("Notify user set buyerItem notify to true");
-                buyerItem.setNotifyUser(true);
-            }
-
+                   logger.debug("Notify user set buyerItem notify to true");
+                   buyerItem.setNotifyUser(true);
+               }
         }
 
     }
 
-    public void resetNotification(int itemId){
+    public void resetNotification(BuyerItem buyerItem){
 
-        logger.debug("Need to implement reset condition");
-        //buyerItem.setNotifyUser(false);
+        logger.debug("Resetting notifyUser");
+
+       for(BuyerItem itemToReset : buyerItemRepository.findBuyerItemsByUserId(buyerItem.getUserId())){
+
+           if(buyerItem.getItemId() == itemToReset.getItemId()) {
+               buyerItem.setNotifyUser(false);
+           }
+       }
+
     }
 }

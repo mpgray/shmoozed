@@ -28,13 +28,12 @@ public class AlertController {
   }
 
 
-  //Need to fix ResponseEntity<ListBuyerItem>
   @GetMapping(
     produces = APPLICATION_JSON_VALUE
   )
   public @ResponseBody ResponseEntity<List<BuyerItem>> getAlertsForUser(@RequestHeader("Authorization") String token,
-                                               @RequestParam("userId") int userId) {
-    logger.debug("Request to get alert items for specific user. token={} userId={}", token, userId);
+                                               @RequestParam("user_Id") int userId) {
+    logger.debug("Request to get alert items for specific user. token={} user_Id={}", token, userId);
      List<BuyerItem> buyerItem = alertService.getAlertsByUserId(userId);
 
     if (buyerItem.isEmpty()) {
@@ -44,12 +43,25 @@ public class AlertController {
     return new ResponseEntity<>(buyerItem, HttpStatus.OK);
   }
 
+  @PostMapping(path = "/{item_id}",
+    consumes = APPLICATION_JSON_VALUE,
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody ResponseEntity<BuyerItem> resetAlertsForUserItem(@RequestHeader("Authorization") String token,
+                                                                   @RequestBody BuyerItem buyerItem) {
+    logger.debug("Request to update user item. token={}, sellerItem={}", token, buyerItem);
+
+    alertService.resetNotification(buyerItem);
+
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
   @DeleteMapping(path = "/{item_id}")
   public @ResponseBody ResponseEntity<Void> resetBuyerItemNotification(@RequestHeader("Authorization") String token,
                                            @PathVariable("item_id") int itemId) {
     logger.debug("Request to delete alert. token={}, alertId={}", token, itemId);
 
-    alertService.resetNotification(itemId);
+    //alertService.resetNotification(itemId);
 
     return new ResponseEntity<>(HttpStatus.OK);
   }
