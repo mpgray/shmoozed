@@ -72,6 +72,7 @@ import { SetPriceComponent } from './inventory/set-price/set-price.component';
 import { ImportCsvComponent } from './inventory/import-csv/import-csv.component';
 import {BuyersearchComponent} from './shared/table/buyersearch/buyersearch.component';
 import { LargeimgComponent } from './shared/table/buyersearch/largeimg/largeimg.component';
+import { ComparepriceComponent } from './shared/table/buyersearch/compareprice/compareprice.component';
 
 
 @NgModule({
@@ -111,7 +112,8 @@ import { LargeimgComponent } from './shared/table/buyersearch/largeimg/largeimg.
     SetPriceComponent,
     ImportCsvComponent,
     BuyersearchComponent,
-    LargeimgComponent
+    LargeimgComponent,
+    ComparepriceComponent
   ],
   imports: [
     AlertModule.forRoot(),
