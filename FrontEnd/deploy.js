@@ -15,12 +15,24 @@ var config = {
 
 // use with promises
 ftpDeploy.deploy(config)
-  .then(res => console.log('finished:', res))
-  .catch(err => console.log(err))
+  .then(res => {
+    console.log('finished:', res);
+    process.exit(0);
+  })
+  .catch(err => {
+    console.log(err);
+    process.exit(1);
+  });
 
 // use with callback
 ftpDeploy.deploy(config, function(err, res) {
-  if (err) console.log(err)
-  else console.log('finished:', res);
+  if (err){
+    console.log(err);
+    process.exit(1)
+  }
+  else{
+    console.log('finished:', res);
+    process.exit(0);
+  }
 });
 
