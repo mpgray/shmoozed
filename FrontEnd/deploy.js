@@ -13,6 +13,12 @@ var config = {
   forcePasv: true
 }
 
+// Log Progress
+ftpDeploy.on("log", data => console.log("[log]", data)); // Connection Logging
+ftpDeploy.on('uploading', function(data) { // Upload Progress
+    console.log('[uploading] Deploying file to server. Filename: %s', data.filename);
+});
+
 // use with promises
 ftpDeploy.deploy(config)
   .then(res => {
