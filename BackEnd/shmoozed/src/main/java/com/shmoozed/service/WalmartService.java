@@ -225,6 +225,9 @@ public class WalmartService {
 
   public List<WalmartItem> convertBestBuyToWalmart(List<BestBuyItem> bestBuyItems)
   {
+    if(bestBuyItems == null){
+      return null;
+    }
     List<WalmartItem> walmartItems = new ArrayList<WalmartItem>();
     for(BestBuyItem bbi : bestBuyItems){
       WalmartItem walmartItem = new WalmartItem();
