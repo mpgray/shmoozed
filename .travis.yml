@@ -4,6 +4,9 @@ jdk:
   - openjdk8
 sudo: false
 
+notifications:
+  slack: cs3750group2:u7F1SPN76356M90w08zR9ShU
+
 addons:
   # https://docs.travis-ci.com/user/chrome
   chrome: stable
