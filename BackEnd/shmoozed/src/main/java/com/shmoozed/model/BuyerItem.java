@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 /**
@@ -31,6 +33,7 @@ public class BuyerItem {
   private int userId;
 
   @Column(name = "Notify_user")
+  @Value("false")
   private boolean notifyUser;
 
   public BuyerItem() {

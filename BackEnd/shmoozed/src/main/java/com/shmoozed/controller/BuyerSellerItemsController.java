@@ -150,6 +150,23 @@ public class BuyerSellerItemsController {
   }
 
   @GetMapping(
+    path = "/buyer/alert/{buyer_id}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody
+  ResponseEntity<List<BuyerItem>> getAlertsForUser(@RequestHeader("Authorization") String token,
+                                                   @PathVariable("buyer_id") String buyerId) {
+    logger.debug("Request to get alert items for specific user. token={} user_Id={}", token, buyerId);
+    List<BuyerItem> buyerItem = buyerSellerItemsService.getAlertsByUserId(Integer.valueOf((buyerId)));
+
+    if (buyerItem.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    return new ResponseEntity<>(buyerItem, HttpStatus.OK);
+  }
+
+  @GetMapping(
     path = "/buyer/{buyer_id}/details",
     produces = APPLICATION_JSON_VALUE
   )
