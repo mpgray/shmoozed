@@ -65,6 +65,18 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+Note that the results are displayed in the browser window that is launched for testing. After analyzing the results, use a `Ctrl + C` to finsh the executive of the tests.
+
+If you do not want the tests to leave the window open with the results showing, add a `--watch=false` at the end of the command. Doing `ng test --watch=false` is important for running in the CI/CD pipeline.
+
+### Run Headless (No Browser Window)
+
+On Headless machines (such as Travis CI) there is no GUI available for a browser to run in. As such, you need to run 
+`ng test --watch=false --progress=false --browsers=ChromeHeadlessCI` instead.
+
+`browsers=ChromeHeadlessCI` in configured in `karma.conf.js`.
+
+
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

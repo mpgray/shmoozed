@@ -29,7 +29,9 @@ public class SearchService {
     List<WalmartItem> walmartItems = walmartService.searchWalmartSiteForItem(searchTerm);
     List<BestBuyItem> bestBuyItems = bestBuyService.searchBestBuySiteForItem(searchTerm);
     logger.debug("bestBuyItems search results bestBuyItems={}", bestBuyItems);
-    walmartItems.addAll(walmartService.convertBestBuyToWalmart(bestBuyItems));
+    if (bestBuyItems != null) {
+      walmartItems.addAll(walmartService.convertBestBuyToWalmart(bestBuyItems));
+    }
     return walmartItems;
   }
 }

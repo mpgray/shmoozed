@@ -67,7 +67,9 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
 
   private publishChartData(datapoints: SellerInsightDatapoint[]) {
     this.chartHasData = datapoints.length > 0;
-    this.sortDataPointsByPrice(datapoints);
+    this.sellerInsights = this.sortDataPointsByPrice(datapoints);
+    this.chartData = [];
+    this.chartLabels = [];
     this.sellerInsights.forEach(element => {
       this.chartLabels.push(element.demandPrice.toString());
       this.chartData.push(element.revenue.toString());
@@ -82,17 +84,18 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
       });
   }
 
-  sortDataPointsByPrice(datapoints: SellerInsightDatapoint[]) {
-    function compare(a, b) {
-      if (a.last_nom < b.last_nom) {
-        return -1;
-      }
-      if (a.last_nom > b.last_nom) {
-        return 1;
-      }
-      return 0;
+  compareSellerInsights(a: SellerInsightDatapoint, b: SellerInsightDatapoint) {
+    if (a.demandPrice < b.demandPrice) {
+      return -1;
     }
-    this.sellerInsights = datapoints.sort(compare);
+    if (a.demandPrice > b.demandPrice) {
+      return 1;
+    }
+    return 0;
+  }
+
+  sortDataPointsByPrice(datapoints: SellerInsightDatapoint[]) {
+    return datapoints.sort(this.compareSellerInsights);
   }
 
   getSellerItem(itemId: number) {

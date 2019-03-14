@@ -4,6 +4,10 @@ jdk:
   - openjdk8
 sudo: false
 
+addons:
+  # https://docs.travis-ci.com/user/chrome
+  chrome: stable
+
 cache:
   directories:
   # Cache both Maven's .m2 directory and the installed node modules to speed up build
@@ -31,6 +35,7 @@ script:
   - npm install
   - npm install -g @angular/cli
   - ng build
+  - ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
 
   # Deploy Frontend using SCP
   - if [ "$BRANCH" == "master" ]; then echo "%%%%%%%%%%% LAUNCHING FRONTEND DEPLOY %%%%%%%%%%%"; echo "(We aren't actually deploying yet... but that would go here instead of this echo...)"; else echo "%%%%%%%%%%% NOT ON MASTER BRANCH, SKIPPING FRONTEND DEPLOY %%%%%%%%%%"; fi;

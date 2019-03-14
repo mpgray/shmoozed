@@ -32,7 +32,8 @@ are some hoops we are going to have to jump through in order for it to work for 
 
 1. npm install
 2. ng build
-3. Deploy files (SCP/FTP) from dist directory to server
+3. ng test
+4. Deploy files (SCP/FTP) from dist directory to server
 
 ## Backend CI/CD Strategy
 
@@ -52,6 +53,13 @@ Thanksfully, a docker image was created by a group and available to use without 
 https://hub.docker.com/r/skandyla/travis-cli/ Follow the instructions on the docker image to run commands against the `travis-cli`.
 
 I chose to use the `travis setup elasticbeanstalk` option in the Travis instructions instead of setting it all up by hand. This made it go alot smoother.
+
+### Frontend Travis Deploy Setup
+
+Travis runs in a "headless" environment. As such, certain considerations need to be made when configuring the Travis CI pipeline for the Frontend.
+* https://karma-runner.github.io/3.0/plus/travis.html
+* https://docs.travis-ci.com/user/gui-and-headless-browsers/
+* https://medium.com/@swanandkeskar/angular-5-travis-ci-continuous-integration-deployment-fe9090f460c5
 
 ### Travis CLI
 

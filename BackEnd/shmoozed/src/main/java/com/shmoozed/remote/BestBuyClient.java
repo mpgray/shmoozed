@@ -16,7 +16,7 @@ public class BestBuyClient {
   private Logger logger = LoggerFactory.getLogger(BestBuyClient.class);
   private final RestTemplate restTemplate;
 
-  private static final String API_KEY = "9hSBRQLAT9D8vc3Uo7H6uX1d";
+  private static final String API_KEY = "FtEvbruRdmh0y1LmIKMoMAHA"; //"9hSBRQLAT9D8vc3Uo7H6uX1d";
   private static final String API_BASE_URL = "https://api.bestbuy.com/";
   private static final String V1_SEARCH_URL = "/v1/products({searchmap})?format=json&apiKey={api_key}";
 
