@@ -23,16 +23,17 @@ public class BuyerSellerItemsService {
 
   private final BuyerItemRepository buyerItemRepository;
   private final SellerItemRepository sellerItemRepository;
-
   private final ItemService itemService;
 
   @Autowired
   public BuyerSellerItemsService(BuyerItemRepository buyerItemRepository,
                                  SellerItemRepository sellerItemRepository,
                                  ItemService itemService) {
+
     this.buyerItemRepository = buyerItemRepository;
     this.sellerItemRepository = sellerItemRepository;
     this.itemService = itemService;
+
   }
 
   public List<SellerItem> getAllSellerItems() {
@@ -74,7 +75,6 @@ public class BuyerSellerItemsService {
         logger.warn("Seller Item found for sellerItemId={} but no detailed item found. sellerItem={}", sellerItemId, sellerItem);
       }
     }
-
     return null;
   }
 
@@ -148,6 +148,41 @@ public class BuyerSellerItemsService {
     }
   }
 
+  public List<BuyerItem> getAlertsByUserId(int userId) {
+    logger.debug("Fetching all alerts for userId={}", userId);
+    return buyerItemRepository.findBuyerItemsByUserIdEqualsAndNotifyUserIsTrue(userId);
+  }
+
+  public void buyerNotification(SellerItem sellerItem){
+
+    //Sorts through all items that match the sellerItem's Item Id.
+    for (BuyerItem buyerItem : buyerItemRepository.findAllByItemId(sellerItem.getItemId())) {
+      logger.debug("Found item on: " + buyerItem.toString());
+
+      if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) == -1 || buyerItem.getPrice().compareTo(sellerItem.getPrice()) == 0) {
+
+        logger.debug("Notify user set buyerItem notify to true");
+        buyerItem.setNotifyUser(true);
+      }
+    }
+
+  }
+
+  public void resetNotification(BuyerItem buyerItem){
+
+    logger.debug("Resetting notifyUser");
+
+    Optional<BuyerItem> itemToReset = buyerItemRepository.findById(buyerItem.getId());
+
+    if(itemToReset.isPresent()){
+
+      buyerItem = itemToReset.get();
+      buyerItem.setNotifyUser(false);
+
+    }
+
+  }
+
   public void updateSellerItemPrice(SellerItem itemToUpdate) {
 
     Optional<SellerItem> itemCheck = sellerItemRepository.findByItemIdEqualsAndUserIdEquals(itemToUpdate.getItemId(),itemToUpdate.getUserId());
@@ -165,7 +200,7 @@ public class BuyerSellerItemsService {
 
         //Set new item price
         sellerItem.setPrice(newPrice);
-
+        buyerNotification(sellerItem);
         //Update sellerItem in DB
         sellerItemRepository.save(sellerItem);
 

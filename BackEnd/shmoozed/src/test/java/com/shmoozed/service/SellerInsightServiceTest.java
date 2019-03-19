@@ -36,21 +36,21 @@ public class SellerInsightServiceTest {
 
     List<BuyerItem> buyerItemList = new ArrayList<>();
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.4), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6.04), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.12), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(11.9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(12.64), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(0.11), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.55), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2.4), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6.04), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.12), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(11.9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(12.64), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(0.11), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3.55), 1,false));
 
     when(mockBuyerItemRepository.findAllByItemId(ItemId)).thenReturn(buyerItemList);
 
@@ -79,75 +79,75 @@ public class SellerInsightServiceTest {
 
     List<BuyerItem> buyerItemList = new ArrayList<>();
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(1), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(2), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(3), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(4), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(5), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(6), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(7), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(8), 1,false));
 
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
-    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
+    buyerItemList.add(new BuyerItem(1, ItemId, new BigDecimal(9), 1,false));
 
     when(mockBuyerItemRepository.findAllByItemId(ItemId)).thenReturn(buyerItemList);
 
