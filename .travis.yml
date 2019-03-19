@@ -4,6 +4,17 @@ jdk:
   - openjdk8
 sudo: false
 
+notifications:
+  slack:
+    rooms: 
+      - cs3750group2:u7F1SPN76356M90w08zR9ShU#travis-ci
+    on_success: always
+    on_failure: always
+    template:
+      - "Repo *%{repository_slug}* `%{result}` build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+      - "Execution time: *%{duration}*"
+      - "Message: %{message}"
+
 addons:
   # https://docs.travis-ci.com/user/chrome
   chrome: stable
