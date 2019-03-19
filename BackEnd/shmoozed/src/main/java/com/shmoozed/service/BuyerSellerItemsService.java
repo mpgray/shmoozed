@@ -172,11 +172,13 @@ public class BuyerSellerItemsService {
 
     logger.debug("Resetting notifyUser");
 
-    for(BuyerItem itemToReset : buyerItemRepository.findBuyerItemsByUserId(buyerItem.getUserId())){
+    Optional<BuyerItem> itemToReset = buyerItemRepository.findById(buyerItem.getId());
 
-      if(buyerItem.getItemId() == itemToReset.getItemId()) {
-        buyerItem.setNotifyUser(false);
-      }
+    if(itemToReset.isPresent()){
+
+      buyerItem = itemToReset.get();
+      buyerItem.setNotifyUser(false);
+
     }
 
   }
