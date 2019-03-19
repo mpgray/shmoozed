@@ -32,7 +32,14 @@ public class UserService {
     return userRepository.findById(userId);
   }
 
+  public Optional<User> getByUsernameAndPassword(String username, String password) {
+    logger.debug("Fetching username={} and password={}", username.toLowerCase(), password);
+    return userRepository.findByUsernameEqualsAndPasswordEquals(username.toLowerCase(), password);
+  }
+
+  //todo: prevent duplicate user insertion by username
   public User insertNewUser(User user) {
+    user.setUsername(user.getUsername().toLowerCase());
     logger.debug("Attempting to insert user={}", user);
     User newUser = userRepository.save(user);
     logger.debug("New user inserted into database. newUser={}", newUser);

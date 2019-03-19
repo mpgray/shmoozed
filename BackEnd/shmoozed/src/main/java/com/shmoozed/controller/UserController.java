@@ -57,6 +57,26 @@ public class UserController {
   }
 
   @GetMapping(
+    value = "/username/{username}/rawpassword/{rawpassword}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody
+  ResponseEntity<User> getUserByUsernameAndPassword(@RequestHeader("Authorization") String token,
+                                                    @PathVariable("username") String username,
+                                                    @PathVariable("rawpassword") String rawpassword) {
+    logger.debug("Request to get user. token={}, username={}, rawpassword={}", token, username, rawpassword);
+
+    Optional<User> user = userService.getByUsernameAndPassword(username, rawpassword);
+
+    if (user.isPresent()) {
+      return new ResponseEntity<>(user.get(), HttpStatus.OK);
+    }
+    else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping(
     value = "/{id}",
     produces = APPLICATION_JSON_VALUE
   )
