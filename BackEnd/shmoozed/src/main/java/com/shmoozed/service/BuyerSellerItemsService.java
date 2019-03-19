@@ -150,7 +150,7 @@ public class BuyerSellerItemsService {
 
   public List<BuyerItem> getAlertsByUserId(int userId) {
     logger.debug("Fetching all alerts for userId={}", userId);
-    return buyerItemRepository.findBuyerItemsWithAlert(userId);
+    return buyerItemRepository.findBuyerItemsByUserIdEqualsAndNotifyUserIsTrue(userId);
   }
 
   public void buyerNotification(SellerItem sellerItem){

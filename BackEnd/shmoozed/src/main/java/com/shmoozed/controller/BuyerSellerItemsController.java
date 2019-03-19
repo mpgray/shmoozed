@@ -166,13 +166,13 @@ public class BuyerSellerItemsController {
     return new ResponseEntity<>(buyerItem, HttpStatus.OK);
   }
 
-  @PostMapping(path = "/buyer/alert/{buyer_id}",
+  @PostMapping(path = "/buyer/alert/{item_id}",
       consumes = APPLICATION_JSON_VALUE,
       produces = APPLICATION_JSON_VALUE
     )
     public @ResponseBody ResponseEntity<BuyerItem> resetItemAlert(@RequestHeader("Authorization") String token,
-                                                                     @RequestBody BuyerItem updateItem) {
-      logger.debug("Request to update user item. token={}, sellerItem={}", token, updateItem);
+                                                                  @RequestBody BuyerItem updateItem) {
+      logger.debug("Request to reset buyer item notification. token={}, buyerItem={}", token, updateItem);
 
       buyerSellerItemsService.resetNotification(updateItem);
 
