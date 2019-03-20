@@ -50,7 +50,7 @@ script:
   - ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
 
   # Deploy Frontend using SCP
-  - if [ "$BRANCH" == "master" ]; then echo "%%%%%%%%%%% LAUNCHING FRONTEND DEPLOY %%%%%%%%%%%"; echo "(We aren't actually deploying yet... but that would go here instead of this echo...)"; else echo "%%%%%%%%%%% NOT ON MASTER BRANCH, SKIPPING FRONTEND DEPLOY %%%%%%%%%%"; fi;
+  - if [ "$BRANCH" == "master" ]; then echo "%%%%%%%%%%% LAUNCHING FRONTEND DEPLOY %%%%%%%%%%%"; node sftp; else echo "%%%%%%%%%%% NOT ON MASTER BRANCH, SKIPPING FRONTEND DEPLOY %%%%%%%%%%"; fi;
 
 # Deploy the Backend to Elasticbeanstalk
 deploy:
