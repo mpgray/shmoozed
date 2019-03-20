@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-  Optional<User> findByUsernameEqualsAndPasswordEquals(String username, String password);
+  Optional<User> findByUsernameEquals(String username);
 }

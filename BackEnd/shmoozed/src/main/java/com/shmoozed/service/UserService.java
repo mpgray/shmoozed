@@ -32,9 +32,9 @@ public class UserService {
     return userRepository.findById(userId);
   }
 
-  public Optional<User> getByUsernameAndPassword(String username, String password) {
-    logger.debug("Fetching username={} and password={}", username.toLowerCase(), password);
-    return userRepository.findByUsernameEqualsAndPasswordEquals(username.toLowerCase(), password);
+  public Optional<User> getByUsername(String username) {
+    logger.debug("Fetching username={}", username.toLowerCase());
+    return userRepository.findByUsernameEquals(username.toLowerCase());
   }
 
   //todo: prevent duplicate user insertion by username
