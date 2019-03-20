@@ -5,6 +5,7 @@ jdk:
 sudo: false
 
 notifications:
+  # https://docs.travis-ci.com/user/notifications/
   slack:
     rooms: 
       - cs3750group2:u7F1SPN76356M90w08zR9ShU#travis-ci
@@ -49,11 +50,12 @@ script:
   - ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
 
   # Deploy Frontend using SCP
-  - if [ "$BRANCH" == "master" ]; then echo "%%%%%%%%%%% LAUNCHING FRONTEND DEPLOY %%%%%%%%%%%"; echo "(We aren't actually deploying yet... but that would go here instead of this echo...)"; else echo "%%%%%%%%%%% NOT ON MASTER BRANCH, SKIPPING FRONTEND DEPLOY %%%%%%%%%%"; fi;
+  - if [ "$BRANCH" == "master" ]; then echo "%%%%%%%%%%% LAUNCHING FRONTEND DEPLOY %%%%%%%%%%%"; node sftp; else echo "%%%%%%%%%%% NOT ON MASTER BRANCH, SKIPPING FRONTEND DEPLOY %%%%%%%%%%"; fi;
 
 # Deploy the Backend to Elasticbeanstalk
 deploy:
-  # For some weird reason, Travis decides that it is a good idea to blow away everything it made during the build phase... This stops that from happening.
+  # For some weird reason, Travis decides that it is a good idea to blow away everything it made during the build phase... 
+  # The "skip_cleanup" stops that from happening. See https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   skip_cleanup: true
   provider: elasticbeanstalk
   access_key_id: AKIAJ25AYVIIHFSCP4IQ
@@ -68,4 +70,13 @@ deploy:
   on:
     repo: cowancs3750fall18/semesterproject-group-2
     branch: master
+
+# Run Acceptance / Integration Tests
+#after_deploy:
+#  - echo "%%%%%%%%%%% LAUNCHING ACCEPTANCE / INTEGRATION TESTS %%%%%%%%%%%"
+#  # Travis, for whatever reason, chose NOT to make failures in the "after_deploy" actually fail your
+#  # build. This choice seems quite odd, but its the way it is. Because of that we have to manaully
+#  # cause a failure by calling "travis_terminate".
+#  # See https://docs.travis-ci.com/user/job-lifecycle/#breaking-the-build and https://github.com/travis-ci/travis-ci/issues/1574
+#  - if ! TEST_SCRIPT_HERE; then travis_terminate 1; fi
 

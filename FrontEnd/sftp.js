@@ -4,7 +4,7 @@ let config = {
   host: '18.223.204.244',
   port: 22,
   username: 'ec2-user',
-  privateKey: __dirname + "\\" + 'cs3750.pem',
+  privateKey: __dirname + '/cs3750.pem',
   localDir: __dirname + '/dist/shmoozed',
   remoteDir: '/var/www/html/'
 };
