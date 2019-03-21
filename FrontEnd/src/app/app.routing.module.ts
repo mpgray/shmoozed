@@ -78,6 +78,11 @@ const routes: Routes = [{
     data: {title: 'Large Image'}
   },
   {
+    path: 'dashboard',
+    component: LayoutComponent,
+    data: {title: 'Dashboard'}
+  },
+  {
     path: 'compareprice',
     component: ComparepriceComponent,
     data: {title: 'Large Image'}
