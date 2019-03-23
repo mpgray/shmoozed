@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f374277d-c6cc-4d97-90ad-1a18f4128b9a",
+		"_postman_id": "f49f8f2c-c7f8-4f6a-9a52-d370d4f8b5dd",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -817,6 +817,37 @@
 									"path": [
 										"user",
 										"authorization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/user/username/{username}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/user/username/oneWorkingExample",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"user",
+										"username",
+										"oneWorkingExample"
 									]
 								}
 							},
@@ -2264,6 +2295,35 @@
 									"path": [
 										"user",
 										"authorization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/user/username/{username}",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:5000/user/username/oneWorkingExample",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"user",
+										"username",
+										"oneWorkingExample"
 									]
 								}
 							},
