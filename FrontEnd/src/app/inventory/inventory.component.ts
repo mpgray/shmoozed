@@ -5,6 +5,7 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 import {RESTService} from '../services/rest.service';
 import { MatDialog } from '@angular/material';
 import { AddSellerItemComponent } from './add-seller-item/add-seller-item.component';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-inventory',
@@ -25,6 +26,7 @@ export class InventoryComponent implements OnInit {
   divStatus4 = false;
   divStatus5 = false;
   divStatus6 = false;
+  intro = introJs();
 
   constructor(public rest: RESTService,
     private route: ActivatedRoute,
@@ -34,6 +36,9 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    if (RegExp('multipage', 'gi').test(window.location.search)) {
+      this.startIntro();
+    }
   }
 
   public openAddItemDialog() {
@@ -57,5 +62,41 @@ export class InventoryComponent implements OnInit {
   saveSelectedValue(value: any) {
     localStorage.setItem("inventoryPageSelectedItem", value.toString());
     this.selectedItem = parseInt(localStorage.getItem("inventoryPageSelectedItem"), 10);
+  }
+
+  startIntro() {
+    let options = {
+      steps: [
+        {
+          element: document.querySelector('#itemSelector'),
+          intro: "You can use the item selector to refresh all of the tools on this page with a specific item.",
+          disableInteraction: true
+        },
+        {
+          element: document.querySelector('#addItem'),
+          intro: "You can add an item to your inventory using this button",
+          disableInteraction: true
+        },
+        {
+          element: document.querySelectorAll('.row')[1],
+          intro: "You can use the tools below to get Profit/Revenue forecast, Historical prices/forecast, set price targets, and more!",
+          disableInteraction: true
+        },
+        {
+          element: document.querySelectorAll('.row')[1],
+          intro: "If you click on a tool, it will expand for a better view.",
+          disableInteraction: true,
+          position: 'right',
+        },
+        {
+          element: document.querySelectorAll('.row')[1],
+          intro: "That's it for now, click done to get started.",
+          disableInteraction: true,
+          position: 'bottom',
+        }
+      ]
+    };
+    this.intro.setOptions(options);
+    this.intro.start();
   }
 }
