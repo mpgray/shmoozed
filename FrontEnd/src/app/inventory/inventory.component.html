@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-md-auto"><p style="margin-top: 18px">Select an item to refresh the tools below: </p></div>
   <div class="col-md-auto">
-    <mat-form-field>
+    <mat-form-field id="itemSelector">
       <mat-select [(value)]="selectedItem" (selectionChange)="saveSelectedValue($event.value)">
         <mat-option *ngFor="let item of products" [value]="item.id">
           {{item.name}}
@@ -20,7 +20,7 @@
   </div>
   <!-- add item dialog button -->
   <div class="col-md-auto"><p style="margin-top: 18px">Selected Item ID: {{selectedItem}}</p></div>
-  <button mat-raised-button color="primary" (click)="openAddItemDialog()">Add Test Item</button>
+  <button mat-raised-button color="primary" id="addItem" (click)="openAddItemDialog()">Add Test Item</button>
 </div>
 <!-- cards with seller tools -->
 <div class="row">

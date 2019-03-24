@@ -79,7 +79,7 @@ On Headless machines (such as Travis CI) there is no GUI available for a browser
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `protractor conf.js` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
