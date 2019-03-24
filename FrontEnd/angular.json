@@ -27,12 +27,14 @@
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/material-design-icons/iconfont/material-icons.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/intro.js/introjs.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"]
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/intro.js/intro.js"]
           },
           "configurations": {
             "production": {
