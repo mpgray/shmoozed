@@ -6,6 +6,7 @@ import { ItemHistoryComponent } from './item-history/item-history.component';
 import { RESTService } from '../services/rest.service';
 import { AddBuyItemComponent } from './add-buy-item/add-buy-item.component';
 import {BuyerSearchItem} from '../models/Searched-Items';
+import * as introJs from 'intro.js/intro.js';
 
 @Component({
   selector: 'app-buying',
@@ -23,6 +24,8 @@ export class BuyingComponent implements OnInit {
   walmartBuyerDetailPrice: number;
   walmartBuyerDetailQuantity: number;
 
+  intro = introJs();
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -33,6 +36,9 @@ export class BuyingComponent implements OnInit {
 
   ngOnInit() {
     this.getBuyerItems();
+    if (RegExp('multipage', 'gi').test(window.location.search)) {
+      this.startIntro();
+    }
   }
 
   private getBuyerItems() {
@@ -91,5 +97,41 @@ export class BuyingComponent implements OnInit {
     }
   }
 
+  startIntro() {
+    let options = {
+      steps: [
+        {
+          element: document.querySelector('#gallery'),
+          intro: "You can use the item gallery to quickly view and purchase items in your watch list.",
+          disableInteraction: true,
+          position: 'right'
+        },
+        {
+          element: document.querySelector('#search'),
+          intro: "You can search for products and get recommendations using this tool. Click 'Get More Info' to view the item on the merchant site.",
+          disableInteraction: true
+        },
+        {
+          element: document.querySelector('#addItem'),
+          intro: "Click here to add an item to your watchlist. When you add an item you can set a price target. We'll let you know when the target is reached.",
+          disableInteraction: true
+        },
+        {
+          element: document.querySelector('#watchList'),
+          intro: "This is your watch list. You can view your requested price, current price, and historical prices for each item in your list. You can also quickly buy the item, or remove it from your list.",
+          disableInteraction: true,
+          position: 'right',
+        },
+        {
+          element: document.querySelector('#watchlist'),
+          intro: "That's it for now, click done to get started.",
+          disableInteraction: true,
+          position: 'bottom',
+        }
+      ]
+    };
+    this.intro.setOptions(options);
+    this.intro.start();
+  }
 
 }
