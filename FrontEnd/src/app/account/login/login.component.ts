@@ -1,6 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {DialogData} from '../account.component';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import { Component } from '@angular/core';
+import { LoginService } from './login-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +9,21 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 })
 export class LoginComponent {
   hide = true;
+  username: string;
 
-  constructor() {
+  constructor(private service: LoginService, private router: Router) {
   }
 
-  onSignIn() {
+  login() {
+    this.service.getUserInfo(this.username)
+      .subscribe(user => {
+        localStorage.clear();
+        localStorage.setItem('user', JSON.stringify(user));
+        this.service.getRoles(user.id)
+          .subscribe(roles => {
+            localStorage.setItem('roles', JSON.stringify(roles));
+            this.router.navigate(['dashboard']);
+          });
+      });
   }
-
 }
