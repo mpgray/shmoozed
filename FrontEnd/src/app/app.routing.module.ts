@@ -20,6 +20,8 @@ import {RegisterComponent} from './account/register/register.component';
 import {OnboardComponent} from './account/onboard/onboard.component';
 import {LargeimgComponent} from './shared/table/buyersearch/largeimg/largeimg.component';
 import {ComparepriceComponent} from './shared/table/buyersearch/compareprice/compareprice.component';
+import {SellerguideComponent} from "./guide/sellerguide/sellerguide.component";
+import {BuyerguideComponent} from "./guide/buyerguide/buyerguide.component";
 
 
 const routes: Routes = [{
@@ -70,7 +72,15 @@ const routes: Routes = [{
       path: 'inventory',
       component: InventoryComponent,
       data: { title: 'Inventory' }
-    }],
+    }, {
+        path: 'sellerguide',
+        component: SellerguideComponent,
+        data: { title: 'Seller Guide' }
+      }, {
+        path: 'buyerguide',
+        component: BuyerguideComponent,
+        data: { title: 'Buyer Guide' }
+      }],
 },
   {
     path: 'largeimg',
