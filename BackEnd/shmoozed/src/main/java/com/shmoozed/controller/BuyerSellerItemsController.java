@@ -150,6 +150,36 @@ public class BuyerSellerItemsController {
   }
 
   @GetMapping(
+    path = "/buyer/alert/{buyer_id}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody
+  ResponseEntity<List<BuyerItem>> getAlertsForUser(@RequestHeader("Authorization") String token,
+                                                   @PathVariable("buyer_id") String buyerId) {
+    logger.debug("Request to get alert items for specific user. token={} user_Id={}", token, buyerId);
+    List<BuyerItem> buyerItem = buyerSellerItemsService.getAlertsByUserId(Integer.valueOf((buyerId)));
+
+    if (buyerItem.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    return new ResponseEntity<>(buyerItem, HttpStatus.OK);
+  }
+
+  @PostMapping(path = "/buyer/alert/{item_id}",
+      consumes = APPLICATION_JSON_VALUE,
+      produces = APPLICATION_JSON_VALUE
+    )
+    public @ResponseBody ResponseEntity<BuyerItem> resetItemAlert(@RequestHeader("Authorization") String token,
+                                                                  @RequestBody BuyerItem updateItem) {
+      logger.debug("Request to reset buyer item notification. token={}, buyerItem={}", token, updateItem);
+
+      buyerSellerItemsService.resetNotification(updateItem);
+
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+  @GetMapping(
     path = "/buyer/{buyer_id}/details",
     produces = APPLICATION_JSON_VALUE
   )

@@ -57,6 +57,25 @@ public class UserController {
   }
 
   @GetMapping(
+    value = "/username/{username}",
+    produces = APPLICATION_JSON_VALUE
+  )
+  public @ResponseBody
+  ResponseEntity<User> getUserByUsername(@RequestHeader("Authorization") String token,
+                                                    @PathVariable("username") String username) {
+    logger.debug("Request to get user. token={}, username={}", token, username);
+
+    Optional<User> user = userService.getByUsername(username);
+
+    if (user.isPresent()) {
+      return new ResponseEntity<>(user.get(), HttpStatus.OK);
+    }
+    else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  @GetMapping(
     value = "/{id}",
     produces = APPLICATION_JSON_VALUE
   )
