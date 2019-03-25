@@ -18,7 +18,7 @@ export class LoginComponent {
     this.service.getUserInfo(this.username)
       .subscribe(user => {
         localStorage.clear();
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('userId', user.id.toString());
         this.service.getRoles(user.id)
           .subscribe(roles => {
             localStorage.setItem('roles', JSON.stringify(roles));

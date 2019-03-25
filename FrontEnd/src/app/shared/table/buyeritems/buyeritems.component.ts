@@ -27,7 +27,8 @@ export class BuyeritemsComponent implements OnInit {
   }
 
   private getBuyerItems() {
-    this.buyingService.getBuyerItems(2)
+    const userId = +localStorage.getItem('userId');
+    this.buyingService.getBuyerItems(userId)
       .subscribe(buyerItems => {
         this.buyerItems = buyerItems;
         this.dataSource = new MatTableDataSource(this.buyerItems);
