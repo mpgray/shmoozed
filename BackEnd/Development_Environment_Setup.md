@@ -62,7 +62,7 @@ Before following these steps, make sure that the later Maven version is installe
 fairly good job of detecting other Maven installations which simplifies the following steps.
 
 1. File --> Settings...
-2. Build, Execution, Deployment --> Maven
+2. Build, Execution, Deployment --> Buld Tools --> Maven
 3. Change the `Maven home directory` dropdown to point to the proper directory
    * You may need to actually browse to the proper location if IntelliJ didn't detect it properly. However, this is usually
    a sign that Maven wasn't fully configured (specifically the M2_HOME was set, etc.).
