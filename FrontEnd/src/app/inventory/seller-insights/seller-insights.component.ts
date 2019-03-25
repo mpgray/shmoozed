@@ -25,7 +25,8 @@ export class SellerInsightsComponent implements OnInit, AfterViewInit, OnChanges
   constructor(private service: SellerInsightsService) { }
 
   ngOnInit() {
-    this.service.getDetailedSellerItems(2)
+    const userId = +localStorage.getItem('userId');
+    this.service.getDetailedSellerItems(userId)
     .subscribe(items => {
       this.sellerItems = items;
       this.getChartData();

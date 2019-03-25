@@ -20,13 +20,14 @@ describe('BuyingComponent', () => {
     });
 
 
-    it('should call the BuyingService.getbuyerItems() upon init', () => {
+    it('should call the BuyingService.getSearchItems() upon init', () => {
         mockBuyingService.getBuyerItems.and.returnValue(of(BuyerItem));
         mockBuyingService.getSearchItems.and.returnValue(of(BuyerSearchItem));
+        localStorage.setItem('userId', '2');
 
         buyingComponent.ngOnInit();
 
-        expect(mockBuyingService.getBuyerItems).toHaveBeenCalledWith(2);
+        expect(mockBuyingService.getSearchItems).toHaveBeenCalledWith(2);
     });
 
     it('should open the snackbar with the correct message and duration', () => {

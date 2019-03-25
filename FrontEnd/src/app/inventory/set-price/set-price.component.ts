@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, OnChanges} from '@angular/core';
 import {RESTService} from '../../services/rest.service';
 
 @Component({
@@ -6,11 +6,11 @@ import {RESTService} from '../../services/rest.service';
   templateUrl: './set-price.component.html',
   styleUrls: ['./set-price.component.css']
 })
-export class SetPriceComponent implements OnInit {
+export class SetPriceComponent implements OnInit, OnChanges {
 
   @Input() itemId: number;
   // TODO use a real userID once authentication is setup
-  @Input() setPriceTargetData = {itemId: this.itemId, price: 1, userId: 2, sellerCost: 1};
+  @Input() setPriceTargetData = {itemId: this.itemId, price: 1, userId: +localStorage.getItem('userId'), sellerCost: 1};
   products: any = [];
   isSellerItem: boolean;
 
@@ -38,16 +38,16 @@ export class SetPriceComponent implements OnInit {
     }
   }
 
-  getItemData(){
+  getItemData() {
     this.products = [];
     this.setPriceTargetData.price = null;
     this.setPriceTargetData.sellerCost = null;
     this.isSellerItem = false;
     this.rest.getSellerItems().subscribe((data: {}) => {
       this.products = data;
-      //console.log(data);
+      // console.log(data);
       for (const product of this.products) {
-        if (product.itemId == this.itemId) {
+        if (product.itemId === this.itemId) {
           this.setPriceTargetData.price = product.price;
           this.setPriceTargetData.sellerCost = product.sellerCost;
           this.isSellerItem = true;
