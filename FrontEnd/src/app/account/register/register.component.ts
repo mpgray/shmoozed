@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const apiLocation = environment.baseUrl + 'user';
+    this.user.username = this.user.firstName + this.user.lastName;
     this.http.post<User>(apiLocation, this.user)
       .subscribe(user => {
         this.addUserRole(user);
@@ -36,17 +37,26 @@ export class RegisterComponent implements OnInit {
     userRole.user_Id = user.id;
     const apiLocation = environment.baseUrl + 'userrole';
     this.http.post(apiLocation, userRole)
-    .subscribe(() => {
-      this.login(user.id);
-    });
+      .subscribe(() => {
+        this.login(user.id);
+      });
   }
 
   login(userId: number) {
     const apiLocation = environment.baseUrl + 'userrole/getallrolesforuserid/' + userId;
     this.http.get<Role[]>(apiLocation)
-    .subscribe(roles => {
-      localStorage.setItem('roles', JSON.stringify(roles));
-      this.router.navigate(['dashboard']);
-    });
+      .subscribe(roles => {
+        localStorage.setItem('roles', JSON.stringify(roles));
+        this.navigateToWelcomePage(roles);
+      });
+  }
+
+  navigateToWelcomePage(roles: Role[]) {
+    const matchingBuyer = roles.find(x => x.role === 'Buyer');
+    if (matchingBuyer !== undefined) {
+      this.router.navigate(['buyerguide']);
+    } else {
+      this.router.navigate(['sellerguide']);
+    }
   }
 }
