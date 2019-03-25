@@ -15,7 +15,7 @@ export class AddSellerItemComponent implements OnInit {
     private service: AddSellerItemService) { }
 
   ngOnInit() {
-    this.sellerItem.userId = 2;
+    this.sellerItem.userId = +localStorage.getItem('userId');
   }
 
   cancel() {

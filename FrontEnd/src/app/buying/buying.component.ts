@@ -42,14 +42,8 @@ export class BuyingComponent implements OnInit {
   }
 
   private getBuyerItems() {
-    this.buyingService.getBuyerItems(2)
-      .subscribe(buyerItems => {
-        this.buyerItems = buyerItems;
-        this.dataSource = new MatTableDataSource(this.buyerItems);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
-    this.buyingService.getSearchItems(2)
+    const userId = +localStorage.getItem('userId');
+    this.buyingService.getSearchItems(userId)
       .subscribe(buyerSearchItems => {
         this.buyerSearchItems = buyerSearchItems;
         this.dataSource = new MatTableDataSource(this.buyerItems);
@@ -98,33 +92,36 @@ export class BuyingComponent implements OnInit {
   }
 
   startIntro() {
-    let options = {
+    const options = {
       steps: [
         {
           element: document.querySelector('#gallery'),
-          intro: "You can use the item gallery to quickly view and purchase items in your watch list.",
+          intro: 'You can use the item gallery to quickly view and purchase items in your watch list.',
           disableInteraction: true,
           position: 'right'
         },
         {
           element: document.querySelector('#search'),
-          intro: "You can search for products and get recommendations using this tool. Click 'Get More Info' to view the item on the merchant site.",
+          // tslint:disable-next-line:max-line-length
+          intro: 'You can search for products and get recommendations using this tool. Click \'Get More Info\' to view the item on the merchant site.',
           disableInteraction: true
         },
         {
           element: document.querySelector('#addItem'),
-          intro: "Click here to add an item to your watchlist. When you add an item you can set a price target. We'll let you know when the target is reached.",
+          // tslint:disable-next-line:max-line-length
+          intro: 'Click here to add an item to your watchlist. When you add an item you can set a price target. We\'ll let you know when the target is reached.',
           disableInteraction: true
         },
         {
           element: document.querySelector('#watchList'),
-          intro: "This is your watch list. You can view your requested price, current price, and historical prices for each item in your list. You can also quickly buy the item, or remove it from your list.",
+          // tslint:disable-next-line:max-line-length
+          intro: 'This is your watch list. You can view your requested price, current price, and historical prices for each item in your list. You can also quickly buy the item, or remove it from your list.',
           disableInteraction: true,
           position: 'right',
         },
         {
           element: document.querySelector('#watchlist'),
-          intro: "That's it for now, click done to get started.",
+          intro: 'That\'s it for now, click done to get started.',
           disableInteraction: true,
           position: 'bottom',
         }

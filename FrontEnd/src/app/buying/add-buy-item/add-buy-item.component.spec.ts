@@ -22,11 +22,11 @@ describe('AddBuyItemComponent', () => {
   });
 
   it('should call restservice.addWalmartBuyerDetails() on addbuyeritem', () => {
-    const buyerItem = {itemId: 1, price: 9.99, userId: 100, walmartUrl: 'testurl'};
+    const buyerItem = { itemId: 1, price: 9.99, userId: 100, walmartUrl: 'testurl' };
     component.buyerItem = buyerItem;
 
     component.addBuyerItem();
 
-    expect(restService.addWalmartBuyerDetails).toHaveBeenCalledWith(1, buyerItem.price, 2, buyerItem.walmartUrl);
+    expect(restService.addWalmartBuyerDetails).toHaveBeenCalledWith(1, buyerItem.price, 100, buyerItem.walmartUrl);
   });
 });

@@ -13,14 +13,14 @@ export class AddBuyItemComponent implements OnInit {
 
   constructor(private rest: RESTService,
     private dialogRef: MatDialogRef<AddBuyItemComponent>) {
-    this.buyerItem.userId = 2;
+    this.buyerItem.userId = +localStorage.getItem('itemId');
    }
 
   ngOnInit() {
   }
 
   addBuyerItem() {
-    this.rest.addWalmartBuyerDetails(1, this.buyerItem.price, 2, this.buyerItem.walmartUrl)
+    this.rest.addWalmartBuyerDetails(1, this.buyerItem.price, this.buyerItem.userId, this.buyerItem.walmartUrl)
     .subscribe(() => {
       this.dialogRef.close(true);
     });
