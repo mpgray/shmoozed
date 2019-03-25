@@ -53,7 +53,7 @@ If using IntelliJ to launch the maven `clean` and `install` phases, additional c
 IntelliJ will launch maven the correct `-Ddocker.skip=false` flag. This configuration only needs to be performed
 once.
 1. File --> Settings...
-2. Expand Build, Execution, Deployment --> Maven --> Runner
+2. Expand Build, Execution, Deployment --> Build Tolols --> Maven --> Runner
 3. Click the `+` in the Properties panel in the right side of the settings window
 4. Set the Name to `docker.skip` and the value to `false`. Click OK to add it.
 5. Click the Apply button.
