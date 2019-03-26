@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -226,7 +227,7 @@ public class WalmartService {
   public List<WalmartItem> convertBestBuyToWalmart(List<BestBuyItem> bestBuyItems)
   {
     if(bestBuyItems == null){
-      return null;
+      return Collections.emptyList();
     }
     List<WalmartItem> walmartItems = new ArrayList<WalmartItem>();
     for(BestBuyItem bbi : bestBuyItems){
