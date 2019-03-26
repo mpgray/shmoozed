@@ -1,6 +1,11 @@
 # Continuous Integration / Continuous Delivery
 
+## Travis CI Pipeline
+
+![Travis_ci_pipeline](Travis_ci_pipeline.png)
+
 ## Technologies Considered
+
 | Technology | Link | Free? | Self-hosted / Cloud | Notes |
 |------------|-------------------------------------|-------------------------------------------------------------------------|---------------------|-----------------------------------------------------------------------------------------------------------|
 | Jenkins | https://jenkins.io/ | Yes | Self-hosted | Market leader for open-source CI/CD. |
