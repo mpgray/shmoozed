@@ -88,6 +88,13 @@ After performing an `npm install`, do the following instructions (based loosly o
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+### Run Locally Launching Chrome
+
+The end-to-end tests are configured to run Headless (No GUI) on Chrome. It may be necessary while running them locally to have the browser window actually display while the tests are running. To do that, comment out (`//`) the following line in both `FrontEnd/conf.js` and `FrontEnd/e2e/protractor.conf.js`:
+`args: ["--headless", "--disable-gpu", "--window-size=800,600"]`
+
+Do _not_ check the commented out lines into the repository though. Leaving those lines commented out will make the build fail as Travis CI is a headless server (has No GUI available to it).
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
