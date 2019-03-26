@@ -1,17 +1,14 @@
-import { browser, by, element } from 'protractor';
+import { AppPage } from './app.po';
 
-describe('Login Page', () => {
-  it('should set user data in local storage', () => {
-    browser.get('http://localhost:4200/onboard');
-    browser.executeScript('window.localStorage.clear();');
-    const username = 'oneworkingexample';
-    element(by.id('usernameInput')).clear();
-    element(by.id('usernameInput')).sendKeys(username);
-    const userButton = element(by.id('loginButton'));
-    userButton.click();
-    browser.sleep(1000);
+describe('workspace-project App', () => {
+  let page: AppPage;
 
-    const value = browser.executeScript('return window.localStorage.getItem(\'userId\');');
-    expect(value).toBe('29');
+  beforeEach(() => {
+    page = new AppPage();
+  });
+
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('Buyers and sellers BOTH win!');
   });
 });
