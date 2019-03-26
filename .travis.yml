@@ -46,6 +46,8 @@ script:
   - cd ../../FrontEnd/
   - npm install
   - npm install -g @angular/cli
+  - npm install -g protractor
+  - webdriver-manager update --versions.chrome 2.46
   - ng build
   - ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
 
@@ -72,11 +74,11 @@ deploy:
     branch: master
 
 # Run Acceptance / Integration Tests
-#after_deploy:
-#  - echo "%%%%%%%%%%% LAUNCHING ACCEPTANCE / INTEGRATION TESTS %%%%%%%%%%%"
-#  # Travis, for whatever reason, chose NOT to make failures in the "after_deploy" actually fail your
-#  # build. This choice seems quite odd, but its the way it is. Because of that we have to manaully
-#  # cause a failure by calling "travis_terminate".
-#  # See https://docs.travis-ci.com/user/job-lifecycle/#breaking-the-build and https://github.com/travis-ci/travis-ci/issues/1574
-#  - if ! TEST_SCRIPT_HERE; then travis_terminate 1; fi
+after_deploy:
+  - echo "%%%%%%%%%%% LAUNCHING ACCEPTANCE / INTEGRATION TESTS %%%%%%%%%%%"
+  # Travis, for whatever reason, chose NOT to make failures in the "after_deploy" actually fail your
+  # build. This choice seems quite odd, but its the way it is. Because of that we have to manaully
+  # cause a failure by calling "travis_terminate".
+  # See https://docs.travis-ci.com/user/job-lifecycle/#breaking-the-build and https://github.com/travis-ci/travis-ci/issues/1574
+  - if ! protractor conf.js; then travis_terminate 1; fi
 

@@ -79,6 +79,13 @@ On Headless machines (such as Travis CI) there is no GUI available for a browser
 
 ## Running end-to-end tests
 
+After performing an `npm install`, do the following instructions (based loosly on the instructions at https://www.protractortest.org/#/).
+
+1. `npm install -g protractor`
+2. `webdriver-manager update --versions.chrome 2.46`
+   * The additional params are needed because webdriver-manager defaults to installing the latest version of webdriver which Chrome 74 (at the time of this writing). However, the latest stable version on Linux is Chrome 73... We have to pull down an older version because of that.
+   * Why `2.46`? See https://sites.google.com/a/chromium.org/chromedriver/downloads and https://stackoverflow.com/questions/41133391/which-chromedriver-version-is-compatible-with-which-chrome-browser-version which says `2.46` supports Chrome 73.
+
 Run `protractor conf.js` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
