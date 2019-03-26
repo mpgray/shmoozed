@@ -4,42 +4,42 @@
   <div>
     <mat-form-field appearance="outline">
       <mat-label>First Name</mat-label>
-      <input matInput placeholder="" required [(ngModel)]="user.firstName" />
+      <input matInput placeholder="" required [(ngModel)]="user.firstName" id = "firstNameInput"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 50 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Last Name</mat-label>
-      <input matInput placeholder="" required [(ngModel)]="user.lastName" />
+      <input matInput placeholder="" required [(ngModel)]="user.lastName" id = "lastNameInput"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 50 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="" required [(ngModel)]="user.email" />
+      <input matInput placeholder="" required [(ngModel)]="user.email" id = "emailInput"/>
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       <mat-hint>Max 100 Characters</mat-hint>
     </mat-form-field>
     <br />
     <mat-form-field type="password" appearance="outline" name="password">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" required [(ngModel)]="user.password" />
+      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" required [(ngModel)]="user.password" id = "passwordInput"/>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-hint>Case sensitive. No spaces</mat-hint>
     </mat-form-field>
     <br />
     <div>
       <mat-radio-group [(ngModel)]="role">
-        <mat-radio-button value=1 checked>Buyer</mat-radio-button>
-        <mat-radio-button value=2>Seller</mat-radio-button>
-        <mat-radio-button value=3>Both</mat-radio-button>
+        <mat-radio-button value=1 checked id = "buyerRadioButton">Buyer</mat-radio-button>
+        <mat-radio-button value=2 id = "sellerRadioButton">Seller</mat-radio-button>
+        <mat-radio-button value=3 id = "bothRadioButton">Both</mat-radio-button>
       </mat-radio-group>
     </div>
     
     <div class="form-group">
-      <button class="btn btn-primary" (click)="register()">Register</button>
+      <button class="btn btn-primary" (click)="register()" id = "registerButton">Register</button>
       <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
     </div>
   </div>
