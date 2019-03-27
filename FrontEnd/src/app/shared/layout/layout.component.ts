@@ -18,7 +18,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild('AccountComponent') account: AccountComponent;
   mobileQuery: MediaQueryList;
   emailMessages = 13;
-  alertMessages = 20;
+  alertMessages = 1;
   private readonly _mobileQueryListener: () => void;
   searchValue = 'Clear me';
   myControl = new FormControl();
@@ -27,7 +27,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   options: any = [];
   filteredOptions: Observable<string[]>;
   name: string;
-
+  isAlert = true;
   constructor(public rest: RESTService, public dialog: MatDialog, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 750px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -56,13 +56,19 @@ export class LayoutComponent implements OnInit, OnDestroy {
     });
 
   }
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-
+  toggleAlert() {
+    if (this.isAlert === true) {
+      this.alertMessages--;
+    } else {
+      this.alertMessages++;
+    }
+    this.isAlert = !this.isAlert;
+  }
   openLogin() {
     this.dialog.open(LoginComponent, {
       data: {
