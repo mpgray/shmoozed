@@ -35,7 +35,17 @@
       </div>
 
     </form>
-
+    <button class="nav-link  dropdown-toggle" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon color="primary" matBadge="{{alertMessages}}" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <span mat-menu-item><strong>(2 pack) Great Value 18 oz Party Plastic Cups, 240 count</strong></span>
+      <span mat-menu-item>Desired Price: <strong>$9.35</strong> Price: <strong>$9.35</strong></span>
+      <span mat-menu-item>
+        <a target="_blank" href="https://www.walmart.com/search/?query=(2%20pack)%20Great%20Value%2018%20oz%20Party%20Plastic%20Cups,%20240%20count&affp1=5ng3ElK8UpN4FAdJcQys4Bghacg8YfNH0-Huetnv0oo&wmlspartner=readonlyapi&sourceid=api014b407293c940426a86cd48ac6d5454e7&veh=aff">
+          <button mat-raised-button>Buy</button>
+        </a> - <button mat-raised-button (click)="toggleAlert()" *ngIf="isAlert">Remove Alert</button><button mat-raised-button (click)="toggleAlert()" *ngIf="!isAlert">Restrore Alert</button> </span>
+    </mat-menu>
     <!-- Navbar -->
     <!-- <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow mx-1">

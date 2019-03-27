@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import {BuyerItem} from '../models/buyer-item';
 
 const endpoint = 'http://api.shmoozed.com/';
 const itempath = 'example/item';
 const buyerpath = 'item/buyer';
+const alerts = '/alert/';
 const sellerpath = 'item/seller';
 const userpath = 'user';
 const walmartURL = 'walmart/url';
@@ -144,6 +146,17 @@ export class RESTService {
 
   ///////////////////////
   // END Seller       //
+  //////////////////////
+
+  ///////////////////////
+  // Buyer Alerts     //
+  //////////////////////
+  getBuyerAlerts(id): Observable<any> {
+    return this.http.get(endpoint + buyerpath + alerts + id).pipe(
+      map(this.extractData));
+  }
+  ///////////////////////
+  // END Buyer Alerts  //
   //////////////////////
 
   //////////////////
