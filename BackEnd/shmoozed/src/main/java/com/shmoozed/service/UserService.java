@@ -37,7 +37,6 @@ public class UserService {
     return userRepository.findByUsernameEquals(username.toLowerCase());
   }
 
-  //todo: prevent duplicate user insertion by username
   public User insertNewUser(User user) {
     user.setUsername(user.getUsername().toLowerCase());
     logger.debug("Attempting to insert user={}", user);

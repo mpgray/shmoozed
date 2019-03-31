@@ -51,6 +51,12 @@ public class UserController {
                                                           @RequestBody User user) {
     logger.debug("Request to add new user. token={}, user={}", token, user);
 
+    Optional<User> alreadyExistingUser = userService.getByUsername(user.getUsername());
+    if (alreadyExistingUser.isPresent()) {
+      logger.debug("Username already exists, new user not created");
+      return new ResponseEntity<>(alreadyExistingUser.get(), HttpStatus.CONFLICT);
+    }
+
     User newUser = userService.insertNewUser(user);
 
     return new ResponseEntity<>(newUser, HttpStatus.OK);
