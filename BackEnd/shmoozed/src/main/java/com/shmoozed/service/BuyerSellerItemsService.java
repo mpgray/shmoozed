@@ -233,4 +233,20 @@ public class BuyerSellerItemsService {
     buyerItemRepository.deleteById(buyerItemId);
   }
 
+  public void insertDefaultBuyerItemsForNewUser(int userId) {
+    logger.debug("Inserting default BuyerItems for userId={}", userId);
+    BuyerItem buyerItem01 = new BuyerItem();
+    buyerItem01.setUserId(userId);
+    buyerItem01.setPrice(new BigDecimal(5.62));
+    buyerItem01.setItemId(91);
+
+    BuyerItem buyerItem02 = new BuyerItem();
+    buyerItem02.setUserId(userId);
+    buyerItem02.setPrice(new BigDecimal(180.37));
+    buyerItem02.setItemId(92);
+
+    insertNewBuyerItemIfNotAlreadyPresent(buyerItem01);
+    insertNewBuyerItemIfNotAlreadyPresent(buyerItem02);
+  }
+
 }

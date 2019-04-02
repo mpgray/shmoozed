@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.shmoozed.model.User;
 import com.shmoozed.model.UserAuthorizations;
 import com.shmoozed.model.UserRoles;
+import com.shmoozed.service.BuyerSellerItemsService;
 import com.shmoozed.service.GoogleService;
 import com.shmoozed.service.UserService;
 import org.slf4j.Logger;
@@ -25,11 +26,13 @@ public class UserController {
 
   private Logger logger = LoggerFactory.getLogger(UserController.class);
 
+  private BuyerSellerItemsService buyerSellerItemsService;
   private GoogleService googleService;
   private UserService userService;
 
   @Autowired
-  public UserController(GoogleService googleService, UserService userService) {
+  public UserController(BuyerSellerItemsService buyerSellerItemsService, GoogleService googleService, UserService userService) {
+    this.buyerSellerItemsService = buyerSellerItemsService;
     this.googleService = googleService;
     this.userService = userService;
   }
@@ -58,6 +61,7 @@ public class UserController {
     }
 
     User newUser = userService.insertNewUser(user);
+    buyerSellerItemsService.insertDefaultBuyerItemsForNewUser(user.getId());
 
     return new ResponseEntity<>(newUser, HttpStatus.OK);
   }
