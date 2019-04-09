@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/models/user';
-import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { UserRole } from 'src/app/models/user-role';
 import { Role } from 'src/app/models/role';
@@ -13,7 +12,7 @@ import { Role } from 'src/app/models/role';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  hide = true;
+  duplicateUser = false;
   user = new User();
   role = 0;
   constructor(private http: HttpClient,
@@ -23,12 +22,17 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.postUser();
+  }
+
+  postUser() {
     const apiLocation = environment.baseUrl + 'user';
-    this.user.username = this.user.firstName + this.user.lastName;
     this.http.post<User>(apiLocation, this.user)
-      .subscribe(user => {
-        this.addUserRole(user);
-      });
+    .subscribe(user => {
+      this.addUserRole(user);
+    }, () => {
+      this.duplicateUser = true;
+    });
   }
 
   addUserRole(user: User) {
