@@ -5,3 +5,8 @@ mat-radio-button {
 #formContainer {
     text-align: center;
 }
+
+.error {
+    color: red;
+    font-weight: 500;
+}

@@ -27,11 +27,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             }
         });
 
-        return next.handle(newRequest).pipe(catchError((error, caught) => {
-            console.log(error);
-            this.handleTokenError(error);
-            return of(error);
-        }) as any);
+        return next.handle(newRequest);
     }
 
     handleTokenError(error: HttpErrorResponse) {
