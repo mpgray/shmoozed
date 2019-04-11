@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f49f8f2c-c7f8-4f6a-9a52-d370d4f8b5dd",
+		"_postman_id": "484a8850-552b-42a0-b4e2-1a0c38c37797",
 		"name": "Shmoozed",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -371,6 +371,44 @@
 										"item",
 										"buyer",
 										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Notification - /buyer/alert/{item_id}",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "test"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1222,\n    \"itemId\": 91,\n    \"price\": 5.62,\n    \"userId\": 65,\n    \"notifyUser\": true\n}"
+								},
+								"url": {
+									"raw": "http://api.shmoozed.com/item/buyer/alert/91",
+									"protocol": "http",
+									"host": [
+										"api",
+										"shmoozed",
+										"com"
+									],
+									"path": [
+										"item",
+										"buyer",
+										"alert",
+										"91"
 									]
 								}
 							},
@@ -1702,7 +1740,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:5000/item/buyer/1",
+									"raw": "http://localhost:5000/item/buyer/65",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1711,7 +1749,7 @@
 									"path": [
 										"item",
 										"buyer",
-										"1"
+										"65"
 									]
 								}
 							},
@@ -1861,6 +1899,43 @@
 										"item",
 										"buyer",
 										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Notification - /buyer/alert/{item_id}",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "test",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1222,\n    \"itemId\": 91,\n    \"price\": 5.62,\n    \"userId\": 65,\n    \"notifyUser\": true\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/item/buyer/alert/91",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"item",
+										"buyer",
+										"alert",
+										"91"
 									]
 								}
 							},
@@ -2241,7 +2316,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"itemId\": 90,\n\t\"price\": 19.50,\n\t\"userId\": 2,\n\t\"sellerCost\":25.50\n}"
+									"raw": "{\n\t\"itemId\": 91,\n\t\"price\": 22.53,\n\t\"userId\": 2,\n\t\"sellerCost\":25.50\n}"
 								},
 								"url": {
 									"raw": "http://localhost:5000/item/seller/update/:item_id",
