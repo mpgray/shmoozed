@@ -159,10 +159,18 @@ public class BuyerSellerItemsService {
     for (BuyerItem buyerItem : buyerItemRepository.findAllByItemId(sellerItem.getItemId())) {
       logger.debug("Found item on: " + buyerItem.toString());
 
-      if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) == -1 || buyerItem.getPrice().compareTo(sellerItem.getPrice()) == 0) {
+      if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) >= 0 ){
 
         logger.debug("Notify user set buyerItem notify to true");
-        buyerItem.setNotifyUser(true);
+        if(buyerItem.getNotifyUser() == false) {
+          buyerItem.setNotifyUser(true);
+        }
+      }
+      else
+      {
+        if(buyerItem.getNotifyUser() == true) {
+          buyerItem.setNotifyUser(false);
+        }
       }
     }
 
@@ -173,14 +181,13 @@ public class BuyerSellerItemsService {
     logger.debug("Resetting notifyUser");
 
     Optional<BuyerItem> itemToReset = buyerItemRepository.findById(buyerItem.getId());
-
     if(itemToReset.isPresent()){
-
-      buyerItem = itemToReset.get();
-      buyerItem.setNotifyUser(false);
-
+      BuyerItem buyerItemToUpdate = itemToReset.get();
+      if(buyerItemToUpdate.getNotifyUser() == true){
+        buyerItemToUpdate.setNotifyUser(false);
+        buyerItemRepository.save(buyerItemToUpdate);
+      }
     }
-
   }
 
   public void updateSellerItemPrice(SellerItem itemToUpdate) {
