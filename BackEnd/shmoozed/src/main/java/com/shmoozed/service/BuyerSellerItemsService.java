@@ -158,17 +158,13 @@ public class BuyerSellerItemsService {
     //Sorts through all items that match the sellerItem's Item Id.
     for (BuyerItem buyerItem : buyerItemRepository.findAllByItemId(sellerItem.getItemId())) {
       logger.debug("Found item on: " + buyerItem.toString());
-      logger.debug("bi price:" + buyerItem.getPrice());
-      logger.debug("si price:" + sellerItem.getPrice());
 
-      //if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) == -1 || buyerItem.getPrice().compareTo(sellerItem.getPrice()) == 0) {
-      if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) >= 0 ){ //== -1 || buyerItem.getPrice().compareTo(sellerItem.getPrice()) == 0) {
+      if (buyerItem.getPrice().compareTo(sellerItem.getPrice()) >= 0 ){
 
         logger.debug("Notify user set buyerItem notify to true");
         if(buyerItem.getNotifyUser() == false) {
           buyerItem.setNotifyUser(true);
         }
-        //buyerItemRepository.save(buyerItem);
       }
       else
       {
@@ -185,11 +181,9 @@ public class BuyerSellerItemsService {
     logger.debug("Resetting notifyUser");
 
     Optional<BuyerItem> itemToReset = buyerItemRepository.findById(buyerItem.getId());
-    logger.debug("isPresent: " + itemToReset.isPresent());
     if(itemToReset.isPresent()){
       BuyerItem buyerItemToUpdate = itemToReset.get();
       if(buyerItemToUpdate.getNotifyUser() == true){
-        logger.debug("inUpdate");
         buyerItemToUpdate.setNotifyUser(false);
         buyerItemRepository.save(buyerItemToUpdate);
       }
