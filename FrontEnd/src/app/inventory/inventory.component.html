@@ -13,7 +13,7 @@
     <mat-form-field id="itemSelector">
       <mat-select [(value)]="selectedItem" (selectionChange)="saveSelectedValue($event.value)">
         <mat-option *ngFor="let item of products" [value]="item.itemId">
-          {{item.name}}
+          {{item.detailedItem.item.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>

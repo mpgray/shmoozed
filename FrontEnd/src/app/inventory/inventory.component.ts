@@ -70,7 +70,7 @@ export class InventoryComponent implements OnInit {
 
   getSellerItems() {
     const userId = +localStorage.getItem('userId');
-    const apiLocation = environment.baseUrl + 'item/seller/' + userId;
+    const apiLocation = environment.baseUrl + 'item/seller/' + userId + '/details';
 
     return this.http.get<SellerItem[]>(apiLocation);
   }
