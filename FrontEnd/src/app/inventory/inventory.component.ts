@@ -57,6 +57,8 @@ export class InventoryComponent implements OnInit {
         // console.log(data);
         this.products = data;
         this.temp = [...this.products];
+        //console.log("This is products");
+        //console.log(this.products);
         if (this.products.length !== 0) {
           if (localStorage.getItem('inventoryPageSelectedItem') == null) {
             localStorage.setItem('inventoryPageSelectedItem', this.products[0].id.toString());
@@ -68,7 +70,7 @@ export class InventoryComponent implements OnInit {
 
   getSellerItems() {
     const userId = +localStorage.getItem('userId');
-    const apiLocation = environment.baseUrl + 'item/seller/' + userId;
+    const apiLocation = environment.baseUrl + 'item/seller/' + userId + '/details';
 
     return this.http.get<SellerItem[]>(apiLocation);
   }
