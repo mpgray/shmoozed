@@ -21,7 +21,7 @@ public class WalmartClient {
 
   private final RestTemplate restTemplate;
 
-  private static final String API_KEY = "ffqfc5hpwnqazpeua9w7e64u";
+  private static final String API_KEY = "<WALMART_API_KEY>";
   private static final String API_BASE_URL = "http://api.walmartlabs.com";
   private static final String V1_ITEMS_URL = "/v1/items/{item_id}?format=json&apiKey={api_key}";
   private static final String V1_SEARCH_URL = "/v1/search?apiKey={api_key}&query={query}&sort=bestseller";
