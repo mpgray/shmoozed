@@ -8,7 +8,7 @@ notifications:
   # https://docs.travis-ci.com/user/notifications/
   slack:
     rooms: 
-      - cs3750group2:u7F1SPN76356M90w08zR9ShU#travis-ci
+      - cs3750group2:<SLACK_APP_KEY>#travis-ci
     on_success: always
     on_failure: always
     template:
@@ -60,13 +60,13 @@ deploy:
   # The "skip_cleanup" stops that from happening. See https://docs.travis-ci.com/user/job-lifecycle/#deploying-your-code
   skip_cleanup: true
   provider: elasticbeanstalk
-  access_key_id: AKIAJ25AYVIIHFSCP4IQ
+  access_key_id: <ACCESS_KEY>
   secret_access_key:
-    secure: uCSoSf5Y7uaXVqOce28XWHSX5VjPta0n4v7iGdo0LUMRlqcXosHufXHEp72D/PnOCRp4QzRrTg4SdXwyh+XxWUpFqnUJWMcYnrfkdDur5mxF4A8MhscRJFSQWZcYUMtNC8ur8F4A+1I+It7gt7oU7tLjEBEGq5qb8vWL1TqFogvSElPYsLxyc2NvIeZx2fYsZTJBE40LEYXwSzRUPk8s50xaAlQt3wYXeR74XT0/E/eP8vrJ6GpqHFixAHrGCQH8givyW/fNNVFjE1zmTRshJd3HeetN73Dfv3HRFFPjydqqRARkf/igZyhHOIaZndc5Kq+G9KB1fSr+5NP1APMQS8QWz89MDkvPamak3O6jlAePyPpb1+KutUmugiF3CS3PxEfFK3BB5O58CptKvBGgWinvkhTaKp4+clCnfZ5rCwh2G+6sN0/udsK6Uk78//6RaStokSfNfxpw9H9Yh++aILrBlRRXZd9IbNJYFBUCAxx9DByJzf3l3ZPgqUTTHXCJo8VCAdGzfe9TLGXNuWX90ZQjLQ3K0kudW9Z2hLbIY0t3WlnS4Sr3j4gvAGmQnd9EvUuGD4E3Vt0KyeaIutMsrDgBa9AGvlx3DBkaL52ZdQvCrWfkkdEYdMgfmfN3eNxdQSthisTzV/E9QABwfKizY3/FaAGDrrI7MopK8kn4k+I=
+    secure: <ACCESS_SECRET>
   region: us-east-2
   app: shmoozed-backend-api
   env: ShmoozedBackendApi-env
-  bucket_name: elasticbeanstalk-us-east-2-867543728765
+  bucket_name: elasticbeanstalk-us-east-2-<BUCKET_ID>
   # Although this says "zip_file" it really means "deploy_file" so point it directly at the jar file
   zip_file: '/home/travis/build/cowancs3750fall18/semesterproject-group-2/BackEnd/shmoozed/target/shmoozed-0.3.2.jar'
   on:

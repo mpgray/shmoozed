@@ -28,7 +28,7 @@ public class WalmartClientTest {
 
   @Test
   public void getItemById() {
-    mockRemoteServer.expect(requestTo("/v1/items/12345?format=json&apiKey=ffqfc5hpwnqazpeua9w7e64u"))
+    mockRemoteServer.expect(requestTo("/v1/items/12345?format=json&apiKey=<WALMART_API_KEY>"))
       .andRespond(withSuccess(WALMART_ITEM_RESPONSE_JSON, MediaType.APPLICATION_JSON_UTF8));
 
     WalmartItem results = fixture.getItemById(12345);
